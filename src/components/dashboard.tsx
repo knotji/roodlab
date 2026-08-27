@@ -705,7 +705,7 @@ function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
         </span>
       </div>
       <div className="consensus-grid">
-        {consensus.digits.slice(0, 4).map((item) => (
+        {consensus.digits.slice(0, 5).map((item) => (
           <article key={item.digit}>
             <strong>{item.digit}</strong>
             <div>

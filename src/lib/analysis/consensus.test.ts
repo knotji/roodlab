@@ -15,6 +15,9 @@ describe("formula consensus", () => {
     expect(
       result.digits.every((item) => item.votes >= 0 && item.votes <= 5),
     ).toBe(true);
+    expect(result.digits.reduce((total, item) => total + item.votes, 0)).toBe(
+      ALGORITHMS.length * 5,
+    );
     expect(result.digits).toEqual(
       [...result.digits].sort(
         (a, b) =>

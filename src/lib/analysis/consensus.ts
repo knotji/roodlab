@@ -2,7 +2,7 @@ import type { LotteryDraw } from "../types";
 import { ALGORITHMS } from "./algorithms";
 import { analyzeLottery } from "./engine";
 
-const CONSENSUS_TOP_DIGITS = 4;
+const CONSENSUS_TOP_DIGITS = 5;
 export const STABILITY_WINDOWS = [10, 20, 30, 50] as const;
 
 export type ConsensusDigit = {
@@ -71,7 +71,7 @@ export function buildConsensus(
       (window) =>
         new Set(
           rankForWindow(history, { ...options, window })
-            .slice(0, 4)
+            .slice(0, CONSENSUS_TOP_DIGITS)
             .map((item) => item.digit),
         ),
     ),
