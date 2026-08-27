@@ -1,0 +1,926 @@
+{
+  "auditedAt": "2026-08-27T01:58:16.752Z",
+  "total": 151,
+  "supported": 140,
+  "partial": 11,
+  "failed": 0,
+  "items": [
+    {
+      "id": "goverment",
+      "name": "หวยรัฐบาล",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "baac",
+      "name": "ธ.ก.ส.",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "gsb",
+      "name": "ออมสิน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "set",
+      "name": "หุ้นไทยเย็น",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "sgx",
+      "name": "หุ้นสิงคโปร์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-afternoon",
+      "name": "หุ้นนิคเคอิบ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-morning",
+      "name": "หุ้นนิคเคอิเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ktop30",
+      "name": "หุ้นเกาหลี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-afternoon",
+      "name": "หุ้นจีนบ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-morning",
+      "name": "หุ้นจีนเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-afternoon",
+      "name": "หุ้นฮั่งเส็งบ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-morning",
+      "name": "หุ้นฮั่งเส็งเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "twse",
+      "name": "หุ้นไต้หวัน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "bsesn",
+      "name": "หุ้นอินเดีย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "moexbc",
+      "name": "หุ้นรัสเซีย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "gdaxi",
+      "name": "หุ้นเยอรมัน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ftse100",
+      "name": "หุ้นอังกฤษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dji",
+      "name": "หุ้นดาวโจนส์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "djindex-st",
+      "name": "หุ้นดาวโจนส์ ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "roman-index",
+      "name": "หุ้นโรมัน",
+      "status": "supported",
+      "draws": 22
+    },
+    {
+      "id": "index-ausvip",
+      "name": "หุ้นออสเตรเลีย VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkindex-st-morning",
+      "name": "หุ้นนิเคอิ ST เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "chnindex-st-morning",
+      "name": "หุ้นจีน ST เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsindex-st-morning",
+      "name": "หุ้นฮั่งเส็ง ST เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hkindex-st",
+      "name": "หุ้นฮ่องกง ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkindex-st-afternoon",
+      "name": "หุ้นนิเคอิ ST บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "chnindex-st-afternoon",
+      "name": "หุ้นจีน ST บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsindex-st-afternoon",
+      "name": "หุ้นฮั่งเส็ง ST บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ukindex-st",
+      "name": "หุ้นอังกฤษ ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "gerindex-st",
+      "name": "หุ้นเยอรมัน ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "rsindex-st",
+      "name": "หุ้นรัสเซีย ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dowjone-special",
+      "name": "หุ้นดาวโจนส์พิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-vip-afternoon",
+      "name": "หุ้นนิคเคอิ VIP บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-vip-morning",
+      "name": "หุ้นนิคเคอิ VIP เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-vip-afternoon",
+      "name": "หุ้นฮั่งเส็ง VIP บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-vip-morning",
+      "name": "หุ้นฮั่งเส็ง VIP เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-vip-afternoon",
+      "name": "หุ้นจีน VIP บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-vip-morning",
+      "name": "หุ้นจีน VIP เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dowjones-visa",
+      "name": "หุ้นดาวโจนส์ VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "sgx-vip",
+      "name": "หุ้นสิงคโปร์ VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ktop30-vip",
+      "name": "หุ้นเกาหลี VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "twse-vip",
+      "name": "หุ้นไต้หวัน VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ukx-special",
+      "name": "หุ้นอังกฤษพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dax-special",
+      "name": "หุ้นเยอรมันพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "rusx-special",
+      "name": "หุ้นรัสเซียพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "vni-special-afternoon",
+      "name": "หุ้นเวียดนามพิเศษ บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "sgx-special",
+      "name": "สิงคโปร์พิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-special-afternoon",
+      "name": "หุ้นฮั่งเส็งพิเศษ บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-special-afternoon",
+      "name": "หุ้นจีนพิเศษ บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-special-afternoon",
+      "name": "หุ้นนิคเคอิพิเศษ บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "krx-special",
+      "name": "หุ้นเกาหลีพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "twse-special",
+      "name": "หุ้นไต้หวันพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "vni-special-morning",
+      "name": "หุ้นเวียดนามพิเศษ เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hsi-special-morning",
+      "name": "หุ้นฮั่งเส็งพิเศษ เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-special-morning",
+      "name": "หุ้นจีนพิเศษ เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-special-morning",
+      "name": "หุ้นนิคเคอิพิเศษ เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "moexbluechip-visa",
+      "name": "หุ้นรัสเซีย VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dax-visa",
+      "name": "หุ้นเยอรมัน VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ftse-visa",
+      "name": "หุ้นอังกฤษ VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hangseng-visa-afternoon",
+      "name": "หุ้นฮั่งเส็ง VISA บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-visa-afternoon",
+      "name": "หุ้นจีน VISA บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-visa-afternoon",
+      "name": "หุ้นนิคเคอิ VISA บ่าย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hangseng-visa-morning",
+      "name": "หุ้นฮั่งเส็ง VISA เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "szse-visa-morning",
+      "name": "หุ้นจีน VISA เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "nikkei-visa-morning",
+      "name": "หุ้นนิคเคอิ VISA เช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "minhngoc",
+      "name": "ฮานอยปกติ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xsthm",
+      "name": "ฮานอยพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "mlnhngo",
+      "name": "ฮานอย VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "minhngocstar",
+      "name": "ฮานอยสตาร์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "minhngoctv",
+      "name": "ฮานอยทีวี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosoredcross",
+      "name": "ฮานอยกาชาด",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosohd",
+      "name": "ฮานอย HD",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosodevelop",
+      "name": "ฮานอยพัฒนา",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosounion",
+      "name": "ฮานอยสามัคคี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xsdky",
+      "name": "ฮานอยดึก",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosoextra",
+      "name": "ฮานอย Extra",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "ketqua4d",
+      "name": "ฮานอย 4D",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xsktvn",
+      "name": "ฮานอยเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hanoiasean",
+      "name": "ฮานอยอาเซียน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosokqx",
+      "name": "เวียดนามปกติ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xosokqxvip",
+      "name": "เวียดนาม VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "xstachroi",
+      "name": "ฮานอยเฉพาะกิจ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laostars",
+      "name": "ลาวสตาร์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosdevelops",
+      "name": "ลาวพัฒนา",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laounion",
+      "name": "ลาวสามัคคี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosvip",
+      "name": "ลาว VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laostarsvip",
+      "name": "ลาวสตาร์ VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laopattana-morning",
+      "name": "ลาวพัฒนาเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laospattana-morning-vip",
+      "name": "ลาวพัฒนาเช้า VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laoredcross",
+      "name": "ลาวกาชาด",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laoshd",
+      "name": "ลาว HD",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laotv",
+      "name": "ลาวทีวี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosspecial",
+      "name": "ลาวพิเศษ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laospecial",
+      "name": "ลาวพิเศษรอบเที่ยง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laoplus",
+      "name": "ลาวพลัส",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laoextra",
+      "name": "ลาว Extra",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laochowlottery",
+      "name": "ลาวเช้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosuper",
+      "name": "ลาวซูเปอร์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laomongkol",
+      "name": "ลาวมงคล",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laorumruay",
+      "name": "ลาวร่ำรวย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosniyom",
+      "name": "ลาวนิยม",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosasean",
+      "name": "ลาวอาเซียน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laounionvip",
+      "name": "ลาวสามัคคี VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laohungheuong",
+      "name": "ลาวรุ่งเรือง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laopremium",
+      "name": "ลาวพรีเมี่ยม",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosiyara",
+      "name": "ลาวไอยรา",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laomunkong",
+      "name": "ลาวมั่นคง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laojaroen",
+      "name": "ลาวเจริญ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laokaownah",
+      "name": "ลาวก้าวหน้า",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laopattanamidday",
+      "name": "ลาวพัฒนาเที่ยง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laossabaidee",
+      "name": "ลาวสบายดี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laomungkung",
+      "name": "ลาวมั่งคั่ง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laocitizen",
+      "name": "ประชาชนลาว",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosantipap",
+      "name": "ลาวสันติภาพ",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laopatuxay",
+      "name": "ลาวประตูชัย",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "loasnakonluuang",
+      "name": "ลาวนครหลวง",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laomaekhong",
+      "name": "แม่โขงปกติ",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "xososvip",
+      "name": "ฮานอย SVIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hanoi-st",
+      "name": "ฮานอย ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "saravane-st",
+      "name": "สาละวัน ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "luangprabang-st",
+      "name": "หลวงพระบาง ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosetthivip",
+      "name": "ลาวเศรษฐี VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "vientiane-st",
+      "name": "เวียงจันทน์ ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laokanngern",
+      "name": "ลาวการเงิน",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "lao-st",
+      "name": "ลาว ST",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "laosetthi",
+      "name": "ลาวเศรษฐี",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "maekhongvip",
+      "name": "แม่โขง VIP",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongstar",
+      "name": "แม่โขงสตาร์",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongspecial",
+      "name": "แม่โขงพิเศษ",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongplus",
+      "name": "แม่โขงพลัส",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhonghd",
+      "name": "แม่โขง HD",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongnight",
+      "name": "แม่โขงไนท์",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhonggold",
+      "name": "แม่โขงโกลด์",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongphatthana",
+      "name": "แม่โขงพัฒนา",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongmega",
+      "name": "แม่โขงเมก้า",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "maekhongtoday",
+      "name": "แม่โขงทูเดย์",
+      "status": "partial",
+      "draws": 23,
+      "reason": "missing top3, top2, bottom2"
+    },
+    {
+      "id": "hanoi-visa",
+      "name": "ฮานอย VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "hongkong-visa",
+      "name": "ฮ่องกง VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "lao-visa",
+      "name": "ลาว VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "vientiane-visa",
+      "name": "เวียงจันทน์ VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "luangprabang-visa",
+      "name": "หลวงพระบาง VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "salavan-visa",
+      "name": "สาละวัน VISA",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dowjones-vip",
+      "name": "ดาวโจนส์ VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "dowjonestar",
+      "name": "ดาวโจนส์สตาร์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "euluckynumber",
+      "name": "ยูโร",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "magnum4d",
+      "name": "มาเลย์",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "russia-vip",
+      "name": "รัสเซีย VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "germany-vip",
+      "name": "เยอรมัน VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "england-vip",
+      "name": "อังกฤษ VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "japanlottovip",
+      "name": "เจแปน ล็อตโต้ VIP",
+      "status": "supported",
+      "draws": 23
+    },
+    {
+      "id": "macaulottovip",
+      "name": "มาเก๊า VIP",
+      "status": "supported",
+      "draws": 23
+    }
+  ]
+}

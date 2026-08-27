@@ -1,0 +1,1619 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+import type { Snapshot, SnapshotFreshness } from "@/lib/cache";
+import type { FreshnessInfo } from "@/lib/freshness";
+import type { LotteryDefinition } from "@/lib/types";
+import type {
+  DigitSignal,
+  DigitWeights,
+  PairSignal,
+  PairWeights,
+  Side,
+} from "@/lib/analysis/types";
+import { analyzeLottery, positionMatrix } from "@/lib/analysis/engine";
+import { memoizedAnalyze } from "@/lib/analysis/cache";
+import { backtest, metric, referenceBaselines } from "@/lib/analysis/backtest";
+import { compareAlgorithms } from "@/lib/analysis/formula-lab";
+import { ALGORITHMS, validateWeights } from "@/lib/analysis/algorithms";
+import {
+  DAY_PATTERN_OPTIONS,
+  MIN_DAY_PATTERN_DRAWS,
+  dayPatternLabel,
+  filterDrawsByDay,
+  type DayPattern,
+} from "@/lib/analysis/day-pattern";
+import { getCanonicalDataset } from "@/lib/history-provider";
+import { computeHistoryVersion } from "@/lib/history-version";
+import { buildWinSet } from "@/lib/analysis/win-set";
+import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
+import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
+import { LotterySelector } from "./lottery-selector";
+import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
+import { PairDiagnosticsPanel } from "./pair-diagnostics-panel";
+import {
+  Activity,
+  BarChart3,
+  Check,
+  Copy,
+  Database,
+  History,
+  Info,
+  Minus,
+  RefreshCw,
+  Search,
+  Settings,
+  Sparkles,
+  TestTube2,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
+type Section = "analyze" | "statistics" | "history" | "backtest" | "settings";
+const nav = [
+  { id: "analyze", label: "วิเคราะห์", icon: Sparkles },
+  { id: "statistics", label: "สถิติ", icon: BarChart3 },
+  { id: "history", label: "ย้อนหลัง", icon: History },
+  { id: "backtest", label: "ทดสอบ", icon: TestTube2 },
+  { id: "settings", label: "ตั้งค่า", icon: Settings },
+] as const;
+const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
+const thaiShortMonths = [
+  "ม.ค.",
+  "ก.พ.",
+  "มี.ค.",
+  "เม.ย.",
+  "พ.ค.",
+  "มิ.ย.",
+  "ก.ค.",
+  "ส.ค.",
+  "ก.ย.",
+  "ต.ค.",
+  "พ.ย.",
+  "ธ.ค.",
+] as const;
+function formatShortDrawDate(drawDate: string | undefined) {
+  if (!drawDate) return "--";
+  const [year, month, day] = drawDate.split("-").map(Number);
+  if (!year || !month || !day || !thaiShortMonths[month - 1]) return drawDate;
+  return `${day} ${thaiShortMonths[month - 1]} ${year + 543}`;
+}
+const defaultDigit: DigitWeights = {
+    frequency: 0.3,
+    recentFrequency: 0.25,
+    momentum: 0.2,
+    positionStrength: 0.15,
+    gapPattern: 0.1,
+  },
+  defaultPair: PairWeights = {
+    digitA: 0.25,
+    digitB: 0.25,
+    pairFrequency: 0.2,
+    recentPairTrend: 0.15,
+    positionMatch: 0.15,
+  };
+export default function Dashboard({
+  catalog: initialCatalog,
+  initialSnapshots,
+  auditStatuses,
+}: {
+  catalog: LotteryDefinition[];
+  initialSnapshots: Record<string, Snapshot>;
+  auditStatuses: Record<
+    string,
+    { status: "supported" | "partial" | "failed"; reason?: string }
+  >;
+}) {
+  const stored = useLotteryStore((s) => s.selectedLotteryId),
+    persistLottery = useLotteryStore((s) => s.setSelectedLottery),
+    algorithmId = useLotteryStore((s) => s.algorithmId),
+    setAlgorithm = useLotteryStore((s) => s.setAlgorithm);
+  const [catalog, setCatalog] = useState(initialCatalog),
+    [snapshots, setSnapshots] = useState(initialSnapshots),
+    [selectedId, setSelectedId] = useState(initialCatalog[0]?.id ?? ""),
+    [section, setSection] = useState<Section>("analyze"),
+    [windowSize, setWindow] = useState(30),
+    [candidateCount, setCandidateCount] = useState(4),
+    [doubles, setDoubles] = useState(true),
+    [syncing, setSyncing] = useState(false),
+    [catalogSync, setCatalogSync] = useState(false),
+    [error, setError] = useState<string | null>(null),
+    [digitDetail, setDigitDetail] = useState<DigitSignal | null>(null),
+    [pairDetail, setPairDetail] = useState<PairSignal | null>(null),
+    [fullAnalysis, setFullAnalysis] = useState(false),
+    [search, setSearch] = useState(""),
+    [visible, setVisible] = useState(20),
+    [testDraws, setTestDraws] = useState(30),
+    [backtestTab, setBacktestTab] = useState<"results" | "lab">("results"),
+    [formulaDayPattern, setFormulaDayPattern] = useState<DayPattern>("all"),
+    [expandedRow, setExpandedRow] = useState<string | null>(null),
+    [positionSide, setPositionSide] = useState<Side>("top"),
+    [gapSort, setGapSort] = useState<"score" | "latest" | "gap">("score"),
+    [dayPattern, setDayPattern] = useState<DayPattern>("all"),
+    [digitWeights, setDigitWeights] = useState(defaultDigit),
+    [pairWeights, setPairWeights] = useState(defaultPair),
+    [liveFreshness, setLiveFreshness] = useState<FreshnessInfo | null>(null),
+    [syncNotice, setSyncNotice] = useState<{
+      addedDraws: number;
+      latest: string;
+    } | null>(null),
+    [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    void Promise.resolve(useLotteryStore.persist.rehydrate()).finally(() =>
+      setHydrated(true),
+    );
+  }, []);
+  useEffect(() => {
+    const url = new URL(window.location.href).searchParams.get("lottery"),
+      resolved = resolveLotteryId(
+        catalog.map((x) => x.id),
+        stored,
+        url,
+      );
+    if (resolved && resolved !== selectedId)
+      queueMicrotask(() => {
+        setSelectedId(resolved);
+        persistLottery(resolved);
+      });
+  }, [catalog, stored, selectedId, persistLottery]);
+  const selectLottery = (id: string) => {
+    setSelectedId(id);
+    persistLottery(id);
+    setError(null);
+    setDigitDetail(null);
+    setPairDetail(null);
+    setExpandedRow(null);
+    setSearch("");
+    setVisible(20);
+    setSyncNotice(null);
+    setLiveFreshness(null);
+    const url = new URL(location.href);
+    url.searchParams.set("lottery", id);
+    history.replaceState({}, "", url);
+  };
+  const snapshot = snapshots[selectedId],
+    canonical = useMemo(
+      () => getCanonicalDataset(snapshot, windowSize),
+      [snapshot, windowSize],
+    ),
+    draws = canonical.history,
+    analysisDraws = canonical.analysisHistory,
+    patternDraws = filterDrawsByDay(analysisDraws, dayPattern),
+    formulaDraws = filterDrawsByDay(analysisDraws, formulaDayPattern),
+    integrity = canonical.integrity,
+    freshness = liveFreshness ?? snapshot?.freshness ?? null,
+    hasSignals =
+      analysisDraws.some((d) => d.top3 || d.top2 || d.bottom2) &&
+      auditStatuses[selectedId]?.status !== "failed",
+    customValid = validateWeights(digitWeights) && validateWeights(pairWeights);
+  const analysis = useMemo(() => {
+    return hasSignals
+      ? memoizedAnalyze(selectedId, patternDraws, {
+          window: windowSize,
+          candidateCount,
+          includeDoubles: doubles,
+          algorithmId: algorithmId === "custom" ? "balanced-v1" : algorithmId,
+        })
+      : null;
+  }, [
+    selectedId,
+    patternDraws,
+    hasSignals,
+    windowSize,
+    candidateCount,
+    doubles,
+    algorithmId,
+  ]);
+  const tests = useMemo(() => {
+      return hasSignals
+        ? backtest(
+            analysisDraws,
+            windowSize,
+            testDraws,
+            candidateCount,
+            "balanced-v1",
+          )
+        : [];
+    }, [analysisDraws, hasSignals, windowSize, testDraws, candidateCount]),
+    comparisons = useMemo(
+      () =>
+        hasSignals
+          ? compareAlgorithms(
+              formulaDraws,
+              windowSize,
+              testDraws,
+              candidateCount,
+            )
+          : [],
+      [formulaDraws, hasSignals, windowSize, testDraws, candidateCount],
+    );
+  async function sync() {
+    setSyncing(true);
+    setError(null);
+    setSyncNotice(null);
+    try {
+      const r = await fetch(`/api/history/${selectedId}`, { method: "POST" }),
+        data = await r.json();
+      if (!r.ok) throw new Error(data.error);
+      setSnapshots((s) => ({ ...s, [selectedId]: data }));
+      const nextFreshness = data.freshness as SnapshotFreshness | undefined;
+      setLiveFreshness(nextFreshness ?? null);
+      setSyncNotice({
+        addedDraws: data.addedDraws ?? 0,
+        latest: data.draws?.[0]?.drawDate ?? data.cachedLatestDrawDate ?? "",
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "ซิงก์ไม่สำเร็จ");
+    } finally {
+      setSyncing(false);
+    }
+  }
+  useEffect(() => {
+    if (!selectedId) return;
+    let cancelled = false;
+    fetch(`/api/history/${selectedId}/freshness`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled && data.ok) {
+          setLiveFreshness(data.freshness as FreshnessInfo);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLiveFreshness(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedId]);
+  async function refreshCatalog() {
+    setCatalogSync(true);
+    try {
+      const r = await fetch("/api/catalog", { method: "POST" }),
+        data = await r.json();
+      if (!r.ok) throw new Error(data.error);
+      setCatalog(data.lotteries);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "รีเฟรชรายการไม่สำเร็จ");
+    } finally {
+      setCatalogSync(false);
+    }
+  }
+  const latest = draws[0]?.drawDate,
+    filtered = draws.filter((d) =>
+      `${d.drawDate} ${d.top3} ${d.top2} ${d.bottom2}`.includes(search),
+    );
+  const selectFormulaDayPattern = (nextDay: DayPattern) => {
+    const matchingDraws = filterDrawsByDay(analysisDraws, nextDay).length;
+    setFormulaDayPattern(nextDay);
+    if (nextDay === "all" || matchingDraws > windowSize) return;
+    const usableWindow = [50, 30, 20, 10].find(
+      (candidate) => candidate < matchingDraws,
+    );
+    if (usableWindow) setWindow(usableWindow);
+  };
+  return (
+    <div className="app-shell">
+      <aside className="sidebar">
+        <div className="brand">
+          <span>R</span>
+          <div>
+            <strong>RoodLab</strong>
+            <small>Signal analysis</small>
+          </div>
+        </div>
+        <nav>
+          {nav.map((n) => (
+            <button
+              key={n.id}
+              className={section === n.id ? "active" : ""}
+              onClick={() => setSection(n.id)}
+            >
+              <n.icon />
+              {n.label}
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-note">
+          <Database />
+          <div>
+            <strong>{draws.length} งวด</strong>
+            <small>{snapshot ? "ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}</small>
+          </div>
+        </div>
+      </aside>
+      <main>
+        <header className="topbar">
+          <div className="topbar-head">
+            <div className="eyebrow">LOTTERY ANALYSIS</div>
+            <LotterySelector
+              catalog={catalog}
+              selectedId={selectedId}
+              onSelect={selectLottery}
+              onRefresh={refreshCatalog}
+              refreshing={catalogSync}
+              auditStatuses={auditStatuses}
+            />
+            <LotteryHeaderMeta
+              windowSize={windowSize}
+              latestDrawDate={latest}
+              syncedAt={snapshot?.syncedAt}
+              freshness={freshness}
+              syncNotice={syncNotice}
+              currentSourceResultDate={snapshot?.currentSourceResultDate}
+              latestCompleteDrawDate={snapshot?.latestCompleteDrawDate}
+              integrity={integrity}
+              hydrated={hydrated}
+            />
+          </div>
+          <button
+            className={`sync${syncNeedsUpdate(freshness, syncNotice) ? " sync-pending" : ""}`}
+            disabled={syncing || !selectedId}
+            onClick={sync}
+          >
+            <RefreshCw className={syncing ? "spin" : ""} />
+            {syncing
+              ? "กำลังซิงก์"
+              : syncNeedsUpdate(freshness, syncNotice)
+                ? "ซิงก์ข้อมูลใหม่"
+                : "ซิงก์ข้อมูล"}
+          </button>
+        </header>
+        {error && (
+          <div className="error">
+            <strong>ดำเนินการไม่สำเร็จ</strong>
+            <span>{error} — cache เดิมยังคงอยู่</span>
+          </div>
+        )}
+        {!analysis && section !== "history" && (
+          <Empty onSync={sync} syncing={syncing} />
+        )}{" "}
+        {analysis && section === "analyze" && (
+          <Analyze
+            analysis={analysis}
+            integrity={integrity}
+            algorithmId={algorithmId === "custom" ? "balanced-v1" : algorithmId}
+            setAlgorithm={setAlgorithm}
+            dayPattern={dayPattern}
+            setDayPattern={setDayPattern}
+            onDigit={setDigitDetail}
+            onPair={setPairDetail}
+            full={fullAnalysis}
+            setFull={setFullAnalysis}
+          />
+        )}{" "}
+        {analysis && section === "statistics" && (
+          <Statistics
+            analysis={analysis}
+            draws={analysisDraws}
+            windowSize={windowSize}
+            setWindow={setWindow}
+            onDigit={setDigitDetail}
+            side={positionSide}
+            setSide={setPositionSide}
+            gapSort={gapSort}
+            setGapSort={setGapSort}
+          />
+        )}{" "}
+        {draws.length > 0 && section === "history" && (
+          <HistoryPage
+            draws={filtered}
+            search={search}
+            setSearch={setSearch}
+            visible={visible}
+            setVisible={setVisible}
+          />
+        )}{" "}
+        {!draws.length && section === "history" && (
+          <Empty onSync={sync} syncing={syncing} />
+        )}{" "}
+        {analysis && section === "backtest" && (
+          <BacktestPage
+            rows={tests}
+            comparisons={comparisons}
+            tab={backtestTab}
+            setTab={setBacktestTab}
+            windowSize={windowSize}
+            setWindow={setWindow}
+            testDraws={testDraws}
+            setTestDraws={setTestDraws}
+            formulaDayPattern={formulaDayPattern}
+            setFormulaDayPattern={selectFormulaDayPattern}
+            formulaSampleSize={formulaDraws.length}
+            formulaLatestDrawDate={formulaDraws[0]?.drawDate}
+            expanded={expandedRow}
+            setExpanded={setExpandedRow}
+            historyVersion={computeHistoryVersion(selectedId, formulaDraws)}
+            analysisCutoff={formulaDraws[0]?.drawDate ?? null}
+          />
+        )}{" "}
+        {section === "settings" && (
+          <SettingsPage
+            algorithmId={algorithmId}
+            setAlgorithm={setAlgorithm}
+            windowSize={windowSize}
+            setWindow={setWindow}
+            candidateCount={candidateCount}
+            setCandidateCount={setCandidateCount}
+            doubles={doubles}
+            setDoubles={setDoubles}
+            digitWeights={digitWeights}
+            setDigitWeights={setDigitWeights}
+            pairWeights={pairWeights}
+            setPairWeights={setPairWeights}
+            valid={customValid}
+          />
+        )}
+        <footer>
+          การจัดอันดับอ้างอิงสถิติย้อนหลัง
+          ไม่ได้เพิ่มความน่าจะเป็นทางคณิตศาสตร์ของผลสุ่มในงวดถัดไป
+        </footer>
+      </main>
+      <nav className="mobile-nav">
+        {nav.map((n) => (
+          <button
+            key={n.id}
+            className={section === n.id ? "active" : ""}
+            onClick={() => setSection(n.id)}
+          >
+            <n.icon />
+            <span>{n.label}</span>
+          </button>
+        ))}
+      </nav>
+      {(digitDetail || pairDetail) && (
+        <DetailModal
+          digit={digitDetail}
+          pair={pairDetail}
+          analysis={analysis}
+          close={() => {
+            setDigitDetail(null);
+            setPairDetail(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+function Empty({ onSync, syncing }: { onSync: () => void; syncing: boolean }) {
+  return (
+    <div className="content empty-state">
+      <Database />
+      <h2>ยังไม่มีข้อมูลที่รองรับสำหรับหวยนี้</h2>
+      <p>
+        แหล่งข้อมูลอาจยังไม่เคยซิงก์ หรือมีข้อมูลบางประเภทไม่ครบ
+        ระบบจะไม่สร้างค่าที่ขาดหาย
+      </p>
+      <button className="sync" onClick={onSync}>
+        {syncing ? "กำลังซิงก์" : "ซิงก์ข้อมูล"}
+      </button>
+    </div>
+  );
+}
+function Analyze({
+  analysis,
+  integrity,
+  algorithmId,
+  setAlgorithm,
+  dayPattern,
+  setDayPattern,
+  onDigit,
+  onPair,
+  full,
+  setFull,
+}: {
+  analysis: NonNullable<ReturnType<typeof analyzeLottery>>;
+  integrity: DataIntegritySummary;
+  algorithmId: string;
+  setAlgorithm: (id: string) => void;
+  dayPattern: DayPattern;
+  setDayPattern: (day: DayPattern) => void;
+  onDigit: (d: DigitSignal) => void;
+  onPair: (p: PairSignal) => void;
+  full: boolean;
+  setFull: (v: boolean) => void;
+}) {
+  return (
+    <div className="content analyze">
+      <div className="analyze-controls">
+        <label>
+          <span>วิธีวิเคราะห์</span>
+          <select
+            value={algorithmId}
+            onChange={(event) => setAlgorithm(event.target.value)}
+          >
+            {ALGORITHMS.map((algorithm) => (
+              <option key={algorithm.id} value={algorithm.id}>
+                {algorithm.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="day-pattern-control">
+          <span>จับทางตามวัน</span>
+          <div className="day-pattern-options" aria-label="เลือกวันออกรางวัล">
+            {DAY_PATTERN_OPTIONS.map((option) => (
+              <button
+                key={String(option.value)}
+                className={dayPattern === option.value ? "active" : ""}
+                onClick={() => setDayPattern(option.value)}
+                title={option.label}
+              >
+                {option.shortLabel}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p className="day-pattern-summary">
+        {dayPattern === "all" ? (
+          <>ใช้ผลย้อนหลังทุกวัน · เปรียบเทียบรูปแบบ ไม่ใช่ความน่าจะเป็น</>
+        ) : (
+          <>
+            กรองเฉพาะงวด{dayPatternLabel(dayPattern)} · พบ {analysis.sampleSize} งวด
+            {analysis.sampleSize < MIN_DAY_PATTERN_DRAWS
+              ? ` · ต้องมีอย่างน้อย ${MIN_DAY_PATTERN_DRAWS} งวดเพื่อแสดงผล`
+              : " · เป็นสถิติเชิงสำรวจ ไม่ใช่หลักฐานว่าวันมีผลต่อเลข"}
+          </>
+        )}
+      </p>
+      <section className="hero">
+        <div>
+          <div className="section-kicker">เลขที่โดดเด่นจากสถิติย้อนหลัง</div>
+          <h1>
+            {analysis.sampleSize <
+            (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS)
+              ? "--"
+              : analysis.standout.map((x) => x.digit).join(" · ")}
+          </h1>
+          <p>
+            {analysis.sampleSize <
+            (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS)
+              ? `ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`
+              : dayPattern === "all"
+                ? `สัญญาณจาก ${analysis.window} งวดล่าสุด`
+                : `รูปแบบจาก ${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}
+          </p>
+          <small
+            className="analysis-integrity"
+            title={`${integrity.partialDraws} งวดข้อมูลไม่ครบ · ${integrity.invalidDraws} งวดถูกตัดออกจากการวิเคราะห์`}
+          >
+            {integrity.status === "complete"
+              ? `ข้อมูลครบ ${integrity.usableDraws}/${integrity.requestedDraws} งวด`
+              : `ข้อมูลใช้วิเคราะห์ได้ ${integrity.usableDraws}/${integrity.requestedDraws} งวด`}
+          </small>
+        </div>
+        <div className="hero-score">
+          <Activity />
+          <span>
+            สรุปข้อมูลย้อนหลัง{" "}
+            <span
+              className="info-tip"
+              title="คะแนนจัดอันดับจากความถี่ แนวโน้ม ตำแหน่ง และช่วงห่าง ไม่ใช่เปอร์เซ็นต์โอกาสออกรางวัล"
+            >
+              <Info />
+            </span>
+          </span>
+          <strong>
+            {analysis.window} <small>งวด</small>
+          </strong>
+          <small>
+            ใช้เปรียบเทียบรูปแบบในข้อมูลย้อนหลัง · ไม่ใช่ความน่าจะเป็น
+          </small>
+        </div>
+      </section>
+      {analysis.sampleSize >=
+        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
+        <WinSetCard
+          digits={analysis.digits}
+          onDigit={onDigit}
+        />
+      )}
+      {analysis.sampleSize >=
+        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
+        <>
+          <div className="section-kicker pair-section-title">
+            คู่ที่น่าสนใจจากสถิติ
+          </div>
+          <div className="pair-grid">
+            <PairList title="บน" items={analysis.topPairs} onSelect={onPair} />
+            <PairList title="ล่าง" items={analysis.bottomPairs} onSelect={onPair} />
+          </div>
+          <p className="pair-method-note">
+            จัดอันดับจากความแข็งแรงของเลขและความเหมาะสมตามตำแหน่ง
+            เป็นการสำรวจรูปแบบย้อนหลัง ไม่ใช่การทำนายผล
+          </p>
+        </>
+      )}
+      {analysis.sampleSize >=
+        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && <section className="why">
+        <div className="section-kicker">ทำไมเลขนี้โดดเด่น</div>
+        <div className="reason-grid">
+          {analysis.standout.flatMap((d) =>
+            d.reasons.map((r, i) => (
+              <button key={`${d.digit}-${i}`} onClick={() => onDigit(d)}>
+                <span>{d.digit}</span>
+                <p>{r}</p>
+              </button>
+            )),
+          )}
+        </div>
+        <button className="text-button" onClick={() => setFull(!full)}>
+          {full ? "ซ่อนบทวิเคราะห์" : "ดูบทวิเคราะห์เต็ม →"}
+        </button>
+        {full && (
+          <div className="breakdowns">
+            {analysis.standout.map((d) => (
+              <article key={d.digit}>
+                <div>
+                  <strong>เลข {d.digit}</strong>
+                  <span>อันดับรวม #{d.rank} / 10</span>
+                </div>
+                <b>{d.score}</b>
+                {Object.entries(d.components).map(([k, v]) => (
+                  <label key={k}>
+                    <span>{componentLabel(k)}</span>
+                    <i>
+                      <em style={{ width: `${v}%` }} />
+                    </i>
+                    <strong>{v}</strong>
+                  </label>
+                ))}
+              </article>
+            ))}
+          </div>
+        )}
+      </section>}
+    </div>
+  );
+}
+function WinSetCard({
+  digits,
+  onDigit,
+}: {
+  digits: DigitSignal[];
+  onDigit: (digit: DigitSignal) => void;
+}) {
+  const [winSize, setWinSize] = useState(4),
+    winDigits = digits.slice(0, winSize),
+    winSet = buildWinSet(
+      winDigits.map((digit) => digit.digit),
+      winSize,
+    ),
+    [copied, setCopied] = useState<"pairs" | "with-doubles" | null>(null);
+  async function copyPairs(
+    mode: "pairs" | "with-doubles",
+    pairs: string[],
+  ) {
+    try {
+      await navigator.clipboard.writeText(pairs.join(" "));
+      setCopied(mode);
+      window.setTimeout(() => setCopied(null), 1800);
+    } catch {
+      setCopied(null);
+    }
+  }
+  return (
+    <section className="win-set-card">
+      <div className="win-set-head">
+        <div>
+          <div className="section-kicker">ชุดเลขวินจากสถิติ</div>
+          <h3>วิน {winSize} ตัว</h3>
+        </div>
+        <div className="win-size-control">
+          <span>จำนวนเลขวิน</span>
+          <div>
+            {[3, 4, 5, 6].map((size) => (
+              <button
+                key={size}
+                className={winSize === size ? "active" : ""}
+                onClick={() => {
+                  setWinSize(size);
+                  setCopied(null);
+                }}
+                type="button"
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <small className="win-set-note">
+        เรียงจากความแข็งแรงของเลข · ไม่ใช่ความน่าจะเป็น
+      </small>
+      <div className="win-digits">
+        {winDigits.map((digit) => (
+          <button key={digit.digit} onClick={() => onDigit(digit)}>
+            {digit.digit}
+          </button>
+        ))}
+      </div>
+      <div className="win-pairs" aria-label="คู่กลับจากเลขวินสี่ตัว">
+        {winSet.orderedPairs.map((pair) => (
+          <span key={pair}>{pair}</span>
+        ))}
+      </div>
+      <div className="win-doubles">
+        <strong>เลขเบิ้ลจากชุดวิน</strong>
+        <div>
+          {winSet.doubles.map((pair) => (
+            <span key={pair}>{pair}</span>
+          ))}
+        </div>
+      </div>
+      <div className="win-set-footer">
+        <p>
+          กางครบ {winSet.orderedPairs.length} คู่แบบไม่รวมเลขเบิ้ล · แตะเลขเพื่อดูเหตุผลทางสถิติ
+        </p>
+        <div className="win-copy-actions">
+          <button
+            onClick={() => copyPairs("pairs", winSet.uniquePairs)}
+            type="button"
+          >
+            {copied === "pairs" ? <Check /> : <Copy />}
+            {copied === "pairs"
+              ? "คัดลอกแล้ว"
+            : `คัดลอกคู่ไม่ซ้ำ ${winSet.uniquePairs.length} คู่`}
+          </button>
+          <button
+            className="copy-with-doubles"
+            onClick={() =>
+              copyPairs("with-doubles", winSet.uniquePairsWithDoubles)
+            }
+            type="button"
+          >
+            {copied === "with-doubles" ? <Check /> : <Copy />}
+            {copied === "with-doubles"
+              ? "คัดลอกแล้ว"
+              : `รวมเลขเบิ้ล ${winSet.uniquePairsWithDoubles.length} คู่`}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+function PairList({
+  title,
+  items,
+  onSelect,
+}: {
+  title: string;
+  items: PairSignal[];
+  onSelect: (p: PairSignal) => void;
+}) {
+  return (
+    <section className="pair-card">
+      <div className="section-kicker">{title}</div>
+      {items.map((p, i) => (
+        <button className="pair-row" key={p.pair} onClick={() => onSelect(p)}>
+          <span className="pair-rank">{String(i + 1).padStart(2, "0")}</span>
+          <strong>{p.pair}</strong>
+          <span>อันดับจากข้อมูล {p.score.toFixed(1)}</span>
+        </button>
+      ))}
+    </section>
+  );
+}
+function Statistics({
+  analysis,
+  draws,
+  windowSize,
+  setWindow,
+  onDigit,
+  side,
+  setSide,
+  gapSort,
+  setGapSort,
+}: {
+  analysis: ReturnType<typeof analyzeLottery>;
+  draws: Snapshot["draws"];
+  windowSize: number;
+  setWindow: (n: number) => void;
+  onDigit: (d: DigitSignal) => void;
+  side: Side;
+  setSide: (s: Side) => void;
+  gapSort: "score" | "latest" | "gap";
+  setGapSort: (s: "score" | "latest" | "gap") => void;
+}) {
+  const matrix = positionMatrix(draws.slice(0, windowSize), side),
+    max = Math.max(
+      1,
+      ...matrix.flatMap(
+        (r) =>
+          Object.values(r).filter((x) => typeof x === "number") as number[],
+      ),
+    ),
+    sorted = [...analysis.digits].sort((a, b) =>
+      gapSort === "latest"
+        ? (b.gap ?? -1) - (a.gap ?? -1)
+        : gapSort === "gap"
+          ? (b.averageGap ?? -1) - (a.averageGap ?? -1)
+          : b.score - a.score,
+    );
+  return (
+    <div className="content">
+      <div className="section-head">
+        <div>
+          <div className="section-kicker">DIGIT STRENGTH</div>
+          <h2>ภาพรวมเลข 0–9</h2>
+        </div>
+        <Segment
+          values={[10, 20, 30, 50, 100]}
+          value={windowSize}
+          onChange={setWindow}
+        />
+      </div>
+      <div className="heatmap">
+        {[...analysis.digits]
+          .sort((a, b) => a.digit.localeCompare(b.digit))
+          .map((d) => (
+            <button
+              key={d.digit}
+              style={{ "--score": `${d.score}%` } as React.CSSProperties}
+              onClick={() => onDigit(d)}
+            >
+              <strong>{d.digit}</strong>
+              <span>{d.score.toFixed(0)}</span>
+            </button>
+          ))}
+      </div>
+      <section className="chart-card">
+        <h3>Momentum · 10 งวดล่าสุด vs 10 งวดก่อนหน้า</h3>
+        <div className="momentum-table">
+          <b>เลข</b>
+          <b>ก่อนหน้า</b>
+          <b>ล่าสุด</b>
+          <b>เปลี่ยน</b>
+          {[...analysis.digits]
+            .sort((a, b) => a.digit.localeCompare(b.digit))
+            .map((d) => (
+              <div className="momentum-row" key={d.digit}>
+                <strong>{d.digit}</strong>
+                <span>{d.previous10}</span>
+                <span>{d.recent10}</span>
+                <em
+                  className={
+                    d.momentum > 0 ? "rise" : d.momentum < 0 ? "cool" : "stable"
+                  }
+                >
+                  {d.momentum > 0 ? "+" : ""}
+                  {d.momentum} · {d.trend}
+                </em>
+              </div>
+            ))}
+        </div>
+      </section>
+      <section className="chart-card">
+        <div className="card-title">
+          <h3>ความแข็งแรงตามตำแหน่ง</h3>
+          <SegmentText
+            values={[
+              { id: "top", label: "บน" },
+              { id: "bottom", label: "ล่าง" },
+            ]}
+            value={side}
+            onChange={(x) => setSide(x as Side)}
+          />
+        </div>
+        <div className="position-grid">
+          <b>เลข</b>
+          {side === "top" && <b>ร้อย</b>}
+          <b>สิบ</b>
+          <b>หน่วย</b>
+          {matrix.map((r) => (
+            <div className={`position-row ${side}`} key={r.digit}>
+              <strong>{r.digit}</strong>
+              {side === "top" && <Heat value={r.hundreds} max={max} />}
+              <Heat value={r.tens} max={max} />
+              <Heat value={r.units} max={max} />
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="chart-card">
+        <div className="card-title">
+          <h3>ช่วงห่างของเลข</h3>
+          <SegmentText
+            values={[
+              { id: "score", label: "คะแนน" },
+              { id: "latest", label: "ล่าสุด" },
+              { id: "gap", label: "ช่วงห่าง" },
+            ]}
+            value={gapSort}
+            onChange={(x) => setGapSort(x as typeof gapSort)}
+          />
+        </div>
+        <div className="gap-table">
+          <b>เลข</b>
+          <b>ล่าสุด</b>
+          <b>เฉลี่ย</b>
+          <b>สูงสุด</b>
+          {sorted.map((d) => (
+            <div className="gap-row" key={d.digit}>
+              <strong>{d.digit}</strong>
+              <span>{d.gap ?? "--"} งวด</span>
+              <span>{d.averageGap ?? "--"}</span>
+              <span>{d.longestGap ?? "--"}</span>
+            </div>
+          ))}
+        </div>
+        <small>ช่วงห่างเป็นข้อมูลย้อนหลัง ไม่ได้หมายความว่าเลขกำลังจะออก</small>
+      </section>
+    </div>
+  );
+}
+function Heat({ value, max }: { value: number; max: number }) {
+  return (
+    <span
+      className="position-cell"
+      style={{
+        backgroundColor: `rgba(50,107,91,${0.08 + (0.72 * value) / max})`,
+      }}
+    >
+      {value}
+    </span>
+  );
+}
+function HistoryPage({
+  draws,
+  search,
+  setSearch,
+  visible,
+  setVisible,
+}: {
+  draws: Snapshot["draws"];
+  search: string;
+  setSearch: (s: string) => void;
+  visible: number;
+  setVisible: (n: number) => void;
+}) {
+  return (
+    <div className="content">
+      <div className="section-head">
+        <div>
+          <div className="section-kicker">HISTORICAL DRAWS</div>
+          <h2>ผลย้อนหลัง</h2>
+        </div>
+        <label className="search">
+          <Search />
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="ค้นหาวันที่หรือเลข"
+          />
+        </label>
+      </div>
+      <div className="history-list">
+        {draws.slice(0, visible).map((d) => (
+          <article key={d.id}>
+            <time>
+              {new Intl.DateTimeFormat("th-TH", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              }).format(new Date(d.drawDate))}
+            </time>
+            <div>
+              <span>
+                3 ตัวบน<strong>{d.top3 ?? "--"}</strong>
+              </span>
+              <span>
+                2 ตัวบน<strong>{d.top2 ?? "--"}</strong>
+              </span>
+              <span>
+                2 ตัวล่าง<strong>{d.bottom2 ?? "--"}</strong>
+              </span>
+            </div>
+            {d.source && (
+              <small className="history-source" title={`Source: ${d.source}`}>
+                {d.source === "current-result"
+                  ? "ผลล่าสุดจากต้นทาง"
+                  : "ประวัติจากต้นทาง"}
+              </small>
+            )}
+          </article>
+        ))}
+      </div>
+      {visible < draws.length && (
+        <button className="load" onClick={() => setVisible(visible + 20)}>
+          แสดงเพิ่ม
+        </button>
+      )}
+    </div>
+  );
+}
+function BacktestPage({
+  rows,
+  comparisons,
+  tab,
+  setTab,
+  windowSize,
+  setWindow,
+  testDraws,
+  setTestDraws,
+  formulaDayPattern,
+  setFormulaDayPattern,
+  formulaSampleSize,
+  formulaLatestDrawDate,
+  expanded,
+  setExpanded,
+  historyVersion,
+  analysisCutoff,
+}: {
+  rows: ReturnType<typeof backtest>;
+  comparisons: ReturnType<typeof compareAlgorithms>;
+  tab: "results" | "lab";
+  setTab: (t: "results" | "lab") => void;
+  windowSize: number;
+  setWindow: (n: number) => void;
+  testDraws: number;
+  setTestDraws: (n: number) => void;
+  formulaDayPattern: DayPattern;
+  setFormulaDayPattern: (day: DayPattern) => void;
+  formulaSampleSize: number;
+  formulaLatestDrawDate: string | undefined;
+  expanded: string | null;
+  setExpanded: (s: string | null) => void;
+  historyVersion: string;
+  analysisCutoff: string | null;
+}) {
+  const metrics = [
+    { label: "เลขเด่นเข้า", m: metric(rows, "standoutHit") },
+    { label: "บน Top 4", m: metric(rows, "topHit") },
+    { label: "ล่าง Top 4", m: metric(rows, "bottomHit") },
+    { label: "บน #1 ตรง", m: metric(rows, "top1Hit") },
+  ];
+  return (
+    <div className="content">
+      <div className="lab-tabs">
+        <button
+          className={tab === "results" ? "active" : ""}
+          onClick={() => setTab("results")}
+        >
+          ผลทดสอบ
+        </button>
+        <button
+          className={tab === "lab" ? "active" : ""}
+          onClick={() => setTab("lab")}
+        >
+          เปรียบเทียบสูตร
+        </button>
+      </div>
+      <p className="research-tool-note">
+        สำหรับตรวจสอบและเปรียบเทียบวิธีวิเคราะห์ย้อนหลัง ไม่ใช่หน้าคำแนะนำหลัก
+      </p>
+      <div className="section-head">
+        <div>
+          <div className="section-kicker">
+            {tab === "lab" ? "FORMULA LAB" : "WALK-FORWARD"}
+          </div>
+          <h2>{tab === "lab" ? "เปรียบเทียบสูตร" : "ทดสอบย้อนหลัง"}</h2>
+          <p>
+            {tab === "lab"
+              ? "ดูว่าวิธีวิเคราะห์แบบไหนทำผลงานย้อนหลังได้สม่ำเสมอกว่า"
+              : "ทุกงวดใช้เฉพาะข้อมูลก่อนวันออกรางวัล"}
+          </p>
+        </div>
+        <div className="control-stack">
+          <label>
+            <span>ช่วงข้อมูลที่ใช้วิเคราะห์</span>
+            <Segment
+              values={[10, 20, 30, 50]}
+              value={windowSize}
+              onChange={setWindow}
+            />
+          </label>
+          <label>
+            <span>จำนวนงวดที่ทดสอบย้อนหลัง</span>
+            <Segment
+              values={[30, 50, 100]}
+              value={testDraws}
+              onChange={setTestDraws}
+            />
+          </label>
+        </div>
+      </div>
+      {tab === "lab" && (
+        <div className="formula-day-filter">
+          <div>
+            <strong>เปรียบเทียบตามวันออกรางวัล</strong>
+            <small>
+              {formulaDayPattern === "all"
+                ? `ใช้ทุกวัน · มีข้อมูล ${formulaSampleSize} งวด · งวดล่าสุด ${formatShortDrawDate(formulaLatestDrawDate)}`
+                : `เฉพาะ${dayPatternLabel(formulaDayPattern)} · มีข้อมูล ${formulaSampleSize} งวด · งวดล่าสุด ${formatShortDrawDate(formulaLatestDrawDate)}`}
+            </small>
+          </div>
+          <div className="day-pattern-options" aria-label="เลือกวันสำหรับเปรียบเทียบสูตร">
+            {DAY_PATTERN_OPTIONS.map((option) => (
+              <button
+                key={String(option.value)}
+                className={formulaDayPattern === option.value ? "active" : ""}
+                onClick={() => setFormulaDayPattern(option.value)}
+                title={option.label}
+              >
+                {option.shortLabel}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {tab === "results" ? (
+        <>
+          <div className="metrics">
+            {metrics.map((x) => (
+              <article className="metric" key={x.label}>
+                <span>{x.label}</span>
+                <strong>{pct(x.m.rate)}</strong>
+                <small>
+                  {x.m.hits} / {x.m.total} งวด
+                </small>
+                <small>
+                  95% CI {pct(x.m.interval.low)}–{pct(x.m.interval.high)}
+                </small>
+              </article>
+            ))}
+          </div>
+          {rows.length < 50 && (
+            <p className="sample-note">ตัวอย่างยังน้อย ผลลัพธ์อาจแกว่งได้มาก</p>
+          )}
+          <div className="backtest-list">
+            {rows.map((r) => (
+              <button
+                className="backtest-row"
+                key={r.draw.id}
+                onClick={() =>
+                  setExpanded(expanded === r.draw.id ? null : r.draw.id)
+                }
+              >
+                <div>
+                  <time>{r.draw.drawDate}</time>
+                  <small>
+                    ฝึก {r.trainingSize} งวด · สิ้นสุด {r.trainingEnd}
+                  </small>
+                </div>
+                <span className={r.topHit ? "hit" : "miss"}>
+                  บน {r.draw.top2} {r.topHit ? "เข้า" : "ไม่เข้า"}
+                </span>
+                <span className={r.bottomHit ? "hit" : "miss"}>
+                  ล่าง {r.draw.bottom2} {r.bottomHit ? "เข้า" : "ไม่เข้า"}
+                </span>
+                {expanded === r.draw.id && (
+                  <div className="row-detail">
+                    <span>
+                      เลขรูด<strong>{r.standout.join(" · ")}</strong>
+                    </span>
+                    <span>
+                      คู่ที่จัดอันดับบน<strong>{r.top.join(" ")}</strong>
+                    </span>
+                    <span>
+                      ผลจริง<strong>{r.draw.top2 ?? "--"}</strong>
+                    </span>
+                    <span>
+                      คู่ที่จัดอันดับล่าง<strong>{r.bottom.join(" ")}</strong>
+                    </span>
+                    <span>
+                      ผลจริง<strong>{r.draw.bottom2 ?? "--"}</strong>
+                    </span>
+                    <span>
+                      Algorithm
+                      <strong>
+                        {ALGORITHMS.find((a) => a.id === r.algorithmId)?.name}
+                      </strong>
+                    </span>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </>
+      ) : (
+        <FormulaTable
+          comparisons={comparisons}
+          historyVersion={historyVersion}
+          analysisCutoff={analysisCutoff}
+          dayPattern={formulaDayPattern}
+        />
+      )}
+    </div>
+  );
+}
+function FormulaTable({
+  comparisons,
+  historyVersion,
+  analysisCutoff,
+  dayPattern,
+}: {
+  comparisons: ReturnType<typeof compareAlgorithms>;
+  historyVersion: string;
+  analysisCutoff: string | null;
+  dayPattern: DayPattern;
+}) {
+  return (
+    <>
+      <small
+        className="formula-integrity"
+        title={`History version: ${historyVersion}`}
+      >
+        วิเคราะห์จากข้อมูลถึง {analysisCutoff ?? "--"} · version{" "}
+        {historyVersion.slice(0, 8)}
+      </small>
+      {comparisons.every((comparison) => comparison.sampleSize === 0) && (
+        <p className="sample-note">
+          ยังเปรียบเทียบไม่ได้: จำนวนงวดของวันที่เลือกต้องมากกว่าช่วงข้อมูลที่ใช้วิเคราะห์
+          ลองเลือกช่วง 10 งวด หรือเลือกทุกวัน
+        </p>
+      )}
+      <div className="formula-table">
+        <b>สูตร</b>
+        <b>รูดเข้า</b>
+        <b>บน Top4</b>
+        <b>ล่าง Top4</b>
+        <b>Top1</b>
+        {comparisons.map((c) => (
+          <div className="formula-row" key={c.algorithmId}>
+            <strong>
+              {c.name}
+              <small>n={c.sampleSize}</small>
+            </strong>
+            {[c.standout, c.top, c.bottom, c.top1].map((m, i) => (
+              <span key={i}>
+                {m.total ? pct(m.rate) : "--"}
+                <small>
+                  {m.hits} / {m.total}
+                </small>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="baseline">
+        <Info />
+        <span>
+          <strong>Random reference:</strong> Top 4 ≈{" "}
+          {pct(referenceBaselines.top4)}, Top 1 ≈ {pct(referenceBaselines.top1)}{" "}
+          ภายใต้ 100 คู่ที่เป็นไปได้และรวมเลขเบิ้ล เป็นค่าคณิตศาสตร์อ้างอิง
+          ไม่ใช่ผลสังเกต
+        </span>
+      </div>
+      {dayPattern === "all" ? (
+        <PairDiagnosticsPanel />
+      ) : (
+        <p className="sample-note">
+          Pair diagnostics ชุดเดิมเป็นการตรวจทุกวัน จึงซ่อนไว้ขณะกรองตามวันเพื่อไม่ให้ปนกับผลตารางนี้
+        </p>
+      )}
+    </>
+  );
+}
+function SettingsPage({
+  algorithmId,
+  setAlgorithm,
+  windowSize,
+  setWindow,
+  candidateCount,
+  setCandidateCount,
+  doubles,
+  setDoubles,
+  digitWeights,
+  setDigitWeights,
+  pairWeights,
+  setPairWeights,
+  valid,
+}: {
+  algorithmId: string;
+  setAlgorithm: (s: string) => void;
+  windowSize: number;
+  setWindow: (n: number) => void;
+  candidateCount: number;
+  setCandidateCount: (n: number) => void;
+  doubles: boolean;
+  setDoubles: (v: boolean) => void;
+  digitWeights: DigitWeights;
+  setDigitWeights: (v: DigitWeights) => void;
+  pairWeights: PairWeights;
+  setPairWeights: (v: PairWeights) => void;
+  valid: boolean;
+}) {
+  return (
+    <div className="content settings">
+      <div className="section-kicker">PREFERENCES</div>
+      <h2>ตั้งค่าการวิเคราะห์</h2>
+      <Setting
+        label="ช่วงข้อมูล"
+        description="จำนวนงวดที่ใช้สรุปรูปแบบย้อนหลัง"
+      >
+        <Segment
+          values={[10, 20, 30, 50, 100]}
+          value={windowSize}
+          onChange={setWindow}
+        />
+      </Setting>
+      <Setting label="จำนวนคู่ที่แสดง" description="แยกคู่บนและล่าง">
+        <Segment
+          values={[3, 4, 5]}
+          value={candidateCount}
+          onChange={setCandidateCount}
+        />
+      </Setting>
+      <Setting label="รวมเลขเบิ้ล" description="รวม 00, 11, 22 ถึง 99">
+        <button
+          className={`toggle ${doubles ? "on" : ""}`}
+          onClick={() => setDoubles(!doubles)}
+        >
+          <i />
+        </button>
+      </Setting>
+      <details className="advanced-research">
+        <summary>Advanced / Research</summary>
+        <div className="setting algorithm-setting">
+          <div>
+            <strong>สูตรวิเคราะห์</strong>
+            <small>
+              {algorithmId === "custom"
+                ? "ค่าน้ำหนักที่กำหนดเอง"
+                : ALGORITHMS.find((a) => a.id === algorithmId)?.description}
+            </small>
+          </div>
+          <select
+            value={algorithmId}
+            onChange={(e) => setAlgorithm(e.target.value)}
+          >
+            {ALGORITHMS.map((a) => (
+              <option key={a.id} value={a.id}>
+                {a.name}
+              </option>
+            ))}
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        <section className="weights-editor">
+          <div className="card-title">
+            <h3>ตั้งค่าน้ำหนักขั้นสูง</h3>
+            <button
+              onClick={() => {
+                setDigitWeights(defaultDigit);
+                setPairWeights(defaultPair);
+                setAlgorithm("balanced-v1");
+              }}
+            >
+              คืนค่า Balanced v1
+            </button>
+          </div>
+          <WeightGroup
+            title="Digit Score"
+            weights={digitWeights}
+            setWeights={(x) => {
+              setDigitWeights(x as DigitWeights);
+              setAlgorithm("custom");
+            }}
+          />
+          <WeightGroup
+            title="Pair Score"
+            weights={pairWeights}
+            setWeights={(x) => {
+              setPairWeights(x as PairWeights);
+              setAlgorithm("custom");
+            }}
+          />
+          <p className={valid ? "valid" : "invalid"}>
+            {valid
+              ? "น้ำหนักแต่ละกลุ่มรวม 100%"
+              : "น้ำหนักแต่ละกลุ่มต้องรวม 100%"}
+          </p>
+        </section>
+      </details>
+    </div>
+  );
+}
+function WeightGroup({
+  title,
+  weights,
+  setWeights,
+}: {
+  title: string;
+  weights: Record<string, number>;
+  setWeights: (v: Record<string, number>) => void;
+}) {
+  return (
+    <div className="weight-group">
+      <strong>{title}</strong>
+      {Object.entries(weights).map(([key, value]) => (
+        <label key={key}>
+          <span>{componentLabel(key)}</span>
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value={Math.round(value * 100)}
+            onChange={(e) =>
+              setWeights({ ...weights, [key]: Number(e.target.value) / 100 })
+            }
+          />
+          <em>%</em>
+        </label>
+      ))}
+    </div>
+  );
+}
+function DetailModal({
+  digit,
+  pair,
+  analysis,
+  close,
+}: {
+  digit: DigitSignal | null;
+  pair: PairSignal | null;
+  analysis: ReturnType<typeof analyzeLottery> | null;
+  close: () => void;
+}) {
+  const strongPairs =
+    digit && analysis
+      ? [...analysis.topPairs, ...analysis.bottomPairs]
+          .filter((p) => p.pair.includes(digit.digit))
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3)
+      : [];
+  return (
+    <div className="modal-backdrop" onClick={close}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <button className="close" onClick={close}>
+          ×
+        </button>
+        {digit && (
+          <>
+            <div className="section-kicker">DIGIT DETAIL</div>
+            <h2>เลข {digit.digit}</h2>
+            <div className="detail-score">
+              <strong>{digit.score}</strong>
+              <span>อันดับเลข #{digit.rank}/10 จากข้อมูลย้อนหลัง</span>
+            </div>
+            <div className="detail-grid">
+              <span>
+                30 งวด<strong>{digit.counts[30]} hits</strong>
+              </span>
+              <span>
+                10 งวดล่าสุด<strong>{digit.recent10} hits</strong>
+              </span>
+              <span>
+                10 งวดก่อนหน้า<strong>{digit.previous10} hits</strong>
+              </span>
+              <span>
+                Momentum
+                <strong>
+                  <TrendIcon trend={digit.trend} />
+                  {digit.trend}
+                </strong>
+              </span>
+              <span>
+                Last seen<strong>{digit.gap ?? "--"} งวด</strong>
+              </span>
+              <span>
+                Average gap<strong>{digit.averageGap ?? "--"}</strong>
+              </span>
+              <span>
+                Best position<strong>{digit.strongestPosition}</strong>
+              </span>
+            </div>
+            <h3>คู่ที่แข็งแรงที่สุด</h3>
+            <div className="strong-pairs">
+              {strongPairs.map((p) => (
+                <span key={p.pair}>
+                  <strong>{p.pair}</strong> อันดับจากข้อมูล {p.score}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+        {pair && (
+          <>
+            <div className="section-kicker">PAIR BREAKDOWN</div>
+            <h2>เลข {pair.pair}</h2>
+            <div className="detail-score">
+              <strong>{pair.score}</strong>
+              <span>คะแนนจัดอันดับย้อนหลัง · ไม่ใช่ความน่าจะเป็น</span>
+            </div>
+            {Object.entries(pair.components).map(([k, v]) => (
+              <div className="component" key={k}>
+                <span>{componentLabel(k)}</span>
+                <i>
+                  <b style={{ width: `${v}%` }} />
+                </i>
+                <strong>{v}</strong>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+function TrendIcon({ trend }: { trend: string }) {
+  return trend === "กำลังขึ้น" ? (
+    <TrendingUp />
+  ) : trend === "กำลังลด" ? (
+    <TrendingDown />
+  ) : (
+    <Minus />
+  );
+}
+function Segment({
+  values,
+  value,
+  onChange,
+}: {
+  values: number[];
+  value: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div className="segment">
+      {values.map((v) => (
+        <button
+          key={v}
+          className={v === value ? "active" : ""}
+          onClick={() => onChange(v)}
+        >
+          {v}
+        </button>
+      ))}
+    </div>
+  );
+}
+function SegmentText({
+  values,
+  value,
+  onChange,
+}: {
+  values: { id: string; label: string }[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="segment">
+      {values.map((v) => (
+        <button
+          key={v.id}
+          className={v.id === value ? "active" : ""}
+          onClick={() => onChange(v.id)}
+        >
+          {v.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+function Setting({
+  label,
+  description,
+  children,
+}: {
+  label: string;
+  description: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="setting">
+      <div>
+        <strong>{label}</strong>
+        <small>{description}</small>
+      </div>
+      {children}
+    </div>
+  );
+}
+function componentLabel(k: string) {
+  return (
+    (
+      {
+        frequency: "ความถี่",
+        recentFrequency: "ความถี่ล่าสุด",
+        momentum: "Momentum",
+        positionStrength: "ตำแหน่ง",
+        gapPattern: "Gap",
+        digitA: "Digit A",
+        digitB: "Digit B",
+        pairFrequency: "ความถี่คู่",
+        recentPairTrend: "แนวโน้มคู่",
+        positionMatch: "ตำแหน่งคู่",
+      } as Record<string, string>
+    )[k] ?? k
+  );
+}

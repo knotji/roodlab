@@ -1,0 +1,11 @@
+import type { LotteryDraw } from "../types";
+export type Side="top"|"bottom";
+export type DigitWeights={frequency:number;recentFrequency:number;momentum:number;positionStrength:number;gapPattern:number};
+export type PairWeights={digitA:number;digitB:number;pairFrequency:number;recentPairTrend:number;positionMatch:number};
+export type AlgorithmDefinition={id:string;name:string;version:string;description:string;digitWeights:DigitWeights;pairWeights:PairWeights};
+export type ScoreComponents={frequency:number;recentFrequency:number;momentum:number;positionStrength:number;gapPattern:number};
+export type DigitSignal={digit:string;score:number;rank:number;frequencyRank:number;positionRank:number;components:ScoreComponents;counts:Record<number,number>;recent10:number;previous10:number;trend:"กำลังขึ้น"|"ทรงตัว"|"กำลังลด";momentum:number;gap:number|null;averageGap:number|null;longestGap:number|null;strongestPosition:string;pairSupport:number;reasons:string[]};
+export type PairSignal={pair:string;score:number;components:{digitA:number;digitB:number;pairFrequency:number;recentPairTrend:number;positionMatch:number};reasons:string[]};
+export type AnalysisResult={algorithmId:string;window:number;sampleSize:number;standout:DigitSignal[];digits:DigitSignal[];topPairs:PairSignal[];bottomPairs:PairSignal[];history:LotteryDraw[]};
+export const DEFAULT_DIGIT_WEIGHTS:DigitWeights={frequency:.30,recentFrequency:.25,momentum:.20,positionStrength:.15,gapPattern:.10};
+export const DEFAULT_PAIR_WEIGHTS:PairWeights={digitA:.25,digitB:.25,pairFrequency:.20,recentPairTrend:.15,positionMatch:.15};

@@ -1,0 +1,3 @@
+import type { LotteryDraw } from "./types";
+function stableHash(value:string){let a=0xdeadbeef^value.length,b=0x41c6ce57^value.length;for(let i=0;i<value.length;i++){const c=value.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return(4294967296*(2097151&b)+(a>>>0)).toString(16).padStart(14,"0")}
+export function computeHistoryVersion(lotteryId:string,draws:LotteryDraw[]){const canonical=draws.map(d=>[d.drawDate,d.top3??null,d.top2??null,d.bottom2??null,d.source??null,d.completeness??null]);return stableHash(JSON.stringify([lotteryId,canonical]))}

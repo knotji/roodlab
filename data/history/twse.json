@@ -1,0 +1,911 @@
+{
+  "lotteryId": "twse",
+  "syncedAt": "2026-08-27T04:40:29.112Z",
+  "source": "AllHuay",
+  "draws": [
+    {
+      "id": "twse-2026-08-26",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-26",
+      "top3": "262",
+      "top2": "62",
+      "bottom2": "16",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-25",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-25",
+      "top3": "946",
+      "top2": "46",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-24",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-24",
+      "top3": "232",
+      "top2": "32",
+      "bottom2": "97",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-21",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-21",
+      "top3": "429",
+      "top2": "29",
+      "bottom2": "55",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-20",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-20",
+      "top3": "374",
+      "top2": "74",
+      "bottom2": "39",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-19",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-19",
+      "top3": "935",
+      "top2": "35",
+      "bottom2": "33",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-18",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-18",
+      "top3": "868",
+      "top2": "68",
+      "bottom2": "59",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-17",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-17",
+      "top3": "727",
+      "top2": "27",
+      "bottom2": "26",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-14",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-14",
+      "top3": "101",
+      "top2": "01",
+      "bottom2": "47",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-13",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-13",
+      "top3": "148",
+      "top2": "48",
+      "bottom2": "41",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-12",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-12",
+      "top3": "807",
+      "top2": "07",
+      "bottom2": "35",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-11",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-11",
+      "top3": "072",
+      "top2": "72",
+      "bottom2": "96",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-10",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-10",
+      "top3": "876",
+      "top2": "76",
+      "bottom2": "85",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-07",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-07",
+      "top3": "591",
+      "top2": "91",
+      "bottom2": "79",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-06",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-06",
+      "top3": "670",
+      "top2": "70",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-05",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-05",
+      "top3": "160",
+      "top2": "60",
+      "bottom2": "94",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-04",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-04",
+      "top3": "066",
+      "top2": "66",
+      "bottom2": "75",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-08-03",
+      "lotteryId": "twse",
+      "drawDate": "2026-08-03",
+      "top3": "641",
+      "top2": "41",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-31",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-31",
+      "top3": "975",
+      "top2": "75",
+      "bottom2": "45",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-30",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-30",
+      "top3": "330",
+      "top2": "30",
+      "bottom2": "88",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-29",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-29",
+      "top3": "918",
+      "top2": "18",
+      "bottom2": "18",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-28",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-28",
+      "top3": "336",
+      "top2": "36",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-27",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-27",
+      "top3": "419",
+      "top2": "19",
+      "bottom2": "65",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-24",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-24",
+      "top3": "484",
+      "top2": "84",
+      "bottom2": "97",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse"
+    },
+    {
+      "id": "twse-2026-07-23",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-23",
+      "top3": "081",
+      "top2": "81",
+      "bottom2": "03",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-22",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-22",
+      "top3": "578",
+      "top2": "78",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-21",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-21",
+      "top3": "287",
+      "top2": "87",
+      "bottom2": "17",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-20",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-20",
+      "top3": "970",
+      "top2": "70",
+      "bottom2": "57",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-17",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-17",
+      "top3": "127",
+      "top2": "27",
+      "bottom2": "71",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-16",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-16",
+      "top3": "498",
+      "top2": "98",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-15",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-15",
+      "top3": "159",
+      "top2": "59",
+      "bottom2": "64",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-14",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-14",
+      "top3": "795",
+      "top2": "95",
+      "bottom2": "57",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-13",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-13",
+      "top3": "052",
+      "top2": "52",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-10",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-10",
+      "top3": "461",
+      "top2": "61",
+      "bottom2": "80",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-09",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-09",
+      "top3": "461",
+      "top2": "61",
+      "bottom2": "80",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-08",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-08",
+      "top3": "441",
+      "top2": "41",
+      "bottom2": "30",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-07",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-07",
+      "top3": "911",
+      "top2": "11",
+      "bottom2": "28",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-06",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-06",
+      "top3": "639",
+      "top2": "39",
+      "bottom2": "23",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-03",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-03",
+      "top3": "062",
+      "top2": "62",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-02",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-02",
+      "top3": "416",
+      "top2": "16",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-07-01",
+      "lotteryId": "twse",
+      "drawDate": "2026-07-01",
+      "top3": "899",
+      "top2": "99",
+      "bottom2": "08",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-30",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-30",
+      "top3": "591",
+      "top2": "91",
+      "bottom2": "01",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-29",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-29",
+      "top3": "990",
+      "top2": "90",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-26",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-26",
+      "top3": "176",
+      "top2": "76",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-25",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-25",
+      "top3": "526",
+      "top2": "26",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-24",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-24",
+      "top3": "360",
+      "top2": "60",
+      "bottom2": "05",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-23",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-23",
+      "top3": "065",
+      "top2": "65",
+      "bottom2": "86",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-22",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-22",
+      "top3": "151",
+      "top2": "51",
+      "bottom2": "31",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/2"
+    },
+    {
+      "id": "twse-2026-06-19",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-19",
+      "top3": "520",
+      "top2": "20",
+      "bottom2": "81",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-18",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-18",
+      "top3": "520",
+      "top2": "20",
+      "bottom2": "81",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-17",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-17",
+      "top3": "739",
+      "top2": "39",
+      "bottom2": "20",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-16",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-16",
+      "top3": "919",
+      "top2": "19",
+      "bottom2": "20",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-15",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-15",
+      "top3": "699",
+      "top2": "99",
+      "bottom2": "95",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-12",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-12",
+      "top3": "904",
+      "top2": "04",
+      "bottom2": "58",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-11",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-11",
+      "top3": "946",
+      "top2": "46",
+      "bottom2": "08",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-10",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-10",
+      "top3": "554",
+      "top2": "54",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-09",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-09",
+      "top3": "444",
+      "top2": "44",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-08",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-08",
+      "top3": "278",
+      "top2": "78",
+      "bottom2": "16",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-05",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-05",
+      "top3": "094",
+      "top2": "94",
+      "bottom2": "52",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-04",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-04",
+      "top3": "746",
+      "top2": "46",
+      "bottom2": "70",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-03",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-03",
+      "top3": "916",
+      "top2": "16",
+      "bottom2": "85",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-02",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-02",
+      "top3": "731",
+      "top2": "31",
+      "bottom2": "40",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-06-01",
+      "lotteryId": "twse",
+      "drawDate": "2026-06-01",
+      "top3": "791",
+      "top2": "91",
+      "bottom2": "97",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-29",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-29",
+      "top3": "294",
+      "top2": "94",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-28",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-28",
+      "top3": "644",
+      "top2": "44",
+      "bottom2": "36",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-27",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-27",
+      "top3": "680",
+      "top2": "80",
+      "bottom2": "43",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-26",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-26",
+      "top3": "537",
+      "top2": "37",
+      "bottom2": "03",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-25",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-25",
+      "top3": "440",
+      "top2": "40",
+      "bottom2": "43",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-22",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-22",
+      "top3": "797",
+      "top2": "97",
+      "bottom2": "76",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-21",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-21",
+      "top3": "821",
+      "top2": "21",
+      "bottom2": "39",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-20",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-20",
+      "top3": "082",
+      "top2": "82",
+      "bottom2": "74",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-19",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-19",
+      "top3": "556",
+      "top2": "56",
+      "bottom2": "26",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/3"
+    },
+    {
+      "id": "twse-2026-05-18",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-18",
+      "top3": "182",
+      "top2": "82",
+      "bottom2": "54",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-05-15",
+      "lotteryId": "twse",
+      "drawDate": "2026-05-15",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-28",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-28",
+      "top3": "173",
+      "top2": "73",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-27",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-27",
+      "top3": "663",
+      "top2": "63",
+      "bottom2": "23",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-24",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-24",
+      "top3": "240",
+      "top2": "40",
+      "bottom2": "25",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-23",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-23",
+      "top3": "415",
+      "top2": "15",
+      "bottom2": "32",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-22",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-22",
+      "top3": "847",
+      "top2": "47",
+      "bottom2": "36",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-21",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-21",
+      "top3": "511",
+      "top2": "11",
+      "bottom2": "31",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-20",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-20",
+      "top3": "880",
+      "top2": "80",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-17",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-17",
+      "top3": "434",
+      "top2": "34",
+      "bottom2": "68",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-16",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-16",
+      "top3": "202",
+      "top2": "02",
+      "bottom2": "88",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-15",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-15",
+      "top3": "214",
+      "top2": "14",
+      "bottom2": "02",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-14",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-14",
+      "top3": "612",
+      "top2": "12",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-13",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-13",
+      "top3": "729",
+      "top2": "29",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-10",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-10",
+      "top3": "783",
+      "top2": "83",
+      "bottom2": "67",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-09",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-09",
+      "top3": "116",
+      "top2": "16",
+      "bottom2": "78",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-08",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-08",
+      "top3": "138",
+      "top2": "38",
+      "bottom2": "56",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-07",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-07",
+      "top3": "982",
+      "top2": "82",
+      "bottom2": "39",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-02",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-02",
+      "top3": "243",
+      "top2": "43",
+      "bottom2": "39",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-04-01",
+      "lotteryId": "twse",
+      "drawDate": "2026-04-01",
+      "top3": "482",
+      "top2": "82",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-03-31",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-31",
+      "top3": "299",
+      "top2": "99",
+      "bottom2": "17",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-03-30",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-30",
+      "top3": "816",
+      "top2": "16",
+      "bottom2": "43",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-03-27",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-27",
+      "top3": "259",
+      "top2": "59",
+      "bottom2": "03",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-03-26",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-26",
+      "top3": "762",
+      "top2": "62",
+      "bottom2": "49",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/4"
+    },
+    {
+      "id": "twse-2026-03-25",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-25",
+      "top3": "911",
+      "top2": "11",
+      "bottom2": "87",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/5"
+    },
+    {
+      "id": "twse-2026-03-24",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-24",
+      "top3": "224",
+      "top2": "24",
+      "bottom2": "26",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/5"
+    },
+    {
+      "id": "twse-2026-03-23",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-23",
+      "top3": "250",
+      "top2": "50",
+      "bottom2": "38",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/5"
+    },
+    {
+      "id": "twse-2026-03-20",
+      "lotteryId": "twse",
+      "drawDate": "2026-03-20",
+      "top3": "388",
+      "top2": "88",
+      "bottom2": "80",
+      "sourceUrl": "https://www.allhuay.com/lotto/twse/page/5"
+    }
+  ],
+  "freshness": {
+    "currentDate": "2026-08-27",
+    "sourceLatestDrawDate": "2026-08-26",
+    "cachedLatestDrawDate": "2026-08-26",
+    "checkedAt": "2026-08-27T04:40:29.112Z",
+    "status": "up-to-date"
+  }
+}

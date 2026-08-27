@@ -1,0 +1,907 @@
+{
+  "lotteryId": "goverment",
+  "syncedAt": "2026-08-27T01:35:56.499Z",
+  "source": "AllHuay",
+  "draws": [
+    {
+      "id": "goverment-2026-08-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-08-01",
+      "top3": "479",
+      "top2": "79",
+      "bottom2": "69",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-07-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-07-16",
+      "top3": "214",
+      "top2": "14",
+      "bottom2": "71",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-07-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-07-01",
+      "top3": "495",
+      "top2": "95",
+      "bottom2": "62",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-06-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-06-16",
+      "top3": "184",
+      "top2": "84",
+      "bottom2": "48",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-06-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-06-01",
+      "top3": "770",
+      "top2": "70",
+      "bottom2": "95",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-05-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-05-16",
+      "top3": "387",
+      "top2": "87",
+      "bottom2": "08",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-05-02",
+      "lotteryId": "goverment",
+      "drawDate": "2026-05-02",
+      "top3": "077",
+      "top2": "77",
+      "bottom2": "43",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-04-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-04-16",
+      "top3": "612",
+      "top2": "12",
+      "bottom2": "77",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-04-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-04-01",
+      "top3": "514",
+      "top2": "14",
+      "bottom2": "47",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-03-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-03-16",
+      "top3": "009",
+      "top2": "09",
+      "bottom2": "64",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-03-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-03-01",
+      "top3": "866",
+      "top2": "66",
+      "bottom2": "06",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-02-16",
+      "lotteryId": "goverment",
+      "drawDate": "2026-02-16",
+      "top3": "563",
+      "top2": "63",
+      "bottom2": "07",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-02-01",
+      "lotteryId": "goverment",
+      "drawDate": "2026-02-01",
+      "top3": "629",
+      "top2": "29",
+      "bottom2": "48",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-01-17",
+      "lotteryId": "goverment",
+      "drawDate": "2026-01-17",
+      "top3": "972",
+      "top2": "72",
+      "bottom2": "02",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2026-01-02",
+      "lotteryId": "goverment",
+      "drawDate": "2026-01-02",
+      "top3": "706",
+      "top2": "06",
+      "bottom2": "16",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-12-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-12-16",
+      "top3": "895",
+      "top2": "95",
+      "bottom2": "52",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-12-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-12-01",
+      "top3": "252",
+      "top2": "52",
+      "bottom2": "22",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-11-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-11-16",
+      "top3": "145",
+      "top2": "45",
+      "bottom2": "37",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-11-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-11-01",
+      "top3": "898",
+      "top2": "98",
+      "bottom2": "87",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-10-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-10-16",
+      "top3": "696",
+      "top2": "96",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-10-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-10-01",
+      "top3": "978",
+      "top2": "78",
+      "bottom2": "77",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-09-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-09-16",
+      "top3": "646",
+      "top2": "46",
+      "bottom2": "58",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-09-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-09-01",
+      "top3": "356",
+      "top2": "56",
+      "bottom2": "31",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment"
+    },
+    {
+      "id": "goverment-2025-08-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-08-16",
+      "top3": "865",
+      "top2": "65",
+      "bottom2": "63",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-08-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-08-01",
+      "top3": "852",
+      "top2": "52",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-07-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-07-16",
+      "top3": "324",
+      "top2": "24",
+      "bottom2": "26",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-07-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-07-01",
+      "top3": "246",
+      "top2": "46",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-06-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-06-16",
+      "top3": "392",
+      "top2": "92",
+      "bottom2": "06",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-06-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-06-01",
+      "top3": "352",
+      "top2": "52",
+      "bottom2": "20",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-05-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-05-16",
+      "top3": "309",
+      "top2": "09",
+      "bottom2": "87",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-05-02",
+      "lotteryId": "goverment",
+      "drawDate": "2025-05-02",
+      "top3": "388",
+      "top2": "88",
+      "bottom2": "06",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-04-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-04-16",
+      "top3": "227",
+      "top2": "27",
+      "bottom2": "85",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-04-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-04-01",
+      "top3": "687",
+      "top2": "87",
+      "bottom2": "36",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-03-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-03-16",
+      "top3": "563",
+      "top2": "63",
+      "bottom2": "32",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-03-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-03-01",
+      "top3": "894",
+      "top2": "94",
+      "bottom2": "54",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-02-16",
+      "lotteryId": "goverment",
+      "drawDate": "2025-02-16",
+      "top3": "377",
+      "top2": "77",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-02-01",
+      "lotteryId": "goverment",
+      "drawDate": "2025-02-01",
+      "top3": "700",
+      "top2": "00",
+      "bottom2": "51",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-01-17",
+      "lotteryId": "goverment",
+      "drawDate": "2025-01-17",
+      "top3": "779",
+      "top2": "79",
+      "bottom2": "23",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2025-01-02",
+      "lotteryId": "goverment",
+      "drawDate": "2025-01-02",
+      "top3": "209",
+      "top2": "09",
+      "bottom2": "51",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-12-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-12-16",
+      "top3": "863",
+      "top2": "63",
+      "bottom2": "21",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-12-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-12-01",
+      "top3": "843",
+      "top2": "43",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-11-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-11-16",
+      "top3": "221",
+      "top2": "21",
+      "bottom2": "38",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-11-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-11-01",
+      "top3": "044",
+      "top2": "44",
+      "bottom2": "32",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-10-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-10-16",
+      "top3": "962",
+      "top2": "62",
+      "bottom2": "00",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-10-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-10-01",
+      "top3": "665",
+      "top2": "65",
+      "bottom2": "59",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-09-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-09-16",
+      "top3": "662",
+      "top2": "62",
+      "bottom2": "37",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-09-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-09-01",
+      "top3": "606",
+      "top2": "06",
+      "bottom2": "94",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/2"
+    },
+    {
+      "id": "goverment-2024-08-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-08-16",
+      "top3": "867",
+      "top2": "67",
+      "bottom2": "28",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-08-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-08-01",
+      "top3": "041",
+      "top2": "41",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-07-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-07-16",
+      "top3": "336",
+      "top2": "36",
+      "bottom2": "21",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-07-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-07-01",
+      "top3": "503",
+      "top2": "03",
+      "bottom2": "89",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-06-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-06-16",
+      "top3": "504",
+      "top2": "04",
+      "bottom2": "31",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-06-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-06-01",
+      "top3": "593",
+      "top2": "93",
+      "bottom2": "42",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-05-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-05-16",
+      "top3": "690",
+      "top2": "90",
+      "bottom2": "60",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-05-02",
+      "lotteryId": "goverment",
+      "drawDate": "2024-05-02",
+      "top3": "116",
+      "top2": "16",
+      "bottom2": "17",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-04-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-04-16",
+      "top3": "598",
+      "top2": "98",
+      "bottom2": "79",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-04-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-04-01",
+      "top3": "481",
+      "top2": "81",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-03-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-03-16",
+      "top3": "626",
+      "top2": "26",
+      "bottom2": "78",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-03-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-03-01",
+      "top3": "603",
+      "top2": "03",
+      "bottom2": "79",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-02-16",
+      "lotteryId": "goverment",
+      "drawDate": "2024-02-16",
+      "top3": "395",
+      "top2": "95",
+      "bottom2": "43",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-02-01",
+      "lotteryId": "goverment",
+      "drawDate": "2024-02-01",
+      "top3": "063",
+      "top2": "63",
+      "bottom2": "09",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2024-01-17",
+      "lotteryId": "goverment",
+      "drawDate": "2024-01-17",
+      "top3": "979",
+      "top2": "79",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-12-30",
+      "lotteryId": "goverment",
+      "drawDate": "2023-12-30",
+      "top3": "544",
+      "top2": "44",
+      "bottom2": "89",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-12-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-12-16",
+      "top3": "757",
+      "top2": "57",
+      "bottom2": "85",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-12-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-12-01",
+      "top3": "097",
+      "top2": "97",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-11-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-11-16",
+      "top3": "990",
+      "top2": "90",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-11-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-11-01",
+      "top3": "951",
+      "top2": "51",
+      "bottom2": "63",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-10-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-10-16",
+      "top3": "446",
+      "top2": "46",
+      "bottom2": "44",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-10-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-10-01",
+      "top3": "202",
+      "top2": "02",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-09-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-09-16",
+      "top3": "812",
+      "top2": "12",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-09-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-09-01",
+      "top3": "478",
+      "top2": "78",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/3"
+    },
+    {
+      "id": "goverment-2023-08-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-08-16",
+      "top3": "782",
+      "top2": "82",
+      "bottom2": "67",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-07-31",
+      "lotteryId": "goverment",
+      "drawDate": "2023-07-31",
+      "top3": "453",
+      "top2": "53",
+      "bottom2": "11",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-07-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-07-16",
+      "top3": "530",
+      "top2": "30",
+      "bottom2": "62",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-07-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-07-01",
+      "top3": "605",
+      "top2": "05",
+      "bottom2": "16",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-06-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-06-16",
+      "top3": "872",
+      "top2": "72",
+      "bottom2": "30",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-06-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-06-01",
+      "top3": "272",
+      "top2": "72",
+      "bottom2": "09",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-05-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-05-16",
+      "top3": "903",
+      "top2": "03",
+      "bottom2": "99",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-05-02",
+      "lotteryId": "goverment",
+      "drawDate": "2023-05-02",
+      "top3": "019",
+      "top2": "19",
+      "bottom2": "65",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-04-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-04-16",
+      "top3": "906",
+      "top2": "06",
+      "bottom2": "71",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-04-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-04-01",
+      "top3": "907",
+      "top2": "07",
+      "bottom2": "99",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-03-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-03-16",
+      "top3": "873",
+      "top2": "73",
+      "bottom2": "73",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-03-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-03-01",
+      "top3": "652",
+      "top2": "52",
+      "bottom2": "55",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-02-16",
+      "lotteryId": "goverment",
+      "drawDate": "2023-02-16",
+      "top3": "417",
+      "top2": "17",
+      "bottom2": "80",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-02-01",
+      "lotteryId": "goverment",
+      "drawDate": "2023-02-01",
+      "top3": "411",
+      "top2": "11",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2023-01-17",
+      "lotteryId": "goverment",
+      "drawDate": "2023-01-17",
+      "top3": "519",
+      "top2": "19",
+      "bottom2": "47",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-12-30",
+      "lotteryId": "goverment",
+      "drawDate": "2022-12-30",
+      "top3": "196",
+      "top2": "96",
+      "bottom2": "58",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-12-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-12-16",
+      "top3": "093",
+      "top2": "93",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-12-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-12-01",
+      "top3": "805",
+      "top2": "05",
+      "bottom2": "08",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-11-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-11-16",
+      "top3": "789",
+      "top2": "89",
+      "bottom2": "64",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-11-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-11-01",
+      "top3": "106",
+      "top2": "06",
+      "bottom2": "70",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-10-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-10-16",
+      "top3": "106",
+      "top2": "06",
+      "bottom2": "15",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-10-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-10-01",
+      "top3": "669",
+      "top2": "69",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-09-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-09-16",
+      "top3": "703",
+      "top2": "03",
+      "bottom2": "75",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-09-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-09-01",
+      "top3": "332",
+      "top2": "32",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/4"
+    },
+    {
+      "id": "goverment-2022-08-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-08-16",
+      "top3": "583",
+      "top2": "83",
+      "bottom2": "42",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/5"
+    },
+    {
+      "id": "goverment-2022-08-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-08-01",
+      "top3": "594",
+      "top2": "94",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/5"
+    },
+    {
+      "id": "goverment-2022-07-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-07-16",
+      "top3": "405",
+      "top2": "05",
+      "bottom2": "53",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/5"
+    },
+    {
+      "id": "goverment-2022-07-01",
+      "lotteryId": "goverment",
+      "drawDate": "2022-07-01",
+      "top3": "417",
+      "top2": "17",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/5"
+    },
+    {
+      "id": "goverment-2022-06-16",
+      "lotteryId": "goverment",
+      "drawDate": "2022-06-16",
+      "top3": "807",
+      "top2": "07",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/goverment/page/5"
+    }
+  ]
+}

@@ -1,0 +1,1965 @@
+[
+  {
+    "id": "goverment",
+    "name": "หวยรัฐบาล",
+    "slug": "goverment",
+    "category": "หวยในประเทศไทย",
+    "sourceUrl": "https://www.allhuay.com/lotto/goverment",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "baac",
+    "name": "ธ.ก.ส.",
+    "slug": "baac",
+    "category": "หวยในประเทศไทย",
+    "sourceUrl": "https://www.allhuay.com/lotto/baac",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "gsb",
+    "name": "ออมสิน",
+    "slug": "gsb",
+    "category": "หวยในประเทศไทย",
+    "sourceUrl": "https://www.allhuay.com/lotto/gsb",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "set",
+    "name": "หุ้นไทยเย็น",
+    "slug": "set",
+    "category": "หวยในประเทศไทย",
+    "sourceUrl": "https://www.allhuay.com/lotto/set",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "sgx",
+    "name": "หุ้นสิงคโปร์",
+    "slug": "sgx",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/sgx",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-afternoon",
+    "name": "หุ้นนิคเคอิบ่าย",
+    "slug": "nikkei-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-morning",
+    "name": "หุ้นนิคเคอิเช้า",
+    "slug": "nikkei-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ktop30",
+    "name": "หุ้นเกาหลี",
+    "slug": "ktop30",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/ktop30",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-afternoon",
+    "name": "หุ้นจีนบ่าย",
+    "slug": "szse-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-morning",
+    "name": "หุ้นจีนเช้า",
+    "slug": "szse-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-afternoon",
+    "name": "หุ้นฮั่งเส็งบ่าย",
+    "slug": "hsi-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-morning",
+    "name": "หุ้นฮั่งเส็งเช้า",
+    "slug": "hsi-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "twse",
+    "name": "หุ้นไต้หวัน",
+    "slug": "twse",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/twse",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "bsesn",
+    "name": "หุ้นอินเดีย",
+    "slug": "bsesn",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/bsesn",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "moexbc",
+    "name": "หุ้นรัสเซีย",
+    "slug": "moexbc",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/moexbc",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "gdaxi",
+    "name": "หุ้นเยอรมัน",
+    "slug": "gdaxi",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/gdaxi",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ftse100",
+    "name": "หุ้นอังกฤษ",
+    "slug": "ftse100",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/ftse100",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dji",
+    "name": "หุ้นดาวโจนส์",
+    "slug": "dji",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/dji",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "djindex-st",
+    "name": "หุ้นดาวโจนส์ ST",
+    "slug": "djindex-st",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/djindex-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "roman-index",
+    "name": "หุ้นโรมัน",
+    "slug": "roman-index",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/roman-index",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "index-ausvip",
+    "name": "หุ้นออสเตรเลีย VIP",
+    "slug": "index-ausvip",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/index-ausvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkindex-st-morning",
+    "name": "หุ้นนิเคอิ ST เช้า",
+    "slug": "nikkindex-st-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkindex-st-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "chnindex-st-morning",
+    "name": "หุ้นจีน ST เช้า",
+    "slug": "chnindex-st-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/chnindex-st-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsindex-st-morning",
+    "name": "หุ้นฮั่งเส็ง ST เช้า",
+    "slug": "hsindex-st-morning",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsindex-st-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hkindex-st",
+    "name": "หุ้นฮ่องกง ST",
+    "slug": "hkindex-st",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/hkindex-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkindex-st-afternoon",
+    "name": "หุ้นนิเคอิ ST บ่าย",
+    "slug": "nikkindex-st-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkindex-st-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "chnindex-st-afternoon",
+    "name": "หุ้นจีน ST บ่าย",
+    "slug": "chnindex-st-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/chnindex-st-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsindex-st-afternoon",
+    "name": "หุ้นฮั่งเส็ง ST บ่าย",
+    "slug": "hsindex-st-afternoon",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsindex-st-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ukindex-st",
+    "name": "หุ้นอังกฤษ ST",
+    "slug": "ukindex-st",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/ukindex-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "gerindex-st",
+    "name": "หุ้นเยอรมัน ST",
+    "slug": "gerindex-st",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/gerindex-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "rsindex-st",
+    "name": "หุ้นรัสเซีย ST",
+    "slug": "rsindex-st",
+    "category": "หวยหุ้นยอดนิยม",
+    "sourceUrl": "https://www.allhuay.com/lotto/rsindex-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dowjone-special",
+    "name": "หุ้นดาวโจนส์พิเศษ",
+    "slug": "dowjone-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dowjone-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-vip-afternoon",
+    "name": "หุ้นนิคเคอิ VIP บ่าย",
+    "slug": "nikkei-vip-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-vip-morning",
+    "name": "หุ้นนิคเคอิ VIP เช้า",
+    "slug": "nikkei-vip-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-vip-afternoon",
+    "name": "หุ้นฮั่งเส็ง VIP บ่าย",
+    "slug": "hsi-vip-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-vip-morning",
+    "name": "หุ้นฮั่งเส็ง VIP เช้า",
+    "slug": "hsi-vip-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-vip-afternoon",
+    "name": "หุ้นจีน VIP บ่าย",
+    "slug": "szse-vip-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-vip-morning",
+    "name": "หุ้นจีน VIP เช้า",
+    "slug": "szse-vip-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dowjones-visa",
+    "name": "หุ้นดาวโจนส์ VISA",
+    "slug": "dowjones-visa",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dowjones-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "sgx-vip",
+    "name": "หุ้นสิงคโปร์ VIP",
+    "slug": "sgx-vip",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ktop30-vip",
+    "name": "หุ้นเกาหลี VIP",
+    "slug": "ktop30-vip",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/ktop30-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "twse-vip",
+    "name": "หุ้นไต้หวัน VIP",
+    "slug": "twse-vip",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/twse-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ukx-special",
+    "name": "หุ้นอังกฤษพิเศษ",
+    "slug": "ukx-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/ukx-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dax-special",
+    "name": "หุ้นเยอรมันพิเศษ",
+    "slug": "dax-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dax-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "rusx-special",
+    "name": "หุ้นรัสเซียพิเศษ",
+    "slug": "rusx-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/rusx-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "vni-special-afternoon",
+    "name": "หุ้นเวียดนามพิเศษ บ่าย",
+    "slug": "vni-special-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/vni-special-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "sgx-special",
+    "name": "สิงคโปร์พิเศษ",
+    "slug": "sgx-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/sgx-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-special-afternoon",
+    "name": "หุ้นฮั่งเส็งพิเศษ บ่าย",
+    "slug": "hsi-special-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-special-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-special-afternoon",
+    "name": "หุ้นจีนพิเศษ บ่าย",
+    "slug": "szse-special-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-special-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-special-afternoon",
+    "name": "หุ้นนิคเคอิพิเศษ บ่าย",
+    "slug": "nikkei-special-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-special-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "krx-special",
+    "name": "หุ้นเกาหลีพิเศษ",
+    "slug": "krx-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/krx-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "twse-special",
+    "name": "หุ้นไต้หวันพิเศษ",
+    "slug": "twse-special",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/twse-special",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "vni-special-morning",
+    "name": "หุ้นเวียดนามพิเศษ เช้า",
+    "slug": "vni-special-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/vni-special-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hsi-special-morning",
+    "name": "หุ้นฮั่งเส็งพิเศษ เช้า",
+    "slug": "hsi-special-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hsi-special-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-special-morning",
+    "name": "หุ้นจีนพิเศษ เช้า",
+    "slug": "szse-special-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-special-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-special-morning",
+    "name": "หุ้นนิคเคอิพิเศษ เช้า",
+    "slug": "nikkei-special-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-special-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "moexbluechip-visa",
+    "name": "หุ้นรัสเซีย VISA",
+    "slug": "moexbluechip-visa",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/moexbluechip-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dax-visa",
+    "name": "หุ้นเยอรมัน VISA",
+    "slug": "dax-visa",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dax-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ftse-visa",
+    "name": "หุ้นอังกฤษ VISA",
+    "slug": "ftse-visa",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/ftse-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hangseng-visa-afternoon",
+    "name": "หุ้นฮั่งเส็ง VISA บ่าย",
+    "slug": "hangseng-visa-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hangseng-visa-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-visa-afternoon",
+    "name": "หุ้นจีน VISA บ่าย",
+    "slug": "szse-visa-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-visa-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-visa-afternoon",
+    "name": "หุ้นนิคเคอิ VISA บ่าย",
+    "slug": "nikkei-visa-afternoon",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-visa-afternoon",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hangseng-visa-morning",
+    "name": "หุ้นฮั่งเส็ง VISA เช้า",
+    "slug": "hangseng-visa-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hangseng-visa-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "szse-visa-morning",
+    "name": "หุ้นจีน VISA เช้า",
+    "slug": "szse-visa-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/szse-visa-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "nikkei-visa-morning",
+    "name": "หุ้นนิคเคอิ VISA เช้า",
+    "slug": "nikkei-visa-morning",
+    "category": "หวยหุ้นต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/nikkei-visa-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "minhngoc",
+    "name": "ฮานอยปกติ",
+    "slug": "minhngoc",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xsthm",
+    "name": "ฮานอยพิเศษ",
+    "slug": "xsthm",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "mlnhngo",
+    "name": "ฮานอย VIP",
+    "slug": "mlnhngo",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/mlnhngo",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "minhngocstar",
+    "name": "ฮานอยสตาร์",
+    "slug": "minhngocstar",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/minhngocstar",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "minhngoctv",
+    "name": "ฮานอยทีวี",
+    "slug": "minhngoctv",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/minhngoctv",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosoredcross",
+    "name": "ฮานอยกาชาด",
+    "slug": "xosoredcross",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosoredcross",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosohd",
+    "name": "ฮานอย HD",
+    "slug": "xosohd",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosohd",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosodevelop",
+    "name": "ฮานอยพัฒนา",
+    "slug": "xosodevelop",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosodevelop",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosounion",
+    "name": "ฮานอยสามัคคี",
+    "slug": "xosounion",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosounion",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xsdky",
+    "name": "ฮานอยดึก",
+    "slug": "xsdky",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xsdky",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosoextra",
+    "name": "ฮานอย Extra",
+    "slug": "xosoextra",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosoextra",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "ketqua4d",
+    "name": "ฮานอย 4D",
+    "slug": "ketqua4d",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/ketqua4d",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xsktvn",
+    "name": "ฮานอยเช้า",
+    "slug": "xsktvn",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xsktvn",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hanoiasean",
+    "name": "ฮานอยอาเซียน",
+    "slug": "hanoiasean",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hanoiasean",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosokqx",
+    "name": "เวียดนามปกติ",
+    "slug": "xosokqx",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosokqx",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xosokqxvip",
+    "name": "เวียดนาม VIP",
+    "slug": "xosokqxvip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xosokqxvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xstachroi",
+    "name": "ฮานอยเฉพาะกิจ",
+    "slug": "xstachroi",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xstachroi",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laostars",
+    "name": "ลาวสตาร์",
+    "slug": "laostars",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laostars",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosdevelops",
+    "name": "ลาวพัฒนา",
+    "slug": "laosdevelops",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosdevelops",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laounion",
+    "name": "ลาวสามัคคี",
+    "slug": "laounion",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laounion",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosvip",
+    "name": "ลาว VIP",
+    "slug": "laosvip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laostarsvip",
+    "name": "ลาวสตาร์ VIP",
+    "slug": "laostarsvip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laostarsvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laopattana-morning",
+    "name": "ลาวพัฒนาเช้า",
+    "slug": "laopattana-morning",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laopattana-morning",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laospattana-morning-vip",
+    "name": "ลาวพัฒนาเช้า VIP",
+    "slug": "laospattana-morning-vip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laospattana-morning-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laoredcross",
+    "name": "ลาวกาชาด",
+    "slug": "laoredcross",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laoredcross",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laoshd",
+    "name": "ลาว HD",
+    "slug": "laoshd",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laoshd",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laotv",
+    "name": "ลาวทีวี",
+    "slug": "laotv",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laotv",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosspecial",
+    "name": "ลาวพิเศษ",
+    "slug": "laosspecial",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosspecial",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laospecial",
+    "name": "ลาวพิเศษรอบเที่ยง",
+    "slug": "laospecial",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laospecial",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laoplus",
+    "name": "ลาวพลัส",
+    "slug": "laoplus",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laoplus",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laoextra",
+    "name": "ลาว Extra",
+    "slug": "laoextra",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laoextra",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laochowlottery",
+    "name": "ลาวเช้า",
+    "slug": "laochowlottery",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laochowlottery",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosuper",
+    "name": "ลาวซูเปอร์",
+    "slug": "laosuper",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosuper",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laomongkol",
+    "name": "ลาวมงคล",
+    "slug": "laomongkol",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laomongkol",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laorumruay",
+    "name": "ลาวร่ำรวย",
+    "slug": "laorumruay",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laorumruay",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosniyom",
+    "name": "ลาวนิยม",
+    "slug": "laosniyom",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosniyom",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosasean",
+    "name": "ลาวอาเซียน",
+    "slug": "laosasean",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosasean",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laounionvip",
+    "name": "ลาวสามัคคี VIP",
+    "slug": "laounionvip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laounionvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laohungheuong",
+    "name": "ลาวรุ่งเรือง",
+    "slug": "laohungheuong",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laohungheuong",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laopremium",
+    "name": "ลาวพรีเมี่ยม",
+    "slug": "laopremium",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laopremium",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosiyara",
+    "name": "ลาวไอยรา",
+    "slug": "laosiyara",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosiyara",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laomunkong",
+    "name": "ลาวมั่นคง",
+    "slug": "laomunkong",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laomunkong",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laojaroen",
+    "name": "ลาวเจริญ",
+    "slug": "laojaroen",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laojaroen",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laokaownah",
+    "name": "ลาวก้าวหน้า",
+    "slug": "laokaownah",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laokaownah",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laopattanamidday",
+    "name": "ลาวพัฒนาเที่ยง",
+    "slug": "laopattanamidday",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laopattanamidday",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laossabaidee",
+    "name": "ลาวสบายดี",
+    "slug": "laossabaidee",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laossabaidee",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laomungkung",
+    "name": "ลาวมั่งคั่ง",
+    "slug": "laomungkung",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laomungkung",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laocitizen",
+    "name": "ประชาชนลาว",
+    "slug": "laocitizen",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laocitizen",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosantipap",
+    "name": "ลาวสันติภาพ",
+    "slug": "laosantipap",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosantipap",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laopatuxay",
+    "name": "ลาวประตูชัย",
+    "slug": "laopatuxay",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laopatuxay",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "loasnakonluuang",
+    "name": "ลาวนครหลวง",
+    "slug": "loasnakonluuang",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/loasnakonluuang",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laomaekhong",
+    "name": "แม่โขงปกติ",
+    "slug": "laomaekhong",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laomaekhong",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "xososvip",
+    "name": "ฮานอย SVIP",
+    "slug": "xososvip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/xososvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hanoi-st",
+    "name": "ฮานอย ST",
+    "slug": "hanoi-st",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hanoi-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "saravane-st",
+    "name": "สาละวัน ST",
+    "slug": "saravane-st",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/saravane-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "luangprabang-st",
+    "name": "หลวงพระบาง ST",
+    "slug": "luangprabang-st",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/luangprabang-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosetthivip",
+    "name": "ลาวเศรษฐี VIP",
+    "slug": "laosetthivip",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosetthivip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "vientiane-st",
+    "name": "เวียงจันทน์ ST",
+    "slug": "vientiane-st",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/vientiane-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laokanngern",
+    "name": "ลาวการเงิน",
+    "slug": "laokanngern",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laokanngern",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "lao-st",
+    "name": "ลาว ST",
+    "slug": "lao-st",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/lao-st",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "laosetthi",
+    "name": "ลาวเศรษฐี",
+    "slug": "laosetthi",
+    "category": "หวยรายวันอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/laosetthi",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongvip",
+    "name": "แม่โขง VIP",
+    "slug": "maekhongvip",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongvip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongstar",
+    "name": "แม่โขงสตาร์",
+    "slug": "maekhongstar",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongstar",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongspecial",
+    "name": "แม่โขงพิเศษ",
+    "slug": "maekhongspecial",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongspecial",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongplus",
+    "name": "แม่โขงพลัส",
+    "slug": "maekhongplus",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongplus",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhonghd",
+    "name": "แม่โขง HD",
+    "slug": "maekhonghd",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhonghd",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongnight",
+    "name": "แม่โขงไนท์",
+    "slug": "maekhongnight",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongnight",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhonggold",
+    "name": "แม่โขงโกลด์",
+    "slug": "maekhonggold",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhonggold",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongphatthana",
+    "name": "แม่โขงพัฒนา",
+    "slug": "maekhongphatthana",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongphatthana",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongmega",
+    "name": "แม่โขงเมก้า",
+    "slug": "maekhongmega",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongmega",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "maekhongtoday",
+    "name": "แม่โขงทูเดย์",
+    "slug": "maekhongtoday",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/maekhongtoday",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hanoi-visa",
+    "name": "ฮานอย VISA",
+    "slug": "hanoi-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hanoi-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "hongkong-visa",
+    "name": "ฮ่องกง VISA",
+    "slug": "hongkong-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/hongkong-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "lao-visa",
+    "name": "ลาว VISA",
+    "slug": "lao-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/lao-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "vientiane-visa",
+    "name": "เวียงจันทน์ VISA",
+    "slug": "vientiane-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/vientiane-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "luangprabang-visa",
+    "name": "หลวงพระบาง VISA",
+    "slug": "luangprabang-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/luangprabang-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "salavan-visa",
+    "name": "สาละวัน VISA",
+    "slug": "salavan-visa",
+    "category": "หวยอื่น ๆ",
+    "sourceUrl": "https://www.allhuay.com/lotto/salavan-visa",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dowjones-vip",
+    "name": "ดาวโจนส์ VIP",
+    "slug": "dowjones-vip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dowjones-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "dowjonestar",
+    "name": "ดาวโจนส์สตาร์",
+    "slug": "dowjonestar",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/dowjonestar",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "euluckynumber",
+    "name": "ยูโร",
+    "slug": "euluckynumber",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/euluckynumber",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "magnum4d",
+    "name": "มาเลย์",
+    "slug": "magnum4d",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/magnum4d",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "russia-vip",
+    "name": "รัสเซีย VIP",
+    "slug": "russia-vip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/russia-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "germany-vip",
+    "name": "เยอรมัน VIP",
+    "slug": "germany-vip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/germany-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "england-vip",
+    "name": "อังกฤษ VIP",
+    "slug": "england-vip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/england-vip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "japanlottovip",
+    "name": "เจแปน ล็อตโต้ VIP",
+    "slug": "japanlottovip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/japanlottovip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  },
+  {
+    "id": "macaulottovip",
+    "name": "มาเก๊า VIP",
+    "slug": "macaulottovip",
+    "category": "หวยต่างประเทศ",
+    "sourceUrl": "https://www.allhuay.com/lotto/macaulottovip",
+    "isActive": true,
+    "capabilities": {
+      "top3": true,
+      "top2": true,
+      "bottom2": true
+    }
+  }
+]

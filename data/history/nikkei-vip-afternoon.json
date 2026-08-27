@@ -1,0 +1,914 @@
+{
+  "lotteryId": "nikkei-vip-afternoon",
+  "syncedAt": "2026-08-27T05:37:20.557Z",
+  "source": "AllHuay",
+  "draws": [
+    {
+      "id": "nikkei-vip-afternoon-2026-08-26",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-26",
+      "top3": "711",
+      "top2": "11",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-25",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-25",
+      "top3": "028",
+      "top2": "28",
+      "bottom2": "27",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-24",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-24",
+      "top3": "936",
+      "top2": "36",
+      "bottom2": "96",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-23",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-23",
+      "top3": "393",
+      "top2": "93",
+      "bottom2": "09",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-22",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-22",
+      "top3": "340",
+      "top2": "40",
+      "bottom2": "30",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-21",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-21",
+      "top3": "414",
+      "top2": "14",
+      "bottom2": "05",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-20",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-20",
+      "top3": "067",
+      "top2": "67",
+      "bottom2": "80",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-19",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-19",
+      "top3": "368",
+      "top2": "68",
+      "bottom2": "32",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-18",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-18",
+      "top3": "260",
+      "top2": "60",
+      "bottom2": "63",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-17",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-17",
+      "top3": "895",
+      "top2": "95",
+      "bottom2": "45",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-16",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-16",
+      "top3": "119",
+      "top2": "19",
+      "bottom2": "72",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-15",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-15",
+      "top3": "386",
+      "top2": "86",
+      "bottom2": "97",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-14",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-14",
+      "top3": "400",
+      "top2": "00",
+      "bottom2": "10",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-13",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-13",
+      "top3": "536",
+      "top2": "36",
+      "bottom2": "65",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-12",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-12",
+      "top3": "155",
+      "top2": "55",
+      "bottom2": "29",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-11",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-11",
+      "top3": "070",
+      "top2": "70",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-10",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-10",
+      "top3": "392",
+      "top2": "92",
+      "bottom2": "07",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-09",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-09",
+      "top3": "307",
+      "top2": "07",
+      "bottom2": "29",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-08",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-08",
+      "top3": "198",
+      "top2": "98",
+      "bottom2": "18",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-07",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-07",
+      "top3": "389",
+      "top2": "89",
+      "bottom2": "79",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-06",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-06",
+      "top3": "803",
+      "top2": "03",
+      "bottom2": "33",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-05",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-05",
+      "top3": "437",
+      "top2": "37",
+      "bottom2": "42",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-04",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-04",
+      "top3": "811",
+      "top2": "11",
+      "bottom2": "62",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-03",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-03",
+      "top3": "348",
+      "top2": "48",
+      "bottom2": "00",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-02",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-02",
+      "top3": "610",
+      "top2": "10",
+      "bottom2": "03",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-08-01",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-08-01",
+      "top3": "944",
+      "top2": "44",
+      "bottom2": "09",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-31",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-31",
+      "top3": "878",
+      "top2": "78",
+      "bottom2": "14",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-30",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-30",
+      "top3": "144",
+      "top2": "44",
+      "bottom2": "59",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-29",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-29",
+      "top3": "260",
+      "top2": "60",
+      "bottom2": "64",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-28",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-28",
+      "top3": "751",
+      "top2": "51",
+      "bottom2": "52",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-27",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-27",
+      "top3": "873",
+      "top2": "73",
+      "bottom2": "53",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-26",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-26",
+      "top3": "548",
+      "top2": "48",
+      "bottom2": "54",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-25",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-25",
+      "top3": "720",
+      "top2": "20",
+      "bottom2": "21",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-24",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-24",
+      "top3": "249",
+      "top2": "49",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-23",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-23",
+      "top3": "724",
+      "top2": "24",
+      "bottom2": "86",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-22",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-22",
+      "top3": "338",
+      "top2": "38",
+      "bottom2": "48",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-21",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-21",
+      "top3": "280",
+      "top2": "80",
+      "bottom2": "05",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-20",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-20",
+      "top3": "642",
+      "top2": "42",
+      "bottom2": "33",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-19",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-19",
+      "top3": "938",
+      "top2": "38",
+      "bottom2": "73",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-18",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-18",
+      "top3": "349",
+      "top2": "49",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-17",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-17",
+      "top3": "055",
+      "top2": "55",
+      "bottom2": "34",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-16",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-16",
+      "top3": "103",
+      "top2": "03",
+      "bottom2": "02",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-15",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-15",
+      "top3": "759",
+      "top2": "59",
+      "bottom2": "53",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-14",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-14",
+      "top3": "099",
+      "top2": "99",
+      "bottom2": "24",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-13",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-13",
+      "top3": "095",
+      "top2": "95",
+      "bottom2": "78",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-12",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-12",
+      "top3": "119",
+      "top2": "19",
+      "bottom2": "71",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-11",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-11",
+      "top3": "028",
+      "top2": "28",
+      "bottom2": "98",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-10",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-10",
+      "top3": "001",
+      "top2": "01",
+      "bottom2": "91",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/2"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-09",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-09",
+      "top3": "791",
+      "top2": "91",
+      "bottom2": "24",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-08",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-08",
+      "top3": "380",
+      "top2": "80",
+      "bottom2": "60",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-07",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-07",
+      "top3": "695",
+      "top2": "95",
+      "bottom2": "19",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-06",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-06",
+      "top3": "525",
+      "top2": "25",
+      "bottom2": "22",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-05",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-05",
+      "top3": "372",
+      "top2": "72",
+      "bottom2": "24",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-04",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-04",
+      "top3": "515",
+      "top2": "15",
+      "bottom2": "04",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-03",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-03",
+      "top3": "210",
+      "top2": "10",
+      "bottom2": "21",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-02",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-02",
+      "top3": "180",
+      "top2": "80",
+      "bottom2": "90",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-07-01",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-07-01",
+      "top3": "874",
+      "top2": "74",
+      "bottom2": "87",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-30",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-30",
+      "top3": "045",
+      "top2": "45",
+      "bottom2": "24",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-29",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-29",
+      "top3": "685",
+      "top2": "85",
+      "bottom2": "18",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-28",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-28",
+      "top3": "703",
+      "top2": "03",
+      "bottom2": "06",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-27",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-27",
+      "top3": "050",
+      "top2": "50",
+      "bottom2": "85",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-26",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-26",
+      "top3": "974",
+      "top2": "74",
+      "bottom2": "45",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-25",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-25",
+      "top3": "312",
+      "top2": "12",
+      "bottom2": "02",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-24",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-24",
+      "top3": "629",
+      "top2": "29",
+      "bottom2": "54",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-23",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-23",
+      "top3": "930",
+      "top2": "30",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-22",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-22",
+      "top3": "285",
+      "top2": "85",
+      "bottom2": "27",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-21",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-21",
+      "top3": "691",
+      "top2": "91",
+      "bottom2": "99",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-20",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-20",
+      "top3": "160",
+      "top2": "60",
+      "bottom2": "37",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-19",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-19",
+      "top3": "187",
+      "top2": "87",
+      "bottom2": "56",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-18",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-18",
+      "top3": "173",
+      "top2": "73",
+      "bottom2": "23",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-17",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-17",
+      "top3": "259",
+      "top2": "59",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-16",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-16",
+      "top3": "901",
+      "top2": "01",
+      "bottom2": "06",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/3"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-15",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-15",
+      "top3": "097",
+      "top2": "97",
+      "bottom2": "45",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-14",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-14",
+      "top3": "669",
+      "top2": "69",
+      "bottom2": "77",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-13",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-13",
+      "top3": "265",
+      "top2": "65",
+      "bottom2": "59",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-12",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-12",
+      "top3": "387",
+      "top2": "87",
+      "bottom2": "34",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-11",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-11",
+      "top3": "864",
+      "top2": "64",
+      "bottom2": "73",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-10",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-10",
+      "top3": "039",
+      "top2": "39",
+      "bottom2": "62",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-09",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-09",
+      "top3": "089",
+      "top2": "89",
+      "bottom2": "48",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-08",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-08",
+      "top3": "562",
+      "top2": "62",
+      "bottom2": "98",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-07",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-07",
+      "top3": "052",
+      "top2": "52",
+      "bottom2": "58",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-06",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-06",
+      "top3": "994",
+      "top2": "94",
+      "bottom2": "38",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-05",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-05",
+      "top3": "669",
+      "top2": "69",
+      "bottom2": "50",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-04",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-04",
+      "top3": "701",
+      "top2": "01",
+      "bottom2": "12",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-03",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-03",
+      "top3": "781",
+      "top2": "81",
+      "bottom2": "66",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-02",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-02",
+      "top3": "220",
+      "top2": "20",
+      "bottom2": "84",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-06-01",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-06-01",
+      "top3": "053",
+      "top2": "53",
+      "bottom2": "95",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-31",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-31",
+      "top3": "312",
+      "top2": "12",
+      "bottom2": "44",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-30",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-30",
+      "top3": "862",
+      "top2": "62",
+      "bottom2": "89",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-29",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-29",
+      "top3": "373",
+      "top2": "73",
+      "bottom2": "46",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-28",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-28",
+      "top3": "062",
+      "top2": "62",
+      "bottom2": "75",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-27",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-27",
+      "top3": "548",
+      "top2": "48",
+      "bottom2": "23",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-26",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-26",
+      "top3": "302",
+      "top2": "02",
+      "bottom2": "55",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-25",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-25",
+      "top3": "472",
+      "top2": "72",
+      "bottom2": "08",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-24",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-24",
+      "top3": "432",
+      "top2": "32",
+      "bottom2": "09",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-23",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-23",
+      "top3": "521",
+      "top2": "21",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/4"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-22",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-22",
+      "top3": "319",
+      "top2": "19",
+      "bottom2": "56",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/5"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-21",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-21",
+      "top3": "398",
+      "top2": "98",
+      "bottom2": "51",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/5"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-20",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-20",
+      "top3": "454",
+      "top2": "54",
+      "bottom2": "99",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/5"
+    },
+    {
+      "id": "nikkei-vip-afternoon-2026-05-19",
+      "lotteryId": "nikkei-vip-afternoon",
+      "drawDate": "2026-05-19",
+      "top3": "311",
+      "top2": "11",
+      "bottom2": "16",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-vip-afternoon/page/5"
+    }
+  ],
+  "freshness": {
+    "currentDate": "2026-08-27",
+    "sourceLatestDrawDate": "2026-08-26",
+    "cachedLatestDrawDate": "2026-08-26",
+    "checkedAt": "2026-08-27T05:37:20.557Z",
+    "status": "up-to-date"
+  }
+}
