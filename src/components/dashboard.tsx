@@ -25,6 +25,10 @@ import {
 import { getCanonicalDataset } from "@/lib/history-provider";
 import { computeHistoryVersion } from "@/lib/history-version";
 import { buildWinSet } from "@/lib/analysis/win-set";
+import {
+  buildConsensus,
+  type ConsensusResult,
+} from "@/lib/analysis/consensus";
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
 import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
 import { LotterySelector } from "./lottery-selector";
@@ -202,6 +206,17 @@ export default function Dashboard({
     doubles,
     algorithmId,
   ]);
+  const consensus = useMemo(
+    () =>
+      hasSignals
+        ? buildConsensus(patternDraws, {
+            window: windowSize,
+            candidateCount,
+            includeDoubles: doubles,
+          })
+        : null,
+    [patternDraws, hasSignals, windowSize, candidateCount, doubles],
+  );
   const tests = useMemo(() => {
       return hasSignals
         ? backtest(
@@ -368,6 +383,7 @@ export default function Dashboard({
         {analysis && section === "analyze" && (
           <Analyze
             analysis={analysis}
+            consensus={consensus}
             integrity={integrity}
             algorithmId={algorithmId === "custom" ? "balanced-v1" : algorithmId}
             setAlgorithm={setAlgorithm}
@@ -489,6 +505,7 @@ function Empty({ onSync, syncing }: { onSync: () => void; syncing: boolean }) {
 }
 function Analyze({
   analysis,
+  consensus,
   integrity,
   algorithmId,
   setAlgorithm,
@@ -500,6 +517,7 @@ function Analyze({
   setFull,
 }: {
   analysis: NonNullable<ReturnType<typeof analyzeLottery>>;
+  consensus: ConsensusResult | null;
   integrity: DataIntegritySummary;
   algorithmId: string;
   setAlgorithm: (id: string) => void;
@@ -601,10 +619,14 @@ function Analyze({
       </section>
       {analysis.sampleSize >=
         (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
-        <WinSetCard
-          digits={analysis.digits}
-          onDigit={onDigit}
-        />
+        <>
+          {consensus && <ConsensusCard consensus={consensus} />}
+          <WinSetCard
+            digits={analysis.digits}
+            consensus={consensus}
+            onDigit={onDigit}
+          />
+        </>
       )}
       {analysis.sampleSize >=
         (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
@@ -664,15 +686,75 @@ function Analyze({
     </div>
   );
 }
+const stabilityCopy = {
+  stable: "ค่อนข้างนิ่ง",
+  mixed: "ผสม",
+  unstable: "ยังไม่นิ่ง",
+  insufficient: "ข้อมูลยังไม่พอ",
+} as const;
+function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
+  return (
+    <section className="consensus-card">
+      <div className="consensus-head">
+        <div>
+          <div className="section-kicker">CONSENSUS SIGNAL</div>
+          <h3>เลขที่หลายวิธีเห็นตรงกัน</h3>
+        </div>
+        <span className={`stability ${consensus.stabilityStatus}`}>
+          ความนิ่ง: {stabilityCopy[consensus.stabilityStatus]}
+        </span>
+      </div>
+      <div className="consensus-grid">
+        {consensus.digits.slice(0, 4).map((item) => (
+          <article key={item.digit}>
+            <strong>{item.digit}</strong>
+            <div>
+              <b>
+                เห็นตรงกัน {item.votes}/{consensus.formulaCount} สูตร
+              </b>
+              <span>
+                อันดับเฉลี่ย {item.averageRank} · ติดชุดใน {item.stableWindows}/
+                {consensus.eligibleWindows.length || 1} ช่วง
+              </span>
+            </div>
+            <i>
+              <em
+                style={{
+                  width: `${(item.votes / consensus.formulaCount) * 100}%`,
+                }}
+              />
+            </i>
+          </article>
+        ))}
+      </div>
+      <p>
+        {consensus.eligibleWindows.length >= 2
+          ? `ตรวจความนิ่งจากช่วง ${consensus.eligibleWindows.join(" / ")} งวด${
+              consensus.stabilityScore === null
+                ? ""
+                : ` · ความสอดคล้อง ${consensus.stabilityScore}%`
+            }`
+          : "ต้องมีข้อมูลอย่างน้อย 20 งวดเพื่อเปรียบเทียบความนิ่งข้ามช่วง"}
+        {" · "}Consensus คือความเห็นตรงกันของสูตรเดิม ไม่ใช่โอกาสออกรางวัล
+      </p>
+    </section>
+  );
+}
 function WinSetCard({
   digits,
+  consensus,
   onDigit,
 }: {
   digits: DigitSignal[];
+  consensus: ConsensusResult | null;
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(4),
-    winDigits = digits.slice(0, winSize),
+    consensusDigits =
+      consensus?.digits
+        .map((item) => digits.find((digit) => digit.digit === item.digit))
+        .filter((digit): digit is DigitSignal => Boolean(digit)) ?? digits,
+    winDigits = consensusDigits.slice(0, winSize),
     winSet = buildWinSet(
       winDigits.map((digit) => digit.digit),
       winSize,
@@ -717,7 +799,7 @@ function WinSetCard({
         </div>
       </div>
       <small className="win-set-note">
-        เรียงจากความแข็งแรงของเลข · ไม่ใช่ความน่าจะเป็น
+        เรียงจาก Consensus ของ 5 สูตรเดิม · ไม่ใช่ความน่าจะเป็น
       </small>
       <div className="win-digits">
         {winDigits.map((digit) => (
