@@ -859,7 +859,7 @@ function WinSetCard({
         <div className="win-size-control">
           <span>จำนวนเลขวิน</span>
           <div>
-            {[3, 4, 5, 6].map((size) => (
+            {[3, 4, 5, 6, 7, 8].map((size) => (
               <button
                 key={size}
                 className={winSize === size ? "active" : ""}
@@ -909,6 +909,12 @@ function WinSetCard({
       {sameWinSet && (
         <p className="same-win-set-note">
           สองวิธีเห็นเลขวิน {winSize} ตัวชุดเดียวกันในงวดนี้ แต่ลำดับอาจต่างกัน
+        </p>
+      )}
+      {winSize >= 7 && (
+        <p className="large-win-warning">
+          วิน {winSize} ตัวเพิ่มการครอบคลุมเป็น {winSet.uniquePairs.length} คู่ไม่ซ้ำ
+          ไม่ได้หมายถึงสัญญาณแข็งแรงขึ้น
         </p>
       )}
       <div className="win-digits">

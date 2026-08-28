@@ -53,6 +53,17 @@ describe("four-digit win set", () => {
       "33",
     ]);
   });
+
+  it("scales pair and double counts for seven and eight digits", () => {
+    const seven = buildWinSet(["0", "1", "2", "3", "4", "5", "6"], 7),
+      eight = buildWinSet(["0", "1", "2", "3", "4", "5", "6", "7"], 8);
+    expect(seven.uniquePairs).toHaveLength(21);
+    expect(seven.orderedPairs).toHaveLength(42);
+    expect(seven.doubles).toHaveLength(7);
+    expect(eight.uniquePairs).toHaveLength(28);
+    expect(eight.orderedPairs).toHaveLength(56);
+    expect(eight.doubles).toHaveLength(8);
+  });
 });
 
 describe("two-two-two tiered win set", () => {

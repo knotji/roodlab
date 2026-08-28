@@ -394,8 +394,17 @@
 }
 .win-digits {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 18px 0 14px;
+}
+.large-win-warning {
+  margin: 10px 0 0 !important;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #f2e3b5;
+  color: #735c16 !important;
+  font-size: 9px !important;
 }
 .win-digits button {
   display: grid;
