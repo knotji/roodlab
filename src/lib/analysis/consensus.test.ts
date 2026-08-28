@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { fixtureHistory } from "../fixtures";
 import { ALGORITHMS } from "./algorithms";
-import { buildConsensus } from "./consensus";
+import { buildConsensus, buildDistributedConsensus } from "./consensus";
 
 describe("formula consensus", () => {
   it("counts top-four agreement across every frozen algorithm", () => {
@@ -46,5 +46,20 @@ describe("formula consensus", () => {
       buildConsensus(fixtureHistory, options),
     );
     expect(JSON.stringify(ALGORITHMS)).toBe(before);
+  });
+
+  it("builds a unique two-two-two set across consensus rank bands", () => {
+    const consensus = buildConsensus(fixtureHistory, {
+        window: 30,
+        candidateCount: 4,
+        includeDoubles: true,
+      }),
+      distributed = buildDistributedConsensus(consensus);
+    expect(distributed.main).toEqual(consensus.digits.slice(0, 2));
+    expect(distributed.middle).toHaveLength(2);
+    expect(distributed.middle.every((item) => consensus.digits.slice(2, 6).includes(item))).toBe(true);
+    expect(distributed.inserts).toHaveLength(2);
+    expect(distributed.inserts.every((item) => consensus.digits.slice(6, 10).includes(item))).toBe(true);
+    expect(new Set(distributed.digits.map((item) => item.digit)).size).toBe(6);
   });
 });

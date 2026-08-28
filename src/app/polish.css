@@ -567,6 +567,11 @@
   font-size: 9px;
   font-weight: 500;
 }
+.distributed-method-note {
+  margin: 8px 0 0 !important;
+  color: var(--muted);
+  font-size: 9px !important;
+}
 .focused-pair-groups {
   display: grid;
   grid-template-columns: 3fr 2fr;

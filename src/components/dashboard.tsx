@@ -31,6 +31,7 @@ import {
 } from "@/lib/analysis/win-set";
 import {
   buildConsensus,
+  buildDistributedConsensus,
   type ConsensusResult,
 } from "@/lib/analysis/consensus";
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
@@ -781,13 +782,24 @@ function WinSetCard({
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(4),
-    [focusMode, setFocusMode] = useState<"core-support" | "tiered">("tiered"),
+    [focusMode, setFocusMode] = useState<
+      "core-support" | "tiered" | "distributed"
+    >("tiered"),
     consensusDigits =
       consensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? digits,
+    distributedConsensus = consensus
+      ? buildDistributedConsensus(consensus)
+      : null,
+    distributedDigits =
+      distributedConsensus?.digits
+        .map((item) => digits.find((digit) => digit.digit === item.digit))
+        .filter((digit): digit is DigitSignal => Boolean(digit)) ?? [],
     winDigits =
-      focusMode === "core-support"
+      focusMode === "distributed" && winSize === 6
+        ? distributedDigits
+        : focusMode === "core-support"
         ? digits.slice(0, winSize)
         : consensusDigits.slice(0, winSize),
     winSet = buildWinSet(
@@ -799,6 +811,9 @@ function WinSetCard({
     ),
     tieredWinSet = buildTieredWinSet(
       consensusDigits.map((digit) => digit.digit),
+    ),
+    distributedWinSet = buildTieredWinSet(
+      distributedDigits.map((digit) => digit.digit),
     ),
     consensusReady =
       consensus?.stabilityStatus === "stable" &&
@@ -812,12 +827,42 @@ function WinSetCard({
     selectedReady =
       consensus?.stabilityStatus === "stable" &&
       selectedCoreVotes.every((votes) => votes >= 3),
-    focusReady = focusMode === "tiered" ? consensusReady : selectedReady,
+    distributedReady =
+      consensusReady &&
+      (distributedConsensus?.inserts.every((digit) => digit.bestRank <= 5) ?? false),
+    focusReady =
+      focusMode === "tiered"
+        ? consensusReady
+        : focusMode === "distributed"
+          ? distributedReady
+          : selectedReady,
     sameWinSet =
       [...consensusDigits.slice(0, winSize).map((digit) => digit.digit)]
         .sort()
         .join("") ===
-      [...digits.slice(0, winSize).map((digit) => digit.digit)].sort().join(""),
+      [...(focusMode === "distributed" ? distributedDigits : digits.slice(0, winSize))]
+        .map((digit) => digit.digit)
+        .sort()
+        .join(""),
+    activeTieredWinSet =
+      focusMode === "distributed" ? distributedWinSet : tieredWinSet,
+    tierGroups = [
+      {
+        label: "ชุดหลัก",
+        pairs: activeTieredWinSet.primaryPairs,
+        mode: "tier-primary" as const,
+      },
+      {
+        label: focusMode === "distributed" ? "ชุดกลาง" : "ชุดรอง",
+        pairs: activeTieredWinSet.secondaryPairs,
+        mode: "tier-secondary" as const,
+      },
+      {
+        label: focusMode === "distributed" ? "ชุดตัวแทรก" : "ชุดกัน",
+        pairs: activeTieredWinSet.coverPairs,
+        mode: "tier-cover" as const,
+      },
+    ],
     [copied, setCopied] = useState<
       | "pairs"
       | "with-doubles"
@@ -865,6 +910,8 @@ function WinSetCard({
                 className={winSize === size ? "active" : ""}
                 onClick={() => {
                   setWinSize(size);
+                  if (size !== 6 && focusMode === "distributed")
+                    setFocusMode("tiered");
                   setCopied(null);
                 }}
                 type="button"
@@ -878,7 +925,9 @@ function WinSetCard({
       <small className="win-set-note">
         {focusMode === "core-support"
           ? `ชุดทางเลือกจาก ${selectedAlgorithmName}`
-          : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
+          : focusMode === "distributed"
+            ? "ชุดกระจายอันดับจาก Consensus"
+            : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
         {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
       <div className="win-source-control">
@@ -904,6 +953,18 @@ function WinSetCard({
           >
             ชุดทางเลือก · {selectedAlgorithmName}
           </button>
+          {winSize === 6 && (
+            <button
+              className={focusMode === "distributed" ? "active" : ""}
+              onClick={() => {
+                setFocusMode("distributed");
+                setCopied(null);
+              }}
+              type="button"
+            >
+              กระจายอันดับ · 2+2+2
+            </button>
+          )}
         </div>
       </div>
       {sameWinSet && (
@@ -946,8 +1007,12 @@ function WinSetCard({
             <div>
               <div className="section-kicker">วิน 6 เน้น</div>
               <h4>
-                {focusMode === "tiered" ? (
-                  <>ชุดหลักจาก Consensus 5 สูตร</>
+                {focusMode !== "core-support" ? (
+                  <>
+                    {focusMode === "distributed"
+                      ? "ชุดกระจายอันดับจาก Consensus"
+                      : "ชุดหลักจาก Consensus 5 สูตร"}
+                  </>
                 ) : (
                   <>
                     แกนหลัก {focusedWinSet.coreDigits.join(" · ")} · ตัวเสริม{" "}
@@ -960,30 +1025,31 @@ function WinSetCard({
           </div>
           {focusReady ? (
             <>
-              {focusMode === "tiered" ? (
+              {focusMode !== "core-support" ? (
                 <>
                   <div className="tiered-digits">
-                    <span><small>หลัก</small>{tieredWinSet.mainDigits.join(" · ")}</span>
-                    <span><small>รอง</small>{tieredWinSet.secondaryDigits.join(" · ")}</span>
-                    <span><small>กัน</small>{tieredWinSet.coverDigits.join(" · ")}</span>
+                    <span><small>หลัก</small>{activeTieredWinSet.mainDigits.join(" · ")}</span>
+                    <span><small>{focusMode === "distributed" ? "กลาง" : "รอง"}</small>{activeTieredWinSet.secondaryDigits.join(" · ")}</span>
+                    <span><small>{focusMode === "distributed" ? "ตัวแทรก" : "กัน"}</small>{activeTieredWinSet.coverDigits.join(" · ")}</span>
                   </div>
+                  {focusMode === "distributed" && (
+                    <p className="distributed-method-note">
+                      กลางคัดจากอันดับ 3–6 ที่นิ่งที่สุด · ตัวแทรกคัดจากอันดับ 7–10 ที่บางสูตรเคยจัดไว้สูง
+                    </p>
+                  )}
                   <div className="focused-pair-groups three-tiers">
-                    {[
-                      ["ชุดหลัก", tieredWinSet.primaryPairs, "tier-primary"],
-                      ["ชุดรอง", tieredWinSet.secondaryPairs, "tier-secondary"],
-                      ["ชุดกัน", tieredWinSet.coverPairs, "tier-cover"],
-                    ].map(([label, pairs, mode]) => (
-                      <div key={label as string}>
-                        <strong>{label as string} · 5 คู่</strong>
+                    {tierGroups.map(({ label, pairs, mode }) => (
+                      <div key={label}>
+                        <strong>{label} · 5 คู่</strong>
                         <div>
-                          {(pairs as string[]).map((pair) => <b key={pair}>{pair}</b>)}
+                          {pairs.map((pair) => <b key={pair}>{pair}</b>)}
                         </div>
                         <button
-                          onClick={() => copyPairs(mode as "tier-primary" | "tier-secondary" | "tier-cover", pairs as string[])}
+                          onClick={() => copyPairs(mode, pairs)}
                           type="button"
                         >
                           {copied === mode ? <Check /> : <Copy />}
-                          {copied === mode ? "คัดลอกแล้ว" : `คัดลอก${label as string}`}
+                          {copied === mode ? "คัดลอกแล้ว" : `คัดลอก${label}`}
                         </button>
                       </div>
                     ))}
@@ -1023,8 +1089,7 @@ function WinSetCard({
                 <button
                   onClick={() =>
                     copyPairs("focus-all", [
-                      ...focusedWinSet.focusedPairs,
-                      ...focusedWinSet.supportPairs,
+                      ...winSet.uniquePairs,
                       ...winSet.doubles,
                     ])
                   }
@@ -1039,7 +1104,9 @@ function WinSetCard({
             <p>
               {focusMode === "tiered"
                 ? "ชุดหลักต้องให้เลขสองอันดับแรกเห็นตรงกันอย่างน้อย 4/5 สูตร"
-                : "ชุดทางเลือกต้องให้เลขแกนสองตัวได้รับเสียงสนับสนุนอย่างน้อย 3/5 สูตร"}
+                : focusMode === "distributed"
+                  ? "ชุดกระจายต้องมีตัวแทรกที่อย่างน้อยหนึ่งสูตรเคยจัดไว้ใน Top 5"
+                  : "ชุดทางเลือกต้องให้เลขแกนสองตัวได้รับเสียงสนับสนุนอย่างน้อย 3/5 สูตร"}
               {" และความนิ่งข้ามช่วงต้องอยู่ในระดับค่อนข้างนิ่ง จึงจะเปิดชุดเน้น"}
             </p>
           )}

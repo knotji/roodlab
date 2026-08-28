@@ -11,6 +11,14 @@ export type ConsensusDigit = {
   averageRank: number;
   algorithmIds: string[];
   stableWindows: number;
+  bestRank: number;
+};
+
+export type DistributedConsensus = {
+  main: ConsensusDigit[];
+  middle: ConsensusDigit[];
+  inserts: ConsensusDigit[];
+  digits: ConsensusDigit[];
 };
 
 export type ConsensusResult = {
@@ -50,6 +58,12 @@ function rankForWindow(history: LotteryDraw[], options: ConsensusOptions) {
       votes: agreeing.length,
       averageRank: Math.round((rankTotal / analyses.length) * 10) / 10,
       algorithmIds: agreeing.map((analysis) => analysis.algorithmId),
+      bestRank: Math.min(
+        ...analyses.map(
+          (analysis) =>
+            analysis.digits.findIndex((item) => item.digit === digit) + 1,
+        ),
+      ),
     };
   }).sort(
     (a, b) =>
@@ -103,4 +117,28 @@ export function buildConsensus(
     stabilityScore,
     stabilityStatus,
   };
+}
+
+export function buildDistributedConsensus(
+  consensus: ConsensusResult,
+): DistributedConsensus {
+  const main = consensus.digits.slice(0, 2),
+    middle = [...consensus.digits.slice(2, 6)]
+      .sort(
+        (a, b) =>
+          b.stableWindows - a.stableWindows ||
+          b.votes - a.votes ||
+          a.averageRank - b.averageRank,
+      )
+      .slice(0, 2),
+    inserts = [...consensus.digits.slice(6, 10)]
+      .sort(
+        (a, b) =>
+          a.bestRank - b.bestRank ||
+          b.votes - a.votes ||
+          b.stableWindows - a.stableWindows ||
+          a.averageRank - b.averageRank,
+      )
+      .slice(0, 2);
+  return { main, middle, inserts, digits: [...main, ...middle, ...inserts] };
 }
