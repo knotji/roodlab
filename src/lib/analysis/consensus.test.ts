@@ -62,4 +62,18 @@ describe("formula consensus", () => {
     expect(distributed.inserts.every((item) => consensus.digits.slice(6, 10).includes(item))).toBe(true);
     expect(new Set(distributed.digits.map((item) => item.digit)).size).toBe(6);
   });
+
+  it("builds a unique two-two-one set for a five-digit win", () => {
+    const consensus = buildConsensus(fixtureHistory, {
+        window: 30,
+        candidateCount: 4,
+        includeDoubles: true,
+      }),
+      distributed = buildDistributedConsensus(consensus, 1);
+    expect(distributed.main).toHaveLength(2);
+    expect(distributed.middle).toHaveLength(2);
+    expect(distributed.inserts).toHaveLength(1);
+    expect(distributed.inserts[0]).toBeOneOf(consensus.digits.slice(6, 10));
+    expect(new Set(distributed.digits.map((item) => item.digit)).size).toBe(5);
+  });
 });

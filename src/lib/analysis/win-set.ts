@@ -60,8 +60,9 @@ export function buildFocusedWinSet(
 
 export function buildTieredWinSet(
   rankedDigits: readonly string[],
+  size: 5 | 6 = 6,
 ): TieredWinSet {
-  const winSet = buildWinSet(rankedDigits, 6),
+  const winSet = buildWinSet(rankedDigits, size),
     mainDigits = winSet.digits.slice(0, 2),
     secondaryDigits = winSet.digits.slice(2, 4),
     coverDigits = winSet.digits.slice(4, 6),

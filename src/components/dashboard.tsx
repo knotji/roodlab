@@ -790,14 +790,14 @@ function WinSetCard({
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? digits,
     distributedConsensus = consensus
-      ? buildDistributedConsensus(consensus)
+      ? buildDistributedConsensus(consensus, winSize === 5 ? 1 : 2)
       : null,
     distributedDigits =
       distributedConsensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? [],
     winDigits =
-      focusMode === "distributed" && winSize === 6
+      focusMode === "distributed" && (winSize === 5 || winSize === 6)
         ? distributedDigits
         : focusMode === "core-support"
         ? digits.slice(0, winSize)
@@ -814,6 +814,7 @@ function WinSetCard({
     ),
     distributedWinSet = buildTieredWinSet(
       distributedDigits.map((digit) => digit.digit),
+      winSize === 5 ? 5 : 6,
     ),
     consensusReady =
       consensus?.stabilityStatus === "stable" &&
@@ -910,7 +911,7 @@ function WinSetCard({
                 className={winSize === size ? "active" : ""}
                 onClick={() => {
                   setWinSize(size);
-                  if (size !== 6 && focusMode === "distributed")
+                  if (size !== 5 && size !== 6 && focusMode === "distributed")
                     setFocusMode("tiered");
                   setCopied(null);
                 }}
@@ -953,7 +954,7 @@ function WinSetCard({
           >
             ชุดทางเลือก · {selectedAlgorithmName}
           </button>
-          {winSize === 6 && (
+          {(winSize === 5 || winSize === 6) && (
             <button
               className={focusMode === "distributed" ? "active" : ""}
               onClick={() => {
@@ -962,7 +963,7 @@ function WinSetCard({
               }}
               type="button"
             >
-              กระจายอันดับ · 2+2+2
+              กระจายอันดับ · {winSize === 5 ? "2+2+1" : "2+2+2"}
             </button>
           )}
         </div>
@@ -1001,11 +1002,11 @@ function WinSetCard({
           ))}
         </div>
       </div>
-      {winSize === 6 && (
+      {(winSize === 6 || (winSize === 5 && focusMode === "distributed")) && (
         <section className={`focused-win${focusReady ? " ready" : " pending"}`}>
           <div className="focused-win-head">
             <div>
-              <div className="section-kicker">วิน 6 เน้น</div>
+              <div className="section-kicker">วิน {winSize} เน้น</div>
               <h4>
                 {focusMode !== "core-support" ? (
                   <>
@@ -1040,7 +1041,7 @@ function WinSetCard({
                   <div className="focused-pair-groups three-tiers">
                     {tierGroups.map(({ label, pairs, mode }) => (
                       <div key={label}>
-                        <strong>{label} · 5 คู่</strong>
+                        <strong>{label} · {pairs.length} คู่</strong>
                         <div>
                           {pairs.map((pair) => <b key={pair}>{pair}</b>)}
                         </div>

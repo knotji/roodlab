@@ -121,6 +121,7 @@ export function buildConsensus(
 
 export function buildDistributedConsensus(
   consensus: ConsensusResult,
+  insertCount: 1 | 2 = 2,
 ): DistributedConsensus {
   const main = consensus.digits.slice(0, 2),
     middle = [...consensus.digits.slice(2, 6)]
@@ -139,6 +140,6 @@ export function buildDistributedConsensus(
           b.stableWindows - a.stableWindows ||
           a.averageRank - b.averageRank,
       )
-      .slice(0, 2);
+      .slice(0, insertCount);
   return { main, middle, inserts, digits: [...main, ...middle, ...inserts] };
 }
