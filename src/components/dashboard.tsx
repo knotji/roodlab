@@ -628,7 +628,14 @@ function Analyze({
           </span>
           <strong>{consensus?.stabilityScore ?? "--"}{consensus?.stabilityScore !== null && consensus?.stabilityScore !== undefined && <small>%</small>}</strong>
           <small>
-            {consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · ไม่ใช่ความน่าจะเป็น
+            {consensus?.stabilityScore === null ? (
+              <>
+                มี {analysis.sampleSize} งวด
+                {dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย 20 งวดเพื่อเทียบช่วง 10/20
+              </>
+            ) : (
+              <>{consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · ไม่ใช่ความน่าจะเป็น</>
+            )}
           </small>
         </div>
       </section>
