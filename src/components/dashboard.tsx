@@ -24,7 +24,7 @@ import {
 } from "@/lib/analysis/day-pattern";
 import { getCanonicalDataset } from "@/lib/history-provider";
 import { computeHistoryVersion } from "@/lib/history-version";
-import { buildWinSet } from "@/lib/analysis/win-set";
+import { buildFocusedWinSet, buildWinSet } from "@/lib/analysis/win-set";
 import {
   buildConsensus,
   type ConsensusResult,
@@ -759,9 +759,17 @@ function WinSetCard({
       winDigits.map((digit) => digit.digit),
       winSize,
     ),
-    [copied, setCopied] = useState<"pairs" | "with-doubles" | null>(null);
+    focusedWinSet = buildFocusedWinSet(
+      consensusDigits.map((digit) => digit.digit),
+    ),
+    focusReady =
+      consensus?.stabilityStatus === "stable" &&
+      consensus.digits.slice(0, 2).every((digit) => digit.votes >= 4),
+    [copied, setCopied] = useState<
+      "pairs" | "with-doubles" | "focus" | "support" | "focus-all" | null
+    >(null);
   async function copyPairs(
-    mode: "pairs" | "with-doubles",
+    mode: "pairs" | "with-doubles" | "focus" | "support" | "focus-all",
     pairs: string[],
   ) {
     try {
@@ -821,6 +829,80 @@ function WinSetCard({
           ))}
         </div>
       </div>
+      {winSize === 6 && (
+        <section className={`focused-win${focusReady ? " ready" : " pending"}`}>
+          <div className="focused-win-head">
+            <div>
+              <div className="section-kicker">วิน 6 เน้น</div>
+              <h4>
+                แกนหลัก {focusedWinSet.coreDigits.join(" · ")} · ตัวเสริม{" "}
+                {focusedWinSet.supportDigits.join(" · ")}
+              </h4>
+            </div>
+            <span>{focusReady ? "ผ่านเกณฑ์ติดตาม" : "สัญญาณยังไม่ผ่านเกณฑ์"}</span>
+          </div>
+          {focusReady ? (
+            <>
+              <div className="focused-pair-groups">
+                <div>
+                  <strong>ชุดเน้น · มีเลขแกนหลัก</strong>
+                  <div>
+                    {focusedWinSet.focusedPairs.map((pair) => (
+                      <b key={pair}>{pair}</b>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <strong>ชุดรอง · ตัวเสริมจับกัน</strong>
+                  <div>
+                    {focusedWinSet.supportPairs.map((pair) => (
+                      <b key={pair}>{pair}</b>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="focused-copy-actions">
+                <button
+                  onClick={() =>
+                    copyPairs("focus", focusedWinSet.focusedPairs)
+                  }
+                  type="button"
+                >
+                  {copied === "focus" ? <Check /> : <Copy />}
+                  {copied === "focus" ? "คัดลอกแล้ว" : "คัดลอกชุดเน้น 9 คู่"}
+                </button>
+                <button
+                  onClick={() =>
+                    copyPairs("support", focusedWinSet.supportPairs)
+                  }
+                  type="button"
+                >
+                  {copied === "support" ? <Check /> : <Copy />}
+                  {copied === "support" ? "คัดลอกแล้ว" : "คัดลอกชุดรอง 6 คู่"}
+                </button>
+                <button
+                  onClick={() =>
+                    copyPairs("focus-all", [
+                      ...focusedWinSet.focusedPairs,
+                      ...focusedWinSet.supportPairs,
+                      ...winSet.doubles,
+                    ])
+                  }
+                  type="button"
+                >
+                  {copied === "focus-all" ? <Check /> : <Copy />}
+                  {copied === "focus-all" ? "คัดลอกแล้ว" : "คัดลอกรวม + เบิ้ล"}
+                </button>
+              </div>
+            </>
+          ) : (
+            <p>
+              ต้องให้เลขแกนหลักเห็นตรงกันอย่างน้อย 4/5 สูตร และความนิ่งข้ามช่วงอยู่ในระดับค่อนข้างนิ่ง
+              จึงจะเปิดชุดเน้น
+            </p>
+          )}
+        </section>
+      )}
       <div className="win-set-footer">
         <p>
           กางครบ {winSet.orderedPairs.length} คู่แบบไม่รวมเลขเบิ้ล · แตะเลขเพื่อดูเหตุผลทางสถิติ

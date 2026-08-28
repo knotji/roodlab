@@ -399,6 +399,100 @@
   font-size: 12px;
   font-weight: 650;
 }
+.focused-win {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #f4f3ed;
+}
+.focused-win.ready {
+  border-color: #b9d2c7;
+  background: #edf4f0;
+}
+.focused-win-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+.focused-win-head h4 {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+.focused-win-head > span {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #f2e3b5;
+  color: #735c16;
+  font-size: 9px;
+}
+.focused-win.ready .focused-win-head > span {
+  background: #d5e8de;
+  color: #26614f;
+}
+.focused-pair-groups {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.focused-pair-groups > div {
+  padding: 12px;
+  border-radius: 10px;
+  background: #ffffffa8;
+}
+.focused-pair-groups strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.focused-pair-groups > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.focused-pair-groups b {
+  min-width: 34px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  text-align: center;
+}
+.focused-pair-groups > div:first-child b {
+  background: var(--accent);
+  color: white;
+}
+.focused-copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.focused-copy-actions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 10px;
+  cursor: pointer;
+}
+.focused-copy-actions svg {
+  width: 13px;
+  height: 13px;
+}
+.focused-win > p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
 .win-set-card p {
   margin: 10px 0 0;
 }
@@ -582,6 +676,19 @@
   .win-doubles {
     align-items: flex-start;
     flex-direction: column;
+  }
+  .focused-win-head {
+    flex-direction: column;
+  }
+  .focused-pair-groups {
+    grid-template-columns: 1fr;
+  }
+  .focused-copy-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .focused-copy-actions button {
+    justify-content: center;
   }
 }
 .pair-method-note,

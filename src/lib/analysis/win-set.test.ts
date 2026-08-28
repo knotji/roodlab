@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWinSet } from "./win-set";
+import { buildFocusedWinSet, buildWinSet } from "./win-set";
 
 describe("four-digit win set", () => {
   it("builds every ordered non-double pair from four unique digits", () => {
@@ -52,5 +52,23 @@ describe("four-digit win set", () => {
       "22",
       "33",
     ]);
+  });
+});
+
+describe("focused six-digit win set", () => {
+  it("separates nine core-bearing pairs from six support pairs", () => {
+    expect(buildFocusedWinSet(["0", "9", "3", "7", "1", "2"])).toEqual({
+      coreDigits: ["0", "9"],
+      supportDigits: ["3", "7", "1", "2"],
+      focusedPairs: ["09", "03", "07", "01", "02", "93", "97", "91", "92"],
+      supportPairs: ["37", "31", "32", "71", "72", "12"],
+    });
+  });
+
+  it("never duplicates reverse pairs", () => {
+    const result = buildFocusedWinSet(["1", "2", "3", "4", "5", "6"]),
+      all = [...result.focusedPairs, ...result.supportPairs];
+    expect(all).toHaveLength(15);
+    expect(new Set(all.map((pair) => [...pair].sort().join(""))).size).toBe(15);
   });
 });

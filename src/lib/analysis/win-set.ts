@@ -6,6 +6,13 @@ export type WinSet = {
   uniquePairsWithDoubles: string[];
 };
 
+export type FocusedWinSet = {
+  coreDigits: string[];
+  supportDigits: string[];
+  focusedPairs: string[];
+  supportPairs: string[];
+};
+
 export function buildWinSet(rankedDigits: readonly string[], size = 4): WinSet {
   const digits = Array.from(new Set(rankedDigits)).slice(0, size);
   const orderedPairs = digits.flatMap((first) =>
@@ -22,4 +29,22 @@ export function buildWinSet(rankedDigits: readonly string[], size = 4): WinSet {
     doubles,
     uniquePairsWithDoubles: [...uniquePairs, ...doubles],
   };
+}
+
+export function buildFocusedWinSet(
+  rankedDigits: readonly string[],
+  size = 6,
+  coreSize = 2,
+): FocusedWinSet {
+  const winSet = buildWinSet(rankedDigits, size),
+    coreDigits = winSet.digits.slice(0, coreSize),
+    supportDigits = winSet.digits.slice(coreSize),
+    core = new Set(coreDigits),
+    focusedPairs = winSet.uniquePairs.filter(
+      (pair) => core.has(pair[0]) || core.has(pair[1]),
+    ),
+    supportPairs = winSet.uniquePairs.filter(
+      (pair) => !core.has(pair[0]) && !core.has(pair[1]),
+    );
+  return { coreDigits, supportDigits, focusedPairs, supportPairs };
 }
