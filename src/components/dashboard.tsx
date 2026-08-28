@@ -532,6 +532,12 @@ function Analyze({
   full: boolean;
   setFull: (v: boolean) => void;
 }) {
+  const enoughData =
+      analysis.sampleSize >=
+      (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS),
+    selectedAlgorithmName =
+      ALGORITHMS.find((algorithm) => algorithm.id === algorithmId)?.name ??
+      algorithmId;
   return (
     <div className="content analyze">
       <div className="analyze-controls">
@@ -578,21 +584,22 @@ function Analyze({
       </p>
       <section className="hero">
         <div>
-          <div className="section-kicker">เลขที่โดดเด่นจากสถิติย้อนหลัง</div>
-          <h1>
-            {analysis.sampleSize <
-            (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS)
-              ? "--"
-              : analysis.standout.map((x) => x.digit).join(" · ")}
+          <div className="section-kicker">สรุปเลขจากสถิติย้อนหลัง</div>
+          <h1 className="consensus-hero-digits">
+            {enoughData && consensus
+              ? consensus.digits.slice(0, 5).map((item) => item.digit).join(" · ")
+              : "--"}
           </h1>
           <p>
-            {analysis.sampleSize <
-            (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS)
+            {!enoughData
               ? `ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`
-              : dayPattern === "all"
-                ? `สัญญาณจาก ${analysis.window} งวดล่าสุด`
-                : `รูปแบบจาก ${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}
+              : `Consensus 5 สูตร · ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
           </p>
+          {enoughData && (
+            <small className="selected-formula-summary">
+              {selectedAlgorithmName} เด่น {analysis.standout.map((item) => item.digit).join(" · ")}
+            </small>
+          )}
           <small
             className="analysis-integrity"
             title={`${integrity.partialDraws} งวดข้อมูลไม่ครบ · ${integrity.invalidDraws} งวดถูกตัดออกจากการวิเคราะห์`}
@@ -605,7 +612,7 @@ function Analyze({
         <div className="hero-score">
           <Activity />
           <span>
-            สรุปข้อมูลย้อนหลัง{" "}
+            ความนิ่งข้ามช่วง{" "}
             <span
               className="info-tip"
               title="คะแนนจัดอันดับจากความถี่ แนวโน้ม ตำแหน่ง และช่วงห่าง ไม่ใช่เปอร์เซ็นต์โอกาสออกรางวัล"
@@ -613,32 +620,31 @@ function Analyze({
               <Info />
             </span>
           </span>
-          <strong>
-            {analysis.window} <small>งวด</small>
-          </strong>
+          <strong>{consensus?.stabilityScore ?? "--"}{consensus?.stabilityScore !== null && consensus?.stabilityScore !== undefined && <small>%</small>}</strong>
           <small>
-            ใช้เปรียบเทียบรูปแบบในข้อมูลย้อนหลัง · ไม่ใช่ความน่าจะเป็น
+            {consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · ไม่ใช่ความน่าจะเป็น
           </small>
         </div>
       </section>
-      {analysis.sampleSize >=
-        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
+      {enoughData && (
         <>
-          {consensus && <ConsensusCard consensus={consensus} />}
           <WinSetCard
             digits={analysis.digits}
             consensus={consensus}
-            selectedAlgorithmName={
-              ALGORITHMS.find((algorithm) => algorithm.id === algorithmId)?.name ??
-              algorithmId
-            }
+            selectedAlgorithmName={selectedAlgorithmName}
             onDigit={onDigit}
           />
+          {consensus && (
+            <details className="analyze-disclosure">
+              <summary>ดูรายละเอียด Consensus 5 สูตร</summary>
+              <ConsensusCard consensus={consensus} />
+            </details>
+          )}
         </>
       )}
-      {analysis.sampleSize >=
-        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && (
-        <>
+      {enoughData && (
+        <details className="analyze-disclosure">
+          <summary>สำรวจคู่ที่น่าสนใจบน / ล่าง</summary>
           <div className="section-kicker pair-section-title">
             คู่ที่น่าสนใจจากสถิติ
           </div>
@@ -650,10 +656,11 @@ function Analyze({
             จัดอันดับจากความแข็งแรงของเลขและความเหมาะสมตามตำแหน่ง
             เป็นการสำรวจรูปแบบย้อนหลัง ไม่ใช่การทำนายผล
           </p>
-        </>
+        </details>
       )}
-      {analysis.sampleSize >=
-        (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) && <section className="why">
+      {enoughData && <details className="analyze-disclosure">
+        <summary>ดูเหตุผลและรายละเอียดคะแนน</summary>
+        <section className="why">
         <div className="section-kicker">ทำไมเลขนี้โดดเด่น</div>
         <div className="reason-grid">
           {analysis.standout.flatMap((d) =>
@@ -690,7 +697,8 @@ function Analyze({
             ))}
           </div>
         )}
-      </section>}
+        </section>
+      </details>}
     </div>
   );
 }
@@ -897,11 +905,14 @@ function WinSetCard({
           </button>
         ))}
       </div>
-      <div className="win-pairs" aria-label="คู่กลับจากเลขวินสี่ตัว">
-        {winSet.orderedPairs.map((pair) => (
-          <span key={pair}>{pair}</span>
-        ))}
-      </div>
+      <details className="win-pair-expander">
+        <summary>ดูกางคู่กลับทั้งหมด {winSet.orderedPairs.length} คู่</summary>
+        <div className="win-pairs" aria-label={`คู่กลับจากเลขวิน ${winSize} ตัว`}>
+          {winSet.orderedPairs.map((pair) => (
+            <span key={pair}>{pair}</span>
+          ))}
+        </div>
+      </details>
       <div className="win-doubles">
         <strong>เลขเบิ้ลจากชุดวิน</strong>
         <div>

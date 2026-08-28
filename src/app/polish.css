@@ -201,6 +201,48 @@
   color: var(--muted);
   font-size: 11px;
 }
+.selected-formula-summary {
+  display: block;
+  margin: -6px 0 8px;
+  color: var(--accent);
+  font-size: 11px;
+}
+.hero .consensus-hero-digits {
+  font-size: clamp(54px, 7vw, 96px);
+  letter-spacing: -0.055em;
+}
+.analyze-disclosure {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.analyze-disclosure > summary,
+.win-pair-expander > summary {
+  padding: 14px 17px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  list-style-position: inside;
+}
+.analyze-disclosure > .consensus-card {
+  margin: 0 14px 14px;
+}
+.analyze-disclosure > .pair-section-title {
+  margin: 4px 24px 0;
+}
+.analyze-disclosure > .pair-grid,
+.analyze-disclosure > .pair-method-note {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+.analyze-disclosure > .pair-method-note {
+  margin-bottom: 14px;
+}
+.analyze-disclosure > .why {
+  margin: 0 14px 14px;
+}
 .pair-section-title {
   margin: 28px 0 -8px;
 }
@@ -365,6 +407,18 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 5px;
+}
+.win-pair-expander {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f6f5f0;
+}
+.win-pair-expander > summary {
+  padding: 10px 12px;
+}
+.win-pair-expander .win-pairs {
+  padding: 0 10px 10px;
 }
 .win-pairs span {
   padding: 7px 4px;
@@ -746,6 +800,9 @@
   .consensus-head {
     flex-direction: column;
     gap: 10px;
+  }
+  .hero .consensus-hero-digits {
+    font-size: clamp(44px, 14vw, 68px);
   }
   .consensus-grid {
     grid-template-columns: 1fr 1fr;
