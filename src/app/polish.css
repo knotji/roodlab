@@ -201,15 +201,22 @@
   color: var(--muted);
   font-size: 11px;
 }
-.selected-formula-summary {
-  display: block;
-  margin: -6px 0 8px;
-  color: var(--accent);
-  font-size: 11px;
+.hero-consensus-inline {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
 }
-.hero .consensus-hero-digits {
-  font-size: clamp(54px, 7vw, 96px);
-  letter-spacing: -0.055em;
+.hero-consensus-inline span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.hero-consensus-inline strong {
+  color: var(--accent);
+  font-size: 17px;
+  letter-spacing: 0.04em;
 }
 .analyze-disclosure {
   margin-top: 14px;
@@ -801,8 +808,10 @@
     flex-direction: column;
     gap: 10px;
   }
-  .hero .consensus-hero-digits {
-    font-size: clamp(44px, 14vw, 68px);
+  .hero-consensus-inline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
   }
   .consensus-grid {
     grid-template-columns: 1fr 1fr;

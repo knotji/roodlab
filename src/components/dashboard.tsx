@@ -584,21 +584,27 @@ function Analyze({
       </p>
       <section className="hero">
         <div>
-          <div className="section-kicker">สรุปเลขจากสถิติย้อนหลัง</div>
-          <h1 className="consensus-hero-digits">
-            {enoughData && consensus
-              ? consensus.digits.slice(0, 5).map((item) => item.digit).join(" · ")
+          <div className="section-kicker">เลขเด่น 2 ตัวจากสถิติย้อนหลัง</div>
+          <h1>
+            {enoughData
+              ? analysis.standout.map((item) => item.digit).join(" · ")
               : "--"}
           </h1>
           <p>
             {!enoughData
               ? `ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`
-              : `Consensus 5 สูตร · ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
+              : `${selectedAlgorithmName} · ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
           </p>
-          {enoughData && (
-            <small className="selected-formula-summary">
-              {selectedAlgorithmName} เด่น {analysis.standout.map((item) => item.digit).join(" · ")}
-            </small>
+          {enoughData && consensus && (
+            <div className="hero-consensus-inline">
+              <span>Consensus 5 สูตร</span>
+              <strong>
+                {consensus.digits
+                  .slice(0, 5)
+                  .map((item) => item.digit)
+                  .join(" · ")}
+              </strong>
+            </div>
           )}
           <small
             className="analysis-integrity"
