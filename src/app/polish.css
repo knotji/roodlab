@@ -440,6 +440,20 @@
   border-radius: 8px;
   background: #dde3df;
 }
+.win-source-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+.win-source-control > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.win-source-control .focus-mode-control {
+  margin-top: 0;
+}
 .focus-mode-control button {
   border: 0;
   border-radius: 6px;
@@ -773,6 +787,10 @@
     display: grid;
     width: 100%;
     grid-template-columns: 1fr;
+  }
+  .win-source-control {
+    align-items: stretch;
+    flex-direction: column;
   }
   .focused-copy-actions {
     display: grid;

@@ -766,8 +766,8 @@ function WinSetCard({
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? digits,
     winDigits =
-      winSize === 6 && focusMode === "core-support"
-        ? digits.slice(0, 6)
+      focusMode === "core-support"
+        ? digits.slice(0, winSize)
         : consensusDigits.slice(0, winSize),
     winSet = buildWinSet(
       winDigits.map((digit) => digit.digit),
@@ -792,11 +792,11 @@ function WinSetCard({
       consensus?.stabilityStatus === "stable" &&
       selectedCoreVotes.every((votes) => votes >= 3),
     focusReady = focusMode === "tiered" ? consensusReady : selectedReady,
-    sameSixDigitSet =
-      [...consensusDigits.slice(0, 6).map((digit) => digit.digit)]
+    sameWinSet =
+      [...consensusDigits.slice(0, winSize).map((digit) => digit.digit)]
         .sort()
         .join("") ===
-      [...digits.slice(0, 6).map((digit) => digit.digit)].sort().join(""),
+      [...digits.slice(0, winSize).map((digit) => digit.digit)].sort().join(""),
     [copied, setCopied] = useState<
       | "pairs"
       | "with-doubles"
@@ -855,11 +855,41 @@ function WinSetCard({
         </div>
       </div>
       <small className="win-set-note">
-        {winSize === 6 && focusMode === "core-support"
+        {focusMode === "core-support"
           ? `ชุดทางเลือกจาก ${selectedAlgorithmName}`
           : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
         {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
+      <div className="win-source-control">
+        <span>แหล่งคัดเลขวิน</span>
+        <div className="focus-mode-control">
+          <button
+            className={focusMode === "tiered" ? "active" : ""}
+            onClick={() => {
+              setFocusMode("tiered");
+              setCopied(null);
+            }}
+            type="button"
+          >
+            ชุดหลัก · Consensus
+          </button>
+          <button
+            className={focusMode === "core-support" ? "active" : ""}
+            onClick={() => {
+              setFocusMode("core-support");
+              setCopied(null);
+            }}
+            type="button"
+          >
+            ชุดทางเลือก · {selectedAlgorithmName}
+          </button>
+        </div>
+      </div>
+      {sameWinSet && (
+        <p className="same-win-set-note">
+          สองวิธีเห็นเลขวิน {winSize} ตัวชุดเดียวกันในงวดนี้ แต่ลำดับอาจต่างกัน
+        </p>
+      )}
       <div className="win-digits">
         {winDigits.map((digit) => (
           <button key={digit.digit} onClick={() => onDigit(digit)}>
@@ -898,27 +928,6 @@ function WinSetCard({
             </div>
             <span>{focusReady ? "ผ่านเกณฑ์ติดตาม" : "สัญญาณยังไม่ผ่านเกณฑ์"}</span>
           </div>
-          <div className="focus-mode-control">
-            <button
-              className={focusMode === "tiered" ? "active" : ""}
-              onClick={() => setFocusMode("tiered")}
-              type="button"
-            >
-              หลัก 2 · รอง 2 · กัน 2
-            </button>
-            <button
-              className={focusMode === "core-support" ? "active" : ""}
-              onClick={() => setFocusMode("core-support")}
-              type="button"
-            >
-              ชุดทางเลือก · {selectedAlgorithmName}
-            </button>
-          </div>
-          {sameSixDigitSet && (
-            <p className="same-win-set-note">
-              สองวิธีเห็นเลขวิน 6 ตัวชุดเดียวกันในงวดนี้ แต่ลำดับและการแบ่งคู่อาจต่างกัน
-            </p>
-          )}
           {focusReady ? (
             <>
               {focusMode === "tiered" ? (
