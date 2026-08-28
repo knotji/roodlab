@@ -628,6 +628,10 @@ function Analyze({
           <WinSetCard
             digits={analysis.digits}
             consensus={consensus}
+            selectedAlgorithmName={
+              ALGORITHMS.find((algorithm) => algorithm.id === algorithmId)?.name ??
+              algorithmId
+            }
             onDigit={onDigit}
           />
         </>
@@ -747,10 +751,12 @@ function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
 function WinSetCard({
   digits,
   consensus,
+  selectedAlgorithmName,
   onDigit,
 }: {
   digits: DigitSignal[];
   consensus: ConsensusResult | null;
+  selectedAlgorithmName: string;
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(4),
@@ -759,20 +765,38 @@ function WinSetCard({
       consensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? digits,
-    winDigits = consensusDigits.slice(0, winSize),
+    winDigits =
+      winSize === 6 && focusMode === "core-support"
+        ? digits.slice(0, 6)
+        : consensusDigits.slice(0, winSize),
     winSet = buildWinSet(
       winDigits.map((digit) => digit.digit),
       winSize,
     ),
     focusedWinSet = buildFocusedWinSet(
-      consensusDigits.map((digit) => digit.digit),
+      digits.map((digit) => digit.digit),
     ),
     tieredWinSet = buildTieredWinSet(
       consensusDigits.map((digit) => digit.digit),
     ),
-    focusReady =
+    consensusReady =
       consensus?.stabilityStatus === "stable" &&
       consensus.digits.slice(0, 2).every((digit) => digit.votes >= 4),
+    selectedCoreVotes = digits
+      .slice(0, 2)
+      .map(
+        (digit) =>
+          consensus?.digits.find((item) => item.digit === digit.digit)?.votes ?? 0,
+      ),
+    selectedReady =
+      consensus?.stabilityStatus === "stable" &&
+      selectedCoreVotes.every((votes) => votes >= 3),
+    focusReady = focusMode === "tiered" ? consensusReady : selectedReady,
+    sameSixDigitSet =
+      [...consensusDigits.slice(0, 6).map((digit) => digit.digit)]
+        .sort()
+        .join("") ===
+      [...digits.slice(0, 6).map((digit) => digit.digit)].sort().join(""),
     [copied, setCopied] = useState<
       | "pairs"
       | "with-doubles"
@@ -831,7 +855,10 @@ function WinSetCard({
         </div>
       </div>
       <small className="win-set-note">
-        เรียงจาก Consensus ของ 5 สูตรเดิม · ไม่ใช่ความน่าจะเป็น
+        {winSize === 6 && focusMode === "core-support"
+          ? `ชุดทางเลือกจาก ${selectedAlgorithmName}`
+          : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
+        {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
       <div className="win-digits">
         {winDigits.map((digit) => (
@@ -859,8 +886,14 @@ function WinSetCard({
             <div>
               <div className="section-kicker">วิน 6 เน้น</div>
               <h4>
-                แกนหลัก {focusedWinSet.coreDigits.join(" · ")} · ตัวเสริม{" "}
-                {focusedWinSet.supportDigits.join(" · ")}
+                {focusMode === "tiered" ? (
+                  <>ชุดหลักจาก Consensus 5 สูตร</>
+                ) : (
+                  <>
+                    แกนหลัก {focusedWinSet.coreDigits.join(" · ")} · ตัวเสริม{" "}
+                    {focusedWinSet.supportDigits.join(" · ")}
+                  </>
+                )}
               </h4>
             </div>
             <span>{focusReady ? "ผ่านเกณฑ์ติดตาม" : "สัญญาณยังไม่ผ่านเกณฑ์"}</span>
@@ -878,9 +911,14 @@ function WinSetCard({
               onClick={() => setFocusMode("core-support")}
               type="button"
             >
-              แกน 2 · เสริม 4
+              ชุดทางเลือก · {selectedAlgorithmName}
             </button>
           </div>
+          {sameSixDigitSet && (
+            <p className="same-win-set-note">
+              สองวิธีเห็นเลขวิน 6 ตัวชุดเดียวกันในงวดนี้ แต่ลำดับและการแบ่งคู่อาจต่างกัน
+            </p>
+          )}
           {focusReady ? (
             <>
               {focusMode === "tiered" ? (
@@ -960,8 +998,10 @@ function WinSetCard({
             </>
           ) : (
             <p>
-              ต้องให้เลขแกนหลักเห็นตรงกันอย่างน้อย 4/5 สูตร และความนิ่งข้ามช่วงอยู่ในระดับค่อนข้างนิ่ง
-              จึงจะเปิดชุดเน้น
+              {focusMode === "tiered"
+                ? "ชุดหลักต้องให้เลขสองอันดับแรกเห็นตรงกันอย่างน้อย 4/5 สูตร"
+                : "ชุดทางเลือกต้องให้เลขแกนสองตัวได้รับเสียงสนับสนุนอย่างน้อย 3/5 สูตร"}
+              {" และความนิ่งข้ามช่วงต้องอยู่ในระดับค่อนข้างนิ่ง จึงจะเปิดชุดเน้น"}
             </p>
           )}
         </section>

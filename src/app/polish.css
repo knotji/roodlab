@@ -454,6 +454,14 @@
   color: var(--ink);
   box-shadow: 0 1px 4px #00000012;
 }
+.same-win-set-note {
+  margin: 8px 0 0;
+  padding: 7px 9px;
+  border-radius: 7px;
+  background: #f2e3b5;
+  color: #735c16 !important;
+  font-size: 9px !important;
+}
 .tiered-digits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
