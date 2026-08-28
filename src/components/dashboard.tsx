@@ -24,7 +24,11 @@ import {
 } from "@/lib/analysis/day-pattern";
 import { getCanonicalDataset } from "@/lib/history-provider";
 import { computeHistoryVersion } from "@/lib/history-version";
-import { buildFocusedWinSet, buildWinSet } from "@/lib/analysis/win-set";
+import {
+  buildFocusedWinSet,
+  buildTieredWinSet,
+  buildWinSet,
+} from "@/lib/analysis/win-set";
 import {
   buildConsensus,
   type ConsensusResult,
@@ -750,6 +754,7 @@ function WinSetCard({
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(4),
+    [focusMode, setFocusMode] = useState<"core-support" | "tiered">("tiered"),
     consensusDigits =
       consensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
@@ -762,14 +767,33 @@ function WinSetCard({
     focusedWinSet = buildFocusedWinSet(
       consensusDigits.map((digit) => digit.digit),
     ),
+    tieredWinSet = buildTieredWinSet(
+      consensusDigits.map((digit) => digit.digit),
+    ),
     focusReady =
       consensus?.stabilityStatus === "stable" &&
       consensus.digits.slice(0, 2).every((digit) => digit.votes >= 4),
     [copied, setCopied] = useState<
-      "pairs" | "with-doubles" | "focus" | "support" | "focus-all" | null
+      | "pairs"
+      | "with-doubles"
+      | "focus"
+      | "support"
+      | "focus-all"
+      | "tier-primary"
+      | "tier-secondary"
+      | "tier-cover"
+      | null
     >(null);
   async function copyPairs(
-    mode: "pairs" | "with-doubles" | "focus" | "support" | "focus-all",
+    mode:
+      | "pairs"
+      | "with-doubles"
+      | "focus"
+      | "support"
+      | "focus-all"
+      | "tier-primary"
+      | "tier-secondary"
+      | "tier-cover",
     pairs: string[],
   ) {
     try {
@@ -841,45 +865,84 @@ function WinSetCard({
             </div>
             <span>{focusReady ? "ผ่านเกณฑ์ติดตาม" : "สัญญาณยังไม่ผ่านเกณฑ์"}</span>
           </div>
+          <div className="focus-mode-control">
+            <button
+              className={focusMode === "tiered" ? "active" : ""}
+              onClick={() => setFocusMode("tiered")}
+              type="button"
+            >
+              หลัก 2 · รอง 2 · กัน 2
+            </button>
+            <button
+              className={focusMode === "core-support" ? "active" : ""}
+              onClick={() => setFocusMode("core-support")}
+              type="button"
+            >
+              แกน 2 · เสริม 4
+            </button>
+          </div>
           {focusReady ? (
             <>
-              <div className="focused-pair-groups">
-                <div>
-                  <strong>ชุดเน้น · มีเลขแกนหลัก</strong>
-                  <div>
-                    {focusedWinSet.focusedPairs.map((pair) => (
-                      <b key={pair}>{pair}</b>
+              {focusMode === "tiered" ? (
+                <>
+                  <div className="tiered-digits">
+                    <span><small>หลัก</small>{tieredWinSet.mainDigits.join(" · ")}</span>
+                    <span><small>รอง</small>{tieredWinSet.secondaryDigits.join(" · ")}</span>
+                    <span><small>กัน</small>{tieredWinSet.coverDigits.join(" · ")}</span>
+                  </div>
+                  <div className="focused-pair-groups three-tiers">
+                    {[
+                      ["ชุดหลัก", tieredWinSet.primaryPairs, "tier-primary"],
+                      ["ชุดรอง", tieredWinSet.secondaryPairs, "tier-secondary"],
+                      ["ชุดกัน", tieredWinSet.coverPairs, "tier-cover"],
+                    ].map(([label, pairs, mode]) => (
+                      <div key={label as string}>
+                        <strong>{label as string} · 5 คู่</strong>
+                        <div>
+                          {(pairs as string[]).map((pair) => <b key={pair}>{pair}</b>)}
+                        </div>
+                        <button
+                          onClick={() => copyPairs(mode as "tier-primary" | "tier-secondary" | "tier-cover", pairs as string[])}
+                          type="button"
+                        >
+                          {copied === mode ? <Check /> : <Copy />}
+                          {copied === mode ? "คัดลอกแล้ว" : `คัดลอก${label as string}`}
+                        </button>
+                      </div>
                     ))}
                   </div>
-                </div>
-                <div>
-                  <strong>ชุดรอง · ตัวเสริมจับกัน</strong>
+                </>
+              ) : (
+                <div className="focused-pair-groups">
                   <div>
-                    {focusedWinSet.supportPairs.map((pair) => (
-                      <b key={pair}>{pair}</b>
-                    ))}
+                    <strong>ชุดเน้น · มีเลขแกนหลัก</strong>
+                    <div>
+                      {focusedWinSet.focusedPairs.map((pair) => (
+                        <b key={pair}>{pair}</b>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <strong>ชุดรอง · ตัวเสริมจับกัน</strong>
+                    <div>
+                      {focusedWinSet.supportPairs.map((pair) => (
+                        <b key={pair}>{pair}</b>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
               <div className="focused-copy-actions">
-                <button
-                  onClick={() =>
-                    copyPairs("focus", focusedWinSet.focusedPairs)
-                  }
-                  type="button"
-                >
-                  {copied === "focus" ? <Check /> : <Copy />}
-                  {copied === "focus" ? "คัดลอกแล้ว" : "คัดลอกชุดเน้น 9 คู่"}
-                </button>
-                <button
-                  onClick={() =>
-                    copyPairs("support", focusedWinSet.supportPairs)
-                  }
-                  type="button"
-                >
-                  {copied === "support" ? <Check /> : <Copy />}
-                  {copied === "support" ? "คัดลอกแล้ว" : "คัดลอกชุดรอง 6 คู่"}
-                </button>
+                {focusMode === "core-support" && <>
+                  <button onClick={() => copyPairs("focus", focusedWinSet.focusedPairs)} type="button">
+                    {copied === "focus" ? <Check /> : <Copy />}
+                    {copied === "focus" ? "คัดลอกแล้ว" : "คัดลอกชุดเน้น 9 คู่"}
+                  </button>
+                  <button onClick={() => copyPairs("support", focusedWinSet.supportPairs)} type="button">
+                    {copied === "support" ? <Check /> : <Copy />}
+                    {copied === "support" ? "คัดลอกแล้ว" : "คัดลอกชุดรอง 6 คู่"}
+                  </button>
+                </>}
                 <button
                   onClick={() =>
                     copyPairs("focus-all", [

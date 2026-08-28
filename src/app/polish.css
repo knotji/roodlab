@@ -431,6 +431,50 @@
   background: #d5e8de;
   color: #26614f;
 }
+.focus-mode-control {
+  display: flex;
+  gap: 3px;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 3px;
+  border-radius: 8px;
+  background: #dde3df;
+}
+.focus-mode-control button {
+  border: 0;
+  border-radius: 6px;
+  padding: 6px 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  cursor: pointer;
+}
+.focus-mode-control button.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 4px #00000012;
+}
+.tiered-digits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+.tiered-digits span {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: #ffffffa8;
+  font-size: 17px;
+  font-weight: 650;
+}
+.tiered-digits small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+}
 .focused-pair-groups {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -465,6 +509,36 @@
 .focused-pair-groups > div:first-child b {
   background: var(--accent);
   color: white;
+}
+.focused-pair-groups.three-tiers {
+  grid-template-columns: repeat(3, 1fr);
+}
+.focused-pair-groups.three-tiers > div:nth-child(2) b {
+  background: #dfeae5;
+  color: var(--accent);
+}
+.focused-pair-groups.three-tiers > div:nth-child(3) b {
+  background: #eceae2;
+  color: var(--muted);
+}
+.focused-pair-groups.three-tiers button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin-top: 9px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 9px;
+  cursor: pointer;
+}
+.focused-pair-groups.three-tiers button svg {
+  width: 12px;
+  height: 12px;
 }
 .focused-copy-actions {
   display: flex;
@@ -681,6 +755,15 @@
     flex-direction: column;
   }
   .focused-pair-groups {
+    grid-template-columns: 1fr;
+  }
+  .focused-pair-groups.three-tiers,
+  .tiered-digits {
+    grid-template-columns: 1fr;
+  }
+  .focus-mode-control {
+    display: grid;
+    width: 100%;
     grid-template-columns: 1fr;
   }
   .focused-copy-actions {

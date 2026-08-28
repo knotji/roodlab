@@ -13,6 +13,15 @@ export type FocusedWinSet = {
   supportPairs: string[];
 };
 
+export type TieredWinSet = {
+  mainDigits: string[];
+  secondaryDigits: string[];
+  coverDigits: string[];
+  primaryPairs: string[];
+  secondaryPairs: string[];
+  coverPairs: string[];
+};
+
 export function buildWinSet(rankedDigits: readonly string[], size = 4): WinSet {
   const digits = Array.from(new Set(rankedDigits)).slice(0, size);
   const orderedPairs = digits.flatMap((first) =>
@@ -47,4 +56,36 @@ export function buildFocusedWinSet(
       (pair) => !core.has(pair[0]) && !core.has(pair[1]),
     );
   return { coreDigits, supportDigits, focusedPairs, supportPairs };
+}
+
+export function buildTieredWinSet(
+  rankedDigits: readonly string[],
+): TieredWinSet {
+  const winSet = buildWinSet(rankedDigits, 6),
+    mainDigits = winSet.digits.slice(0, 2),
+    secondaryDigits = winSet.digits.slice(2, 4),
+    coverDigits = winSet.digits.slice(4, 6),
+    main = new Set(mainDigits),
+    secondary = new Set(secondaryDigits),
+    cover = new Set(coverDigits),
+    belongs = (pair: string, left: Set<string>, right: Set<string>) =>
+      (left.has(pair[0]) && right.has(pair[1])) ||
+      (left.has(pair[1]) && right.has(pair[0])),
+    primaryPairs = winSet.uniquePairs.filter(
+      (pair) => belongs(pair, main, main) || belongs(pair, main, secondary),
+    ),
+    secondaryPairs = winSet.uniquePairs.filter(
+      (pair) => belongs(pair, main, cover) || belongs(pair, secondary, secondary),
+    ),
+    coverPairs = winSet.uniquePairs.filter(
+      (pair) => belongs(pair, secondary, cover) || belongs(pair, cover, cover),
+    );
+  return {
+    mainDigits,
+    secondaryDigits,
+    coverDigits,
+    primaryPairs,
+    secondaryPairs,
+    coverPairs,
+  };
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFocusedWinSet, buildWinSet } from "./win-set";
+import { buildFocusedWinSet, buildTieredWinSet, buildWinSet } from "./win-set";
 
 describe("four-digit win set", () => {
   it("builds every ordered non-double pair from four unique digits", () => {
@@ -52,6 +52,19 @@ describe("four-digit win set", () => {
       "22",
       "33",
     ]);
+  });
+});
+
+describe("two-two-two tiered win set", () => {
+  it("splits six digits and fifteen pairs into three five-pair tiers", () => {
+    expect(buildTieredWinSet(["0", "9", "3", "7", "1", "2"])).toEqual({
+      mainDigits: ["0", "9"],
+      secondaryDigits: ["3", "7"],
+      coverDigits: ["1", "2"],
+      primaryPairs: ["09", "03", "07", "93", "97"],
+      secondaryPairs: ["01", "02", "91", "92", "37"],
+      coverPairs: ["31", "32", "71", "72", "12"],
+    });
   });
 });
 
