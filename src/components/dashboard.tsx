@@ -1164,14 +1164,14 @@ function WinSetCard({
           </button>
         ))}
       </div>
-      <div className="win-coverage" title="นับว่างวดนั้นมีเลขในชุดวินอย่างน้อยหนึ่งตัวจากผลบน 3 ตัวหรือล่าง 2 ตัว">
+      <div className="win-coverage" title="สรุปข้อมูล 30 งวดชุดเดียวกับที่ใช้คัดเลข ไม่ใช่การทดสอบย้อนหลังหรือโอกาสงวดหน้า">
         <div>
-          <span>ครอบคลุมย้อนหลัง</span>
+          <span>ความครอบคลุมของข้อมูลที่ใช้คัด</span>
           <strong>{coverage.rate === null ? "--" : `${Math.round(coverage.rate * 100)}%`}</strong>
-          <small>{coverage.hits}/{coverage.total} งวด · ไม่ใช่โอกาสงวดหน้า</small>
+          <small>{coverage.hits}/{coverage.total} งวด · สถิติเชิงพรรณนา</small>
         </div>
         {winSize === 6 && coverage.randomBaseline !== null && (
-          <p>baseline วิน 6 แบบสุ่มตามนิยามเดียวกัน ≈ {Math.round(coverage.randomBaseline * 100)}%</p>
+          <p>ใช้ข้อมูลชุดเดียวกับที่คัด · ไม่ใช่ผล backtest หรือโอกาสงวดหน้า</p>
         )}
       </div>
       {winSize === 6 && focusMode === "diversified" && (

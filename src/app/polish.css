@@ -554,7 +554,8 @@
   margin-top: 12px;
   padding: 10px 12px;
   border-radius: 9px;
-  background: #eef2ef;
+  border: 1px solid var(--line);
+  background: transparent;
 }
 .win-coverage > div {
   display: flex;
@@ -567,7 +568,7 @@
   color: var(--muted);
   font-size: 9px;
 }
-.win-coverage strong { color: var(--accent); font-size: 18px; }
+.win-coverage strong { color: var(--ink); font-size: 14px; font-weight: 600; }
 .win-coverage p { margin: 0; text-align: right; }
 .diversified-win-summary {
   display: grid;

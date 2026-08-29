@@ -12,7 +12,7 @@ const clamp = (n: number) => Math.max(0, Math.min(100, n));
 const round = (n: number) => Math.round(n * 10) / 10;
 const fields = (draw: LotteryDraw, side: Side) =>
   side === "top"
-    ? ([draw.top3, draw.top2].filter(Boolean) as string[])
+    ? ([draw.top3].filter(Boolean) as string[])
     : ([draw.bottom2].filter(Boolean) as string[]);
 export function countDigit(
   draws: LotteryDraw[],
@@ -279,8 +279,8 @@ export function allocateUniqueTopBottomCandidates(
 }
 function addReasons(
   digits: DigitSignal[],
-  top: PairSignal[],
-  bottom: PairSignal[],
+  pairs: PairSignal[],
+  side: Side,
 ) {
   return digits.map((d) => {
     const deltaPct = d.previous10
@@ -288,29 +288,30 @@ function addReasons(
         : d.recent10
           ? 100
           : 0,
-      pairSupport = [...top, ...bottom].filter(
+      pairSupport = pairs.filter(
         (p) => p.pair.includes(d.digit) && p.score >= 70,
       ).length,
+      sideLabel = side === "top" ? "ฝั่งบน" : "ฝั่งล่าง",
       candidates = [
         {
           strength: 110 - d.frequencyRank,
-          text: `${d.counts[30]} ครั้ง / 30 งวด · อันดับ #${d.frequencyRank} ด้านความถี่`,
+          text: `${sideLabel} · ${d.counts[30]} ครั้ง / 30 งวด · อันดับ #${d.frequencyRank} ด้านความถี่`,
         },
         {
           strength: Math.abs(deltaPct) + 15,
-          text: `10 งวดล่าสุด ${d.recent10} ครั้ง เทียบก่อนหน้า ${d.previous10} ครั้ง · ${deltaPct >= 0 ? "+" : ""}${deltaPct}%`,
+          text: `${sideLabel} · 10 งวดล่าสุด ${d.recent10} ครั้ง เทียบก่อนหน้า ${d.previous10} ครั้ง · ${deltaPct >= 0 ? "+" : ""}${deltaPct}%`,
         },
         {
           strength: 105 - d.positionRank,
-          text: `เด่นที่สุดที่${d.strongestPosition} · อันดับ #${d.positionRank} ในสัญญาณตำแหน่ง`,
+          text: `${sideLabel} · เด่นที่สุดที่${d.strongestPosition} · อันดับ #${d.positionRank} ในสัญญาณตำแหน่ง`,
         },
         {
           strength: d.gap === null ? 0 : 35,
-          text: `ล่าสุด ${d.gap} งวดก่อน · ช่วงห่างเฉลี่ย ${d.averageGap ?? "--"} งวด`,
+          text: `${sideLabel} · ล่าสุด ${d.gap} งวดก่อน · ช่วงห่างเฉลี่ย ${d.averageGap ?? "--"} งวด`,
         },
         {
           strength: pairSupport * 12,
-          text: `สนับสนุนคู่คะแนนสูง ${pairSupport} คู่`,
+          text: `${sideLabel} · สนับสนุนคู่คะแนนสูง ${pairSupport} คู่`,
         },
       ];
     const reasons = candidates
@@ -327,6 +328,67 @@ function addReasons(
 const sameFamily = (a: string, b: string) =>
   (a.includes("งวดล่าสุด") && b.includes("งวดล่าสุด")) ||
   (a.includes("ความถี่") && b.includes("ความถี่"));
+
+function averageNullable(a: number | null, b: number | null) {
+  const values = [a, b].filter((value): value is number => value !== null);
+  return values.length ? round(values.reduce((total, value) => total + value, 0) / values.length) : null;
+}
+
+function minNullable(...values: (number | null)[]) {
+  const available = values.filter((value): value is number => value !== null);
+  return available.length ? Math.min(...available) : null;
+}
+
+function maxNullable(...values: (number | null)[]) {
+  const available = values.filter((value): value is number => value !== null);
+  return available.length ? Math.max(...available) : null;
+}
+
+function combineDigitSignals(topDigits: DigitSignal[], bottomDigits: DigitSignal[]) {
+  const combined = Array.from({ length: 10 }, (_, value) => {
+    const digit = String(value),
+      top = topDigits.find((item) => item.digit === digit)!,
+      bottom = bottomDigits.find((item) => item.digit === digit)!,
+      momentumValue = top.momentum + bottom.momentum,
+      strongestSide = top.components.positionStrength >= bottom.components.positionStrength ? "ฝั่งบน" : "ฝั่งล่าง",
+      strongestPosition = strongestSide === "ฝั่งบน" ? top.strongestPosition : bottom.strongestPosition;
+    return {
+      digit,
+      score: round((top.score + bottom.score) / 2),
+      rank: 0,
+      frequencyRank: 0,
+      positionRank: 0,
+      components: {
+        frequency: round((top.components.frequency + bottom.components.frequency) / 2),
+        recentFrequency: round((top.components.recentFrequency + bottom.components.recentFrequency) / 2),
+        momentum: round((top.components.momentum + bottom.components.momentum) / 2),
+        positionStrength: round((top.components.positionStrength + bottom.components.positionStrength) / 2),
+        gapPattern: round((top.components.gapPattern + bottom.components.gapPattern) / 2),
+      },
+      counts: Object.fromEntries([10, 20, 30, 50, 100].map((window) => [window, top.counts[window] + bottom.counts[window]])),
+      recent10: top.recent10 + bottom.recent10,
+      previous10: top.previous10 + bottom.previous10,
+      trend: momentumValue >= 2 ? "กำลังขึ้น" as const : momentumValue <= -2 ? "กำลังลด" as const : "ทรงตัว" as const,
+      momentum: momentumValue,
+      gap: minNullable(top.gap, bottom.gap),
+      averageGap: averageNullable(top.averageGap, bottom.averageGap),
+      longestGap: maxNullable(top.longestGap, bottom.longestGap),
+      strongestPosition: `${strongestSide} · ${strongestPosition}`,
+      pairSupport: top.pairSupport + bottom.pairSupport,
+      reasons: [top.reasons[0], bottom.reasons[0]].filter((reason): reason is string => Boolean(reason)),
+    } satisfies DigitSignal;
+  }),
+    frequencyOrder = [...combined].sort((a, b) => b.counts[30] - a.counts[30] || a.digit.localeCompare(b.digit)),
+    positionOrder = [...combined].sort((a, b) => b.components.positionStrength - a.components.positionStrength || a.digit.localeCompare(b.digit));
+  return combined
+    .sort((a, b) => b.score - a.score || a.digit.localeCompare(b.digit))
+    .map((item, index) => ({
+      ...item,
+      rank: index + 1,
+      frequencyRank: frequencyOrder.findIndex((candidate) => candidate.digit === item.digit) + 1,
+      positionRank: positionOrder.findIndex((candidate) => candidate.digit === item.digit) + 1,
+    }));
+}
 export function analyzeLottery(
   history: LotteryDraw[],
   options: {
@@ -366,20 +428,17 @@ export function analyzeLottery(
       bottomRaw,
       options.candidateCount ?? 4,
     ),
-    combined = Array.from({ length: 10 }, (_, i) => {
-      const t = topDigits.find((x) => x.digit === String(i))!,
-        b = bottomDigits.find((x) => x.digit === String(i))!;
-      return { ...t, score: round((t.score + b.score) / 2) };
-    })
-      .sort((a, b) => b.score - a.score || a.digit.localeCompare(b.digit))
-      .map((d, i) => ({ ...d, rank: i + 1 })),
-    digits = addReasons(combined, allocated.top, allocated.bottom);
+    explainedTopDigits = addReasons(topDigits, allocated.top, "top"),
+    explainedBottomDigits = addReasons(bottomDigits, allocated.bottom, "bottom"),
+    digits = combineDigitSignals(explainedTopDigits, explainedBottomDigits);
   return {
     algorithmId: algorithm.id,
     window,
     sampleSize: draws.length,
     standout: digits.slice(0, 2),
     digits,
+    topDigits: explainedTopDigits,
+    bottomDigits: explainedBottomDigits,
     topPairs: allocated.top,
     bottomPairs: allocated.bottom,
     history: draws,
