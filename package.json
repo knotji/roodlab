@@ -12,9 +12,12 @@
     "audit:catalog": "tsx scripts/audit-catalog.mts",
     "evaluate:core": "tsx scripts/evaluate-core.mts",
     "evaluate:ablations": "tsx scripts/evaluate-pair-ablations.mts",
-    "evaluate:standout-baseline": "tsx scripts/evaluate-standout-baseline.mts"
+    "evaluate:standout-baseline": "tsx scripts/evaluate-standout-baseline.mts",
+    "storage:migrate": "tsx scripts/migrate-storage.mts",
+    "storage:import": "tsx scripts/import-storage.mts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@radix-ui/react-popover": "^1.1.23",
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.1",
