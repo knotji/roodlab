@@ -32,3 +32,20 @@ export async function writePostgresSnapshot(snapshot: Snapshot): Promise<void> {
   await ensureDatabase();
   await database().query(`INSERT INTO lottery_snapshots (lottery_id, history_version, synced_at, snapshot, updated_at) VALUES ($1, $2, $3::timestamptz, $4::jsonb, now()) ON CONFLICT (lottery_id) DO UPDATE SET history_version = EXCLUDED.history_version, synced_at = EXCLUDED.synced_at, snapshot = EXCLUDED.snapshot, updated_at = now()`, [snapshot.lotteryId, snapshot.historyVersion, snapshot.syncedAt, JSON.stringify(snapshot)]);
 }
+
+export async function claimPostgresWrite(
+  key: string,
+  cooldownSeconds: number,
+): Promise<boolean> {
+  await ensureDatabase();
+  const rows = await database().query(
+    `INSERT INTO write_rate_limits (key, available_at)
+     VALUES ($1, now() + ($2 * interval '1 second'))
+     ON CONFLICT (key) DO UPDATE
+     SET available_at = now() + ($2 * interval '1 second')
+     WHERE write_rate_limits.available_at <= now()
+     RETURNING key`,
+    [key, cooldownSeconds],
+  );
+  return rows.length === 1;
+}

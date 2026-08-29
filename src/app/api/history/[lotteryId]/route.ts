@@ -3,6 +3,7 @@ import { AllHuayDataSource } from "@/lib/data-sources/allhuay";
 import { buildFreshnessInfo, latestDrawDate, mergeDrawHistory } from "@/lib/freshness";
 import { readCatalog, readSnapshot } from "@/lib/cache";
 import { CanonicalSyncError, commitCanonicalSync } from "@/lib/canonical-history";
+import { guardWrite } from "@/lib/write-guard";
 
 export async function GET(
   _: Request,
@@ -19,10 +20,17 @@ export async function GET(
 }
 
 export async function POST(
-  _: Request,
+  request: Request,
   { params }: { params: Promise<{ lotteryId: string }> },
 ) {
   const { lotteryId } = await params;
+  const guard = await guardWrite(request, `history:${lotteryId}`, 30);
+  if (!guard.ok) {
+    return NextResponse.json(
+      { ok: false, error: guard.error },
+      { status: guard.status },
+    );
+  }
   try {
     const existing = await readSnapshot(lotteryId);
     const incoming = await new AllHuayDataSource(await readCatalog()).getCanonicalHistory(
