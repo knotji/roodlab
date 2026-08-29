@@ -4,6 +4,7 @@ import { buildFreshnessInfo, latestDrawDate, mergeDrawHistory } from "@/lib/fres
 import { readCatalog, readSnapshot } from "@/lib/cache";
 import { CanonicalSyncError, commitCanonicalSync } from "@/lib/canonical-history";
 import { guardWrite } from "@/lib/write-guard";
+import { reconcileProspectiveOutcomes } from "@/lib/prospective";
 
 export async function GET(
   _: Request,
@@ -43,10 +44,13 @@ export async function POST(
       sourceReachable: true,
     });
     const {snapshot,outcome,addedDraws}=await commitCanonicalSync({lotteryId,existing,incoming,freshness});
+    let reconciledPredictions=0;
+    try{reconciledPredictions=await reconcileProspectiveOutcomes(lotteryId,snapshot.draws)}catch{}
     return NextResponse.json({
       ok: true,
       ...snapshot,
       addedDraws,
+      reconciledPredictions,
       syncOutcome: outcome,
       message: outcome === "updated" ? "อัปเดตแล้ว" : "ข้อมูลเป็นปัจจุบันแล้ว",
       sourceLatestDrawDate: freshness.sourceLatestDrawDate,

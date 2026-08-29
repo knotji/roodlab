@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Snapshot, SnapshotFreshness } from "@/lib/cache";
 import type { FreshnessInfo } from "@/lib/freshness";
 import type { LotteryDefinition } from "@/lib/types";
@@ -35,6 +35,8 @@ import {
   type ConsensusResult,
 } from "@/lib/analysis/consensus";
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
+import type { ProspectiveRecord } from "@/lib/prospective";
+import type { SystemStatus } from "@/lib/system-status";
 import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
 import { LotterySelector } from "./lottery-selector";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
@@ -144,7 +146,18 @@ export default function Dashboard({
       addedDraws: number;
       latest: string;
     } | null>(null),
+    [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null),
     [hydrated, setHydrated] = useState(false);
+  const loadSystemStatus = () =>
+    fetch("/api/system/status")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) setSystemStatus(data as SystemStatus);
+      })
+      .catch(() => setSystemStatus(null));
+  useEffect(() => {
+    void loadSystemStatus();
+  }, []);
   useEffect(() => {
     void Promise.resolve(useLotteryStore.persist.rehydrate()).finally(() =>
       setHydrated(true),
@@ -260,6 +273,7 @@ export default function Dashboard({
         addedDraws: data.addedDraws ?? 0,
         latest: data.draws?.[0]?.drawDate ?? data.cachedLatestDrawDate ?? "",
       });
+      void loadSystemStatus();
     } catch (e) {
       setError(e instanceof Error ? e.message : "ซิงก์ไม่สำเร็จ");
     } finally {
@@ -334,8 +348,8 @@ export default function Dashboard({
         <div className="sidebar-note">
           <Database />
           <div>
-            <strong>{draws.length} งวด</strong>
-            <small>{snapshot ? "ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}</small>
+            <strong>{systemStatus?.connected ? "Neon connected" : `${draws.length} งวด`}</strong>
+            <small>{systemStatus?.connected ? `${systemStatus.snapshotCount} หวย · ล็อกล่วงหน้า ${systemStatus.predictionCount}` : snapshot ? "JSON fallback · ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}</small>
           </div>
         </div>
       </aside>
@@ -362,6 +376,11 @@ export default function Dashboard({
               integrity={integrity}
               hydrated={hydrated}
             />
+          </div>
+          <div className={`storage-badge ${systemStatus?.connected ? "connected" : "fallback"}`} title={systemStatus?.connected ? `Neon · ${systemStatus.snapshotCount} หวย · prospective ${systemStatus.predictionCount}` : "กำลังใช้ JSON fallback หรือยังตรวจสอบ Neon ไม่สำเร็จ"}>
+            <Database />
+            <span>{systemStatus?.connected ? "Neon" : "JSON fallback"}</span>
+            <i />
           </div>
           <button
             className={`sync${syncNeedsUpdate(freshness, syncNotice) ? " sync-pending" : ""}`}
@@ -398,6 +417,11 @@ export default function Dashboard({
             onPair={setPairDetail}
             full={fullAnalysis}
             setFull={setFullAnalysis}
+            lotteryId={selectedId}
+            latestDrawDate={latest}
+            candidateCount={candidateCount}
+            includeDoubles={doubles}
+            onProspectiveChange={loadSystemStatus}
           />
         )}{" "}
         {analysis && section === "statistics" && (
@@ -520,6 +544,11 @@ function Analyze({
   onPair,
   full,
   setFull,
+  lotteryId,
+  latestDrawDate,
+  candidateCount,
+  includeDoubles,
+  onProspectiveChange,
 }: {
   analysis: NonNullable<ReturnType<typeof analyzeLottery>>;
   consensus: ConsensusResult | null;
@@ -532,6 +561,11 @@ function Analyze({
   onPair: (p: PairSignal) => void;
   full: boolean;
   setFull: (v: boolean) => void;
+  lotteryId: string;
+  latestDrawDate: string | undefined;
+  candidateCount: number;
+  includeDoubles: boolean;
+  onProspectiveChange: () => void;
 }) {
   const enoughData =
       analysis.sampleSize >=
@@ -654,6 +688,20 @@ function Analyze({
               <ConsensusCard consensus={consensus} />
             </details>
           )}
+          <details className="analyze-disclosure prospective-disclosure">
+            <summary>บันทึกหลักฐานก่อนงวดออก</summary>
+            <ProspectivePanel
+              key={`${lotteryId}:${latestDrawDate ?? "none"}:${dayPattern}`}
+              lotteryId={lotteryId}
+              latestDrawDate={latestDrawDate}
+              algorithmId={algorithmId}
+              window={analysis.window}
+              candidateCount={candidateCount}
+              includeDoubles={includeDoubles}
+              dayPattern={dayPattern}
+              onChange={onProspectiveChange}
+            />
+          </details>
         </>
       )}
       {enoughData && (
@@ -714,6 +762,100 @@ function Analyze({
         </section>
       </details>}
     </div>
+  );
+}
+
+function nextDrawDate(latestDrawDate: string | undefined, dayPattern: DayPattern = "all") {
+  const date = latestDrawDate ? new Date(`${latestDrawDate}T12:00:00.000Z`) : new Date();
+  do date.setUTCDate(date.getUTCDate() + 1);
+  while (dayPattern !== "all" && date.getUTCDay() !== dayPattern);
+  return date.toISOString().slice(0, 10);
+}
+
+function ProspectivePanel({
+  lotteryId,
+  latestDrawDate,
+  algorithmId,
+  window,
+  candidateCount,
+  includeDoubles,
+  dayPattern,
+  onChange,
+}: {
+  lotteryId: string;
+  latestDrawDate: string | undefined;
+  algorithmId: string;
+  window: number;
+  candidateCount: number;
+  includeDoubles: boolean;
+  dayPattern: DayPattern;
+  onChange: () => void;
+}) {
+  const [records, setRecords] = useState<ProspectiveRecord[]>([]),
+    [drawDate, setDrawDate] = useState(() => nextDrawDate(latestDrawDate, dayPattern)),
+    [saving, setSaving] = useState(false),
+    [message, setMessage] = useState<string | null>(null);
+  const load = useCallback(() =>
+    fetch(`/api/prospective/${lotteryId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) setRecords(data.records as ProspectiveRecord[]);
+      })
+      .catch(() => setRecords([])), [lotteryId]);
+  useEffect(() => {
+    void load();
+  }, [load]);
+  async function capture() {
+    setSaving(true);
+    setMessage(null);
+    try {
+      const response = await fetch(`/api/prospective/${lotteryId}`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ drawDate, algorithmId, window, candidateCount, includeDoubles, dayPattern }),
+        }),
+        data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      setMessage(data.created ? "ล็อก snapshot แล้ว แก้ย้อนหลังไม่ได้" : "มี snapshot ของงวดนี้อยู่แล้ว");
+      await load();
+      onChange();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "ล็อก snapshot ไม่สำเร็จ");
+    } finally {
+      setSaving(false);
+    }
+  }
+  return (
+    <section className="prospective-panel">
+      <div className="prospective-head">
+        <div>
+          <div className="section-kicker">PROSPECTIVE EVIDENCE</div>
+          <h3>ล็อกสัญญาณก่อนทราบผล</h3>
+          <p>ระบบคำนวณใหม่บนเซิร์ฟเวอร์จาก historyVersion ปัจจุบัน และไม่อนุญาตให้แก้ชุดเดิมภายหลัง</p>
+        </div>
+        <div className="prospective-capture">
+          <label><span>วันที่งวดที่จะติดตาม</span><input type="date" min={nextDrawDate(latestDrawDate)} value={drawDate} onChange={(event) => setDrawDate(event.target.value)} /></label>
+          <button type="button" disabled={saving || !drawDate} onClick={capture}>{saving ? "กำลังล็อก…" : "ล็อก snapshot"}</button>
+        </div>
+      </div>
+      {message && <p className="prospective-message">{message}</p>}
+      <div className="prospective-list">
+        {records.length ? records.map((record) => {
+          const actualDigits = `${record.outcome?.top3 ?? ""}${record.outcome?.bottom2 ?? ""}`,
+            standoutHit = record.outcome ? record.standoutDigits.some((digit) => actualDigits.includes(digit)) : false,
+            topHit = record.outcome?.top2 ? record.rankedPairs.top.slice(0, 4).includes(record.outcome.top2) : false,
+            bottomHit = record.outcome?.bottom2 ? record.rankedPairs.bottom.slice(0, 4).includes(record.outcome.bottom2) : false;
+          return <article key={record.id}>
+            <div><time>{formatShortDrawDate(record.drawDate)}</time><span className={record.outcome ? "resolved" : "pending"}>{record.outcome ? "มีผลแล้ว" : "รอผล"}</span></div>
+            <strong>{record.standoutDigits.join(" · ")}</strong>
+            <small>{record.algorithmVersion} · {record.analysisOptions.sampleSize} งวด · version {record.historyVersion.slice(0, 8)}</small>
+            <div className="prospective-pairs"><span>บน {record.rankedPairs.top.slice(0, 4).join(" ")}</span><span>ล่าง {record.rankedPairs.bottom.slice(0, 4).join(" ")}</span></div>
+            {record.outcome && <div className="prospective-outcome"><span>ผล บน {record.outcome.top2} · ล่าง {record.outcome.bottom2}</span><small>เลขเด่น {standoutHit ? "เข้า" : "ไม่เข้า"} · Top4 บน {topHit ? "เข้า" : "ไม่เข้า"} · ล่าง {bottomHit ? "เข้า" : "ไม่เข้า"}</small></div>}
+          </article>;
+        }) : <p className="prospective-empty">ยังไม่มี snapshot ที่ล็อกไว้สำหรับหวยนี้</p>}
+      </div>
+      <small className="prospective-note">เป็นบันทึกสัญญาณจากสถิติย้อนหลัง ไม่ใช่ความน่าจะเป็นหรือคำรับรองผล</small>
+    </section>
   );
 }
 const stabilityCopy = {
