@@ -929,7 +929,7 @@ function WinSetCard({
   selectedAlgorithmName: string;
   onDigit: (digit: DigitSignal) => void;
 }) {
-  const [winSize, setWinSize] = useState(4),
+  const [winSize, setWinSize] = useState(6),
     [focusMode, setFocusMode] = useState<
       "core-support" | "tiered" | "distributed"
     >("tiered"),
