@@ -79,6 +79,36 @@ export async function listProspective(lotteryId: string): Promise<ProspectiveRec
   return rows.map((row) => mapRecord(row as Record<string, unknown>));
 }
 
+export async function listAllProspective(limit = 500): Promise<ProspectiveRecord[]> {
+  if (!hasDatabase()) return [];
+  await ensureDatabase();
+  const rows = await database().query(
+    `SELECT p.*, o.outcome, o.recorded_at
+     FROM prediction_snapshots p
+     LEFT JOIN prediction_outcomes o ON o.prediction_id = p.id
+     ORDER BY p.draw_date DESC, p.created_at DESC
+     LIMIT $1`,
+    [limit],
+  );
+  return rows.map((row) => mapRecord(row as Record<string, unknown>));
+}
+
+export async function pendingDueLotteryIds(limit = 10): Promise<string[]> {
+  if (!hasDatabase()) return [];
+  await ensureDatabase();
+  const rows = await database().query(
+    `SELECT DISTINCT p.lottery_id
+     FROM prediction_snapshots p
+     LEFT JOIN prediction_outcomes o ON o.prediction_id = p.id
+     WHERE o.prediction_id IS NULL
+       AND p.draw_date <= (now() AT TIME ZONE 'Asia/Bangkok')::date
+     ORDER BY p.lottery_id
+     LIMIT $1`,
+    [limit],
+  );
+  return rows.map((row) => String((row as Record<string, unknown>).lottery_id));
+}
+
 export async function captureProspective(
   lotteryId: string,
   rawInput: unknown,

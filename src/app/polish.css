@@ -880,6 +880,9 @@
     justify-content: center;
   }
 }
+@media (max-width: 850px) {
+  .app-shell > .mobile-nav { grid-template-columns: repeat(6, 1fr); }
+}
 .pair-method-note,
 .research-tool-note {
   color: var(--muted);
@@ -1005,6 +1008,30 @@
 }
 .prospective-list .pending { background: #f3ead3; color: #7d641d; }
 .prospective-list .resolved { background: var(--accent-soft); color: var(--accent); }
+.prospective-export { display: flex; gap: 7px; }
+.prospective-export button { display: flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 11px; background: var(--surface); color: var(--ink); font-size: 11px; cursor: pointer; }
+.prospective-export svg { width: 14px; }
+.prospective-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.prospective-metrics article { display: grid; gap: 7px; border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--surface); }
+.prospective-metrics span, .prospective-metrics small { color: var(--muted); font-size: 10px; }
+.prospective-metrics strong { font-size: 28px; }
+.prospective-baseline-note { display: flex; align-items: center; gap: 8px; margin: 12px 0 24px; padding: 10px 12px; border-radius: 8px; background: #e9eee9; color: var(--muted); font-size: 10px; }
+.prospective-baseline-note svg { flex: 0 0 14px; width: 14px; }
+.prospective-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; color: var(--muted); font-size: 10px; }
+.prospective-hub-list { display: grid; gap: 9px; }
+.prospective-hub-list > article { display: grid; gap: 10px; border: 1px solid var(--line); border-radius: 13px; padding: 18px 20px; background: var(--surface); }
+.prospective-row-title, .prospective-row-title > div, .prospective-row-result { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.prospective-row-title > div { justify-content: flex-start; }
+.prospective-row-title time, .prospective-hub-list article > small { color: var(--muted); font-size: 10px; }
+.prospective-row-title > span { border-radius: 5px; padding: 3px 7px; font-size: 9px; }
+.prospective-row-title .pending { background: #f3ead3; color: #7d641d; }
+.prospective-row-title .resolved { background: var(--accent-soft); color: var(--accent); }
+.prospective-row-signals { display: grid; grid-template-columns: .6fr 1fr 1fr; gap: 8px; }
+.prospective-row-signals span { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 9px; }
+.prospective-row-signals b { color: var(--ink); font-size: 14px; }
+.prospective-row-result { border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); font-size: 10px; }
+.prospective-empty-state { display: grid; place-items: center; gap: 7px; min-height: 230px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; }
+.prospective-empty-state svg { color: var(--accent); }
 @media (max-width: 600px) {
   .prospective-head,
   .prospective-capture {
@@ -1014,6 +1041,11 @@
   .prospective-list {
     grid-template-columns: 1fr;
   }
+  .prospective-metrics { grid-template-columns: 1fr 1fr; }
+  .prospective-row-signals { grid-template-columns: 1fr; }
+  .prospective-row-title, .prospective-row-result { align-items: flex-start; flex-direction: column; }
+  .prospective-export { width: 100%; }
+  .prospective-export button { flex: 1; justify-content: center; }
 }
 .pair-method-note {
   margin: 10px 4px 0;

@@ -45,8 +45,10 @@ import {
   Activity,
   BarChart3,
   Check,
+  ClipboardCheck,
   Copy,
   Database,
+  Download,
   History,
   Info,
   Minus,
@@ -58,9 +60,10 @@ import {
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
-type Section = "analyze" | "statistics" | "history" | "backtest" | "settings";
+type Section = "analyze" | "prospective" | "statistics" | "history" | "backtest" | "settings";
 const nav = [
   { id: "analyze", label: "วิเคราะห์", icon: Sparkles },
+  { id: "prospective", label: "หลักฐาน", icon: ClipboardCheck },
   { id: "statistics", label: "สถิติ", icon: BarChart3 },
   { id: "history", label: "ย้อนหลัง", icon: History },
   { id: "backtest", label: "ทดสอบ", icon: TestTube2 },
@@ -436,6 +439,9 @@ export default function Dashboard({
             gapSort={gapSort}
             setGapSort={setGapSort}
           />
+        )}{" "}
+        {section === "prospective" && (
+          <ProspectiveHub catalog={catalog} />
         )}{" "}
         {draws.length > 0 && section === "history" && (
           <HistoryPage
@@ -1308,6 +1314,72 @@ function PairList({
     </section>
   );
 }
+function prospectiveHitSummary(record: ProspectiveRecord) {
+  if (!record.outcome) return null;
+  const digits = `${record.outcome.top3 ?? ""}${record.outcome.bottom2 ?? ""}`;
+  return {
+    standout: record.standoutDigits.some((digit) => digits.includes(digit)),
+    top4: Boolean(record.outcome.top2 && record.rankedPairs.top.slice(0, 4).includes(record.outcome.top2)),
+    bottom4: Boolean(record.outcome.bottom2 && record.rankedPairs.bottom.slice(0, 4).includes(record.outcome.bottom2)),
+  };
+}
+
+async function downloadProspective(format: "json" | "csv") {
+  const response = await fetch(`/api/prospective?format=${format}`), blob = await response.blob(), url = URL.createObjectURL(blob), anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `roodlab-prospective.${format}`;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
+function ProspectiveHub({ catalog }: { catalog: LotteryDefinition[] }) {
+  const [records, setRecords] = useState<ProspectiveRecord[]>([]),
+    [loading, setLoading] = useState(true),
+    [filter, setFilter] = useState<"all" | "pending" | "resolved">("all");
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/prospective")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!cancelled && data.ok) setRecords(data.records as ProspectiveRecord[]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+  const resolved = records.filter((record) => record.outcome),
+    summaries = resolved.map(prospectiveHitSummary).filter((item): item is NonNullable<typeof item> => Boolean(item)),
+    count = (key: keyof NonNullable<ReturnType<typeof prospectiveHitSummary>>) => summaries.filter((summary) => summary[key]).length,
+    shown = records.filter((record) => filter === "all" || (filter === "resolved") === Boolean(record.outcome)),
+    names = new Map(catalog.map((item) => [item.id, item.name]));
+  return <div className="content prospective-hub">
+    <div className="section-head">
+      <div><div className="section-kicker">PROSPECTIVE EVIDENCE</div><h2>หลักฐานที่ล็อกไว้ล่วงหน้า</h2><p>อ่านผลจาก snapshot ก่อนงวดออก แยกจาก outcome และไม่แก้ย้อนหลัง</p></div>
+      <div className="prospective-export"><button type="button" onClick={() => void downloadProspective("json")}><Download />JSON</button><button type="button" onClick={() => void downloadProspective("csv")}><Download />CSV</button></div>
+    </div>
+    <div className="prospective-metrics">
+      <article><span>ล็อกทั้งหมด</span><strong>{records.length}</strong><small>รอผล {records.length - resolved.length} · มีผล {resolved.length}</small></article>
+      <article><span>เลขเด่นเข้า</span><strong>{resolved.length ? `${count("standout")}/${resolved.length}` : "--"}</strong><small>random reference ≈ 66.35%</small></article>
+      <article><span>บน Top4</span><strong>{resolved.length ? `${count("top4")}/${resolved.length}` : "--"}</strong><small>random reference ≈ 4%</small></article>
+      <article><span>ล่าง Top4</span><strong>{resolved.length ? `${count("bottom4")}/${resolved.length}` : "--"}</strong><small>random reference ≈ 4%</small></article>
+    </div>
+    <p className="prospective-baseline-note"><Info /> ตัวเลขเป็นผลเชิงพรรณนาตาม sample ที่ล็อกจริง ยังไม่ใช่หลักฐานว่าสูตรชนะ baseline</p>
+    <div className="prospective-toolbar"><div className="segment">{(["all", "pending", "resolved"] as const).map((value) => <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{value === "all" ? "ทั้งหมด" : value === "pending" ? "รอผล" : "มีผลแล้ว"}</button>)}</div><span>{shown.length} รายการ</span></div>
+    <div className="prospective-hub-list">
+      {loading ? <p>กำลังอ่านหลักฐาน…</p> : shown.length ? shown.map((record) => {
+        const hit = prospectiveHitSummary(record);
+        return <article key={record.id}>
+          <div className="prospective-row-title"><div><strong>{names.get(record.lotteryId) ?? record.lotteryId}</strong><time>{formatShortDrawDate(record.drawDate)}</time></div><span className={record.outcome ? "resolved" : "pending"}>{record.outcome ? "มีผลแล้ว" : "รอผล"}</span></div>
+          <div className="prospective-row-signals"><span>เด่น <b>{record.standoutDigits.join(" · ")}</b></span><span>บน <b>{record.rankedPairs.top.slice(0, 4).join(" ")}</b></span><span>ล่าง <b>{record.rankedPairs.bottom.slice(0, 4).join(" ")}</b></span></div>
+          <small>{record.algorithmVersion} · {record.analysisOptions.sampleSize} งวด · history {record.historyVersion.slice(0, 8)}</small>
+          {record.outcome && <div className="prospective-row-result"><span>ผลบน {record.outcome.top2} · ล่าง {record.outcome.bottom2}</span><span>เด่น {hit?.standout ? "เข้า" : "ไม่เข้า"} · Top4 บน {hit?.top4 ? "เข้า" : "ไม่เข้า"} · ล่าง {hit?.bottom4 ? "เข้า" : "ไม่เข้า"}</span></div>}
+        </article>;
+      }) : <div className="prospective-empty-state"><ClipboardCheck /><strong>ยังไม่มีหลักฐานในตัวกรองนี้</strong><span>ไปหน้า Analyze แล้วเปิด “บันทึกหลักฐานก่อนงวดออก”</span></div>}
+    </div>
+  </div>;
+}
+
 function Statistics({
   analysis,
   draws,

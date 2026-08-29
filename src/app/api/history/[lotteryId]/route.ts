@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
-import { AllHuayDataSource } from "@/lib/data-sources/allhuay";
-import { buildFreshnessInfo, latestDrawDate, mergeDrawHistory } from "@/lib/freshness";
-import { readCatalog, readSnapshot } from "@/lib/cache";
-import { CanonicalSyncError, commitCanonicalSync } from "@/lib/canonical-history";
+import { readSnapshot } from "@/lib/cache";
+import { CanonicalSyncError } from "@/lib/canonical-history";
 import { guardWrite } from "@/lib/write-guard";
-import { reconcileProspectiveOutcomes } from "@/lib/prospective";
+import { syncLotteryFromSource } from "@/lib/sync-service";
 
 export async function GET(
   _: Request,
@@ -33,19 +31,7 @@ export async function POST(
     );
   }
   try {
-    const existing = await readSnapshot(lotteryId);
-    const incoming = await new AllHuayDataSource(await readCatalog()).getCanonicalHistory(
-      lotteryId,
-      { limit: 100 },
-    );
-    const freshness = buildFreshnessInfo({
-      sourceLatestDrawDate: incoming.currentSourceResultDate ?? latestDrawDate(incoming.draws),
-      cachedLatestDrawDate: latestDrawDate(mergeDrawHistory(existing?.draws ?? [], incoming.draws, 100)),
-      sourceReachable: true,
-    });
-    const {snapshot,outcome,addedDraws}=await commitCanonicalSync({lotteryId,existing,incoming,freshness});
-    let reconciledPredictions=0;
-    try{reconciledPredictions=await reconcileProspectiveOutcomes(lotteryId,snapshot.draws)}catch{}
+    const {snapshot,outcome,addedDraws,freshness,reconciledPredictions}=await syncLotteryFromSource(lotteryId);
     return NextResponse.json({
       ok: true,
       ...snapshot,
