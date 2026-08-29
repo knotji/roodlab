@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Snapshot, SnapshotFreshness } from "@/lib/cache";
 import type { FreshnessInfo } from "@/lib/freshness";
-import type { LotteryDefinition } from "@/lib/types";
+import type { LotteryDefinition, LotteryDraw } from "@/lib/types";
 import type {
   DigitSignal,
   DigitWeights,
@@ -34,6 +34,10 @@ import {
   buildDistributedConsensus,
   type ConsensusResult,
 } from "@/lib/analysis/consensus";
+import {
+  buildDiversifiedWinSix,
+  historicalWinCoverage,
+} from "@/lib/analysis/win-strategy";
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
 import type { ProspectiveRecord } from "@/lib/prospective";
 import type { SystemStatus } from "@/lib/system-status";
@@ -684,6 +688,7 @@ function Analyze({
         <>
           <WinSetCard
             digits={analysis.digits}
+            history={analysis.history}
             consensus={consensus}
             selectedAlgorithmName={selectedAlgorithmName}
             onDigit={onDigit}
@@ -920,18 +925,20 @@ function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
 }
 function WinSetCard({
   digits,
+  history,
   consensus,
   selectedAlgorithmName,
   onDigit,
 }: {
   digits: DigitSignal[];
+  history: LotteryDraw[];
   consensus: ConsensusResult | null;
   selectedAlgorithmName: string;
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(6),
     [focusMode, setFocusMode] = useState<
-      "core-support" | "tiered" | "distributed"
+      "core-support" | "tiered" | "distributed" | "diversified"
     >("tiered"),
     consensusDigits =
       consensus?.digits
@@ -944,8 +951,11 @@ function WinSetCard({
       distributedConsensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? [],
+    diversified = buildDiversifiedWinSix(digits, consensus),
     winDigits =
-      focusMode === "distributed" && (winSize === 5 || winSize === 6)
+      focusMode === "diversified" && winSize === 6
+        ? diversified.digits
+        : focusMode === "distributed" && (winSize === 5 || winSize === 6)
         ? distributedDigits
         : focusMode === "core-support"
         ? digits.slice(0, winSize)
@@ -954,6 +964,7 @@ function WinSetCard({
       winDigits.map((digit) => digit.digit),
       winSize,
     ),
+    coverage = historicalWinCoverage(history, winDigits.map((digit) => digit.digit)),
     focusedWinSet = buildFocusedWinSet(
       digits.map((digit) => digit.digit),
     ),
@@ -984,12 +995,14 @@ function WinSetCard({
         ? consensusReady
         : focusMode === "distributed"
           ? distributedReady
+          : focusMode === "diversified"
+            ? diversified.digits.length === 6
           : selectedReady,
     sameWinSet =
       [...consensusDigits.slice(0, winSize).map((digit) => digit.digit)]
         .sort()
         .join("") ===
-      [...(focusMode === "distributed" ? distributedDigits : digits.slice(0, winSize))]
+      [...(focusMode === "distributed" ? distributedDigits : focusMode === "diversified" ? diversified.digits : digits.slice(0, winSize))]
         .map((digit) => digit.digit)
         .sort()
         .join(""),
@@ -1059,7 +1072,10 @@ function WinSetCard({
                 className={winSize === size ? "active" : ""}
                 onClick={() => {
                   setWinSize(size);
-                  if (size !== 5 && size !== 6 && focusMode === "distributed")
+                  if (
+                    (size !== 5 && size !== 6 && focusMode === "distributed") ||
+                    (size !== 6 && focusMode === "diversified")
+                  )
                     setFocusMode("tiered");
                   setCopied(null);
                 }}
@@ -1074,6 +1090,8 @@ function WinSetCard({
       <small className="win-set-note">
         {focusMode === "core-support"
           ? `ชุดทางเลือกจาก ${selectedAlgorithmName}`
+          : focusMode === "diversified"
+            ? "หลัก 3 จาก Consensus · ตำแหน่ง 2 · สวน Momentum 1"
           : focusMode === "distributed"
             ? "ชุดกระจายอันดับจาก Consensus"
             : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
@@ -1114,6 +1132,18 @@ function WinSetCard({
               กระจายอันดับ · {winSize === 5 ? "2+2+1" : "2+2+2"}
             </button>
           )}
+          {winSize === 6 && (
+            <button
+              className={focusMode === "diversified" ? "active" : ""}
+              onClick={() => {
+                setFocusMode("diversified");
+                setCopied(null);
+              }}
+              type="button"
+            >
+              กระจายสัญญาณ · 3+2+1
+            </button>
+          )}
         </div>
       </div>
       {sameWinSet && (
@@ -1134,6 +1164,23 @@ function WinSetCard({
           </button>
         ))}
       </div>
+      <div className="win-coverage" title="นับว่างวดนั้นมีเลขในชุดวินอย่างน้อยหนึ่งตัวจากผลบน 3 ตัวหรือล่าง 2 ตัว">
+        <div>
+          <span>ครอบคลุมย้อนหลัง</span>
+          <strong>{coverage.rate === null ? "--" : `${Math.round(coverage.rate * 100)}%`}</strong>
+          <small>{coverage.hits}/{coverage.total} งวด · ไม่ใช่โอกาสงวดหน้า</small>
+        </div>
+        {winSize === 6 && coverage.randomBaseline !== null && (
+          <p>baseline วิน 6 แบบสุ่มตามนิยามเดียวกัน ≈ {Math.round(coverage.randomBaseline * 100)}%</p>
+        )}
+      </div>
+      {winSize === 6 && focusMode === "diversified" && (
+        <section className="diversified-win-summary">
+          <div><small>หลัก 3 · Consensus</small><strong>{diversified.main.map((digit) => digit.digit).join(" · ")}</strong></div>
+          <div><small>ตำแหน่ง 2</small><strong>{diversified.position.map((digit) => digit.digit).join(" · ")}</strong></div>
+          <div><small>สวน 1 · Momentum</small><strong>{diversified.contrarian.map((digit) => digit.digit).join(" · ")}</strong></div>
+        </section>
+      )}
       <details className="win-pair-expander">
         <summary>ดูกางคู่กลับทั้งหมด {winSet.orderedPairs.length} คู่</summary>
         <div className="win-pairs" aria-label={`คู่กลับจากเลขวิน ${winSize} ตัว`}>
@@ -1150,7 +1197,7 @@ function WinSetCard({
           ))}
         </div>
       </div>
-      {(winSize === 6 || (winSize === 5 && focusMode === "distributed")) && (
+      {focusMode !== "diversified" && (winSize === 6 || (winSize === 5 && focusMode === "distributed")) && (
         <section className={`focused-win${focusReady ? " ready" : " pending"}`}>
           <div className="focused-win-head">
             <div>

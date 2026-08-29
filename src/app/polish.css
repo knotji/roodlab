@@ -546,6 +546,45 @@
   color: #735c16 !important;
   font-size: 9px !important;
 }
+.win-coverage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #eef2ef;
+}
+.win-coverage > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.win-coverage span,
+.win-coverage small,
+.win-coverage p {
+  color: var(--muted);
+  font-size: 9px;
+}
+.win-coverage strong { color: var(--accent); font-size: 18px; }
+.win-coverage p { margin: 0; text-align: right; }
+.diversified-win-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+.diversified-win-summary > div {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+}
+.diversified-win-summary small { color: var(--muted); font-size: 9px; }
+.diversified-win-summary strong { font-size: 17px; }
 .tiered-digits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -864,9 +903,14 @@
     grid-template-columns: 1fr;
   }
   .focus-mode-control {
-    display: grid;
+    display: flex;
     width: 100%;
-    grid-template-columns: 1fr;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+  .focus-mode-control button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
   .win-source-control {
     align-items: stretch;
@@ -879,6 +923,14 @@
   .focused-copy-actions button {
     justify-content: center;
   }
+  .win-coverage {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .win-coverage > div { flex-wrap: wrap; }
+  .win-coverage p { text-align: left; }
+  .diversified-win-summary { grid-template-columns: 1fr; }
 }
 @media (max-width: 850px) {
   .app-shell > .mobile-nav { grid-template-columns: repeat(6, 1fr); }
