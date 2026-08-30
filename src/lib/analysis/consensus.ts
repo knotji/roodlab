@@ -33,9 +33,10 @@ type ConsensusOptions = {
   window: number;
   candidateCount: number;
   includeDoubles: boolean;
+  stabilityWindows?: readonly number[];
 };
 
-function rankForWindow(history: LotteryDraw[], options: ConsensusOptions) {
+function rankForWindow(history: LotteryDraw[], options: Omit<ConsensusOptions, "stabilityWindows">) {
   const analyses = ALGORITHMS.map((algorithm) =>
     analyzeLottery(history, { ...options, algorithmId: algorithm.id }),
   );
@@ -77,14 +78,15 @@ export function buildConsensus(
   history: LotteryDraw[],
   options: ConsensusOptions,
 ): ConsensusResult {
-  const current = rankForWindow(history, options),
-    eligibleWindows = STABILITY_WINDOWS.filter(
+  const { stabilityWindows = STABILITY_WINDOWS, ...analysisOptions } = options,
+    current = rankForWindow(history, analysisOptions),
+    eligibleWindows = stabilityWindows.filter(
       (window) => history.length >= window,
     ),
     windowTopDigits = eligibleWindows.map(
       (window) =>
         new Set(
-          rankForWindow(history, { ...options, window })
+          rankForWindow(history, { ...analysisOptions, window })
             .slice(0, CONSENSUS_TOP_DIGITS)
             .map((item) => item.digit),
         ),

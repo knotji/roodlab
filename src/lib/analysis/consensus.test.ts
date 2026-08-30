@@ -39,6 +39,17 @@ describe("formula consensus", () => {
     expect(result.stabilityStatus).toBe("insufficient");
   });
 
+  it("supports explicit shorter stability windows for weekday-filtered history", () => {
+    const result = buildConsensus(fixtureHistory.slice(0, 14), {
+      window: 30,
+      candidateCount: 4,
+      includeDoubles: true,
+      stabilityWindows: [5, 10],
+    });
+    expect(result.eligibleWindows).toEqual([5, 10]);
+    expect(result.stabilityScore).not.toBeNull();
+  });
+
   it("is deterministic and does not modify the frozen registry", () => {
     const before = JSON.stringify(ALGORITHMS),
       options = { window: 30, candidateCount: 4, includeDoubles: false };

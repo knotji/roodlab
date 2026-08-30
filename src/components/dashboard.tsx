@@ -114,6 +114,7 @@ export default function Dashboard({
   catalog: initialCatalog,
   initialSnapshots,
   auditStatuses,
+  defaultDayPattern,
 }: {
   catalog: LotteryDefinition[];
   initialSnapshots: Record<string, Snapshot>;
@@ -121,6 +122,7 @@ export default function Dashboard({
     string,
     { status: "supported" | "partial" | "failed"; reason?: string }
   >;
+  defaultDayPattern: Exclude<DayPattern, "all">;
 }) {
   const stored = useLotteryStore((s) => s.selectedLotteryId),
     persistLottery = useLotteryStore((s) => s.setSelectedLottery),
@@ -147,7 +149,7 @@ export default function Dashboard({
     [expandedRow, setExpandedRow] = useState<string | null>(null),
     [positionSide, setPositionSide] = useState<Side>("top"),
     [gapSort, setGapSort] = useState<"score" | "latest" | "gap">("score"),
-    [dayPattern, setDayPattern] = useState<DayPattern>("all"),
+    [dayPattern, setDayPattern] = useState<DayPattern>(defaultDayPattern),
     [digitWeights, setDigitWeights] = useState(defaultDigit),
     [pairWeights, setPairWeights] = useState(defaultPair),
     [liveFreshness, setLiveFreshness] = useState<FreshnessInfo | null>(null),
@@ -236,13 +238,14 @@ export default function Dashboard({
   const consensus = useMemo(
     () =>
       hasSignals
-        ? buildConsensus(patternDraws, {
+          ? buildConsensus(patternDraws, {
             window: windowSize,
             candidateCount,
             includeDoubles: doubles,
+            stabilityWindows: dayPattern === "all" ? undefined : [5, 10],
           })
         : null,
-    [patternDraws, hasSignals, windowSize, candidateCount, doubles],
+    [patternDraws, hasSignals, windowSize, candidateCount, doubles, dayPattern],
   );
   const tests = useMemo(() => {
       return hasSignals
@@ -678,10 +681,10 @@ function Analyze({
             {consensus?.stabilityScore === null ? (
               <>
                 มี {analysis.sampleSize} งวด
-                {dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย 20 งวดเพื่อเทียบช่วง 10/20
+                {dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย {dayPattern === "all" ? "20 งวดเพื่อเทียบช่วง 10/20" : "10 งวดเพื่อเทียบช่วง 5/10"}
               </>
             ) : (
-              <>{consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · ไม่ใช่ความน่าจะเป็น</>
+              <>{consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · เทียบช่วง {consensus?.eligibleWindows.join("/")} งวด{dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ไม่ใช่ความน่าจะเป็น</>
             )}
           </small>
         </div>

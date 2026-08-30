@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { LotteryDraw } from "../types";
 import {
   dayPatternLabel,
+  currentBangkokWeekday,
   drawWeekday,
   filterDrawsByDay,
 } from "./day-pattern";
@@ -32,5 +33,9 @@ describe("day pattern", () => {
 
   it("provides a user-facing Thai label", () => {
     expect(dayPatternLabel(3)).toBe("วันพุธ");
+  });
+
+  it("derives the current weekday from the Bangkok calendar date", () => {
+    expect(currentBangkokWeekday(new Date("2026-08-29T18:00:00.000Z"))).toBe(0);
   });
 });

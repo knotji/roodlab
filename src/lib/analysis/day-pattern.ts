@@ -19,6 +19,17 @@ export const DAY_PATTERN_OPTIONS: readonly {
 
 export const MIN_DAY_PATTERN_DRAWS = 10;
 
+export function currentBangkokWeekday(at: Date = new Date()): Exclude<DayPattern, "all"> {
+  const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Bangkok",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    }).formatToParts(at),
+    value = (type: "year" | "month" | "day") => Number(parts.find((part) => part.type === type)?.value);
+  return new Date(Date.UTC(value("year"), value("month") - 1, value("day"))).getUTCDay() as Exclude<DayPattern, "all">;
+}
+
 export function drawWeekday(drawDate: string) {
   return new Date(`${drawDate}T12:00:00.000Z`).getUTCDay();
 }
