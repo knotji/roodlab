@@ -9,6 +9,50 @@ export type DiversifiedWinSix = {
   digits: DigitSignal[];
 };
 
+export type WinTrackingMode = "tiered" | "core-support" | "distributed" | "diversified";
+export type WinTrackingGate = {
+  passed: boolean;
+  checks: { label: string; passed: boolean }[];
+};
+
+export function evaluateWinTracking(
+  mode: WinTrackingMode,
+  evidence: {
+    stable: boolean;
+    consensusMainVotes: number[];
+    selectedCoreVotes: number[];
+    distributedInsertBestRanks: number[];
+    diversifiedMainVotes: number[];
+    diversifiedPositionRanks: number[];
+    diversifiedMomentum: number | null;
+  },
+): WinTrackingGate {
+  const stable = { label: "ความนิ่งข้ามช่วงอยู่ระดับค่อนข้างนิ่ง", passed: evidence.stable },
+    checks = mode === "tiered"
+      ? [
+          stable,
+          { label: "เลขหลัก 2 ตัวได้เสียงอย่างน้อย 4/5 สูตร", passed: evidence.consensusMainVotes.length === 2 && evidence.consensusMainVotes.every((votes) => votes >= 4) },
+        ]
+      : mode === "core-support"
+        ? [
+            stable,
+            { label: "เลขแกน 2 ตัวได้เสียงอย่างน้อย 3/5 สูตร", passed: evidence.selectedCoreVotes.length === 2 && evidence.selectedCoreVotes.every((votes) => votes >= 3) },
+          ]
+        : mode === "distributed"
+          ? [
+              stable,
+              { label: "เลขหลัก 2 ตัวได้เสียงอย่างน้อย 4/5 สูตร", passed: evidence.consensusMainVotes.length === 2 && evidence.consensusMainVotes.every((votes) => votes >= 4) },
+              { label: "ตัวแทรกเคยติด Top 5 อย่างน้อยหนึ่งสูตร", passed: evidence.distributedInsertBestRanks.length === 2 && evidence.distributedInsertBestRanks.every((rank) => rank <= 5) },
+            ]
+          : [
+              stable,
+              { label: "เลขหลัก 3 ตัวได้เสียงอย่างน้อย 3/5 สูตร", passed: evidence.diversifiedMainVotes.length === 3 && evidence.diversifiedMainVotes.every((votes) => votes >= 3) },
+              { label: "เลขตำแหน่ง 2 ตัวอยู่ใน Top 5 ด้านตำแหน่ง", passed: evidence.diversifiedPositionRanks.length === 2 && evidence.diversifiedPositionRanks.every((rank) => rank <= 5) },
+              { label: "ตัวสวนมี Momentum เป็นบวก", passed: (evidence.diversifiedMomentum ?? 0) > 0 },
+            ];
+  return { passed: checks.every((check) => check.passed), checks };
+}
+
 export function buildDiversifiedWinSix(
   digits: DigitSignal[],
   consensus: ConsensusResult | null,

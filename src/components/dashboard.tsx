@@ -36,7 +36,9 @@ import {
 } from "@/lib/analysis/consensus";
 import {
   buildDiversifiedWinSix,
+  evaluateWinTracking,
   historicalWinCoverage,
+  type WinTrackingMode,
 } from "@/lib/analysis/win-strategy";
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
 import type { ProspectiveRecord } from "@/lib/prospective";
@@ -990,13 +992,25 @@ function WinSetCard({
     distributedReady =
       consensusReady &&
       (distributedConsensus?.inserts.every((digit) => digit.bestRank <= 5) ?? false),
-    focusReady =
-      focusMode === "tiered"
+    trackingEvidence = {
+      stable: consensus?.stabilityStatus === "stable",
+      consensusMainVotes: consensus?.digits.slice(0, 2).map((digit) => digit.votes) ?? [],
+      selectedCoreVotes,
+      distributedInsertBestRanks: distributedConsensus?.inserts.map((digit) => digit.bestRank) ?? [],
+      diversifiedMainVotes: diversified.main.map((digit) => consensus?.digits.find((item) => item.digit === digit.digit)?.votes ?? 0),
+      diversifiedPositionRanks: diversified.position.map((digit) => digit.positionRank),
+      diversifiedMomentum: diversified.contrarian[0]?.momentum ?? null,
+    },
+    trackingByMode = Object.fromEntries(
+      (["tiered", "core-support", "distributed", "diversified"] as WinTrackingMode[]).map((mode) => [mode, evaluateWinTracking(mode, trackingEvidence)]),
+    ) as Record<WinTrackingMode, ReturnType<typeof evaluateWinTracking>>,
+    activeTracking = trackingByMode[focusMode],
+    focusReady = winSize === 6
+      ? activeTracking.passed
+      : focusMode === "tiered"
         ? consensusReady
         : focusMode === "distributed"
           ? distributedReady
-          : focusMode === "diversified"
-            ? diversified.digits.length === 6
           : selectedReady,
     sameWinSet =
       [...consensusDigits.slice(0, winSize).map((digit) => digit.digit)]
@@ -1109,6 +1123,7 @@ function WinSetCard({
             type="button"
           >
             ชุดหลัก · Consensus
+            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.tiered.passed ? "passed" : "waiting"}`} title={trackingByMode.tiered.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
           </button>
           <button
             className={focusMode === "core-support" ? "active" : ""}
@@ -1119,6 +1134,7 @@ function WinSetCard({
             type="button"
           >
             ชุดทางเลือก · {selectedAlgorithmName}
+            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode["core-support"].passed ? "passed" : "waiting"}`} title={trackingByMode["core-support"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
           </button>
           {(winSize === 5 || winSize === 6) && (
             <button
@@ -1130,6 +1146,7 @@ function WinSetCard({
               type="button"
             >
               กระจายอันดับ · {winSize === 5 ? "2+2+1" : "2+2+2"}
+              {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.distributed.passed ? "passed" : "waiting"}`} title={trackingByMode.distributed.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
             </button>
           )}
           {winSize === 6 && (
@@ -1142,10 +1159,26 @@ function WinSetCard({
               type="button"
             >
               กระจายสัญญาณ · 3+2+1
+              <i className={`mode-tracking-dot ${trackingByMode.diversified.passed ? "passed" : "waiting"}`} title={trackingByMode.diversified.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />
             </button>
           )}
         </div>
       </div>
+      {winSize === 6 && (
+        <div className={`win-tracking-gate ${activeTracking.passed ? "passed" : "waiting"}`}>
+          <div>
+            <strong>{activeTracking.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"}</strong>
+            <span>เป็นเกณฑ์คัดสัญญาณ ไม่ใช่เปอร์เซ็นต์ความน่าจะเป็น</span>
+          </div>
+          <ul>
+            {activeTracking.checks.map((check) => (
+              <li className={check.passed ? "passed" : "waiting"} key={check.label}>
+                {check.passed ? <Check /> : <Minus />}{check.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {sameWinSet && (
         <p className="same-win-set-note">
           สองวิธีเห็นเลขวิน {winSize} ตัวชุดเดียวกันในงวดนี้ แต่ลำดับอาจต่างกัน
