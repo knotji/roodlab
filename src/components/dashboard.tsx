@@ -55,6 +55,11 @@ import { CoverageSummary } from "./analyze/coverage-summary";
 import { PairSection } from "./analyze/pair-section";
 import { StandoutHero } from "./analyze/standout-hero";
 import { WinSetCard } from "./analyze/win-set-card";
+import { HistoryPage } from "./history/history-page";
+import { DigitStrengthGrid } from "./statistics/digit-strength-grid";
+import { ResearchTabs } from "./backtest/research-tabs";
+import { SettingsSection } from "./settings/settings-section";
+import { SegmentedControl } from "./ui/segmented-control";
 import {
   BarChart3,
   Check,
@@ -67,7 +72,6 @@ import {
   Info,
   Minus,
   RefreshCw,
-  Search,
   Settings,
   Sparkles,
   TestTube2,
@@ -1357,20 +1361,7 @@ function Statistics({
           onChange={setWindow}
         />
       </div>
-      <div className="heatmap">
-        {[...analysis.digits]
-          .sort((a, b) => a.digit.localeCompare(b.digit))
-          .map((d) => (
-            <button
-              key={d.digit}
-              style={{ "--score": `${d.score}%` } as React.CSSProperties}
-              onClick={() => onDigit(d)}
-            >
-              <strong>{d.digit}</strong>
-              <span>{d.score.toFixed(0)}</span>
-            </button>
-          ))}
-      </div>
+      <DigitStrengthGrid digits={analysis.digits} onSelect={onDigit} />
       <section className="chart-card">
         <h3>Momentum · 10 งวดล่าสุด vs 10 งวดก่อนหน้า</h3>
         <div className="momentum-table">
@@ -1468,74 +1459,6 @@ function Heat({ value, max }: { value: number; max: number }) {
     </span>
   );
 }
-function HistoryPage({
-  draws,
-  search,
-  setSearch,
-  visible,
-  setVisible,
-}: {
-  draws: Snapshot["draws"];
-  search: string;
-  setSearch: (s: string) => void;
-  visible: number;
-  setVisible: (n: number) => void;
-}) {
-  return (
-    <div className="content">
-      <div className="section-head">
-        <div>
-          <div className="section-kicker">HISTORICAL DRAWS</div>
-          <h2>ผลย้อนหลัง</h2>
-        </div>
-        <label className="search">
-          <Search />
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="ค้นหาวันที่หรือเลข"
-          />
-        </label>
-      </div>
-      <div className="history-list">
-        {draws.slice(0, visible).map((d) => (
-          <article key={d.id}>
-            <time>
-              {new Intl.DateTimeFormat("th-TH", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              }).format(new Date(d.drawDate))}
-            </time>
-            <div>
-              <span>
-                3 ตัวบน<strong>{d.top3 ?? "--"}</strong>
-              </span>
-              <span>
-                2 ตัวบน<strong>{d.top2 ?? "--"}</strong>
-              </span>
-              <span>
-                2 ตัวล่าง<strong>{d.bottom2 ?? "--"}</strong>
-              </span>
-            </div>
-            {d.source && (
-              <small className="history-source" title={`Source: ${d.source}`}>
-                {d.source === "current-result"
-                  ? "ผลล่าสุดจากต้นทาง"
-                  : "ประวัติจากต้นทาง"}
-              </small>
-            )}
-          </article>
-        ))}
-      </div>
-      {visible < draws.length && (
-        <button className="load" onClick={() => setVisible(visible + 20)}>
-          แสดงเพิ่ม
-        </button>
-      )}
-    </div>
-  );
-}
 function BacktestPage({
   rows,
   comparisons,
@@ -1579,20 +1502,7 @@ function BacktestPage({
   ];
   return (
     <div className="content">
-      <div className="lab-tabs">
-        <button
-          className={tab === "results" ? "active" : ""}
-          onClick={() => setTab("results")}
-        >
-          ผลทดสอบ
-        </button>
-        <button
-          className={tab === "lab" ? "active" : ""}
-          onClick={() => setTab("lab")}
-        >
-          เปรียบเทียบสูตร
-        </button>
-      </div>
+      <ResearchTabs value={tab} onChange={setTab} />
       <p className="research-tool-note">
         สำหรับตรวจสอบและเปรียบเทียบวิธีวิเคราะห์ย้อนหลัง ไม่ใช่หน้าคำแนะนำหลัก
       </p>
@@ -1832,6 +1742,7 @@ function SettingsPage({
     <div className="content settings">
       <div className="section-kicker">PREFERENCES</div>
       <h2>ตั้งค่าการวิเคราะห์</h2>
+      <SettingsSection title="การวิเคราะห์" description="กำหนดขอบเขตข้อมูลที่ใช้สรุปรูปแบบย้อนหลัง">
       <Setting
         label="ช่วงข้อมูล"
         description="จำนวนงวดที่ใช้สรุปรูปแบบย้อนหลัง"
@@ -1842,6 +1753,8 @@ function SettingsPage({
           onChange={setWindow}
         />
       </Setting>
+      </SettingsSection>
+      <SettingsSection title="การแสดงผล" description="กำหนดจำนวนคู่และรูปแบบเลขที่แสดง">
       <Setting label="จำนวนคู่ที่แสดง" description="แยกคู่บนและล่าง">
         <Segment
           values={[3, 4, 5]}
@@ -1857,6 +1770,8 @@ function SettingsPage({
           <i />
         </button>
       </Setting>
+      </SettingsSection>
+      <SettingsSection title="Advanced / Research" description="ตัวเลือกทางเทคนิคสำหรับตรวจสอบวิธีวิเคราะห์">
       <details className="advanced-research">
         <summary>Advanced / Research</summary>
         <div className="setting algorithm-setting">
@@ -1916,6 +1831,13 @@ function SettingsPage({
           </p>
         </section>
       </details>
+      </SettingsSection>
+      <SettingsSection title="ข้อมูล" description="RoodLab ใช้ประวัติที่ผ่านการตรวจสอบจาก canonical history โดยไม่แก้ข้อมูลย้อนหลังในหน้านี้">
+        <p className="settings-note">สถานะความสดและความครบถ้วนของข้อมูลจะแสดงใต้ชื่อหวยที่เลือก</p>
+      </SettingsSection>
+      <SettingsSection title="About" description="RoodLab เป็นเครื่องมือสำรวจรูปแบบจากสถิติย้อนหลัง ไม่ใช่การรับรองผลในงวดถัดไป">
+        <p className="settings-note">การจัดอันดับช่วยให้อ่านข้อมูลได้ง่ายขึ้น แต่ไม่ได้เพิ่มความน่าจะเป็นทางคณิตศาสตร์ของผลสุ่ม</p>
+      </SettingsSection>
     </div>
   );
 }
@@ -2059,19 +1981,7 @@ function Segment({
   value: number;
   onChange: (v: number) => void;
 }) {
-  return (
-    <div className="segment">
-      {values.map((v) => (
-        <button
-          key={v}
-          className={v === value ? "active" : ""}
-          onClick={() => onChange(v)}
-        >
-          {v}
-        </button>
-      ))}
-    </div>
-  );
+  return <SegmentedControl values={values.map((item) => ({ value: item, label: String(item) }))} value={value} onChange={onChange} />;
 }
 function SegmentText({
   values,
@@ -2082,19 +1992,7 @@ function SegmentText({
   value: string;
   onChange: (v: string) => void;
 }) {
-  return (
-    <div className="segment">
-      {values.map((v) => (
-        <button
-          key={v.id}
-          className={v.id === value ? "active" : ""}
-          onClick={() => onChange(v.id)}
-        >
-          {v.label}
-        </button>
-      ))}
-    </div>
-  );
+  return <SegmentedControl values={values.map((item) => ({ value: item.id, label: item.label }))} value={value} onChange={onChange} />;
 }
 function Setting({
   label,

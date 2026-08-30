@@ -142,6 +142,74 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .formula-table, .ablation-table { max-width: 100%; overflow-x: auto; }
 footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-bottom: 20px; line-height: 1.7; }
 
+/* Statistics */
+.digit-strength-section { display: grid; gap: 10px; }
+.statistics-subhead { display: flex; align-items: baseline; justify-content: space-between; color: var(--foreground); }
+.statistics-subhead span { font-size: 13px; font-weight: 560; }
+.statistics-subhead small { color: var(--muted-foreground); font-size: 10px; }
+.heatmap { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.heatmap button { min-height: 88px; border-radius: 12px; padding: 13px 15px; }
+.heatmap button::after { height: calc(var(--score) * .34); background: #dce9e3; }
+.heatmap strong { font-size: 34px; font-weight: 560; font-variant-numeric: tabular-nums; }
+.heatmap span { font-size: 11px; }
+.chart-card { margin-top: 14px; border-radius: 14px; padding: 20px; box-shadow: var(--shadow-sm); }
+.chart-card h3 { margin: 0 0 16px; font-size: 15px; font-weight: 560; }
+.momentum-table, .position-grid, .gap-table { max-width: 100%; overflow: hidden; font-variant-numeric: tabular-nums; }
+.momentum-row, .position-row, .gap-row { min-height: 40px; }
+
+/* History */
+.history-page .section-head { align-items: center; }
+.history-page .search { width: min(100%, 300px); min-height: 42px; }
+.history-page .search input { min-width: 0; width: 100%; }
+.history-list { gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--card); }
+.history-list article { display: grid; grid-template-columns: minmax(130px, .8fr) minmax(360px, 1.5fr) minmax(120px, .7fr); gap: 20px; min-height: 74px; padding: 13px 18px; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
+.history-list article:last-child { border-bottom: 0; }
+.history-list time { white-space: nowrap; }
+.history-numbers { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 16px !important; }
+.history-numbers span { display: grid; grid-template-columns: auto; gap: 0; }
+.history-numbers small { color: var(--muted-foreground); font-size: 9px; }
+.history-numbers strong { font-size: 22px; font-weight: 580; font-variant-numeric: tabular-nums; }
+.history-source { justify-self: end; color: var(--muted-foreground); font-size: 9px; text-align: right; }
+.load { min-height: 42px; cursor: pointer; }
+
+/* Backtest and Formula Lab */
+.lab-tabs { width: fit-content; margin-bottom: 8px; padding: 3px; border-radius: 10px; background: #e9eae6; }
+.lab-tabs button { min-height: 38px; border-radius: 8px; padding-inline: 14px; }
+.research-tool-note { margin: 0 0 28px; color: var(--muted-foreground); font-size: 10px; }
+.control-stack { min-width: min(100%, 360px); gap: 6px; }
+.control-stack label { gap: 9px; }
+.control-stack .segment button { min-height: 36px; }
+.metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
+.metric { padding: 16px; }
+.metric strong { margin: 5px 0; font-size: 27px; }
+.backtest-list { gap: 6px; }
+.backtest-row { min-height: 64px; padding: 14px 18px; }
+.formula-day-filter { margin: -6px 0 18px; border-radius: 14px; }
+.formula-table { border-radius: 14px; background: var(--card); }
+.formula-row { min-height: 60px; }
+.baseline { border-radius: 12px; }
+
+/* Settings and secondary surfaces */
+.settings > .section-kicker + h2 { margin-bottom: 28px; }
+.settings-section { margin-top: 18px; border-top: 1px solid var(--border); }
+.settings-section > header { padding: 18px 0 4px; }
+.settings-section > header h3 { margin: 0; font-size: 15px; font-weight: 580; }
+.settings-section > header p, .settings-note { margin: 3px 0 0; color: var(--muted-foreground); font-size: 11px; }
+.setting { padding: 18px 0; }
+.setting > div:first-child { gap: 2px; }
+.setting select { min-height: 42px; border: 1px solid var(--border); border-radius: 9px; background: var(--card); padding: 0 34px 0 12px; }
+.toggle { flex: 0 0 auto; }
+.advanced-research { margin-top: 20px; }
+.advanced-research summary { min-height: 52px; }
+.prospective-hub { max-width: 980px; }
+.prospective-metrics { gap: 8px; }
+.prospective-metrics article { padding: 15px; }
+.prospective-metrics strong { font-size: 24px; font-weight: 580; }
+.prospective-hub-list > article { padding: 15px 18px; }
+.empty-state { min-height: 280px; padding: 32px 20px; }
+.modal-backdrop { padding: 16px; }
+.modal { border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
+
 .mobile-nav { display: none; }
 @media (max-width: 1023px) {
   .sidebar { display: none; }
@@ -199,6 +267,44 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .section-head h2, .settings h2 { font-size: 29px; }
   .history-list article > div { flex-wrap: wrap; }
   .setting { gap: 14px; }
+  .section-head { margin-bottom: 20px; }
+  .section-head .segment { width: 100%; }
+  .section-head .segment button { flex: 1; }
+  .heatmap { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; }
+  .heatmap button { min-height: 68px; padding: 9px 8px; }
+  .heatmap strong { font-size: 27px; }
+  .chart-card { padding: 16px 14px; }
+  .momentum-table, .position-grid, .gap-table { overflow-x: auto; overscroll-behavior-inline: contain; }
+  .history-page .section-head { align-items: stretch; }
+  .history-page .search { width: 100%; }
+  .history-list { border-radius: 14px; }
+  .history-list article { grid-template-columns: 1fr auto; gap: 8px 12px; min-height: 0; padding: 12px 14px; }
+  .history-list time { align-self: center; font-size: 11px; }
+  .history-numbers { grid-column: 1 / -1; grid-row: 2; grid-template-columns: 1.25fr 1fr 1fr; gap: 8px !important; padding-top: 8px; border-top: 1px solid var(--border); }
+  .history-numbers strong { font-size: 21px; }
+  .history-source { grid-column: 2; grid-row: 1; align-self: center; max-width: 120px; }
+  .lab-tabs { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
+  .lab-tabs button { padding-inline: 8px; }
+  .control-stack { width: 100%; }
+  .control-stack label { align-items: stretch; grid-template-columns: 1fr; }
+  .control-stack label > span { text-align: left; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .metric { padding: 13px; }
+  .metric strong { font-size: 23px; }
+  .backtest-row { grid-template-columns: 1fr auto; padding: 13px; }
+  .formula-day-filter { align-items: stretch; flex-direction: column; padding: 13px; }
+  .formula-day-filter .day-pattern-options { width: 100%; }
+  .formula-table > b { display: none; }
+  .formula-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; border-bottom: 1px solid var(--border); }
+  .formula-row > strong { grid-column: 1 / -1; }
+  .formula-row span { align-items: flex-start; }
+  .setting { min-height: 0; flex-direction: column; align-items: stretch; }
+  .setting .segment { width: 100%; }
+  .setting .segment button { flex: 1; }
+  .prospective-export { width: 100%; }
+  .prospective-hub-list > article { padding: 14px; }
+  .prospective-row-signals { grid-template-columns: 1fr; }
+  .modal { max-height: calc(100dvh - 32px); padding: 28px 20px; border-radius: 18px; }
 }
 
 @media (max-width: 389px) {
