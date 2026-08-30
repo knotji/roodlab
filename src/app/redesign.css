@@ -210,15 +210,15 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
 .modal-backdrop { padding: 16px; }
 .modal { border: 1px solid var(--border); box-shadow: var(--shadow-lg); }
 
-.mobile-nav { display: none; }
+.app-shell > .mobile-nav { display: none; }
 @media (max-width: 1023px) {
   .sidebar { display: none; }
   main { margin-left: 0; padding: 0 clamp(18px, 4vw, 36px) 108px; }
   .topbar { min-height: 132px; }
-  .mobile-nav { position: fixed; inset: auto 0 0; z-index: 80; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); background: rgb(255 254 250 / 96%); box-shadow: 0 -8px 24px rgb(19 31 27 / 6%); backdrop-filter: blur(14px); }
-  .mobile-nav > button, .mobile-nav > [data-radix-collection-item] { min-width: 0; min-height: 50px; padding: 5px 2px 4px; border-radius: 10px; color: var(--muted-foreground); flex-direction: column; gap: 3px; font-size: 10px; font-weight: 450; line-height: 1.2; }
-  .mobile-nav svg { width: 18px; height: 18px; stroke-width: 1.8; }
-  .mobile-nav .active { background: var(--secondary); color: var(--primary); box-shadow: inset 0 0 0 1px rgb(40 101 84 / 8%); }
+  .app-shell > .mobile-nav { position: fixed; inset: auto 0 0; z-index: 80; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); background: rgb(255 254 250 / 96%); box-shadow: 0 -8px 24px rgb(19 31 27 / 6%); backdrop-filter: blur(14px); }
+  .app-shell > .mobile-nav > button, .app-shell > .mobile-nav > [data-radix-collection-item] { min-width: 0; min-height: 50px; padding: 5px 2px 4px; border: 0; border-radius: 10px; background: transparent; color: var(--muted-foreground); flex-direction: column; gap: 3px; font-size: 10px; font-weight: 450; line-height: 1.2; }
+  .app-shell > .mobile-nav svg { width: 18px; height: 18px; stroke-width: 1.8; }
+  .app-shell > .mobile-nav .active { background: var(--secondary); color: var(--primary); box-shadow: inset 0 0 0 1px rgb(40 101 84 / 8%); }
 }
 
 @media (max-width: 767px) {
@@ -313,7 +313,7 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .hero h1 { font-size: 76px; }
   .win-set-card { padding-inline: 15px; }
   .win-digits button { width: calc((100% - 36px) / 5); }
-  .mobile-nav > button, .mobile-nav > [data-radix-collection-item] { font-size: 9px; }
+  .app-shell > .mobile-nav > button, .app-shell > .mobile-nav > [data-radix-collection-item] { font-size: 9px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
