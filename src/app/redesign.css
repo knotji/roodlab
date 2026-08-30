@@ -2,7 +2,7 @@
 :root {
   --background: #f6f5f1;
   --foreground: #17201e;
-  --muted: #eceeea;
+  --muted-surface: #eceeea;
   --muted-foreground: #69726e;
   --card: #fffefa;
   --card-foreground: #17201e;
@@ -96,12 +96,12 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .analyze-control-panel > div > span { color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; margin: 0; color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p small { font-size: inherit; }
-.window-selector { display: flex; min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted); overflow-x: auto; scrollbar-width: none; }
+.window-selector { display: flex; min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted-surface); overflow-x: auto; scrollbar-width: none; }
 .window-selector::-webkit-scrollbar { display: none; }
 .window-selector button { min-width: 56px; min-height: 36px; border-radius: var(--radius-md); color: var(--muted-foreground); }
 .window-selector button span { margin-left: 3px; font-size: 9px; }
 .window-selector button.active { background: var(--background); color: var(--foreground); box-shadow: var(--shadow-sm); }
-.day-pattern-options { min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted); overflow-x: auto; scrollbar-width: none; }
+.day-pattern-options { min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted-surface); overflow-x: auto; scrollbar-width: none; }
 .day-pattern-options::-webkit-scrollbar { display: none; }
 .day-pattern-options button { min-width: 44px; min-height: 36px; border-radius: var(--radius-md); white-space: nowrap; }
 .hero { position: relative; min-height: 340px; padding: clamp(32px, 6vw, 72px); border-color: var(--border); border-radius: var(--radius-xl); background: var(--card); box-shadow: var(--shadow-sm); }
