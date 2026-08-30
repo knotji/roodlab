@@ -45,12 +45,17 @@ import type { ProspectiveRecord } from "@/lib/prospective";
 import type { SystemStatus } from "@/lib/system-status";
 import { liveResultSource } from "@/lib/live-results";
 import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
-import { LotterySelector } from "./lottery-selector";
+import { LotteryPicker } from "./analyze/lottery-picker";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
 import { PairDiagnosticsPanel } from "./pair-diagnostics-panel";
 import { AppSidebar, MobileNavigation } from "./app-shell/navigation";
+import { AnalyzeControls } from "./analyze/analyze-controls";
+import { AnalysisDisclosure } from "./analyze/analysis-disclosure";
+import { CoverageSummary } from "./analyze/coverage-summary";
+import { PairSection } from "./analyze/pair-section";
+import { StandoutHero } from "./analyze/standout-hero";
+import { WinSetCard } from "./analyze/win-set-card";
 import {
-  Activity,
   BarChart3,
   Check,
   ClipboardCheck,
@@ -353,7 +358,7 @@ export default function Dashboard({
         <header className="topbar">
           <div className="topbar-head">
             <div className="eyebrow">LOTTERY ANALYSIS</div>
-            <LotterySelector
+            <LotteryPicker
               catalog={catalog}
               selectedId={selectedId}
               onSelect={selectLottery}
@@ -420,7 +425,6 @@ export default function Dashboard({
             consensus={consensus}
             integrity={integrity}
             algorithmId={algorithmId === "custom" ? "balanced-v1" : algorithmId}
-            setAlgorithm={setAlgorithm}
             dayPattern={dayPattern}
             setDayPattern={setDayPattern}
             onDigit={setDigitDetail}
@@ -432,6 +436,8 @@ export default function Dashboard({
             candidateCount={candidateCount}
             includeDoubles={doubles}
             onProspectiveChange={loadSystemStatus}
+            windowSize={windowSize}
+            setWindow={setWindow}
           />
         )}{" "}
         {analysis && section === "statistics" && (
@@ -539,7 +545,6 @@ function Analyze({
   consensus,
   integrity,
   algorithmId,
-  setAlgorithm,
   dayPattern,
   setDayPattern,
   onDigit,
@@ -551,12 +556,13 @@ function Analyze({
   candidateCount,
   includeDoubles,
   onProspectiveChange,
+  windowSize,
+  setWindow,
 }: {
   analysis: NonNullable<ReturnType<typeof analyzeLottery>>;
   consensus: ConsensusResult | null;
   integrity: DataIntegritySummary;
   algorithmId: string;
-  setAlgorithm: (id: string) => void;
   dayPattern: DayPattern;
   setDayPattern: (day: DayPattern) => void;
   onDigit: (d: DigitSignal) => void;
@@ -568,127 +574,30 @@ function Analyze({
   candidateCount: number;
   includeDoubles: boolean;
   onProspectiveChange: () => void;
+  windowSize: number;
+  setWindow: (value: number) => void;
 }) {
   const enoughData =
     analysis.sampleSize >=
     (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS);
   return (
     <div className="content analyze">
-      <div className="analyze-controls">
-        <label>
-          <span>วิธีวิเคราะห์</span>
-          <select
-            value={algorithmId}
-            onChange={(event) => setAlgorithm(event.target.value)}
-          >
-            {ALGORITHMS.map((algorithm) => (
-              <option key={algorithm.id} value={algorithm.id}>
-                {algorithm.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="day-pattern-control">
-          <span>จับทางตามวัน</span>
-          <div className="day-pattern-options" aria-label="เลือกวันออกรางวัล">
-            {DAY_PATTERN_OPTIONS.map((option) => (
-              <button
-                key={String(option.value)}
-                className={dayPattern === option.value ? "active" : ""}
-                onClick={() => setDayPattern(option.value)}
-                title={option.label}
-              >
-                {option.shortLabel}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-      <p className="day-pattern-summary">
-        {dayPattern === "all" ? (
-          <>ใช้ผลย้อนหลังทุกวัน · เปรียบเทียบรูปแบบ ไม่ใช่ความน่าจะเป็น</>
-        ) : (
-          <>
-            กรองเฉพาะงวด{dayPatternLabel(dayPattern)} · พบ {analysis.sampleSize} งวด
-            {analysis.sampleSize < MIN_DAY_PATTERN_DRAWS
-              ? ` · ต้องมีอย่างน้อย ${MIN_DAY_PATTERN_DRAWS} งวดเพื่อแสดงผล`
-              : " · เป็นสถิติเชิงสำรวจ ไม่ใช่หลักฐานว่าวันมีผลต่อเลข"}
-          </>
-        )}
-      </p>
-      <section className="hero">
-        <div>
-          <div className="section-kicker">เลขเด่น 2 ตัวจากสถิติย้อนหลัง</div>
-          <h1>
-            {enoughData
-              ? analysis.standout.map((item) => item.digit).join(" · ")
-              : "--"}
-          </h1>
-          <p>
-            {!enoughData
-              ? `ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`
-              : `วิเคราะห์จาก ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
-          </p>
-          {enoughData && consensus && (
-            <div className="hero-consensus-inline">
-              <span>ภาพรวมจากหลายวิธี</span>
-              <strong>
-                {consensus.digits
-                  .slice(0, 5)
-                  .map((item) => item.digit)
-                  .join(" · ")}
-              </strong>
-            </div>
-          )}
-          <small
-            className="analysis-integrity"
-            title={`${integrity.partialDraws} งวดข้อมูลไม่ครบ · ${integrity.invalidDraws} งวดถูกตัดออกจากการวิเคราะห์`}
-          >
-            {integrity.status === "complete"
-              ? `ข้อมูลครบ ${integrity.usableDraws}/${integrity.requestedDraws} งวด`
-              : `ข้อมูลใช้วิเคราะห์ได้ ${integrity.usableDraws}/${integrity.requestedDraws} งวด`}
-          </small>
-        </div>
-        <div className="hero-score">
-          <Activity />
-          <span>
-            ความนิ่งข้ามช่วง{" "}
-            <span
-              className="info-tip"
-              title="คะแนนจัดอันดับจากความถี่ แนวโน้ม ตำแหน่ง และช่วงห่าง ไม่ใช่เปอร์เซ็นต์โอกาสออกรางวัล"
-            >
-              <Info />
-            </span>
-          </span>
-          <strong>{consensus?.stabilityScore ?? "--"}{consensus?.stabilityScore !== null && consensus?.stabilityScore !== undefined && <small>%</small>}</strong>
-          <small>
-            {consensus?.stabilityScore === null ? (
-              <>
-                มี {analysis.sampleSize} งวด
-                {dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย {dayPattern === "all" ? "20 งวดเพื่อเทียบช่วง 10/20" : "10 งวดเพื่อเทียบช่วง 5/10"}
-              </>
-            ) : (
-              <>{consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · เทียบช่วง {consensus?.eligibleWindows.join("/")} งวด{dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ไม่ใช่ความน่าจะเป็น</>
-            )}
-          </small>
-        </div>
-      </section>
+      <AnalyzeControls windowSize={windowSize} onWindowChange={setWindow} dayPattern={dayPattern} onDayPatternChange={setDayPattern} sampleSize={analysis.sampleSize} minimumDayDraws={MIN_DAY_PATTERN_DRAWS} />
+      <StandoutHero enoughData={enoughData} digits={analysis.standout.map((item) => item.digit)} context={`วิเคราะห์จาก ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`} insufficientCopy={`ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`} consensusDigits={consensus?.digits.slice(0, 5).map((item) => item.digit) ?? []} integrity={integrity} stabilityScore={consensus?.stabilityScore ?? null} stabilityDetail={consensus?.stabilityScore === null ? `มี ${analysis.sampleSize} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย ${dayPattern === "all" ? "20 งวดเพื่อเทียบช่วง 10/20" : "10 งวดเพื่อเทียบช่วง 5/10"}` : `${consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · เทียบช่วง ${consensus?.eligibleWindows.join("/")} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ไม่ใช่ความน่าจะเป็น`} />
       {enoughData && (
         <>
-          <WinSetCard
+          <WinSetContainer
             digits={analysis.digits}
             history={analysis.history}
             consensus={consensus}
             onDigit={onDigit}
           />
           {consensus && (
-            <details className="analyze-disclosure">
-              <summary>ดูรายละเอียดการสรุปจากหลายวิธี</summary>
+            <AnalysisDisclosure label="ดูรายละเอียดการสรุปจากหลายวิธี">
               <ConsensusCard consensus={consensus} />
-            </details>
+            </AnalysisDisclosure>
           )}
-          <details className="analyze-disclosure prospective-disclosure">
-            <summary>บันทึกหลักฐานก่อนงวดออก</summary>
+          <AnalysisDisclosure label="บันทึกหลักฐานก่อนงวดออก" className="prospective-disclosure">
             <ProspectivePanel
               key={`${lotteryId}:${latestDrawDate ?? "none"}:${dayPattern}`}
               lotteryId={lotteryId}
@@ -700,27 +609,13 @@ function Analyze({
               dayPattern={dayPattern}
               onChange={onProspectiveChange}
             />
-          </details>
+          </AnalysisDisclosure>
         </>
       )}
       {enoughData && (
-        <details className="analyze-disclosure">
-          <summary>สำรวจคู่ที่น่าสนใจบน / ล่าง</summary>
-          <div className="section-kicker pair-section-title">
-            คู่ที่น่าสนใจจากสถิติ
-          </div>
-          <div className="pair-grid">
-            <PairList title="บน" items={analysis.topPairs} onSelect={onPair} />
-            <PairList title="ล่าง" items={analysis.bottomPairs} onSelect={onPair} />
-          </div>
-          <p className="pair-method-note">
-            จัดอันดับจากความแข็งแรงของเลขและความเหมาะสมตามตำแหน่ง
-            เป็นการสำรวจรูปแบบย้อนหลัง ไม่ใช่การทำนายผล
-          </p>
-        </details>
+        <AnalysisDisclosure label="สำรวจคู่ที่น่าสนใจบน / ล่าง"><PairSection top={analysis.topPairs} bottom={analysis.bottomPairs} onSelect={onPair} /></AnalysisDisclosure>
       )}
-      {enoughData && <details className="analyze-disclosure">
-        <summary>ดูเหตุผลและรายละเอียดคะแนน</summary>
+      {enoughData && <AnalysisDisclosure label="ดูเหตุผลและรายละเอียดคะแนน">
         <section className="why">
         <div className="section-kicker">ทำไมเลขนี้โดดเด่น</div>
         <div className="reason-grid">
@@ -759,7 +654,7 @@ function Analyze({
           </div>
         )}
         </section>
-      </details>}
+      </AnalysisDisclosure>}
     </div>
   );
 }
@@ -911,7 +806,7 @@ function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
     </section>
   );
 }
-function WinSetCard({
+function WinSetContainer({
   digits,
   history,
   consensus,
@@ -1055,7 +950,7 @@ function WinSetCard({
     }
   }
   return (
-    <section className="win-set-card">
+    <WinSetCard>
       <div className="win-set-head">
         <div>
           <div className="section-kicker">ชุดเลขวินจากสถิติ</div>
@@ -1181,16 +1076,7 @@ function WinSetCard({
           </button>
         ))}
       </div>
-      <div className="win-coverage" title="สรุปข้อมูล 30 งวดชุดเดียวกับที่ใช้คัดเลข ไม่ใช่การทดสอบย้อนหลังหรือโอกาสงวดหน้า">
-        <div>
-          <span>ความครอบคลุมของข้อมูลที่ใช้คัด</span>
-          <strong>{coverage.rate === null ? "--" : `${Math.round(coverage.rate * 100)}%`}</strong>
-          <small>{coverage.hits}/{coverage.total} งวด · สถิติเชิงพรรณนา</small>
-        </div>
-        {winSize === 6 && coverage.randomBaseline !== null && (
-          <p>ใช้ข้อมูลชุดเดียวกับที่คัด · ไม่ใช่ผล backtest หรือโอกาสงวดหน้า</p>
-        )}
-      </div>
+      <CoverageSummary rate={coverage.rate} hits={coverage.hits} total={coverage.total} showMethodNote={winSize === 6 && coverage.randomBaseline !== null} />
       {winSize === 6 && focusMode === "diversified" && (
         <section className="diversified-win-summary">
           <div><small>หลัก 3 · Consensus</small><strong>{diversified.main.map((digit) => digit.digit).join(" · ")}</strong></div>
@@ -1353,29 +1239,7 @@ function WinSetCard({
           </button>
         </div>
       </div>
-    </section>
-  );
-}
-function PairList({
-  title,
-  items,
-  onSelect,
-}: {
-  title: string;
-  items: PairSignal[];
-  onSelect: (p: PairSignal) => void;
-}) {
-  return (
-    <section className="pair-card">
-      <div className="section-kicker">{title}</div>
-      {items.map((p, i) => (
-        <button className="pair-row" key={p.pair} onClick={() => onSelect(p)}>
-          <span className="pair-rank">{String(i + 1).padStart(2, "0")}</span>
-          <strong>{p.pair}</strong>
-          <span>อันดับจากข้อมูล {p.score.toFixed(1)}</span>
-        </button>
-      ))}
-    </section>
+    </WinSetCard>
   );
 }
 function prospectiveHitSummary(record: ProspectiveRecord) {

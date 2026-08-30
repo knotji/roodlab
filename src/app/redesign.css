@@ -60,6 +60,10 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .topbar-head { min-width: 0; flex: 1; }
 .eyebrow, .section-kicker { color: var(--primary); font-size: 10px; letter-spacing: .15em; }
 .lottery-select { max-width: min(100%, 520px); min-height: 44px; font-size: clamp(22px, 2.2vw, 29px); font-weight: 620; }
+.lottery-picker-mobile { display: none; }
+.lottery-picker-sheet [cmdk-list] { max-height: min(58dvh, 560px); overflow-y: auto; margin-top: 12px; }
+.lottery-picker-sheet .command-search { margin: 14px 0 8px; min-height: 44px; }
+.lottery-picker-sheet .lottery-option { min-height: 52px; }
 .lottery-select svg { flex: 0 0 auto; }
 .meta { flex-wrap: wrap; font-size: 10px; }
 .storage-badge { flex: 0 0 auto; }
@@ -75,14 +79,19 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .section-head p { max-width: 620px; font-size: 13px; }
 
 /* Analyze: summary first, controls quiet, technical details disclosed. */
-.analyze-controls { align-items: end; justify-content: flex-end; gap: 16px; margin-bottom: 6px; }
-.analyze-controls > label { display: none; }
-.day-pattern-control { width: min(100%, 560px); }
-.day-pattern-control > span { color: var(--muted-foreground); font-size: 10px; }
+.analyze-control-panel { display: grid; grid-template-columns: auto minmax(320px, 1fr); align-items: end; gap: 14px 28px; margin-bottom: 18px; }
+.analyze-control-panel > div { display: grid; gap: 6px; }
+.analyze-control-panel > div > span { color: var(--muted-foreground); font-size: 10px; }
+.analyze-control-panel > p { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; margin: 0; color: var(--muted-foreground); font-size: 10px; }
+.analyze-control-panel > p small { font-size: inherit; }
+.window-selector { display: flex; min-height: 44px; padding: 3px; border-radius: 11px; background: #e9eae6; overflow-x: auto; scrollbar-width: none; }
+.window-selector::-webkit-scrollbar { display: none; }
+.window-selector button { min-width: 56px; min-height: 38px; border-radius: 8px; color: var(--muted-foreground); }
+.window-selector button span { margin-left: 3px; font-size: 9px; }
+.window-selector button.active { background: var(--card); color: var(--foreground); box-shadow: var(--shadow-sm); }
 .day-pattern-options { min-height: 44px; padding: 3px; border-radius: 11px; background: #e9eae6; overflow-x: auto; scrollbar-width: none; }
 .day-pattern-options::-webkit-scrollbar { display: none; }
 .day-pattern-options button { min-width: 44px; min-height: 38px; border-radius: 8px; white-space: nowrap; }
-.day-pattern-summary { margin: 0 0 18px; text-align: right; color: var(--muted-foreground); font-size: 10px; }
 .hero { position: relative; min-height: 340px; padding: clamp(32px, 6vw, 72px); border-color: var(--border); border-radius: var(--radius-xl); background: var(--card); box-shadow: var(--shadow-sm); }
 .hero > div:first-child { min-width: 0; }
 .hero h1 { margin: 20px 0 16px; font-size: clamp(82px, 12vw, 142px); font-weight: 570; font-variant-numeric: tabular-nums; line-height: .82; letter-spacing: -.065em; }
@@ -150,6 +159,8 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .topbar-head { flex-basis: 100%; }
   .eyebrow { margin-bottom: 3px; }
   .lottery-select { width: 100%; justify-content: space-between; font-size: 22px; }
+  .lottery-picker-desktop { display: none; }
+  .lottery-picker-mobile { display: block; }
   .lottery-header-meta { gap: 5px; }
   .storage-badge { display: none; }
   .source-result-link { flex: 1; justify-content: center; }
@@ -157,9 +168,9 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .sync { width: 44px; justify-content: center; padding: 0; font-size: 0; }
   .sync svg { width: 17px; }
   .content { padding: 24px 0; }
-  .analyze-controls { justify-content: stretch; }
-  .day-pattern-control { width: 100%; }
-  .day-pattern-summary { text-align: left; line-height: 1.6; }
+  .analyze-control-panel { grid-template-columns: 1fr; gap: 12px; }
+  .analyze-control-panel > p { grid-column: auto; flex-direction: column; gap: 0; line-height: 1.55; }
+  .window-selector button { flex: 1 0 auto; }
   .hero { min-height: 280px; padding: 30px 26px; }
   .hero h1 { font-size: clamp(72px, 25vw, 104px); margin-block: 22px 18px; white-space: nowrap; }
   .hero-score { display: none; }

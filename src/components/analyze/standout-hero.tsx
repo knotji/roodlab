@@ -1,0 +1,7 @@
+import { Activity, Info } from "lucide-react";
+import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
+import { IntegritySummary } from "./integrity-summary";
+
+export function StandoutHero({ enoughData, digits, context, insufficientCopy, consensusDigits, integrity, stabilityScore, stabilityDetail }: { enoughData: boolean; digits: string[]; context: string; insufficientCopy: string; consensusDigits: string[]; integrity: DataIntegritySummary; stabilityScore: number | null; stabilityDetail: string }) {
+  return <section className="hero" aria-labelledby="standout-heading"><div><div className="section-kicker" id="standout-heading">เลขที่โดดเด่นจากสถิติย้อนหลัง</div><h1 aria-label={enoughData ? `เลขเด่น ${digits.join(" และ ")}` : "ข้อมูลยังไม่เพียงพอ"}>{enoughData ? digits.join(" · ") : "--"}</h1><p>{enoughData ? context : insufficientCopy}</p>{enoughData && consensusDigits.length > 0 && <div className="hero-consensus-inline"><span>ภาพรวมจากหลายวิธี</span><strong>{consensusDigits.join(" · ")}</strong></div>}<IntegritySummary integrity={integrity} /></div><div className="hero-score"><Activity /><span>ความนิ่งข้ามช่วง <span className="info-tip" title="คะแนนจัดอันดับจากรูปแบบย้อนหลัง ไม่ใช่เปอร์เซ็นต์โอกาสออกรางวัล"><Info /></span></span><strong>{stabilityScore ?? "--"}{stabilityScore !== null && <small>%</small>}</strong><small>{stabilityDetail}</small></div></section>;
+}
