@@ -55,6 +55,7 @@ import {
   Copy,
   Database,
   Download,
+  ExternalLink,
   History,
   Info,
   Minus,
@@ -322,7 +323,8 @@ export default function Dashboard({
       setCatalogSync(false);
     }
   }
-  const latest = draws[0]?.drawDate,
+  const selectedLottery = catalog.find((item) => item.id === selectedId),
+    latest = draws[0]?.drawDate,
     filtered = draws.filter((d) =>
       `${d.drawDate} ${d.top3} ${d.top2} ${d.bottom2}`.includes(search),
     );
@@ -394,6 +396,19 @@ export default function Dashboard({
             <span>{systemStatus?.connected ? "Neon" : "JSON fallback"}</span>
             <i />
           </div>
+          {selectedLottery?.sourceUrl && (
+            <a
+              className="source-result-link"
+              href={selectedLottery.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`ดูผลสด ${selectedLottery.name} จาก AllHuay`}
+              title={`ดูผลสด ${selectedLottery.name} จาก AllHuay`}
+            >
+              <ExternalLink />
+              ดูผลสด
+            </a>
+          )}
           <button
             className={`sync${syncNeedsUpdate(freshness, syncNotice) ? " sync-pending" : ""}`}
             disabled={syncing || !selectedId}
