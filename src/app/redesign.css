@@ -11,18 +11,30 @@
   --primary: #286554;
   --primary-foreground: #ffffff;
   --secondary: #e8f0ec;
+  --secondary-foreground: #204f42;
   --destructive: #a64b42;
+  --destructive-foreground: #ffffff;
   --success: #35735f;
   --warning: #9a741f;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
+  --input: #dfe3de;
+  --popover: #fffefa;
+  --popover-foreground: #17201e;
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --shadow-sm: 0 1px 2px rgb(19 31 27 / 5%);
   --shadow-md: 0 10px 30px rgb(19 31 27 / 7%);
   --shadow-lg: 0 24px 70px rgb(19 31 27 / 16%);
   --content-width: 1120px;
   --sidebar-width: 248px;
+  --sidebar: #18211f;
+  --sidebar-foreground: #e8efeb;
+  --sidebar-muted-foreground: #94a29d;
+  --sidebar-border: #2c3a36;
+  --sidebar-accent: #293a35;
+  --sidebar-accent-foreground: #ffffff;
   --ring: #286554;
   --radius-control: var(--radius-sm);
   --radius-card: var(--radius-lg);
@@ -42,7 +54,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 button:disabled { cursor: not-allowed; opacity: .55; }
 .app-shell { min-height: 100dvh; }
 
-.sidebar { width: var(--sidebar-width); padding: 24px 18px; background: #18211f; border-right: 1px solid #26322f; }
+.sidebar { width: var(--sidebar-width); padding: 24px 18px; background: var(--sidebar); border-right: 1px solid var(--sidebar-border); color: var(--sidebar-foreground); }
 .brand { min-height: 48px; margin: 0 6px 38px; gap: 11px; }
 .brand > span { width: 42px; height: 42px; border-radius: 13px; background: #22302c; border-color: #40564f; font-weight: 650; }
 .brand strong { font-size: 15px; font-weight: 650; letter-spacing: .01em; }
@@ -84,14 +96,14 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .analyze-control-panel > div > span { color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; margin: 0; color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p small { font-size: inherit; }
-.window-selector { display: flex; min-height: 44px; padding: 3px; border-radius: 11px; background: #e9eae6; overflow-x: auto; scrollbar-width: none; }
+.window-selector { display: flex; min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted); overflow-x: auto; scrollbar-width: none; }
 .window-selector::-webkit-scrollbar { display: none; }
-.window-selector button { min-width: 56px; min-height: 38px; border-radius: 8px; color: var(--muted-foreground); }
+.window-selector button { min-width: 56px; min-height: 36px; border-radius: var(--radius-md); color: var(--muted-foreground); }
 .window-selector button span { margin-left: 3px; font-size: 9px; }
-.window-selector button.active { background: var(--card); color: var(--foreground); box-shadow: var(--shadow-sm); }
-.day-pattern-options { min-height: 44px; padding: 3px; border-radius: 11px; background: #e9eae6; overflow-x: auto; scrollbar-width: none; }
+.window-selector button.active { background: var(--background); color: var(--foreground); box-shadow: var(--shadow-sm); }
+.day-pattern-options { min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted); overflow-x: auto; scrollbar-width: none; }
 .day-pattern-options::-webkit-scrollbar { display: none; }
-.day-pattern-options button { min-width: 44px; min-height: 38px; border-radius: 8px; white-space: nowrap; }
+.day-pattern-options button { min-width: 44px; min-height: 36px; border-radius: var(--radius-md); white-space: nowrap; }
 .hero { position: relative; min-height: 340px; padding: clamp(32px, 6vw, 72px); border-color: var(--border); border-radius: var(--radius-xl); background: var(--card); box-shadow: var(--shadow-sm); }
 .hero > div:first-child { min-width: 0; }
 .hero h1 { margin: 20px 0 16px; font-size: clamp(82px, 12vw, 142px); font-weight: 570; font-variant-numeric: tabular-nums; line-height: .82; letter-spacing: -.065em; }

@@ -3,15 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva("inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-control)] text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0", {
+const buttonVariants = cva("inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors outline-none focus-visible:border-[var(--ring)] focus-visible:ring-[3px] focus-visible:ring-[color-mix(in_srgb,var(--ring)_35%,transparent)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0", {
   variants: {
     variant: {
-      default: "bg-[var(--accent)] text-white hover:bg-[var(--accent-strong)]",
-      outline: "border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--accent-soft)]",
-      ghost: "text-[var(--ink)] hover:bg-[var(--accent-soft)]",
-      plain: "",
+      default: "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs hover:bg-[color-mix(in_srgb,var(--primary)_90%,black)]",
+      outline: "border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] shadow-xs hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]",
+      ghost: "text-[var(--foreground)] hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]",
     },
-    size: { default: "h-9 px-4 py-2", sm: "h-8 px-3 text-xs", icon: "size-9", auto: "" },
+    size: { default: "h-9 px-4 py-2", sm: "h-8 rounded-md px-3 text-xs", icon: "size-9", auto: "" },
   },
   defaultVariants: { variant: "default", size: "default" },
 });
