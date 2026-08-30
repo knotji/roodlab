@@ -1197,3 +1197,10 @@
 .advanced-research[open] summary {
   color: var(--ink);
 }
+
+:root {
+  --accent-strong: #28594c;
+  --ring: #326b5b;
+  --radius-control: 9px;
+  --radius-card: 18px;
+}
