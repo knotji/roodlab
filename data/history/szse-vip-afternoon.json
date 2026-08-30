@@ -1,9 +1,31 @@
 {
   "lotteryId": "szse-vip-afternoon",
-  "syncedAt": "2026-08-27T07:18:13.640Z",
-  "lastSuccessfulSyncAt": "2026-08-27T07:18:13.640Z",
+  "syncedAt": "2026-08-29T06:48:06.175Z",
+  "lastSuccessfulSyncAt": "2026-08-29T06:48:06.175Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "szse-vip-afternoon-2026-08-28",
+      "lotteryId": "szse-vip-afternoon",
+      "drawDate": "2026-08-28",
+      "top3": "906",
+      "top2": "06",
+      "bottom2": "61",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
+      "source": "current-result",
+      "completeness": "complete"
+    },
+    {
+      "id": "szse-vip-afternoon-2026-08-27",
+      "lotteryId": "szse-vip-afternoon",
+      "drawDate": "2026-08-27",
+      "top3": "020",
+      "top2": "20",
+      "bottom2": "29",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
     {
       "id": "szse-vip-afternoon-2026-08-26",
       "lotteryId": "szse-vip-afternoon",
@@ -12,7 +34,7 @@
       "top2": "48",
       "bottom2": "23",
       "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -253,7 +275,7 @@
       "top3": "526",
       "top2": "26",
       "bottom2": "20",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -264,7 +286,7 @@
       "top3": "758",
       "top2": "58",
       "bottom2": "04",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -517,7 +539,7 @@
       "top3": "521",
       "top2": "21",
       "bottom2": "91",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +550,7 @@
       "top3": "823",
       "top2": "23",
       "bottom2": "09",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -781,7 +803,7 @@
       "top3": "482",
       "top2": "82",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +814,7 @@
       "top3": "478",
       "top2": "78",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1045,7 +1067,7 @@
       "top3": "022",
       "top2": "22",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,7 +1078,7 @@
       "top3": "131",
       "top2": "31",
       "bottom2": "58",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1081,40 +1103,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "szse-vip-afternoon-2026-05-20",
-      "lotteryId": "szse-vip-afternoon",
-      "drawDate": "2026-05-20",
-      "top3": "949",
-      "top2": "49",
-      "bottom2": "55",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "szse-vip-afternoon-2026-05-19",
-      "lotteryId": "szse-vip-afternoon",
-      "drawDate": "2026-05-19",
-      "top3": "313",
-      "top2": "13",
-      "bottom2": "85",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-vip-afternoon/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "1b2f87bedc79c2",
+  "historyVersion": "09489cb0d9bbeb",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
+  "latestCompleteDrawDate": "2026-08-28",
+  "currentSourceResultDate": "2026-08-28",
   "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T07:18:13.639Z",
+    "currentDate": "2026-08-29",
+    "sourceLatestDrawDate": "2026-08-28",
+    "cachedLatestDrawDate": "2026-08-28",
+    "checkedAt": "2026-08-29T06:48:06.174Z",
     "status": "up-to-date"
   }
 }

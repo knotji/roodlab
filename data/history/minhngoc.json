@@ -1,9 +1,42 @@
 {
   "lotteryId": "minhngoc",
-  "syncedAt": "2026-08-27T10:50:44.912Z",
-  "lastSuccessfulSyncAt": "2026-08-27T10:50:44.912Z",
+  "syncedAt": "2026-08-30T10:47:09.397Z",
+  "lastSuccessfulSyncAt": "2026-08-30T10:47:09.397Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "minhngoc-2026-08-29",
+      "lotteryId": "minhngoc",
+      "drawDate": "2026-08-29",
+      "top3": "737",
+      "top2": "37",
+      "bottom2": "83",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "source": "current-result",
+      "completeness": "complete"
+    },
+    {
+      "id": "minhngoc-2026-08-28",
+      "lotteryId": "minhngoc",
+      "drawDate": "2026-08-28",
+      "top3": "168",
+      "top2": "68",
+      "bottom2": "20",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
+    {
+      "id": "minhngoc-2026-08-27",
+      "lotteryId": "minhngoc",
+      "drawDate": "2026-08-27",
+      "top3": "645",
+      "top2": "45",
+      "bottom2": "99",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
     {
       "id": "minhngoc-2026-08-26",
       "lotteryId": "minhngoc",
@@ -12,7 +45,7 @@
       "top2": "61",
       "bottom2": "70",
       "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -242,7 +275,7 @@
       "top3": "760",
       "top2": "60",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -253,7 +286,7 @@
       "top3": "125",
       "top2": "25",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -264,7 +297,7 @@
       "top3": "247",
       "top2": "47",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -506,7 +539,7 @@
       "top3": "494",
       "top2": "94",
       "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -517,7 +550,7 @@
       "top3": "401",
       "top2": "01",
       "bottom2": "61",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +561,7 @@
       "top3": "767",
       "top2": "67",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -770,7 +803,7 @@
       "top3": "032",
       "top2": "32",
       "bottom2": "75",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -781,7 +814,7 @@
       "top3": "203",
       "top2": "03",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +825,7 @@
       "top3": "384",
       "top2": "84",
       "bottom2": "29",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1034,7 +1067,7 @@
       "top3": "281",
       "top2": "81",
       "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1045,7 +1078,7 @@
       "top3": "104",
       "top2": "04",
       "bottom2": "70",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,7 +1089,7 @@
       "top3": "021",
       "top2": "21",
       "bottom2": "05",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1070,51 +1103,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "minhngoc-2026-05-21",
-      "lotteryId": "minhngoc",
-      "drawDate": "2026-05-21",
-      "top3": "685",
-      "top2": "85",
-      "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "minhngoc-2026-05-20",
-      "lotteryId": "minhngoc",
-      "drawDate": "2026-05-20",
-      "top3": "568",
-      "top2": "68",
-      "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "minhngoc-2026-05-19",
-      "lotteryId": "minhngoc",
-      "drawDate": "2026-05-19",
-      "top3": "754",
-      "top2": "54",
-      "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/minhngoc/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "1e6410e95dbcaa",
+  "historyVersion": "040348fe2996e4",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
+  "latestCompleteDrawDate": "2026-08-29",
+  "currentSourceResultDate": "2026-08-29",
   "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T10:50:44.911Z",
+    "currentDate": "2026-08-30",
+    "sourceLatestDrawDate": "2026-08-29",
+    "cachedLatestDrawDate": "2026-08-29",
+    "checkedAt": "2026-08-30T10:47:09.396Z",
     "status": "up-to-date"
   }
 }

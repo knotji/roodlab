@@ -1,9 +1,20 @@
 {
   "lotteryId": "sgx-vip",
-  "syncedAt": "2026-08-27T09:31:58.767Z",
-  "lastSuccessfulSyncAt": "2026-08-27T09:31:58.767Z",
+  "syncedAt": "2026-08-28T08:51:55.228Z",
+  "lastSuccessfulSyncAt": "2026-08-28T08:51:55.228Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "sgx-vip-2026-08-27",
+      "lotteryId": "sgx-vip",
+      "drawDate": "2026-08-27",
+      "top3": "280",
+      "top2": "80",
+      "bottom2": "93",
+      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "sgx-vip-2026-08-26",
       "lotteryId": "sgx-vip",
@@ -12,7 +23,7 @@
       "top2": "09",
       "bottom2": "45",
       "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -264,7 +275,7 @@
       "top3": "914",
       "top2": "14",
       "bottom2": "77",
-      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip",
+      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +539,7 @@
       "top3": "567",
       "top2": "67",
       "bottom2": "83",
-      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +803,7 @@
       "top3": "319",
       "top2": "19",
       "bottom2": "28",
-      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,7 +1067,7 @@
       "top3": "017",
       "top2": "17",
       "bottom2": "97",
-      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1092,29 +1103,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "sgx-vip-2026-05-19",
-      "lotteryId": "sgx-vip",
-      "drawDate": "2026-05-19",
-      "top3": "658",
-      "top2": "58",
-      "bottom2": "95",
-      "sourceUrl": "https://www.allhuay.com/lotto/sgx-vip/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "13e50f2fd31fbd",
+  "historyVersion": "04d5d97c826189",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
   "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T09:31:58.766Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T08:51:55.227Z",
     "status": "up-to-date"
   }
 }

@@ -1,8 +1,31 @@
 {
   "lotteryId": "nikkei-morning",
-  "syncedAt": "2026-08-27T01:35:59.182Z",
+  "syncedAt": "2026-08-28T01:38:56.030Z",
+  "lastSuccessfulSyncAt": "2026-08-28T01:38:56.030Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "nikkei-morning-2026-08-27",
+      "lotteryId": "nikkei-morning",
+      "drawDate": "2026-08-27",
+      "top3": "419",
+      "top2": "19",
+      "bottom2": "97",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "current-result",
+      "completeness": "complete"
+    },
+    {
+      "id": "nikkei-morning-2026-08-26",
+      "lotteryId": "nikkei-morning",
+      "drawDate": "2026-08-26",
+      "top3": "755",
+      "top2": "55",
+      "bottom2": "12",
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
     {
       "id": "nikkei-morning-2026-08-25",
       "lotteryId": "nikkei-morning",
@@ -10,7 +33,9 @@
       "top3": "868",
       "top2": "68",
       "bottom2": "59",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-24",
@@ -19,7 +44,9 @@
       "top3": "871",
       "top2": "71",
       "bottom2": "65",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-21",
@@ -28,7 +55,9 @@
       "top3": "845",
       "top2": "45",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-20",
@@ -37,7 +66,9 @@
       "top3": "249",
       "top2": "49",
       "bottom2": "07",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-19",
@@ -46,7 +77,9 @@
       "top3": "425",
       "top2": "25",
       "bottom2": "48",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-18",
@@ -55,7 +88,9 @@
       "top3": "854",
       "top2": "54",
       "bottom2": "71",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-17",
@@ -64,7 +99,9 @@
       "top3": "144",
       "top2": "44",
       "bottom2": "64",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-14",
@@ -73,7 +110,9 @@
       "top3": "901",
       "top2": "01",
       "bottom2": "42",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-13",
@@ -82,7 +121,9 @@
       "top3": "992",
       "top2": "92",
       "bottom2": "86",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-12",
@@ -91,13 +132,17 @@
       "top3": "018",
       "top2": "18",
       "bottom2": "96",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-11",
       "lotteryId": "nikkei-morning",
       "drawDate": "2026-08-11",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "nikkei-morning-2026-08-10",
@@ -106,7 +151,9 @@
       "top3": "148",
       "top2": "48",
       "bottom2": "77",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-07",
@@ -115,7 +162,9 @@
       "top3": "916",
       "top2": "16",
       "bottom2": "10",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-06",
@@ -124,7 +173,9 @@
       "top3": "667",
       "top2": "67",
       "bottom2": "77",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-05",
@@ -133,7 +184,9 @@
       "top3": "100",
       "top2": "00",
       "bottom2": "47",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-04",
@@ -142,7 +195,9 @@
       "top3": "335",
       "top2": "35",
       "bottom2": "55",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-08-03",
@@ -151,7 +206,9 @@
       "top3": "051",
       "top2": "51",
       "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-31",
@@ -160,7 +217,9 @@
       "top3": "225",
       "top2": "25",
       "bottom2": "82",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-30",
@@ -169,7 +228,9 @@
       "top3": "841",
       "top2": "41",
       "bottom2": "22",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-29",
@@ -178,7 +239,9 @@
       "top3": "986",
       "top2": "86",
       "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-28",
@@ -187,7 +250,9 @@
       "top3": "646",
       "top2": "46",
       "bottom2": "73",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-27",
@@ -196,7 +261,9 @@
       "top3": "401",
       "top2": "01",
       "bottom2": "86",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-24",
@@ -205,7 +272,9 @@
       "top3": "875",
       "top2": "75",
       "bottom2": "85",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-23",
@@ -214,7 +283,9 @@
       "top3": "444",
       "top2": "44",
       "bottom2": "84",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-22",
@@ -223,7 +294,9 @@
       "top3": "112",
       "top2": "12",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-21",
@@ -232,13 +305,17 @@
       "top3": "568",
       "top2": "68",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-20",
       "lotteryId": "nikkei-morning",
       "drawDate": "2026-07-20",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "nikkei-morning-2026-07-17",
@@ -247,7 +324,9 @@
       "top3": "648",
       "top2": "48",
       "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-16",
@@ -256,7 +335,9 @@
       "top3": "679",
       "top2": "79",
       "bottom2": "72",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-15",
@@ -265,7 +346,9 @@
       "top3": "391",
       "top2": "91",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-14",
@@ -274,7 +357,9 @@
       "top3": "836",
       "top2": "36",
       "bottom2": "37",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-13",
@@ -283,7 +368,9 @@
       "top3": "686",
       "top2": "86",
       "bottom2": "87",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-10",
@@ -292,7 +379,9 @@
       "top3": "376",
       "top2": "76",
       "bottom2": "91",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-09",
@@ -301,7 +390,9 @@
       "top3": "055",
       "top2": "55",
       "bottom2": "50",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-08",
@@ -310,7 +401,9 @@
       "top3": "864",
       "top2": "64",
       "bottom2": "32",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-07",
@@ -319,7 +412,9 @@
       "top3": "859",
       "top2": "59",
       "bottom2": "10",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-06",
@@ -328,7 +423,9 @@
       "top3": "914",
       "top2": "14",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-03",
@@ -337,7 +434,9 @@
       "top3": "368",
       "top2": "68",
       "bottom2": "53",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-02",
@@ -346,7 +445,9 @@
       "top3": "175",
       "top2": "75",
       "bottom2": "21",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-07-01",
@@ -355,7 +456,9 @@
       "top3": "666",
       "top2": "66",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-30",
@@ -364,7 +467,9 @@
       "top3": "682",
       "top2": "82",
       "bottom2": "71",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-29",
@@ -373,7 +478,9 @@
       "top3": "943",
       "top2": "43",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-26",
@@ -382,7 +489,9 @@
       "top3": "272",
       "top2": "72",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-25",
@@ -391,7 +500,9 @@
       "top3": "488",
       "top2": "88",
       "bottom2": "91",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-24",
@@ -400,7 +511,9 @@
       "top3": "379",
       "top2": "79",
       "bottom2": "59",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-23",
@@ -409,7 +522,9 @@
       "top3": "167",
       "top2": "67",
       "bottom2": "29",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-22",
@@ -418,7 +533,9 @@
       "top3": "847",
       "top2": "47",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-19",
@@ -427,7 +544,9 @@
       "top3": "467",
       "top2": "67",
       "bottom2": "18",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-18",
@@ -436,7 +555,9 @@
       "top3": "230",
       "top2": "30",
       "bottom2": "05",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-17",
@@ -445,7 +566,9 @@
       "top3": "608",
       "top2": "08",
       "bottom2": "58",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-16",
@@ -454,7 +577,9 @@
       "top3": "442",
       "top2": "42",
       "bottom2": "08",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-15",
@@ -463,7 +588,9 @@
       "top3": "364",
       "top2": "64",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-12",
@@ -472,7 +599,9 @@
       "top3": "295",
       "top2": "95",
       "bottom2": "68",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-11",
@@ -481,7 +610,9 @@
       "top3": "952",
       "top2": "52",
       "bottom2": "75",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-10",
@@ -490,7 +621,9 @@
       "top3": "139",
       "top2": "39",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-09",
@@ -499,7 +632,9 @@
       "top3": "422",
       "top2": "22",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-08",
@@ -508,7 +643,9 @@
       "top3": "040",
       "top2": "40",
       "bottom2": "72",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-05",
@@ -517,7 +654,9 @@
       "top3": "147",
       "top2": "47",
       "bottom2": "22",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-04",
@@ -526,7 +665,9 @@
       "top3": "183",
       "top2": "83",
       "bottom2": "30",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-03",
@@ -535,7 +676,9 @@
       "top3": "245",
       "top2": "45",
       "bottom2": "21",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-02",
@@ -544,7 +687,9 @@
       "top3": "349",
       "top2": "49",
       "bottom2": "84",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-06-01",
@@ -553,7 +698,9 @@
       "top3": "824",
       "top2": "24",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-29",
@@ -562,7 +709,9 @@
       "top3": "657",
       "top2": "57",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-28",
@@ -571,7 +720,9 @@
       "top3": "978",
       "top2": "78",
       "bottom2": "37",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-27",
@@ -580,7 +731,9 @@
       "top3": "662",
       "top2": "62",
       "bottom2": "53",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-26",
@@ -589,7 +742,9 @@
       "top3": "764",
       "top2": "64",
       "bottom2": "55",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-25",
@@ -598,7 +753,9 @@
       "top3": "281",
       "top2": "81",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-22",
@@ -607,7 +764,9 @@
       "top3": "461",
       "top2": "61",
       "bottom2": "47",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-21",
@@ -616,7 +775,9 @@
       "top3": "534",
       "top2": "34",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-20",
@@ -625,7 +786,9 @@
       "top3": "416",
       "top2": "16",
       "bottom2": "43",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-19",
@@ -634,7 +797,9 @@
       "top3": "976",
       "top2": "76",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-18",
@@ -643,7 +808,9 @@
       "top3": "309",
       "top2": "09",
       "bottom2": "20",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-15",
@@ -652,7 +819,9 @@
       "top3": "981",
       "top2": "81",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-14",
@@ -661,7 +830,9 @@
       "top3": "887",
       "top2": "87",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-13",
@@ -670,7 +841,9 @@
       "top3": "020",
       "top2": "20",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-12",
@@ -679,7 +852,9 @@
       "top3": "544",
       "top2": "44",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-11",
@@ -688,7 +863,9 @@
       "top3": "684",
       "top2": "84",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-08",
@@ -697,7 +874,9 @@
       "top3": "412",
       "top2": "12",
       "bottom2": "72",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-07",
@@ -706,7 +885,9 @@
       "top3": "587",
       "top2": "87",
       "bottom2": "75",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-05-01",
@@ -715,7 +896,9 @@
       "top3": "604",
       "top2": "04",
       "bottom2": "12",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-30",
@@ -724,7 +907,9 @@
       "top3": "462",
       "top2": "62",
       "bottom2": "84",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-28",
@@ -733,7 +918,9 @@
       "top3": "821",
       "top2": "21",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-27",
@@ -742,7 +929,9 @@
       "top3": "437",
       "top2": "37",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-24",
@@ -751,7 +940,9 @@
       "top3": "340",
       "top2": "40",
       "bottom2": "17",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-23",
@@ -760,7 +951,9 @@
       "top3": "211",
       "top2": "11",
       "bottom2": "75",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-22",
@@ -769,7 +962,9 @@
       "top3": "356",
       "top2": "56",
       "bottom2": "39",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-20",
@@ -778,7 +973,9 @@
       "top3": "545",
       "top2": "45",
       "bottom2": "55",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-17",
@@ -787,7 +984,9 @@
       "top3": "087",
       "top2": "87",
       "bottom2": "47",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-16",
@@ -796,7 +995,9 @@
       "top3": "959",
       "top2": "59",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-15",
@@ -805,7 +1006,9 @@
       "top3": "284",
       "top2": "84",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-14",
@@ -814,7 +1017,9 @@
       "top3": "902",
       "top2": "02",
       "bottom2": "25",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-13",
@@ -823,7 +1028,9 @@
       "top3": "740",
       "top2": "40",
       "bottom2": "71",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-10",
@@ -832,7 +1039,9 @@
       "top3": "895",
       "top2": "95",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-09",
@@ -841,7 +1050,9 @@
       "top3": "718",
       "top2": "18",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-08",
@@ -850,7 +1061,9 @@
       "top3": "883",
       "top2": "83",
       "bottom2": "27",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-07",
@@ -859,7 +1072,9 @@
       "top3": "341",
       "top2": "41",
       "bottom2": "27",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-06",
@@ -868,7 +1083,9 @@
       "top3": "164",
       "top2": "64",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "nikkei-morning-2026-04-03",
@@ -877,25 +1094,21 @@
       "top3": "862",
       "top2": "62",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5"
-    },
-    {
-      "id": "nikkei-morning-2026-04-02",
-      "lotteryId": "nikkei-morning",
-      "drawDate": "2026-04-02",
-      "top3": "194",
-      "top2": "94",
-      "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5"
-    },
-    {
-      "id": "nikkei-morning-2026-04-01",
-      "lotteryId": "nikkei-morning",
-      "drawDate": "2026-04-01",
-      "top3": "833",
-      "top2": "33",
-      "bottom2": "61",
-      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/nikkei-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     }
-  ]
+  ],
+  "historyVersion": "1ca6744faad6ea",
+  "drawCount": 100,
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "updated",
+  "freshness": {
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T01:38:56.030Z",
+    "status": "up-to-date"
+  }
 }

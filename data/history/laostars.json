@@ -1,9 +1,20 @@
 {
   "lotteryId": "laostars",
-  "syncedAt": "2026-08-27T08:27:41.767Z",
-  "lastSuccessfulSyncAt": "2026-08-27T08:27:41.767Z",
+  "syncedAt": "2026-08-28T07:35:31.867Z",
+  "lastSuccessfulSyncAt": "2026-08-28T07:35:31.867Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "laostars-2026-08-27",
+      "lotteryId": "laostars",
+      "drawDate": "2026-08-27",
+      "top3": "085",
+      "top2": "85",
+      "bottom2": "31",
+      "sourceUrl": "https://www.allhuay.com/lotto/laostars",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "laostars-2026-08-26",
       "lotteryId": "laostars",
@@ -12,7 +23,7 @@
       "top2": "71",
       "bottom2": "36",
       "sourceUrl": "https://www.allhuay.com/lotto/laostars",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -264,7 +275,7 @@
       "top3": "858",
       "top2": "58",
       "bottom2": "98",
-      "sourceUrl": "https://www.allhuay.com/lotto/laostars",
+      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +539,7 @@
       "top3": "444",
       "top2": "44",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +803,7 @@
       "top3": "366",
       "top2": "66",
       "bottom2": "71",
-      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,7 +1067,7 @@
       "top3": "435",
       "top2": "35",
       "bottom2": "00",
-      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1092,29 +1103,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "laostars-2026-05-19",
-      "lotteryId": "laostars",
-      "drawDate": "2026-05-19",
-      "top3": "434",
-      "top2": "34",
-      "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/laostars/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "02a7ff182d2324",
+  "historyVersion": "1ba62bb47cf835",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
-  "syncOutcome": "updated",
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "unchanged",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T08:27:41.766Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T07:35:31.867Z",
     "status": "up-to-date"
   }
 }

@@ -1,9 +1,53 @@
 {
   "lotteryId": "xsthm",
-  "syncedAt": "2026-08-27T09:31:48.826Z",
-  "lastSuccessfulSyncAt": "2026-08-27T09:31:48.826Z",
+  "syncedAt": "2026-08-30T10:43:58.217Z",
+  "lastSuccessfulSyncAt": "2026-08-30T10:43:58.217Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "xsthm-2026-08-30",
+      "lotteryId": "xsthm",
+      "drawDate": "2026-08-30",
+      "top3": "151",
+      "top2": "51",
+      "bottom2": "27",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "source": "current-result",
+      "completeness": "complete"
+    },
+    {
+      "id": "xsthm-2026-08-29",
+      "lotteryId": "xsthm",
+      "drawDate": "2026-08-29",
+      "top3": "354",
+      "top2": "54",
+      "bottom2": "36",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
+    {
+      "id": "xsthm-2026-08-28",
+      "lotteryId": "xsthm",
+      "drawDate": "2026-08-28",
+      "top3": "551",
+      "top2": "51",
+      "bottom2": "67",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
+    {
+      "id": "xsthm-2026-08-27",
+      "lotteryId": "xsthm",
+      "drawDate": "2026-08-27",
+      "top3": "334",
+      "top2": "34",
+      "bottom2": "44",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "source": "historical-table",
+      "completeness": "complete"
+    },
     {
       "id": "xsthm-2026-08-26",
       "lotteryId": "xsthm",
@@ -12,7 +56,7 @@
       "top2": "27",
       "bottom2": "45",
       "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -231,7 +275,7 @@
       "top3": "363",
       "top2": "63",
       "bottom2": "18",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -242,7 +286,7 @@
       "top3": "824",
       "top2": "24",
       "bottom2": "31",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -253,7 +297,7 @@
       "top3": "981",
       "top2": "81",
       "bottom2": "66",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -264,7 +308,7 @@
       "top3": "371",
       "top2": "71",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -495,7 +539,7 @@
       "top3": "857",
       "top2": "57",
       "bottom2": "65",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -506,7 +550,7 @@
       "top3": "045",
       "top2": "45",
       "bottom2": "90",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -517,7 +561,7 @@
       "top3": "082",
       "top2": "82",
       "bottom2": "94",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +572,7 @@
       "top3": "542",
       "top2": "42",
       "bottom2": "02",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -759,7 +803,7 @@
       "top3": "982",
       "top2": "82",
       "bottom2": "96",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -770,7 +814,7 @@
       "top3": "646",
       "top2": "46",
       "bottom2": "17",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -781,7 +825,7 @@
       "top3": "057",
       "top2": "57",
       "bottom2": "50",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +836,7 @@
       "top3": "921",
       "top2": "21",
       "bottom2": "23",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1023,7 +1067,7 @@
       "top3": "200",
       "top2": "00",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1034,7 +1078,7 @@
       "top3": "608",
       "top2": "08",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1045,7 +1089,7 @@
       "top3": "226",
       "top2": "26",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,65 +1100,21 @@
       "top3": "466",
       "top2": "66",
       "bottom2": "27",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/4",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "xsthm-2026-05-22",
-      "lotteryId": "xsthm",
-      "drawDate": "2026-05-22",
-      "top3": "933",
-      "top2": "33",
-      "bottom2": "39",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "xsthm-2026-05-21",
-      "lotteryId": "xsthm",
-      "drawDate": "2026-05-21",
-      "top3": "924",
-      "top2": "24",
-      "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "xsthm-2026-05-20",
-      "lotteryId": "xsthm",
-      "drawDate": "2026-05-20",
-      "top3": "292",
-      "top2": "92",
-      "bottom2": "97",
-      "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
-    },
-    {
-      "id": "xsthm-2026-05-19",
-      "lotteryId": "xsthm",
-      "drawDate": "2026-05-19",
-      "top3": "898",
-      "top2": "98",
-      "bottom2": "53",
       "sourceUrl": "https://www.allhuay.com/lotto/xsthm/page/5",
       "source": "historical-table",
       "completeness": "complete"
     }
   ],
-  "historyVersion": "02d86bce3bdbf2",
+  "historyVersion": "04534f70552ec1",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
+  "latestCompleteDrawDate": "2026-08-30",
+  "currentSourceResultDate": "2026-08-30",
   "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T09:31:48.825Z",
+    "currentDate": "2026-08-30",
+    "sourceLatestDrawDate": "2026-08-30",
+    "cachedLatestDrawDate": "2026-08-30",
+    "checkedAt": "2026-08-30T10:43:58.216Z",
     "status": "up-to-date"
   }
 }

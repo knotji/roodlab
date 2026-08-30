@@ -1,9 +1,20 @@
 {
   "lotteryId": "laoshd",
-  "syncedAt": "2026-08-27T06:59:57.361Z",
-  "lastSuccessfulSyncAt": "2026-08-27T06:59:57.361Z",
+  "syncedAt": "2026-08-29T06:23:44.104Z",
+  "lastSuccessfulSyncAt": "2026-08-29T06:23:44.104Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "laoshd-2026-08-28",
+      "lotteryId": "laoshd",
+      "drawDate": "2026-08-28",
+      "top3": "048",
+      "top2": "48",
+      "bottom2": "92",
+      "sourceUrl": "https://www.allhuay.com/lotto/laoshd",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "laoshd-2026-08-27",
       "lotteryId": "laoshd",
@@ -12,7 +23,7 @@
       "top2": "20",
       "bottom2": "54",
       "sourceUrl": "https://www.allhuay.com/lotto/laoshd",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -264,7 +275,7 @@
       "top3": "344",
       "top2": "44",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/laoshd",
+      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +539,7 @@
       "top3": "168",
       "top2": "68",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +803,7 @@
       "top3": "880",
       "top2": "80",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1056,7 +1067,7 @@
       "top3": "820",
       "top2": "20",
       "bottom2": "66",
-      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1092,29 +1103,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "laoshd-2026-05-20",
-      "lotteryId": "laoshd",
-      "drawDate": "2026-05-20",
-      "top3": "975",
-      "top2": "75",
-      "bottom2": "16",
-      "sourceUrl": "https://www.allhuay.com/lotto/laoshd/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "14a239eccc7c56",
+  "historyVersion": "118a0b2710b060",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-27",
-  "currentSourceResultDate": "2026-08-27",
+  "latestCompleteDrawDate": "2026-08-28",
+  "currentSourceResultDate": "2026-08-28",
   "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-27",
-    "cachedLatestDrawDate": "2026-08-27",
-    "checkedAt": "2026-08-27T06:59:57.360Z",
+    "currentDate": "2026-08-29",
+    "sourceLatestDrawDate": "2026-08-28",
+    "cachedLatestDrawDate": "2026-08-28",
+    "checkedAt": "2026-08-29T06:23:44.103Z",
     "status": "up-to-date"
   }
 }

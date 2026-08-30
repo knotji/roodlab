@@ -1,8 +1,20 @@
 {
   "lotteryId": "szse-morning",
-  "syncedAt": "2026-08-27T03:33:37.501Z",
+  "syncedAt": "2026-08-28T02:56:13.835Z",
+  "lastSuccessfulSyncAt": "2026-08-28T02:56:13.835Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "szse-morning-2026-08-27",
+      "lotteryId": "szse-morning",
+      "drawDate": "2026-08-27",
+      "top3": "593",
+      "top2": "93",
+      "bottom2": "60",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "szse-morning-2026-08-26",
       "lotteryId": "szse-morning",
@@ -10,7 +22,9 @@
       "top3": "129",
       "top2": "29",
       "bottom2": "42",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-25",
@@ -19,7 +33,9 @@
       "top3": "706",
       "top2": "06",
       "bottom2": "23",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-24",
@@ -28,7 +44,9 @@
       "top3": "012",
       "top2": "12",
       "bottom2": "05",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-21",
@@ -37,7 +55,9 @@
       "top3": "145",
       "top2": "45",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-20",
@@ -46,7 +66,9 @@
       "top3": "441",
       "top2": "41",
       "bottom2": "26",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-19",
@@ -55,7 +77,9 @@
       "top3": "176",
       "top2": "76",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-18",
@@ -64,7 +88,9 @@
       "top3": "345",
       "top2": "45",
       "bottom2": "82",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-17",
@@ -73,7 +99,9 @@
       "top3": "446",
       "top2": "46",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-14",
@@ -82,7 +110,9 @@
       "top3": "046",
       "top2": "46",
       "bottom2": "02",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-13",
@@ -91,7 +121,9 @@
       "top3": "997",
       "top2": "97",
       "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-12",
@@ -100,7 +132,9 @@
       "top3": "807",
       "top2": "07",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-11",
@@ -109,7 +143,9 @@
       "top3": "034",
       "top2": "34",
       "bottom2": "38",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-10",
@@ -118,7 +154,9 @@
       "top3": "886",
       "top2": "86",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-07",
@@ -127,7 +165,9 @@
       "top3": "508",
       "top2": "08",
       "bottom2": "96",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-06",
@@ -136,7 +176,9 @@
       "top3": "460",
       "top2": "60",
       "bottom2": "29",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-05",
@@ -145,7 +187,9 @@
       "top3": "190",
       "top2": "90",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-04",
@@ -154,7 +198,9 @@
       "top3": "739",
       "top2": "39",
       "bottom2": "10",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-08-03",
@@ -163,7 +209,9 @@
       "top3": "762",
       "top2": "62",
       "bottom2": "31",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-31",
@@ -172,7 +220,9 @@
       "top3": "542",
       "top2": "42",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-30",
@@ -181,7 +231,9 @@
       "top3": "122",
       "top2": "22",
       "bottom2": "22",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-29",
@@ -190,7 +242,9 @@
       "top3": "205",
       "top2": "05",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-28",
@@ -199,7 +253,9 @@
       "top3": "480",
       "top2": "80",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-27",
@@ -208,7 +264,9 @@
       "top3": "937",
       "top2": "37",
       "bottom2": "69",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-24",
@@ -217,7 +275,9 @@
       "top3": "350",
       "top2": "50",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-23",
@@ -226,7 +286,9 @@
       "top3": "501",
       "top2": "01",
       "bottom2": "43",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-22",
@@ -235,7 +297,9 @@
       "top3": "191",
       "top2": "91",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-21",
@@ -244,7 +308,9 @@
       "top3": "422",
       "top2": "22",
       "bottom2": "99",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-20",
@@ -253,7 +319,9 @@
       "top3": "581",
       "top2": "81",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-17",
@@ -262,7 +330,9 @@
       "top3": "326",
       "top2": "26",
       "bottom2": "39",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-16",
@@ -271,7 +341,9 @@
       "top3": "707",
       "top2": "07",
       "bottom2": "33",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-15",
@@ -280,7 +352,9 @@
       "top3": "823",
       "top2": "23",
       "bottom2": "64",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-14",
@@ -289,7 +363,9 @@
       "top3": "120",
       "top2": "20",
       "bottom2": "65",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-13",
@@ -298,7 +374,9 @@
       "top3": "449",
       "top2": "49",
       "bottom2": "18",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-10",
@@ -307,7 +385,9 @@
       "top3": "328",
       "top2": "28",
       "bottom2": "55",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-09",
@@ -316,7 +396,9 @@
       "top3": "799",
       "top2": "99",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-08",
@@ -325,7 +407,9 @@
       "top3": "745",
       "top2": "45",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-07",
@@ -334,7 +418,9 @@
       "top3": "920",
       "top2": "20",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-06",
@@ -343,7 +429,9 @@
       "top3": "162",
       "top2": "62",
       "bottom2": "89",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-03",
@@ -352,7 +440,9 @@
       "top3": "422",
       "top2": "22",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-02",
@@ -361,7 +451,9 @@
       "top3": "235",
       "top2": "35",
       "bottom2": "82",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-07-01",
@@ -370,7 +462,9 @@
       "top3": "132",
       "top2": "32",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-30",
@@ -379,7 +473,9 @@
       "top3": "290",
       "top2": "90",
       "bottom2": "03",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-29",
@@ -388,7 +484,9 @@
       "top3": "137",
       "top2": "37",
       "bottom2": "85",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-26",
@@ -397,7 +495,9 @@
       "top3": "698",
       "top2": "98",
       "bottom2": "10",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-25",
@@ -406,7 +506,9 @@
       "top3": "583",
       "top2": "83",
       "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-24",
@@ -415,7 +517,9 @@
       "top3": "657",
       "top2": "57",
       "bottom2": "37",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-23",
@@ -424,7 +528,9 @@
       "top3": "211",
       "top2": "11",
       "bottom2": "39",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-22",
@@ -433,7 +539,9 @@
       "top3": "720",
       "top2": "20",
       "bottom2": "50",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-19",
@@ -442,7 +550,9 @@
       "top3": "086",
       "top2": "86",
       "bottom2": "91",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-18",
@@ -451,7 +561,9 @@
       "top3": "086",
       "top2": "86",
       "bottom2": "91",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-17",
@@ -460,7 +572,9 @@
       "top3": "560",
       "top2": "60",
       "bottom2": "35",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-16",
@@ -469,7 +583,9 @@
       "top3": "264",
       "top2": "64",
       "bottom2": "53",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-15",
@@ -478,7 +594,9 @@
       "top3": "247",
       "top2": "47",
       "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-12",
@@ -487,7 +605,9 @@
       "top3": "314",
       "top2": "14",
       "bottom2": "16",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-11",
@@ -496,7 +616,9 @@
       "top3": "697",
       "top2": "97",
       "bottom2": "13",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-10",
@@ -505,7 +627,9 @@
       "top3": "275",
       "top2": "75",
       "bottom2": "96",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-09",
@@ -514,7 +638,9 @@
       "top3": "711",
       "top2": "11",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-08",
@@ -523,7 +649,9 @@
       "top3": "382",
       "top2": "82",
       "bottom2": "88",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-05",
@@ -532,7 +660,9 @@
       "top3": "357",
       "top2": "57",
       "bottom2": "00",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-04",
@@ -541,7 +671,9 @@
       "top3": "279",
       "top2": "79",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-03",
@@ -550,7 +682,9 @@
       "top3": "108",
       "top2": "08",
       "bottom2": "95",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-02",
@@ -559,7 +693,9 @@
       "top3": "763",
       "top2": "63",
       "bottom2": "27",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-06-01",
@@ -568,7 +704,9 @@
       "top3": "110",
       "top2": "10",
       "bottom2": "03",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-29",
@@ -577,7 +715,9 @@
       "top3": "404",
       "top2": "04",
       "bottom2": "85",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-28",
@@ -586,7 +726,9 @@
       "top3": "548",
       "top2": "48",
       "bottom2": "99",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-27",
@@ -595,7 +737,9 @@
       "top3": "979",
       "top2": "79",
       "bottom2": "37",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-26",
@@ -604,7 +748,9 @@
       "top3": "898",
       "top2": "98",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-25",
@@ -613,7 +759,9 @@
       "top3": "286",
       "top2": "86",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-22",
@@ -622,7 +770,9 @@
       "top3": "888",
       "top2": "88",
       "bottom2": "61",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-21",
@@ -631,7 +781,9 @@
       "top3": "221",
       "top2": "21",
       "bottom2": "23",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-20",
@@ -640,7 +792,9 @@
       "top3": "208",
       "top2": "08",
       "bottom2": "83",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-19",
@@ -649,7 +803,9 @@
       "top3": "872",
       "top2": "72",
       "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-18",
@@ -658,7 +814,9 @@
       "top3": "313",
       "top2": "13",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-15",
@@ -667,7 +825,9 @@
       "top3": "318",
       "top2": "18",
       "bottom2": "44",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-14",
@@ -676,7 +836,9 @@
       "top3": "183",
       "top2": "83",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-13",
@@ -685,7 +847,9 @@
       "top3": "176",
       "top2": "76",
       "bottom2": "84",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-12",
@@ -694,7 +858,9 @@
       "top3": "736",
       "top2": "36",
       "bottom2": "94",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-11",
@@ -703,7 +869,9 @@
       "top3": "575",
       "top2": "75",
       "bottom2": "95",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-08",
@@ -712,7 +880,9 @@
       "top3": "522",
       "top2": "22",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-07",
@@ -721,7 +891,9 @@
       "top3": "946",
       "top2": "46",
       "bottom2": "84",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-06",
@@ -730,25 +902,33 @@
       "top3": "648",
       "top2": "48",
       "bottom2": "93",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-05-05",
       "lotteryId": "szse-morning",
       "drawDate": "2026-05-05",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "szse-morning-2026-05-04",
       "lotteryId": "szse-morning",
       "drawDate": "2026-05-04",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "szse-morning-2026-05-01",
       "lotteryId": "szse-morning",
       "drawDate": "2026-05-01",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "szse-morning-2026-04-30",
@@ -757,7 +937,9 @@
       "top3": "133",
       "top2": "33",
       "bottom2": "59",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-29",
@@ -766,7 +948,9 @@
       "top3": "427",
       "top2": "27",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-28",
@@ -775,7 +959,9 @@
       "top3": "483",
       "top2": "83",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-27",
@@ -784,7 +970,9 @@
       "top3": "854",
       "top2": "54",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-24",
@@ -793,7 +981,9 @@
       "top3": "769",
       "top2": "69",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-23",
@@ -802,7 +992,9 @@
       "top3": "520",
       "top2": "20",
       "bottom2": "09",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-22",
@@ -811,7 +1003,9 @@
       "top3": "615",
       "top2": "15",
       "bottom2": "01",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-21",
@@ -820,7 +1014,9 @@
       "top3": "408",
       "top2": "08",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-20",
@@ -829,7 +1025,9 @@
       "top3": "478",
       "top2": "78",
       "bottom2": "36",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-17",
@@ -838,7 +1036,9 @@
       "top3": "589",
       "top2": "89",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-16",
@@ -847,7 +1047,9 @@
       "top3": "322",
       "top2": "22",
       "bottom2": "77",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-15",
@@ -856,7 +1058,9 @@
       "top3": "361",
       "top2": "61",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-14",
@@ -865,7 +1069,9 @@
       "top3": "334",
       "top2": "34",
       "bottom2": "48",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-13",
@@ -874,7 +1080,9 @@
       "top3": "651",
       "top2": "51",
       "bottom2": "04",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "szse-morning-2026-04-10",
@@ -883,23 +1091,21 @@
       "top3": "989",
       "top2": "89",
       "bottom2": "62",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5"
-    },
-    {
-      "id": "szse-morning-2026-04-09",
-      "lotteryId": "szse-morning",
-      "drawDate": "2026-04-09",
-      "top3": "955",
-      "top2": "55",
-      "bottom2": "95",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     }
   ],
+  "historyVersion": "0e3796301799da",
+  "drawCount": 100,
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "unchanged",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T03:33:37.501Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T02:56:13.835Z",
     "status": "up-to-date"
   }
 }

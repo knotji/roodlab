@@ -1,8 +1,20 @@
 {
   "lotteryId": "hsi-vip-morning",
-  "syncedAt": "2026-08-27T03:36:12.768Z",
+  "syncedAt": "2026-08-28T02:51:36.189Z",
+  "lastSuccessfulSyncAt": "2026-08-28T02:51:36.189Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "hsi-vip-morning-2026-08-27",
+      "lotteryId": "hsi-vip-morning",
+      "drawDate": "2026-08-27",
+      "top3": "381",
+      "top2": "81",
+      "bottom2": "25",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "hsi-vip-morning-2026-08-26",
       "lotteryId": "hsi-vip-morning",
@@ -10,7 +22,9 @@
       "top3": "395",
       "top2": "95",
       "bottom2": "53",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-25",
@@ -19,7 +33,9 @@
       "top3": "074",
       "top2": "74",
       "bottom2": "38",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-24",
@@ -28,7 +44,9 @@
       "top3": "139",
       "top2": "39",
       "bottom2": "98",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-23",
@@ -37,7 +55,9 @@
       "top3": "587",
       "top2": "87",
       "bottom2": "48",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-22",
@@ -46,7 +66,9 @@
       "top3": "631",
       "top2": "31",
       "bottom2": "41",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-21",
@@ -55,7 +77,9 @@
       "top3": "746",
       "top2": "46",
       "bottom2": "12",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-20",
@@ -64,7 +88,9 @@
       "top3": "247",
       "top2": "47",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-19",
@@ -73,7 +99,9 @@
       "top3": "065",
       "top2": "65",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-18",
@@ -82,7 +110,9 @@
       "top3": "657",
       "top2": "57",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-17",
@@ -91,7 +121,9 @@
       "top3": "501",
       "top2": "01",
       "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-16",
@@ -100,7 +132,9 @@
       "top3": "623",
       "top2": "23",
       "bottom2": "13",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-15",
@@ -109,7 +143,9 @@
       "top3": "353",
       "top2": "53",
       "bottom2": "05",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-14",
@@ -118,7 +154,9 @@
       "top3": "797",
       "top2": "97",
       "bottom2": "08",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-13",
@@ -127,7 +165,9 @@
       "top3": "909",
       "top2": "09",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-12",
@@ -136,7 +176,9 @@
       "top3": "629",
       "top2": "29",
       "bottom2": "72",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-11",
@@ -145,7 +187,9 @@
       "top3": "578",
       "top2": "78",
       "bottom2": "09",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-10",
@@ -154,7 +198,9 @@
       "top3": "053",
       "top2": "53",
       "bottom2": "96",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-09",
@@ -163,7 +209,9 @@
       "top3": "160",
       "top2": "60",
       "bottom2": "42",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-08",
@@ -172,7 +220,9 @@
       "top3": "813",
       "top2": "13",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-07",
@@ -181,7 +231,9 @@
       "top3": "211",
       "top2": "11",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-06",
@@ -190,7 +242,9 @@
       "top3": "641",
       "top2": "41",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-05",
@@ -199,7 +253,9 @@
       "top3": "043",
       "top2": "43",
       "bottom2": "73",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-04",
@@ -208,7 +264,9 @@
       "top3": "674",
       "top2": "74",
       "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-03",
@@ -217,7 +275,9 @@
       "top3": "487",
       "top2": "87",
       "bottom2": "89",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-02",
@@ -226,7 +286,9 @@
       "top3": "009",
       "top2": "09",
       "bottom2": "97",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-08-01",
@@ -235,7 +297,9 @@
       "top3": "849",
       "top2": "49",
       "bottom2": "61",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-31",
@@ -244,7 +308,9 @@
       "top3": "344",
       "top2": "44",
       "bottom2": "18",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-30",
@@ -253,7 +319,9 @@
       "top3": "450",
       "top2": "50",
       "bottom2": "99",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-29",
@@ -262,7 +330,9 @@
       "top3": "700",
       "top2": "00",
       "bottom2": "42",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-28",
@@ -271,7 +341,9 @@
       "top3": "982",
       "top2": "82",
       "bottom2": "86",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-27",
@@ -280,7 +352,9 @@
       "top3": "275",
       "top2": "75",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-26",
@@ -289,7 +363,9 @@
       "top3": "921",
       "top2": "21",
       "bottom2": "10",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-25",
@@ -298,7 +374,9 @@
       "top3": "433",
       "top2": "33",
       "bottom2": "02",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-24",
@@ -307,7 +385,9 @@
       "top3": "248",
       "top2": "48",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-23",
@@ -316,7 +396,9 @@
       "top3": "280",
       "top2": "80",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-22",
@@ -325,7 +407,9 @@
       "top3": "383",
       "top2": "83",
       "bottom2": "81",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-21",
@@ -334,7 +418,9 @@
       "top3": "840",
       "top2": "40",
       "bottom2": "65",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-20",
@@ -343,7 +429,9 @@
       "top3": "581",
       "top2": "81",
       "bottom2": "39",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-19",
@@ -352,19 +440,25 @@
       "top3": "916",
       "top2": "16",
       "bottom2": "15",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-18",
       "lotteryId": "hsi-vip-morning",
       "drawDate": "2026-07-18",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "hsi-vip-morning-2026-07-17",
       "lotteryId": "hsi-vip-morning",
       "drawDate": "2026-07-17",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "hsi-vip-morning-2026-07-16",
@@ -373,13 +467,17 @@
       "top3": "210",
       "top2": "10",
       "bottom2": "21",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-15",
       "lotteryId": "hsi-vip-morning",
       "drawDate": "2026-07-15",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "hsi-vip-morning-2026-07-14",
@@ -388,19 +486,25 @@
       "top3": "982",
       "top2": "82",
       "bottom2": "60",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-13",
       "lotteryId": "hsi-vip-morning",
       "drawDate": "2026-07-13",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "hsi-vip-morning-2026-07-12",
       "lotteryId": "hsi-vip-morning",
       "drawDate": "2026-07-12",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "partial"
     },
     {
       "id": "hsi-vip-morning-2026-07-11",
@@ -409,7 +513,9 @@
       "top3": "519",
       "top2": "19",
       "bottom2": "06",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-10",
@@ -418,7 +524,9 @@
       "top3": "358",
       "top2": "58",
       "bottom2": "98",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/2"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-09",
@@ -427,7 +535,9 @@
       "top3": "292",
       "top2": "92",
       "bottom2": "00",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-08",
@@ -436,7 +546,9 @@
       "top3": "018",
       "top2": "18",
       "bottom2": "53",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-07",
@@ -445,7 +557,9 @@
       "top3": "622",
       "top2": "22",
       "bottom2": "29",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-06",
@@ -454,7 +568,9 @@
       "top3": "981",
       "top2": "81",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-05",
@@ -463,7 +579,9 @@
       "top3": "374",
       "top2": "74",
       "bottom2": "44",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-04",
@@ -472,7 +590,9 @@
       "top3": "623",
       "top2": "23",
       "bottom2": "98",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-03",
@@ -481,7 +601,9 @@
       "top3": "592",
       "top2": "92",
       "bottom2": "05",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-02",
@@ -490,7 +612,9 @@
       "top3": "965",
       "top2": "65",
       "bottom2": "22",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-07-01",
@@ -499,7 +623,9 @@
       "top3": "728",
       "top2": "28",
       "bottom2": "94",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-30",
@@ -508,7 +634,9 @@
       "top3": "225",
       "top2": "25",
       "bottom2": "46",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-29",
@@ -517,7 +645,9 @@
       "top3": "164",
       "top2": "64",
       "bottom2": "52",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-28",
@@ -526,7 +656,9 @@
       "top3": "940",
       "top2": "40",
       "bottom2": "24",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-27",
@@ -535,7 +667,9 @@
       "top3": "441",
       "top2": "41",
       "bottom2": "85",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-26",
@@ -544,7 +678,9 @@
       "top3": "166",
       "top2": "66",
       "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-25",
@@ -553,7 +689,9 @@
       "top3": "691",
       "top2": "91",
       "bottom2": "56",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-24",
@@ -562,7 +700,9 @@
       "top3": "516",
       "top2": "16",
       "bottom2": "18",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-23",
@@ -571,7 +711,9 @@
       "top3": "802",
       "top2": "02",
       "bottom2": "66",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-22",
@@ -580,7 +722,9 @@
       "top3": "391",
       "top2": "91",
       "bottom2": "77",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-21",
@@ -589,7 +733,9 @@
       "top3": "718",
       "top2": "18",
       "bottom2": "11",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-20",
@@ -598,7 +744,9 @@
       "top3": "596",
       "top2": "96",
       "bottom2": "49",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-19",
@@ -607,7 +755,9 @@
       "top3": "220",
       "top2": "20",
       "bottom2": "28",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-18",
@@ -616,7 +766,9 @@
       "top3": "377",
       "top2": "77",
       "bottom2": "21",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-17",
@@ -625,7 +777,9 @@
       "top3": "886",
       "top2": "86",
       "bottom2": "45",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-16",
@@ -634,7 +788,9 @@
       "top3": "367",
       "top2": "67",
       "bottom2": "78",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/3"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-15",
@@ -643,7 +799,9 @@
       "top3": "717",
       "top2": "17",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-14",
@@ -652,7 +810,9 @@
       "top3": "905",
       "top2": "05",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-13",
@@ -661,7 +821,9 @@
       "top3": "067",
       "top2": "67",
       "bottom2": "43",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-12",
@@ -670,7 +832,9 @@
       "top3": "404",
       "top2": "04",
       "bottom2": "19",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-11",
@@ -679,7 +843,9 @@
       "top3": "822",
       "top2": "22",
       "bottom2": "14",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-10",
@@ -688,7 +854,9 @@
       "top3": "486",
       "top2": "86",
       "bottom2": "67",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-09",
@@ -697,7 +865,9 @@
       "top3": "860",
       "top2": "60",
       "bottom2": "30",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-08",
@@ -706,7 +876,9 @@
       "top3": "431",
       "top2": "31",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-07",
@@ -715,7 +887,9 @@
       "top3": "638",
       "top2": "38",
       "bottom2": "23",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-06",
@@ -724,7 +898,9 @@
       "top3": "329",
       "top2": "29",
       "bottom2": "09",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-05",
@@ -733,7 +909,9 @@
       "top3": "473",
       "top2": "73",
       "bottom2": "31",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-04",
@@ -742,7 +920,9 @@
       "top3": "324",
       "top2": "24",
       "bottom2": "57",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-03",
@@ -751,7 +931,9 @@
       "top3": "475",
       "top2": "75",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-02",
@@ -760,7 +942,9 @@
       "top3": "881",
       "top2": "81",
       "bottom2": "29",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-06-01",
@@ -769,7 +953,9 @@
       "top3": "475",
       "top2": "75",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-31",
@@ -778,7 +964,9 @@
       "top3": "061",
       "top2": "61",
       "bottom2": "51",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-30",
@@ -787,7 +975,9 @@
       "top3": "653",
       "top2": "53",
       "bottom2": "31",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-29",
@@ -796,7 +986,9 @@
       "top3": "815",
       "top2": "15",
       "bottom2": "16",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-28",
@@ -805,7 +997,9 @@
       "top3": "996",
       "top2": "96",
       "bottom2": "76",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-27",
@@ -814,7 +1008,9 @@
       "top3": "214",
       "top2": "14",
       "bottom2": "25",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-26",
@@ -823,7 +1019,9 @@
       "top3": "278",
       "top2": "78",
       "bottom2": "57",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-25",
@@ -832,7 +1030,9 @@
       "top3": "016",
       "top2": "16",
       "bottom2": "99",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-24",
@@ -841,7 +1041,9 @@
       "top3": "266",
       "top2": "66",
       "bottom2": "72",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-23",
@@ -850,7 +1052,9 @@
       "top3": "053",
       "top2": "53",
       "bottom2": "04",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/4"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-22",
@@ -859,7 +1063,9 @@
       "top3": "932",
       "top2": "32",
       "bottom2": "34",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-21",
@@ -868,7 +1074,9 @@
       "top3": "958",
       "top2": "58",
       "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     },
     {
       "id": "hsi-vip-morning-2026-05-20",
@@ -877,23 +1085,21 @@
       "top3": "346",
       "top2": "46",
       "bottom2": "74",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5"
-    },
-    {
-      "id": "hsi-vip-morning-2026-05-19",
-      "lotteryId": "hsi-vip-morning",
-      "drawDate": "2026-05-19",
-      "top3": "887",
-      "top2": "87",
-      "bottom2": "54",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5"
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-morning/page/5",
+      "source": "historical-table",
+      "completeness": "complete"
     }
   ],
+  "historyVersion": "1bef1def8335c0",
+  "drawCount": 100,
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "updated",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T03:36:12.767Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T02:51:36.188Z",
     "status": "up-to-date"
   }
 }

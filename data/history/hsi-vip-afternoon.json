@@ -1,9 +1,20 @@
 {
   "lotteryId": "hsi-vip-afternoon",
-  "syncedAt": "2026-08-27T08:12:27.515Z",
-  "lastSuccessfulSyncAt": "2026-08-27T08:12:27.515Z",
+  "syncedAt": "2026-08-28T07:35:24.204Z",
+  "lastSuccessfulSyncAt": "2026-08-28T07:35:24.204Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "hsi-vip-afternoon-2026-08-27",
+      "lotteryId": "hsi-vip-afternoon",
+      "drawDate": "2026-08-27",
+      "top3": "548",
+      "top2": "48",
+      "bottom2": "71",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "hsi-vip-afternoon-2026-08-26",
       "lotteryId": "hsi-vip-afternoon",
@@ -12,7 +23,7 @@
       "top2": "19",
       "bottom2": "16",
       "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -264,7 +275,7 @@
       "top3": "134",
       "top2": "34",
       "bottom2": "20",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -513,7 +524,7 @@
       "top3": "723",
       "top2": "23",
       "bottom2": "12",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -777,7 +788,7 @@
       "top3": "092",
       "top2": "92",
       "bottom2": "82",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1041,7 +1052,7 @@
       "top3": "849",
       "top2": "49",
       "bottom2": "92",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1077,29 +1088,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "hsi-vip-afternoon-2026-05-19",
-      "lotteryId": "hsi-vip-afternoon",
-      "drawDate": "2026-05-19",
-      "top3": "880",
-      "top2": "80",
-      "bottom2": "47",
-      "sourceUrl": "https://www.allhuay.com/lotto/hsi-vip-afternoon/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "1ddb122508bbfb",
+  "historyVersion": "1c5260369c91c8",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
-  "syncOutcome": "updated",
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "unchanged",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T08:12:27.514Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T07:35:24.204Z",
     "status": "up-to-date"
   }
 }

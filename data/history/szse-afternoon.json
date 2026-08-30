@@ -1,9 +1,20 @@
 {
   "lotteryId": "szse-afternoon",
-  "syncedAt": "2026-08-27T07:00:15.167Z",
-  "lastSuccessfulSyncAt": "2026-08-27T07:00:15.167Z",
+  "syncedAt": "2026-08-28T06:32:35.738Z",
+  "lastSuccessfulSyncAt": "2026-08-28T06:32:35.738Z",
   "source": "AllHuay",
   "draws": [
+    {
+      "id": "szse-afternoon-2026-08-27",
+      "lotteryId": "szse-afternoon",
+      "drawDate": "2026-08-27",
+      "top3": "888",
+      "top2": "88",
+      "bottom2": "55",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon",
+      "source": "current-result",
+      "completeness": "complete"
+    },
     {
       "id": "szse-afternoon-2026-08-26",
       "lotteryId": "szse-afternoon",
@@ -12,7 +23,7 @@
       "top2": "33",
       "bottom2": "46",
       "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon",
-      "source": "current-result",
+      "source": "historical-table",
       "completeness": "complete"
     },
     {
@@ -264,7 +275,7 @@
       "top3": "468",
       "top2": "68",
       "bottom2": "63",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/2",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -528,7 +539,7 @@
       "top3": "250",
       "top2": "50",
       "bottom2": "80",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/2",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/3",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -792,7 +803,7 @@
       "top3": "991",
       "top2": "91",
       "bottom2": "68",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/3",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/4",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1047,7 +1058,7 @@
       "top3": "845",
       "top2": "45",
       "bottom2": "50",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/4",
+      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
     },
@@ -1083,29 +1094,18 @@
       "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/5",
       "source": "historical-table",
       "completeness": "complete"
-    },
-    {
-      "id": "szse-afternoon-2026-04-09",
-      "lotteryId": "szse-afternoon",
-      "drawDate": "2026-04-09",
-      "top3": "627",
-      "top2": "27",
-      "bottom2": "23",
-      "sourceUrl": "https://www.allhuay.com/lotto/szse-afternoon/page/5",
-      "source": "historical-table",
-      "completeness": "complete"
     }
   ],
-  "historyVersion": "1cb8703fbd9fbc",
+  "historyVersion": "1dd6bc919bc98a",
   "drawCount": 100,
-  "latestCompleteDrawDate": "2026-08-26",
-  "currentSourceResultDate": "2026-08-26",
-  "syncOutcome": "updated",
+  "latestCompleteDrawDate": "2026-08-27",
+  "currentSourceResultDate": "2026-08-27",
+  "syncOutcome": "unchanged",
   "freshness": {
-    "currentDate": "2026-08-27",
-    "sourceLatestDrawDate": "2026-08-26",
-    "cachedLatestDrawDate": "2026-08-26",
-    "checkedAt": "2026-08-27T07:00:15.166Z",
+    "currentDate": "2026-08-28",
+    "sourceLatestDrawDate": "2026-08-27",
+    "cachedLatestDrawDate": "2026-08-27",
+    "checkedAt": "2026-08-28T06:32:35.738Z",
     "status": "up-to-date"
   }
 }
