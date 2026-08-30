@@ -43,6 +43,7 @@ import {
 import type { DataIntegritySummary } from "@/lib/data-sources/integrity";
 import type { ProspectiveRecord } from "@/lib/prospective";
 import type { SystemStatus } from "@/lib/system-status";
+import { liveResultSource } from "@/lib/live-results";
 import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
 import { LotterySelector } from "./lottery-selector";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
@@ -324,6 +325,7 @@ export default function Dashboard({
     }
   }
   const selectedLottery = catalog.find((item) => item.id === selectedId),
+    selectedLiveResult = liveResultSource(selectedId),
     latest = draws[0]?.drawDate,
     filtered = draws.filter((d) =>
       `${d.drawDate} ${d.top3} ${d.top2} ${d.bottom2}`.includes(search),
@@ -396,17 +398,18 @@ export default function Dashboard({
             <span>{systemStatus?.connected ? "Neon" : "JSON fallback"}</span>
             <i />
           </div>
-          {selectedLottery?.sourceUrl && (
+          {selectedLottery && selectedLiveResult && (
             <a
               className="source-result-link"
-              href={selectedLottery.sourceUrl}
+              href={selectedLiveResult.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`ดูผลสด ${selectedLottery.name} จาก AllHuay`}
-              title={`ดูผลสด ${selectedLottery.name} จาก AllHuay`}
+              aria-label={`ดูผลสด ${selectedLottery.name} จากเว็บไซต์ผลโดยตรง`}
+              title={`${selectedLottery.name}${selectedLiveResult.closeAt ? ` · ปิดรับ ${selectedLiveResult.closeAt}` : ""} · ผลออก ${selectedLiveResult.resultAt}`}
             >
               <ExternalLink />
-              ดูผลสด
+              <span>ดูผลสด</span>
+              <small>{selectedLiveResult.resultAt}</small>
             </a>
           )}
           <button

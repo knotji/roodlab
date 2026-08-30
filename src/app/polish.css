@@ -70,6 +70,12 @@
   font-size: 11px;
   text-decoration: none;
 }
+.source-result-link small {
+  padding-left: 7px;
+  border-left: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
+}
 .source-result-link:hover { border-color: #adc9bf; background: var(--accent-soft); }
 .source-result-link svg { width: 14px; height: 14px; }
 @media (max-width: 850px) {
@@ -82,8 +88,9 @@
     height: 38px;
     margin-right: 5px;
     padding: 0;
-    font-size: 0;
   }
+  .source-result-link span,
+  .source-result-link small { display: none; }
 }
 .pair-diagnostics {
   margin-top: 28px;
