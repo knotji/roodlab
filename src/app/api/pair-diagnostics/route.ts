@@ -5,6 +5,7 @@ import {
   walkForwardPairDiagnostics,
 } from "@/lib/analysis/pair-audit";
 import { getCanonicalDataset } from "@/lib/history-provider";
+import { readResearchCache, researchCacheHeaders, writeResearchCache } from "@/lib/research-cache";
 export async function GET() {
   const snapshots = await readAllSnapshots(),
     ids = [
@@ -14,6 +15,10 @@ export async function GET() {
       "nikkei-morning",
       "baac",
     ],
+    cacheKey = `pair-diagnostics:${ids.map((id) => snapshots[id]?.historyVersion ?? "missing").join(":")}`,
+    cached = readResearchCache<{ ok: true; results: unknown[] }>(cacheKey);
+  if (cached) return NextResponse.json(cached, { headers: researchCacheHeaders });
+  const
     results = ids.map((lotteryId) => {
       const data = getCanonicalDataset(snapshots[lotteryId], 30),
         history = data.analysisHistory,
@@ -32,5 +37,5 @@ export async function GET() {
         };
       return { lotteryId, historyVersion: data.historyVersion, top: side("top"), bottom: side("bottom") };
     });
-  return NextResponse.json({ ok: true, results });
+  return NextResponse.json(writeResearchCache(cacheKey, { ok: true as const, results }), { headers: researchCacheHeaders });
 }

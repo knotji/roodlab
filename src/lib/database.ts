@@ -1,7 +1,6 @@
 import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 
 let queryClient: NeonQueryFunction<false, false> | null = null;
-let migration: Promise<void> | null = null;
 
 export function hasDatabase(): boolean {
   return Boolean(process.env.DATABASE_URL);
@@ -33,9 +32,6 @@ export async function migrateDatabase(): Promise<void> {
 }
 
 export function ensureDatabase(): Promise<void> {
-  migration ??= migrateDatabase().catch((error) => {
-    migration = null;
-    throw error;
-  });
-  return migration;
+  database();
+  return Promise.resolve();
 }

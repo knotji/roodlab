@@ -6,6 +6,7 @@ import {
   walkForwardPairDiagnostics,
 } from "@/lib/analysis/pair-audit";
 import { getCanonicalDataset } from "@/lib/history-provider";
+import { readResearchCache, researchCacheHeaders, writeResearchCache } from "@/lib/research-cache";
 export async function GET() {
   const snapshots = await readAllSnapshots(),
     catalog = await readCatalog(),
@@ -17,6 +18,10 @@ export async function GET() {
       "baac",
     ],
     horizons = [30, 50, 100],
+    cacheKey = `pair-report:${ids.map((id) => snapshots[id]?.historyVersion ?? "missing").join(":")}`,
+    cached = readResearchCache<Record<string, unknown>>(cacheKey);
+  if (cached) return NextResponse.json(cached, { headers: researchCacheHeaders });
+  const
     results = ids.flatMap((lotteryId) =>
       horizons.flatMap((horizon) =>
         PAIR_MODELS.map((model) => {
@@ -97,12 +102,14 @@ export async function GET() {
         };
       }),
     );
-  return NextResponse.json({
+  const payload = {
     ok: true,
     generatedAt: new Date().toISOString(),
     lotteries: ids,
     horizons,
     results,
     aggregate,
-  });
+  };
+  writeResearchCache(cacheKey, payload);
+  return NextResponse.json(payload, { headers: researchCacheHeaders });
 }

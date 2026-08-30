@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import type { Snapshot, SnapshotFreshness } from "@/lib/cache";
 import type { FreshnessInfo } from "@/lib/freshness";
 import type { LotteryDefinition, LotteryDraw } from "@/lib/types";
@@ -47,7 +48,6 @@ import { liveResultSource } from "@/lib/live-results";
 import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
 import { LotteryPicker } from "./analyze/lottery-picker";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
-import { PairDiagnosticsPanel } from "./pair-diagnostics-panel";
 import { AppSidebar, MobileNavigation } from "./app-shell/navigation";
 import { AnalyzeControls } from "./analyze/analyze-controls";
 import { AnalysisDisclosure } from "./analyze/analysis-disclosure";
@@ -55,10 +55,7 @@ import { CoverageSummary } from "./analyze/coverage-summary";
 import { PairSection } from "./analyze/pair-section";
 import { StandoutHero } from "./analyze/standout-hero";
 import { WinSetCard } from "./analyze/win-set-card";
-import { HistoryPage } from "./history/history-page";
-import { DigitStrengthGrid } from "./statistics/digit-strength-grid";
 import { ResearchTabs } from "./backtest/research-tabs";
-import { SettingsSection } from "./settings/settings-section";
 import { SegmentedControl } from "./ui/segmented-control";
 import {
   BarChart3,
@@ -78,6 +75,10 @@ import {
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
+const PairDiagnosticsPanel = dynamic(() => import("./pair-diagnostics-panel").then((module) => module.PairDiagnosticsPanel));
+const HistoryPage = dynamic(() => import("./history/history-page").then((module) => module.HistoryPage));
+const DigitStrengthGrid = dynamic(() => import("./statistics/digit-strength-grid").then((module) => module.DigitStrengthGrid));
+const SettingsSection = dynamic(() => import("./settings/settings-section").then((module) => module.SettingsSection));
 type Section = "analyze" | "prospective" | "statistics" | "history" | "backtest" | "settings";
 const nav = [
   { id: "analyze", label: "วิเคราะห์", icon: Sparkles },
@@ -125,11 +126,13 @@ const defaultDigit: DigitWeights = {
 export default function Dashboard({
   catalog: initialCatalog,
   initialSnapshots,
+  initialSelectedId,
   auditStatuses,
   defaultDayPattern,
 }: {
   catalog: LotteryDefinition[];
   initialSnapshots: Record<string, Snapshot>;
+  initialSelectedId?: string;
   auditStatuses: Record<
     string,
     { status: "supported" | "partial" | "failed"; reason?: string }
@@ -142,7 +145,7 @@ export default function Dashboard({
     setAlgorithm = useLotteryStore((s) => s.setAlgorithm);
   const [catalog, setCatalog] = useState(initialCatalog),
     [snapshots, setSnapshots] = useState(initialSnapshots),
-    [selectedId, setSelectedId] = useState(initialCatalog[0]?.id ?? ""),
+    [selectedId, setSelectedId] = useState(initialSelectedId ?? initialCatalog[0]?.id ?? ""),
     [section, setSection] = useState<Section>("analyze"),
     [windowSize, setWindow] = useState(30),
     [candidateCount, setCandidateCount] = useState(4),
@@ -179,8 +182,8 @@ export default function Dashboard({
       })
       .catch(() => setSystemStatus(null));
   useEffect(() => {
-    void loadSystemStatus();
-  }, []);
+    if (section === "prospective" || section === "settings") void loadSystemStatus();
+  }, [section]);
   useEffect(() => {
     void Promise.resolve(useLotteryStore.persist.rehydrate()).finally(() =>
       setHydrated(true),
@@ -199,6 +202,21 @@ export default function Dashboard({
         persistLottery(resolved);
       });
   }, [catalog, stored, selectedId, persistLottery]);
+  useEffect(() => {
+    if (!selectedId || snapshots[selectedId]) return;
+    let cancelled = false;
+    fetch(`/api/history/${selectedId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!cancelled && data.ok) setSnapshots((current) => ({ ...current, [selectedId]: data }));
+      })
+      .catch(() => {
+        if (!cancelled) setError("โหลดข้อมูลย้อนหลังไม่สำเร็จ");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedId, snapshots]);
   const selectLottery = (id: string) => {
     setSelectedId(id);
     persistLottery(id);
@@ -221,14 +239,20 @@ export default function Dashboard({
     ),
     draws = canonical.history,
     analysisDraws = canonical.analysisHistory,
-    patternDraws = filterDrawsByDay(analysisDraws, dayPattern),
-    formulaDraws = filterDrawsByDay(analysisDraws, formulaDayPattern),
     integrity = canonical.integrity,
     freshness = liveFreshness ?? snapshot?.freshness ?? null,
     hasSignals =
       analysisDraws.some((d) => d.top3 || d.top2 || d.bottom2) &&
       auditStatuses[selectedId]?.status !== "failed",
     customValid = validateWeights(digitWeights) && validateWeights(pairWeights);
+  const patternDraws = useMemo(
+      () => filterDrawsByDay(analysisDraws, dayPattern),
+      [analysisDraws, dayPattern],
+    ),
+    formulaDraws = useMemo(
+      () => filterDrawsByDay(analysisDraws, formulaDayPattern),
+      [analysisDraws, formulaDayPattern],
+    );
   const analysis = useMemo(() => {
     return hasSignals
       ? memoizedAnalyze(selectedId, patternDraws, {
@@ -249,7 +273,7 @@ export default function Dashboard({
   ]);
   const consensus = useMemo(
     () =>
-      hasSignals
+      hasSignals && section === "analyze"
           ? buildConsensus(patternDraws, {
             window: windowSize,
             candidateCount,
@@ -257,10 +281,10 @@ export default function Dashboard({
             stabilityWindows: dayPattern === "all" ? undefined : [5, 10],
           })
         : null,
-    [patternDraws, hasSignals, windowSize, candidateCount, doubles, dayPattern],
+    [patternDraws, hasSignals, windowSize, candidateCount, doubles, dayPattern, section],
   );
   const tests = useMemo(() => {
-      return hasSignals
+      return hasSignals && section === "backtest"
         ? backtest(
             analysisDraws,
             windowSize,
@@ -269,10 +293,10 @@ export default function Dashboard({
             "balanced-v1",
           )
         : [];
-    }, [analysisDraws, hasSignals, windowSize, testDraws, candidateCount]),
+    }, [analysisDraws, hasSignals, windowSize, testDraws, candidateCount, section]),
     comparisons = useMemo(
       () =>
-        hasSignals
+        hasSignals && section === "backtest" && backtestTab === "lab"
           ? compareAlgorithms(
               formulaDraws,
               windowSize,
@@ -280,7 +304,7 @@ export default function Dashboard({
               candidateCount,
             )
           : [],
-      [formulaDraws, hasSignals, windowSize, testDraws, candidateCount],
+      [formulaDraws, hasSignals, windowSize, testDraws, candidateCount, section, backtestTab],
     );
   async function sync() {
     setSyncing(true);
@@ -305,7 +329,7 @@ export default function Dashboard({
     }
   }
   useEffect(() => {
-    if (!selectedId) return;
+    if (!selectedId || snapshot?.freshness) return;
     let cancelled = false;
     fetch(`/api/history/${selectedId}/freshness`)
       .then((r) => r.json())
@@ -320,7 +344,7 @@ export default function Dashboard({
     return () => {
       cancelled = true;
     };
-  }, [selectedId]);
+  }, [selectedId, snapshot?.freshness]);
   async function refreshCatalog() {
     setCatalogSync(true);
     try {
