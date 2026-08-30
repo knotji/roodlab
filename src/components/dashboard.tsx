@@ -48,6 +48,7 @@ import { resolveLotteryId, useLotteryStore } from "@/lib/lottery-store";
 import { LotterySelector } from "./lottery-selector";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
 import { PairDiagnosticsPanel } from "./pair-diagnostics-panel";
+import { AppSidebar, MobileNavigation } from "./app-shell/navigation";
 import {
   Activity,
   BarChart3,
@@ -341,34 +342,13 @@ export default function Dashboard({
   };
   return (
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand">
-          <span>R</span>
-          <div>
-            <strong>RoodLab</strong>
-            <small>Signal analysis</small>
-          </div>
-        </div>
-        <nav>
-          {nav.map((n) => (
-            <button
-              key={n.id}
-              className={section === n.id ? "active" : ""}
-              onClick={() => setSection(n.id)}
-            >
-              <n.icon />
-              {n.label}
-            </button>
-          ))}
-        </nav>
-        <div className="sidebar-note">
-          <Database />
-          <div>
-            <strong>{systemStatus?.connected ? "Neon connected" : `${draws.length} งวด`}</strong>
-            <small>{systemStatus?.connected ? `${systemStatus.snapshotCount} หวย · ล็อกล่วงหน้า ${systemStatus.predictionCount}` : snapshot ? "JSON fallback · ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}</small>
-          </div>
-        </div>
-      </aside>
+      <AppSidebar
+        items={nav}
+        active={section}
+        onNavigate={setSection}
+        statusTitle={systemStatus?.connected ? "Neon connected" : `${draws.length} งวด`}
+        statusDetail={systemStatus?.connected ? `${systemStatus.snapshotCount} หวย · ล็อกล่วงหน้า ${systemStatus.predictionCount}` : snapshot ? "JSON fallback · ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}
+      />
       <main>
         <header className="topbar">
           <div className="topbar-head">
@@ -524,18 +504,7 @@ export default function Dashboard({
           ไม่ได้เพิ่มความน่าจะเป็นทางคณิตศาสตร์ของผลสุ่มในงวดถัดไป
         </footer>
       </main>
-      <nav className="mobile-nav">
-        {nav.map((n) => (
-          <button
-            key={n.id}
-            className={section === n.id ? "active" : ""}
-            onClick={() => setSection(n.id)}
-          >
-            <n.icon />
-            <span>{n.label}</span>
-          </button>
-        ))}
-      </nav>
+      <MobileNavigation items={nav} active={section} onNavigate={setSection} />
       {(digitDetail || pairDetail) && (
         <DetailModal
           digit={digitDetail}
@@ -601,11 +570,8 @@ function Analyze({
   onProspectiveChange: () => void;
 }) {
   const enoughData =
-      analysis.sampleSize >=
-      (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS),
-    selectedAlgorithmName =
-      ALGORITHMS.find((algorithm) => algorithm.id === algorithmId)?.name ??
-      algorithmId;
+    analysis.sampleSize >=
+    (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS);
   return (
     <div className="content analyze">
       <div className="analyze-controls">
@@ -661,11 +627,11 @@ function Analyze({
           <p>
             {!enoughData
               ? `ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`
-              : `${selectedAlgorithmName} · ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
+              : `วิเคราะห์จาก ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`}
           </p>
           {enoughData && consensus && (
             <div className="hero-consensus-inline">
-              <span>Consensus 5 สูตร</span>
+              <span>ภาพรวมจากหลายวิธี</span>
               <strong>
                 {consensus.digits
                   .slice(0, 5)
@@ -713,12 +679,11 @@ function Analyze({
             digits={analysis.digits}
             history={analysis.history}
             consensus={consensus}
-            selectedAlgorithmName={selectedAlgorithmName}
             onDigit={onDigit}
           />
           {consensus && (
             <details className="analyze-disclosure">
-              <summary>ดูรายละเอียด Consensus 5 สูตร</summary>
+              <summary>ดูรายละเอียดการสรุปจากหลายวิธี</summary>
               <ConsensusCard consensus={consensus} />
             </details>
           )}
@@ -950,13 +915,11 @@ function WinSetCard({
   digits,
   history,
   consensus,
-  selectedAlgorithmName,
   onDigit,
 }: {
   digits: DigitSignal[];
   history: LotteryDraw[];
   consensus: ConsensusResult | null;
-  selectedAlgorithmName: string;
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(6),
@@ -1124,12 +1087,12 @@ function WinSetCard({
       </div>
       <small className="win-set-note">
         {focusMode === "core-support"
-          ? `ชุดทางเลือกจาก ${selectedAlgorithmName}`
+          ? "ชุดเรียงตามสถิติ"
           : focusMode === "diversified"
-            ? "หลัก 3 จาก Consensus · ตำแหน่ง 2 · สวน Momentum 1"
+            ? "หลัก 3 · ตำแหน่ง 2 · สัญญาณสวน 1"
           : focusMode === "distributed"
-            ? "ชุดกระจายอันดับจาก Consensus"
-            : "เรียงจาก Consensus ของ 5 สูตรเดิม"}
+            ? "ชุดกระจายตามลำดับ"
+            : "ชุดสอดคล้องจากหลายวิธี"}
         {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
       <div className="win-source-control">
@@ -1143,7 +1106,7 @@ function WinSetCard({
             }}
             type="button"
           >
-            ชุดหลัก · Consensus
+            ชุดสอดคล้องหลายมุม
             {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.tiered.passed ? "passed" : "waiting"}`} title={trackingByMode.tiered.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
           </button>
           <button
@@ -1154,7 +1117,7 @@ function WinSetCard({
             }}
             type="button"
           >
-            ชุดทางเลือก · {selectedAlgorithmName}
+            ชุดเรียงตามสถิติ
             {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode["core-support"].passed ? "passed" : "waiting"}`} title={trackingByMode["core-support"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
           </button>
           {(winSize === 5 || winSize === 6) && (
