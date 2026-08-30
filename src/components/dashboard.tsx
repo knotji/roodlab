@@ -941,7 +941,7 @@ function WinSetCard({
   const [winSize, setWinSize] = useState(6),
     [focusMode, setFocusMode] = useState<
       "core-support" | "tiered" | "distributed" | "diversified"
-    >("tiered"),
+    >("core-support"),
     consensusDigits =
       consensus?.digits
         .map((item) => digits.find((digit) => digit.digit === item.digit))
