@@ -158,18 +158,27 @@ export async function reconcileProspectiveOutcomes(
   draws: LotteryDraw[],
 ): Promise<number> {
   if (!hasDatabase()) return 0;
+  const completed = draws.filter(isCompleteDraw).map((draw) => ({
+    draw_date: draw.drawDate,
+    outcome: {
+      drawDate: draw.drawDate,
+      top3: draw.top3,
+      top2: draw.top2,
+      bottom2: draw.bottom2,
+    },
+  }));
+  if (!completed.length) return 0;
   await ensureDatabase();
-  let reconciled = 0;
-  for (const draw of draws.filter(isCompleteDraw)) {
-    const rows = await database().query(
-      `INSERT INTO prediction_outcomes (prediction_id, outcome)
-       SELECT id, $3::jsonb FROM prediction_snapshots
-       WHERE lottery_id = $1 AND draw_date = $2::date
-       ON CONFLICT (prediction_id) DO NOTHING
-       RETURNING prediction_id`,
-      [lotteryId, draw.drawDate, JSON.stringify({ drawDate: draw.drawDate, top3: draw.top3, top2: draw.top2, bottom2: draw.bottom2 })],
-    );
-    reconciled += rows.length;
-  }
-  return reconciled;
+  const rows = await database().query(
+    `INSERT INTO prediction_outcomes (prediction_id, outcome)
+     SELECT p.id, incoming.outcome
+     FROM prediction_snapshots p
+     JOIN jsonb_to_recordset($2::jsonb) AS incoming(draw_date text, outcome jsonb)
+       ON p.draw_date = incoming.draw_date::date
+     WHERE p.lottery_id = $1
+     ON CONFLICT (prediction_id) DO NOTHING
+     RETURNING prediction_id`,
+    [lotteryId, JSON.stringify(completed)],
+  );
+  return rows.length;
 }
