@@ -579,6 +579,32 @@
   color: var(--muted);
   font-size: 9px;
 }
+.win-method-options {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+}
+.win-method-options > summary {
+  padding: 9px 11px;
+  color: var(--ink);
+  font-size: 10px;
+  cursor: pointer;
+}
+.win-method-options > summary small {
+  margin-left: 5px;
+  color: var(--muted);
+  font-size: 9px;
+}
+.win-method-options[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.win-method-options .win-source-control {
+  padding: 0 10px;
+}
+.win-method-options .win-mode-guidance {
+  padding: 0 10px 10px;
+}
 .mode-tracking-dot {
   width: 6px;
   height: 6px;

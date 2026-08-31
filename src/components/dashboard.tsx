@@ -129,7 +129,6 @@ export default function Dashboard({
   initialSnapshots,
   initialSelectedId,
   auditStatuses,
-  defaultDayPattern,
 }: {
   catalog: LotteryDefinition[];
   initialSnapshots: Record<string, Snapshot>;
@@ -138,7 +137,6 @@ export default function Dashboard({
     string,
     { status: "supported" | "partial" | "failed"; reason?: string }
   >;
-  defaultDayPattern: Exclude<DayPattern, "all">;
 }) {
   const stored = useLotteryStore((s) => s.selectedLotteryId),
     persistLottery = useLotteryStore((s) => s.setSelectedLottery),
@@ -165,7 +163,7 @@ export default function Dashboard({
     [expandedRow, setExpandedRow] = useState<string | null>(null),
     [positionSide, setPositionSide] = useState<Side>("top"),
     [gapSort, setGapSort] = useState<"score" | "latest" | "gap">("score"),
-    [dayPattern, setDayPattern] = useState<DayPattern>(defaultDayPattern),
+    [dayPattern, setDayPattern] = useState<DayPattern>("all"),
     [digitWeights, setDigitWeights] = useState(defaultDigit),
     [pairWeights, setPairWeights] = useState(defaultPair),
     [liveFreshness, setLiveFreshness] = useState<FreshnessInfo | null>(null),
@@ -996,7 +994,7 @@ function WinSetContainer({
       <div className="win-set-head">
         <div>
           <div className="section-kicker">ชุดเลขวินจากสถิติ</div>
-          <h3>วิน {winSize} ตัว</h3>
+          <h3>วิน {winSize} ตัว{focusMode === "core-support" ? " · ชุดแนะนำ" : ""}</h3>
         </div>
         <div className="win-size-control">
           <span>จำนวนเลขวิน</span>
@@ -1024,7 +1022,7 @@ function WinSetContainer({
       </div>
       <small className="win-set-note">
         {focusMode === "core-support"
-          ? "ชุดเรียงตามสถิติ"
+          ? "ใช้วิธีคัดที่แนะนำ"
           : focusMode === "stable-411"
             ? "แกนนิ่ง 4 · เสริมบน 1 · เสริมล่าง 1 · ทดลอง"
           : focusMode === "diversified"
@@ -1034,9 +1032,11 @@ function WinSetContainer({
             : "ชุดสอดคล้องจากหลายวิธี"}
         {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
-      <div className="win-source-control">
-        <span>แหล่งคัดเลขวิน</span>
-        <div className="focus-mode-control">
+      <details className="win-method-options">
+        <summary>ปรับวิธีคัดเลข <small>ตัวเลือกเพิ่มเติม</small></summary>
+        <div className="win-source-control">
+          <span>วิธีคัดเลขวิน</span>
+          <div className="focus-mode-control">
           <button
             className={focusMode === "tiered" ? "active" : ""}
             onClick={() => {
@@ -1098,11 +1098,12 @@ function WinSetContainer({
               <i className={`mode-tracking-dot ${trackingByMode.diversified.passed ? "passed" : "waiting"}`} title={trackingByMode.diversified.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />
             </button>
           )}
+          </div>
         </div>
-      </div>
-      <p className="win-mode-guidance">
-        เลือกไม่ถูกให้ใช้ “ชุดเรียงตามสถิติ” ซึ่งเป็นค่าเริ่มต้น · 4+1+1 เป็นโหมดทดลองสำหรับดูความนิ่ง ไม่ได้ยืนยันว่าแม่นกว่า
-      </p>
+        <p className="win-mode-guidance">
+          หากไม่แน่ใจ ใช้ “ชุดแนะนำ” ได้เลย · วิธีอื่นเป็นมุมมองสำหรับสำรวจสถิติ และยังไม่ได้พิสูจน์ว่าแม่นกว่า
+        </p>
+      </details>
       {winSize === 6 && (
         <div className={`win-tracking-gate ${activeTracking.passed ? "passed" : "waiting"}`}>
           <div>

@@ -91,9 +91,16 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 .section-head p { max-width: 620px; font-size: 13px; }
 
 /* Analyze: summary first, controls quiet, technical details disclosed. */
-.analyze-control-panel { display: grid; grid-template-columns: auto minmax(320px, 1fr); align-items: end; gap: 14px 28px; margin-bottom: 18px; }
-.analyze-control-panel > div { display: grid; gap: 6px; }
-.analyze-control-panel > div > span { color: var(--muted-foreground); font-size: 10px; }
+.analyze-control-panel { display: grid; gap: 8px; margin-bottom: 18px; }
+.analyze-control-summary { display: flex; align-items: baseline; gap: 8px; }
+.analyze-control-summary span { color: var(--muted-foreground); font-size: 10px; }
+.analyze-control-summary strong { font-size: 12px; font-weight: 600; }
+.analyze-filter-options { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--background); }
+.analyze-filter-options > summary { padding: 10px 12px; color: var(--foreground); font-size: 11px; cursor: pointer; }
+.analyze-filter-options[open] > summary { border-bottom: 1px solid var(--border); }
+.analyze-filter-options > div { display: grid; gap: 6px; padding: 10px 12px 0; }
+.analyze-filter-options > div:last-of-type { padding-bottom: 12px; }
+.analyze-filter-options > div > span { color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; margin: 0; color: var(--muted-foreground); font-size: 10px; }
 .analyze-control-panel > p small { font-size: inherit; }
 .window-selector { display: flex; min-height: 44px; padding: 4px; border-radius: var(--radius-lg); background: var(--muted-surface); overflow-x: auto; scrollbar-width: none; }
@@ -249,8 +256,7 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .source-result-link small { display: none; }
   .sync svg { width: 17px; }
   .content { padding: 18px 0 24px; }
-  .analyze-control-panel { grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px; }
-  .analyze-control-panel > div { gap: 3px; }
+  .analyze-control-panel { gap: 7px; margin-bottom: 12px; }
   .analyze-control-panel > p { grid-column: auto; flex-direction: row; flex-wrap: wrap; gap: 0 8px; line-height: 1.4; }
   .window-selector, .day-pattern-options { min-height: 38px; padding: 2px; border-radius: 9px; }
   .window-selector button { flex: 1 0 auto; min-width: 50px; min-height: 34px; }

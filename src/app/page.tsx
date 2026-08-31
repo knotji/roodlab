@@ -1,5 +1,4 @@
 import Dashboard from "@/components/dashboard";
-import { currentBangkokWeekday } from "@/lib/analysis/day-pattern";
 import { readCatalog, readCatalogAudit, readSnapshot } from "@/lib/cache";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ lottery?: string }> }) {
@@ -25,7 +24,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
       initialSnapshots={initialSnapshot ? { [initialId]: initialSnapshot } : {}}
       initialSelectedId={initialId}
       auditStatuses={auditStatuses}
-      defaultDayPattern={currentBangkokWeekday()}
     />
   );
 }

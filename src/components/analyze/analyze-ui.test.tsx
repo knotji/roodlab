@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { MobileNavigation } from "@/components/app-shell/navigation";
 import type { PairSignal } from "@/lib/analysis/types";
 import { AnalysisDisclosure } from "./analysis-disclosure";
+import { AnalyzeControls } from "./analyze-controls";
 import { PairSection } from "./pair-section";
 import { StandoutHero } from "./standout-hero";
 import { WindowSelector } from "./window-selector";
@@ -31,6 +32,18 @@ describe("Analyze presentation", () => {
     render(<WindowSelector value={30} onChange={onChange} />);
     fireEvent.click(screen.getByRole("button", { name: "50งวด" }));
     expect(onChange).toHaveBeenCalledWith(50);
+  });
+
+  it("keeps advanced filters collapsed while summarizing the all-days default", () => {
+    render(<AnalyzeControls windowSize={30} onWindowChange={() => undefined} dayPattern="all" onDayPatternChange={() => undefined} sampleSize={30} minimumDayDraws={10} />);
+    expect(screen.getByText("30 งวดล่าสุด · ทุกวัน")).toBeTruthy();
+    expect(screen.getByText("ตัวกรองเพิ่มเติม").closest("details")?.open).toBe(false);
+    expect(screen.getByText("ใช้ข้อมูลทุกวันเพื่อให้มีจำนวนงวดมากและสถิตินิ่งกว่า")).toBeTruthy();
+  });
+
+  it("labels a small weekday sample as insufficient for stability", () => {
+    render(<AnalyzeControls windowSize={100} onWindowChange={() => undefined} dayPattern={4} onDayPatternChange={() => undefined} sampleSize={14} minimumDayDraws={10} />);
+    expect(screen.getByText(/พบ 14 งวด · ข้อมูลยังไม่พอวัดความนิ่ง/)).toBeTruthy();
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {
