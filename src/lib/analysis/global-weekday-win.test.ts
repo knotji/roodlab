@@ -1,0 +1,47 @@
+import { describe, expect, it } from "vitest";
+import type { LotteryDraw } from "../types";
+import { buildGlobalWeekdayWin } from "./global-weekday-win";
+
+const draw = (lotteryId: string, drawDate: string, top2: string, bottom2: string): LotteryDraw => ({
+  id: `${lotteryId}-${drawDate}`,
+  lotteryId,
+  drawDate,
+  top3: `0${top2}`,
+  top2,
+  bottom2,
+});
+
+describe("global weekday win six", () => {
+  it("combines top and bottom digit presence with equal side weight", () => {
+    const result = buildGlobalWeekdayWin(
+      [{ lotteryId: "a", draws: [draw("a", "2026-08-25", "11", "22")] }],
+      { weekday: 2, cutoffDate: "2026-09-01" },
+    );
+    expect(result.digits.slice(0, 2).map((item) => item.digit)).toEqual(["1", "2"]);
+    expect(result.digits[0].score).toBe(0.5);
+    expect(result.digits[1].score).toBe(0.5);
+  });
+
+  it("gives each lottery equal weight instead of rewarding more stored rows", () => {
+    const many = Array.from({ length: 12 }, () => draw("a", "2026-08-25", "11", "11")),
+      result = buildGlobalWeekdayWin(
+        [
+          { lotteryId: "a", draws: many },
+          { lotteryId: "b", draws: [draw("b", "2026-08-25", "99", "99")] },
+        ],
+        { weekday: 2, cutoffDate: "2026-09-01" },
+      ),
+      one = result.digits.find((item) => item.digit === "1"),
+      nine = result.digits.find((item) => item.digit === "9");
+    expect(one?.score).toBe(nine?.score);
+  });
+
+  it("excludes the cutoff date so the shared set stays fixed during the day", () => {
+    const result = buildGlobalWeekdayWin(
+      [{ lotteryId: "a", draws: [draw("a", "2026-09-01", "99", "99"), draw("a", "2026-08-25", "11", "11")] }],
+      { weekday: 2, cutoffDate: "2026-09-01" },
+    );
+    expect(result.digits[0].digit).toBe("1");
+    expect(result.digits.map((item) => item.digit)).not.toContain("9");
+  });
+});

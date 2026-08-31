@@ -51,6 +51,7 @@ import { LotteryPicker } from "./analyze/lottery-picker";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
 import { AppSidebar, MobileNavigation } from "./app-shell/navigation";
 import { AnalyzeControls } from "./analyze/analyze-controls";
+import { GlobalWeekdayWinCard } from "./analyze/global-weekday-win-card";
 import { AnalysisDisclosure } from "./analyze/analysis-disclosure";
 import { CoverageSummary } from "./analyze/coverage-summary";
 import { PairSection } from "./analyze/pair-section";
@@ -612,6 +613,7 @@ function Analyze({
     <div className="content analyze">
       <AnalyzeControls windowSize={windowSize} onWindowChange={setWindow} dayPattern={dayPattern} onDayPatternChange={setDayPattern} sampleSize={analysis.sampleSize} minimumDayDraws={MIN_DAY_PATTERN_DRAWS} />
       <StandoutHero enoughData={enoughData} digits={analysis.standout.map((item) => item.digit)} context={`วิเคราะห์จาก ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`} insufficientCopy={`ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`} consensusDigits={consensus?.digits.slice(0, 5).map((item) => item.digit) ?? []} integrity={integrity} stabilityScore={consensus?.stabilityScore ?? null} stabilityDetail={consensus?.stabilityScore === null ? `มี ${analysis.sampleSize} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย ${dayPattern === "all" ? "20 งวดเพื่อเทียบช่วง 10/20" : "10 งวดเพื่อเทียบช่วง 5/10"}` : `${consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · เทียบช่วง ${consensus?.eligibleWindows.join("/")} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ไม่ใช่ความน่าจะเป็น`} />
+      <GlobalWeekdayWinCard />
       {enoughData && (
         <>
           <WinSetContainer

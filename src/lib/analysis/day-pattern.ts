@@ -19,6 +19,15 @@ export const DAY_PATTERN_OPTIONS: readonly {
 
 export const MIN_DAY_PATTERN_DRAWS = 10;
 
+export function currentBangkokDateKey(at: Date = new Date()) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Bangkok",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(at);
+}
+
 export function currentBangkokWeekday(at: Date = new Date()): Exclude<DayPattern, "all"> {
   const parts = new Intl.DateTimeFormat("en-US", {
       timeZone: "Asia/Bangkok",

@@ -7,11 +7,15 @@ import { MobileNavigation } from "@/components/app-shell/navigation";
 import type { PairSignal } from "@/lib/analysis/types";
 import { AnalysisDisclosure } from "./analysis-disclosure";
 import { AnalyzeControls } from "./analyze-controls";
+import { GlobalWeekdayWinCard } from "./global-weekday-win-card";
 import { PairSection } from "./pair-section";
 import { StandoutHero } from "./standout-hero";
 import { WindowSelector } from "./window-selector";
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
 
 describe("Analyze presentation", () => {
   it("renders standout digits as the primary heading value", () => {
@@ -44,6 +48,30 @@ describe("Analyze presentation", () => {
   it("labels a small weekday sample as insufficient for stability", () => {
     render(<AnalyzeControls windowSize={100} onWindowChange={() => undefined} dayPattern={4} onDayPatternChange={() => undefined} sampleSize={14} minimumDayDraws={10} />);
     expect(screen.getByText(/พบ 14 งวด · ข้อมูลยังไม่พอวัดความนิ่ง/)).toBeTruthy();
+  });
+
+  it("renders one shared six-digit weekday set from the aggregate API", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        ok: true,
+        weekday: 2,
+        weekdayLabel: "วันอังคาร",
+        digits: ["7", "1", "9", "3", "5", "8"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
+        lotteryCount: 42,
+        topLotteryCount: 42,
+        bottomLotteryCount: 40,
+        topDrawCount: 480,
+        bottomDrawCount: 455,
+        lookbackPerLottery: 12,
+        cutoffDate: "2026-09-01",
+        sufficient: true,
+      }),
+    }));
+    render(<GlobalWeekdayWinCard />);
+    expect(await screen.findByRole("heading", { name: "วินรวมทุกหวย · วันอังคาร" })).toBeTruthy();
+    expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8").children).toHaveLength(6);
+    expect(screen.getByText("ใช้ผลบนและล่าง 2 ตัวอย่างละ 50% · หวยแต่ละชนิดมีน้ำหนักเท่ากัน · ไม่ใช่ความน่าจะเป็น")).toBeTruthy();
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {
