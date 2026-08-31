@@ -9,7 +9,14 @@ export type DiversifiedWinSix = {
   digits: DigitSignal[];
 };
 
-export type WinTrackingMode = "tiered" | "core-support" | "distributed" | "diversified";
+export type StableWinSix = {
+  core: DigitSignal[];
+  topComplement: DigitSignal[];
+  bottomComplement: DigitSignal[];
+  digits: DigitSignal[];
+};
+
+export type WinTrackingMode = "tiered" | "core-support" | "distributed" | "diversified" | "stable-411";
 export type WinTrackingGate = {
   passed: boolean;
   checks: { label: string; passed: boolean }[];
@@ -25,6 +32,10 @@ export function evaluateWinTracking(
     diversifiedMainVotes: number[];
     diversifiedPositionRanks: number[];
     diversifiedMomentum: number | null;
+    stableCoreVotes: number[];
+    stableCoreWindows: number[];
+    stableTopPositionRank: number | null;
+    stableBottomPositionRank: number | null;
   },
 ): WinTrackingGate {
   const stable = { label: "ความนิ่งข้ามช่วงอยู่ระดับค่อนข้างนิ่ง", passed: evidence.stable },
@@ -44,13 +55,58 @@ export function evaluateWinTracking(
               { label: "เลขหลัก 2 ตัวได้เสียงอย่างน้อย 4/5 สูตร", passed: evidence.consensusMainVotes.length === 2 && evidence.consensusMainVotes.every((votes) => votes >= 4) },
               { label: "ตัวแทรกเคยติด Top 5 อย่างน้อยหนึ่งสูตร", passed: evidence.distributedInsertBestRanks.length === 2 && evidence.distributedInsertBestRanks.every((rank) => rank <= 5) },
             ]
-          : [
+          : mode === "diversified"
+          ? [
               stable,
               { label: "เลขหลัก 3 ตัวได้เสียงอย่างน้อย 3/5 สูตร", passed: evidence.diversifiedMainVotes.length === 3 && evidence.diversifiedMainVotes.every((votes) => votes >= 3) },
               { label: "เลขตำแหน่ง 2 ตัวอยู่ใน Top 5 ด้านตำแหน่ง", passed: evidence.diversifiedPositionRanks.length === 2 && evidence.diversifiedPositionRanks.every((rank) => rank <= 5) },
               { label: "ตัวสวนมี Momentum เป็นบวก", passed: (evidence.diversifiedMomentum ?? 0) > 0 },
+            ]
+          : [
+              stable,
+              { label: "แกน 4 ตัวได้เสียงอย่างน้อย 3/5 สูตร", passed: evidence.stableCoreVotes.length === 4 && evidence.stableCoreVotes.every((votes) => votes >= 3) },
+              { label: "แกน 4 ตัวติดชุดอย่างน้อย 2 ช่วง", passed: evidence.stableCoreWindows.length === 4 && evidence.stableCoreWindows.every((windows) => windows >= 2) },
+              { label: "ตัวเสริมบนและล่างอยู่ใน Top 5 ด้านตำแหน่ง", passed: (evidence.stableTopPositionRank ?? 99) <= 5 && (evidence.stableBottomPositionRank ?? 99) <= 5 },
             ];
   return { passed: checks.every((check) => check.passed), checks };
+}
+
+export function buildStableWinSix(
+  digits: DigitSignal[],
+  topDigits: DigitSignal[],
+  bottomDigits: DigitSignal[],
+  consensus: ConsensusResult | null,
+): StableWinSix {
+  const byDigit = new Map(digits.map((digit) => [digit.digit, digit])),
+    consensusCore = [...(consensus?.digits ?? [])]
+      .sort(
+        (a, b) =>
+          b.stableWindows - a.stableWindows ||
+          b.votes - a.votes ||
+          a.averageRank - b.averageRank ||
+          a.digit.localeCompare(b.digit),
+      )
+      .map((item) => byDigit.get(item.digit))
+      .filter((digit): digit is DigitSignal => Boolean(digit)),
+    core = (consensusCore.length ? consensusCore : digits).slice(0, 4),
+    used = new Set(core.map((digit) => digit.digit)),
+    complement = (source: DigitSignal[]) =>
+      [...source]
+        .filter((digit) => !used.has(digit.digit))
+        .sort((a, b) => a.positionRank - b.positionRank || b.score - a.score || a.digit.localeCompare(b.digit))[0],
+    top = complement(topDigits);
+  if (top) used.add(top.digit);
+  const bottom = complement(bottomDigits),
+    topComplement = top ? [byDigit.get(top.digit) ?? top] : [],
+    bottomComplement = bottom ? [byDigit.get(bottom.digit) ?? bottom] : [],
+    selected = [...core, ...topComplement, ...bottomComplement],
+    fallback = digits.filter((digit) => !selected.some((item) => item.digit === digit.digit));
+  return {
+    core,
+    topComplement,
+    bottomComplement,
+    digits: [...selected, ...fallback].slice(0, 6),
+  };
 }
 
 export function buildDiversifiedWinSix(

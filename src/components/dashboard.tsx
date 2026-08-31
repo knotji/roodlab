@@ -37,6 +37,7 @@ import {
 } from "@/lib/analysis/consensus";
 import {
   buildDiversifiedWinSix,
+  buildStableWinSix,
   evaluateWinTracking,
   historicalWinCoverage,
   type WinTrackingMode,
@@ -616,6 +617,8 @@ function Analyze({
         <>
           <WinSetContainer
             digits={analysis.digits}
+            topDigits={analysis.topDigits}
+            bottomDigits={analysis.bottomDigits}
             history={analysis.history}
             consensus={consensus}
             onDigit={onDigit}
@@ -836,18 +839,22 @@ function ConsensusCard({ consensus }: { consensus: ConsensusResult }) {
 }
 function WinSetContainer({
   digits,
+  topDigits,
+  bottomDigits,
   history,
   consensus,
   onDigit,
 }: {
   digits: DigitSignal[];
+  topDigits: DigitSignal[];
+  bottomDigits: DigitSignal[];
   history: LotteryDraw[];
   consensus: ConsensusResult | null;
   onDigit: (digit: DigitSignal) => void;
 }) {
   const [winSize, setWinSize] = useState(6),
     [focusMode, setFocusMode] = useState<
-      "core-support" | "tiered" | "distributed" | "diversified"
+      "core-support" | "tiered" | "distributed" | "diversified" | "stable-411"
     >("core-support"),
     consensusDigits =
       consensus?.digits
@@ -861,8 +868,11 @@ function WinSetContainer({
         .map((item) => digits.find((digit) => digit.digit === item.digit))
         .filter((digit): digit is DigitSignal => Boolean(digit)) ?? [],
     diversified = buildDiversifiedWinSix(digits, consensus),
+    stableWin = buildStableWinSix(digits, topDigits, bottomDigits, consensus),
     winDigits =
-      focusMode === "diversified" && winSize === 6
+      focusMode === "stable-411" && winSize === 6
+        ? stableWin.digits
+        : focusMode === "diversified" && winSize === 6
         ? diversified.digits
         : focusMode === "distributed" && (winSize === 5 || winSize === 6)
         ? distributedDigits
@@ -907,9 +917,13 @@ function WinSetContainer({
       diversifiedMainVotes: diversified.main.map((digit) => consensus?.digits.find((item) => item.digit === digit.digit)?.votes ?? 0),
       diversifiedPositionRanks: diversified.position.map((digit) => digit.positionRank),
       diversifiedMomentum: diversified.contrarian[0]?.momentum ?? null,
+      stableCoreVotes: stableWin.core.map((digit) => consensus?.digits.find((item) => item.digit === digit.digit)?.votes ?? 0),
+      stableCoreWindows: stableWin.core.map((digit) => consensus?.digits.find((item) => item.digit === digit.digit)?.stableWindows ?? 0),
+      stableTopPositionRank: stableWin.topComplement[0]?.positionRank ?? null,
+      stableBottomPositionRank: stableWin.bottomComplement[0]?.positionRank ?? null,
     },
     trackingByMode = Object.fromEntries(
-      (["tiered", "core-support", "distributed", "diversified"] as WinTrackingMode[]).map((mode) => [mode, evaluateWinTracking(mode, trackingEvidence)]),
+      (["tiered", "core-support", "distributed", "diversified", "stable-411"] as WinTrackingMode[]).map((mode) => [mode, evaluateWinTracking(mode, trackingEvidence)]),
     ) as Record<WinTrackingMode, ReturnType<typeof evaluateWinTracking>>,
     activeTracking = trackingByMode[focusMode],
     focusReady = winSize === 6
@@ -923,7 +937,7 @@ function WinSetContainer({
       [...consensusDigits.slice(0, winSize).map((digit) => digit.digit)]
         .sort()
         .join("") ===
-      [...(focusMode === "distributed" ? distributedDigits : focusMode === "diversified" ? diversified.digits : digits.slice(0, winSize))]
+      [...(focusMode === "distributed" ? distributedDigits : focusMode === "diversified" ? diversified.digits : focusMode === "stable-411" ? stableWin.digits : digits.slice(0, winSize))]
         .map((digit) => digit.digit)
         .sort()
         .join(""),
@@ -995,7 +1009,7 @@ function WinSetContainer({
                   setWinSize(size);
                   if (
                     (size !== 5 && size !== 6 && focusMode === "distributed") ||
-                    (size !== 6 && focusMode === "diversified")
+                    (size !== 6 && (focusMode === "diversified" || focusMode === "stable-411"))
                   )
                     setFocusMode("tiered");
                   setCopied(null);
@@ -1011,6 +1025,8 @@ function WinSetContainer({
       <small className="win-set-note">
         {focusMode === "core-support"
           ? "ชุดเรียงตามสถิติ"
+          : focusMode === "stable-411"
+            ? "แกนนิ่ง 4 · เสริมบน 1 · เสริมล่าง 1 · ทดลอง"
           : focusMode === "diversified"
             ? "หลัก 3 · ตำแหน่ง 2 · สัญญาณสวน 1"
           : focusMode === "distributed"
@@ -1040,7 +1056,7 @@ function WinSetContainer({
             }}
             type="button"
           >
-            ชุดเรียงตามสถิติ
+            ชุดเรียงตามสถิติ <small>ค่าเริ่มต้น</small>
             {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode["core-support"].passed ? "passed" : "waiting"}`} title={trackingByMode["core-support"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
           </button>
           {(winSize === 5 || winSize === 6) && (
@@ -1058,6 +1074,19 @@ function WinSetContainer({
           )}
           {winSize === 6 && (
             <button
+              className={focusMode === "stable-411" ? "active" : ""}
+              onClick={() => {
+                setFocusMode("stable-411");
+                setCopied(null);
+              }}
+              type="button"
+            >
+              เน้นความนิ่ง · 4+1+1 <small>ทดลอง</small>
+              <i className={`mode-tracking-dot ${trackingByMode["stable-411"].passed ? "passed" : "waiting"}`} title={trackingByMode["stable-411"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />
+            </button>
+          )}
+          {winSize === 6 && (
+            <button
               className={focusMode === "diversified" ? "active" : ""}
               onClick={() => {
                 setFocusMode("diversified");
@@ -1071,6 +1100,9 @@ function WinSetContainer({
           )}
         </div>
       </div>
+      <p className="win-mode-guidance">
+        เลือกไม่ถูกให้ใช้ “ชุดเรียงตามสถิติ” ซึ่งเป็นค่าเริ่มต้น · 4+1+1 เป็นโหมดทดลองสำหรับดูความนิ่ง ไม่ได้ยืนยันว่าแม่นกว่า
+      </p>
       {winSize === 6 && (
         <div className={`win-tracking-gate ${activeTracking.passed ? "passed" : "waiting"}`}>
           <div>
@@ -1112,6 +1144,13 @@ function WinSetContainer({
           <div><small>สวน 1 · Momentum</small><strong>{diversified.contrarian.map((digit) => digit.digit).join(" · ")}</strong></div>
         </section>
       )}
+      {winSize === 6 && focusMode === "stable-411" && (
+        <section className="diversified-win-summary">
+          <div><small>แกนนิ่ง 4 · Consensus ข้ามช่วง</small><strong>{stableWin.core.map((digit) => digit.digit).join(" · ")}</strong></div>
+          <div><small>เสริมบน 1 · ตำแหน่ง</small><strong>{stableWin.topComplement.map((digit) => digit.digit).join(" · ") || "--"}</strong></div>
+          <div><small>เสริมล่าง 1 · ตำแหน่ง</small><strong>{stableWin.bottomComplement.map((digit) => digit.digit).join(" · ") || "--"}</strong></div>
+        </section>
+      )}
       <details className="win-pair-expander">
         <summary>ดูกางคู่กลับทั้งหมด {winSet.orderedPairs.length} คู่</summary>
         <div className="win-pairs" aria-label={`คู่กลับจากเลขวิน ${winSize} ตัว`}>
@@ -1128,7 +1167,7 @@ function WinSetContainer({
           ))}
         </div>
       </div>
-      {focusMode !== "diversified" && (winSize === 6 || (winSize === 5 && focusMode === "distributed")) && (
+      {focusMode !== "diversified" && focusMode !== "stable-411" && (winSize === 6 || (winSize === 5 && focusMode === "distributed")) && (
         <section className={`focused-win${focusReady ? " ready" : " pending"}`}>
           <div className="focused-win-head">
             <div>

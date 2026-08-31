@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { fixtureHistory } from "../fixtures";
 import { analyzeLottery } from "./engine";
 import { buildConsensus } from "./consensus";
-import { buildDiversifiedWinSix, evaluateWinTracking, historicalWinCoverage } from "./win-strategy";
+import { buildDiversifiedWinSix, buildStableWinSix, evaluateWinTracking, historicalWinCoverage } from "./win-strategy";
 
 describe("diversified win six", () => {
   it("selects three consensus, two position, and one momentum digit without duplicates", () => {
@@ -30,6 +30,28 @@ describe("diversified win six", () => {
   });
 });
 
+describe("stable 4+1+1 win six", () => {
+  it("selects four stable core digits and distinct top/bottom complements", () => {
+    const analysis = analyzeLottery(fixtureHistory),
+      consensus = buildConsensus(fixtureHistory, {
+        window: 30,
+        candidateCount: 4,
+        includeDoubles: false,
+      }),
+      result = buildStableWinSix(
+        analysis.digits,
+        analysis.topDigits,
+        analysis.bottomDigits,
+        consensus,
+      );
+
+    expect(result.core).toHaveLength(4);
+    expect(result.topComplement).toHaveLength(1);
+    expect(result.bottomComplement).toHaveLength(1);
+    expect(new Set(result.digits.map((digit) => digit.digit))).toHaveLength(6);
+  });
+});
+
 describe("win tracking gate", () => {
   const evidence = {
     stable: true,
@@ -39,10 +61,14 @@ describe("win tracking gate", () => {
     diversifiedMainVotes: [5, 4, 3],
     diversifiedPositionRanks: [2, 5],
     diversifiedMomentum: 1,
+    stableCoreVotes: [5, 5, 4, 3],
+    stableCoreWindows: [4, 3, 3, 2],
+    stableTopPositionRank: 3,
+    stableBottomPositionRank: 5,
   };
 
   it("passes each mode only when every documented check passes", () => {
-    for (const mode of ["tiered", "core-support", "distributed", "diversified"] as const)
+    for (const mode of ["tiered", "core-support", "distributed", "diversified", "stable-411"] as const)
       expect(evaluateWinTracking(mode, evidence).passed).toBe(true);
   });
 
