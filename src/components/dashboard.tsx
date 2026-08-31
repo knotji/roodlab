@@ -219,6 +219,7 @@ export default function Dashboard({
   const selectLottery = (id: string) => {
     setSelectedId(id);
     persistLottery(id);
+    setDayPattern("all");
     setError(null);
     setDigitDetail(null);
     setPairDetail(null);
