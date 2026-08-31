@@ -586,15 +586,31 @@
   background: var(--surface);
 }
 .win-method-options > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 9px 11px;
   color: var(--ink);
   font-size: 10px;
   cursor: pointer;
 }
+.win-method-options > summary > span {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
 .win-method-options > summary small {
-  margin-left: 5px;
   color: var(--muted);
   font-size: 9px;
+}
+.win-method-options > summary strong {
+  font-size: 11px;
+}
+.win-method-options > summary em {
+  color: var(--accent);
+  font-size: 9px;
+  font-style: normal;
 }
 .win-method-options[open] > summary {
   border-bottom: 1px solid var(--line);

@@ -970,6 +970,15 @@ function WinSetContainer({
       | "tier-cover"
       | null
     >(null);
+  const activeMethodLabel = focusMode === "core-support"
+    ? "ชุดแนะนำ"
+    : focusMode === "tiered"
+      ? "ชุดสอดคล้องหลายมุม"
+      : focusMode === "distributed"
+        ? `กระจายอันดับ · ${winSize === 5 ? "2+2+1" : "2+2+2"}`
+        : focusMode === "stable-411"
+          ? "เน้นความนิ่ง · 4+1+1"
+          : "กระจายสัญญาณ · 3+2+1";
   async function copyPairs(
     mode:
       | "pairs"
@@ -1034,10 +1043,24 @@ function WinSetContainer({
         {" · "}ไม่ใช่ความน่าจะเป็น
       </small>
       <details className="win-method-options">
-        <summary>ปรับวิธีคัดเลข <small>ตัวเลือกเพิ่มเติม</small></summary>
+        <summary>
+          <span><small>วิธีคัดที่ใช้</small><strong>{activeMethodLabel}</strong></span>
+          <em>ลองวิธีคัดอื่น</em>
+        </summary>
         <div className="win-source-control">
-          <span>วิธีคัดเลขวิน</span>
+          <span>วิธีอื่นสำหรับสำรวจ</span>
           <div className="focus-mode-control">
+          <button
+            className={focusMode === "core-support" ? "active" : ""}
+            onClick={() => {
+              setFocusMode("core-support");
+              setCopied(null);
+            }}
+            type="button"
+          >
+            ชุดแนะนำ <small>แนะนำ</small>
+            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode["core-support"].passed ? "passed" : "waiting"}`} title={trackingByMode["core-support"].passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณบางส่วน"} />}
+          </button>
           <button
             className={focusMode === "tiered" ? "active" : ""}
             onClick={() => {
@@ -1047,18 +1070,7 @@ function WinSetContainer({
             type="button"
           >
             ชุดสอดคล้องหลายมุม
-            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.tiered.passed ? "passed" : "waiting"}`} title={trackingByMode.tiered.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
-          </button>
-          <button
-            className={focusMode === "core-support" ? "active" : ""}
-            onClick={() => {
-              setFocusMode("core-support");
-              setCopied(null);
-            }}
-            type="button"
-          >
-            ชุดเรียงตามสถิติ <small>ค่าเริ่มต้น</small>
-            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode["core-support"].passed ? "passed" : "waiting"}`} title={trackingByMode["core-support"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
+            {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.tiered.passed ? "passed" : "waiting"}`} title={trackingByMode.tiered.passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณบางส่วน"} />}
           </button>
           {(winSize === 5 || winSize === 6) && (
             <button
@@ -1070,7 +1082,7 @@ function WinSetContainer({
               type="button"
             >
               กระจายอันดับ · {winSize === 5 ? "2+2+1" : "2+2+2"}
-              {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.distributed.passed ? "passed" : "waiting"}`} title={trackingByMode.distributed.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />}
+              {winSize === 6 && <i className={`mode-tracking-dot ${trackingByMode.distributed.passed ? "passed" : "waiting"}`} title={trackingByMode.distributed.passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณบางส่วน"} />}
             </button>
           )}
           {winSize === 6 && (
@@ -1083,7 +1095,7 @@ function WinSetContainer({
               type="button"
             >
               เน้นความนิ่ง · 4+1+1 <small>ทดลอง</small>
-              <i className={`mode-tracking-dot ${trackingByMode["stable-411"].passed ? "passed" : "waiting"}`} title={trackingByMode["stable-411"].passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />
+              <i className={`mode-tracking-dot ${trackingByMode["stable-411"].passed ? "passed" : "waiting"}`} title={trackingByMode["stable-411"].passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณบางส่วน"} />
             </button>
           )}
           {winSize === 6 && (
@@ -1096,7 +1108,7 @@ function WinSetContainer({
               type="button"
             >
               กระจายสัญญาณ · 3+2+1
-              <i className={`mode-tracking-dot ${trackingByMode.diversified.passed ? "passed" : "waiting"}`} title={trackingByMode.diversified.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"} />
+              <i className={`mode-tracking-dot ${trackingByMode.diversified.passed ? "passed" : "waiting"}`} title={trackingByMode.diversified.passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณบางส่วน"} />
             </button>
           )}
           </div>
@@ -1108,8 +1120,8 @@ function WinSetContainer({
       {winSize === 6 && (
         <div className={`win-tracking-gate ${activeTracking.passed ? "passed" : "waiting"}`}>
           <div>
-            <strong>{activeTracking.passed ? "ผ่านเกณฑ์ติดตาม" : "ยังไม่ผ่านเกณฑ์ติดตาม"}</strong>
-            <span>เป็นเกณฑ์คัดสัญญาณ ไม่ใช่เปอร์เซ็นต์ความน่าจะเป็น</span>
+            <strong>{activeTracking.passed ? "สัญญาณครบตามเกณฑ์" : "สัญญาณยังไม่ครบทุกเงื่อนไข"}</strong>
+            <span>{activeTracking.passed ? "เป็นเกณฑ์คัดสัญญาณ ไม่ใช่เปอร์เซ็นต์ความน่าจะเป็น" : "ยังดูและคัดลอกชุดเลขได้ตามปกติ · ไม่ใช่การปิดใช้งาน"}</span>
           </div>
           <ul>
             {activeTracking.checks.map((check) => (
