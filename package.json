@@ -13,6 +13,7 @@
     "evaluate:core": "tsx scripts/evaluate-core.mts",
     "evaluate:ablations": "tsx scripts/evaluate-pair-ablations.mts",
     "evaluate:standout-baseline": "tsx scripts/evaluate-standout-baseline.mts",
+    "evaluate:global-weekday-lift": "tsx scripts/evaluate-global-weekday-lift.mts",
     "storage:migrate": "tsx scripts/migrate-storage.mts",
     "storage:import": "tsx scripts/import-storage.mts"
   },
