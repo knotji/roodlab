@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { BarChart3, History, Settings, Sparkles, TestTube2 } from "lucide-react";
+import { BarChart3, History, RadioTower, Settings, Sparkles, TestTube2 } from "lucide-react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { MobileNavigation } from "@/components/app-shell/navigation";
 import type { PairSignal } from "@/lib/analysis/types";
@@ -100,6 +100,7 @@ describe("Analyze presentation", () => {
   it("keeps four primary mobile destinations and moves secondary items under More", () => {
     const items = [
       { id: "analyze", label: "วิเคราะห์", icon: Sparkles },
+      { id: "live", label: "ผลสด", icon: RadioTower },
       { id: "statistics", label: "สถิติ", icon: BarChart3 },
       { id: "history", label: "ย้อนหลัง", icon: History },
       { id: "backtest", label: "ทดสอบ", icon: TestTube2 },
@@ -108,6 +109,7 @@ describe("Analyze presentation", () => {
     render(<MobileNavigation items={items} active="analyze" onNavigate={() => undefined} />);
     const navigation = screen.getByRole("navigation", { name: "เมนูหลัก" });
     expect(within(navigation).getAllByRole("button")).toHaveLength(5);
+    expect(within(navigation).getByText("ผลสด")).toBeTruthy();
     expect(within(navigation).getByText("เพิ่มเติม")).toBeTruthy();
     expect(screen.queryByText("ตั้งค่า")).toBeNull();
   });

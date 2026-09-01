@@ -70,6 +70,7 @@ import {
   History,
   Info,
   Minus,
+  RadioTower,
   RefreshCw,
   Settings,
   Sparkles,
@@ -81,9 +82,11 @@ const PairDiagnosticsPanel = dynamic(() => import("./pair-diagnostics-panel").th
 const HistoryPage = dynamic(() => import("./history/history-page").then((module) => module.HistoryPage));
 const DigitStrengthGrid = dynamic(() => import("./statistics/digit-strength-grid").then((module) => module.DigitStrengthGrid));
 const SettingsSection = dynamic(() => import("./settings/settings-section").then((module) => module.SettingsSection));
-type Section = "analyze" | "prospective" | "statistics" | "history" | "backtest" | "settings";
+const LiveResultsPage = dynamic(() => import("./live/live-results-page").then((module) => module.LiveResultsPage));
+type Section = "analyze" | "live" | "prospective" | "statistics" | "history" | "backtest" | "settings";
 const nav = [
   { id: "analyze", label: "วิเคราะห์", icon: Sparkles },
+  { id: "live", label: "ผลสด", icon: RadioTower },
   { id: "prospective", label: "หลักฐาน", icon: ClipboardCheck },
   { id: "statistics", label: "สถิติ", icon: BarChart3 },
   { id: "history", label: "ย้อนหลัง", icon: History },
@@ -445,7 +448,7 @@ export default function Dashboard({
             <span>{error} — cache เดิมยังคงอยู่</span>
           </div>
         )}
-        {!analysis && section !== "history" && (
+        {!analysis && !["history", "live", "prospective", "settings"].includes(section) && (
           <Empty onSync={sync} syncing={syncing} />
         )}{" "}
         {analysis && section === "analyze" && (
@@ -481,6 +484,9 @@ export default function Dashboard({
             gapSort={gapSort}
             setGapSort={setGapSort}
           />
+        )}{" "}
+        {section === "live" && (
+          <LiveResultsPage onAnalyze={(lotteryId) => { selectLottery(lotteryId); setSection("analyze"); }} />
         )}{" "}
         {section === "prospective" && (
           <ProspectiveHub catalog={catalog} />
