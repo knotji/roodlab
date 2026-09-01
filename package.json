@@ -15,6 +15,7 @@
     "evaluate:standout-baseline": "tsx scripts/evaluate-standout-baseline.mts",
     "evaluate:global-weekday-lift": "tsx scripts/evaluate-global-weekday-lift.mts",
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
+    "sync:backfill": "tsx scripts/backfill-history.mts",
     "storage:migrate": "tsx scripts/migrate-storage.mts",
     "storage:import": "tsx scripts/import-storage.mts"
   },
