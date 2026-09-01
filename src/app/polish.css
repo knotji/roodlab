@@ -598,16 +598,42 @@
   margin: 5px 0 0;
   font-size: 18px;
 }
-.global-weekday-win-card > header > span {
+.global-win-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.global-win-head-actions > span {
   padding: 4px 7px;
   border-radius: 6px;
   background: var(--muted-surface);
   color: var(--muted);
   font-size: 9px;
 }
-.global-weekday-win-card > header > span.ready {
+.global-win-head-actions > span.ready {
   background: var(--secondary);
   color: var(--accent);
+}
+.global-win-size {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--muted-surface);
+}
+.global-win-size button {
+  min-width: 30px;
+  min-height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.global-win-size button.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 4px #00000012;
 }
 .global-win-digits {
   display: flex;
@@ -1021,6 +1047,8 @@
 }
 @media (max-width: 600px) {
   .global-weekday-win-card { padding: 15px; }
+  .global-weekday-win-card > header { align-items: flex-start; }
+  .global-win-head-actions { align-items: flex-end; flex-direction: column-reverse; }
   .global-win-digits { justify-content: space-between; gap: 5px; }
   .global-win-digits strong { width: 42px; height: 42px; font-size: 20px; }
   .global-weekday-win-card > footer { align-items: stretch; flex-direction: column; }

@@ -14,6 +14,7 @@ export type GlobalWeekdayWinResult = {
   weekday: Exclude<DayPattern, "all">;
   weekdayLabel: string;
   digits: GlobalWeekdayWinDigit[];
+  rankedDigits: GlobalWeekdayWinDigit[];
   lotteryCount: number;
   topLotteryCount: number;
   bottomLotteryCount: number;
@@ -68,6 +69,7 @@ export function buildGlobalWeekdayWin(
     weekday: options.weekday,
     weekdayLabel: dayPatternLabel(options.weekday),
     digits: ranked.slice(0, 6),
+    rankedDigits: ranked,
     lotteryCount: perLottery.length,
     topLotteryCount: topSources.length,
     bottomLotteryCount: bottomSources.length,

@@ -18,6 +18,7 @@ describe("global weekday win six", () => {
       { weekday: 2, cutoffDate: "2026-09-01" },
     );
     expect(result.digits.slice(0, 2).map((item) => item.digit)).toEqual(["1", "2"]);
+    expect(result.rankedDigits).toHaveLength(10);
     expect(result.digits[0].score).toBe(0.5);
     expect(result.digits[1].score).toBe(0.5);
   });

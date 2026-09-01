@@ -10,6 +10,7 @@ type ApiResult = ({ ok: true } & GlobalWeekdayWinResult) | { ok: false; error: s
 export function GlobalWeekdayWinCard() {
   const [result, setResult] = useState<GlobalWeekdayWinResult | null>(null),
     [error, setError] = useState<string | null>(null),
+    [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [copied, setCopied] = useState<"digits" | "pairs" | null>(null);
 
   useEffect(() => {
@@ -43,16 +44,21 @@ export function GlobalWeekdayWinCard() {
         <div className="section-kicker">ชุดทดลองจากทุกหวย</div>
         <h3 id="global-win-heading">วินรวมทุกหวย{result ? ` · ${result.weekdayLabel}` : "ตามวัน"}</h3>
       </div>
-      <span className={result?.sufficient ? "ready" : "waiting"}>{result?.sufficient ? "ข้อมูลพร้อมสำรวจ" : "ทดลอง"}</span>
+      <div className="global-win-head-actions">
+        <div className="global-win-size" role="group" aria-label="จำนวนเลขวินรวมทุกหวย">
+          {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setCopied(null); }}>{size}</button>)}
+        </div>
+        <span className={result?.sufficient ? "ready" : "waiting"}>{result?.sufficient ? "ข้อมูลพร้อมสำรวจ" : "ทดลอง"}</span>
+      </div>
     </header>
     {!result && !error && <p className="global-win-loading">กำลังรวมสถิติของหวยทั้งหมด…</p>}
     {error && <p className="global-win-error">โหลดวินรวมทุกหวยไม่สำเร็จ · ลองรีเฟรชอีกครั้ง</p>}
     {result && (() => {
-      const digits = result.digits.map((item) => item.digit),
-        winSet = buildWinSet(digits, 6);
+      const digits = result.rankedDigits.slice(0, winSize).map((item) => item.digit),
+        winSet = buildWinSet(digits, winSize);
       return <>
-      <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${result.digits.map((item) => item.digit).join(" ")}`}>
-        {result.digits.map((item) => <strong key={item.digit}>{item.digit}</strong>)}
+      <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${digits.join(" ")}`}>
+        {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
       </div>
       <div className="global-win-meta">
         <span>รวม {result.lotteryCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
@@ -62,7 +68,7 @@ export function GlobalWeekdayWinCard() {
       <footer>
         <small>ใช้ผลบนและล่าง 2 ตัวอย่างละ 50% · หวยแต่ละชนิดมีน้ำหนักเท่ากัน · ไม่ใช่ความน่าจะเป็น</small>
         <div>
-          <button type="button" onClick={() => copyValues("digits", digits)}>{copied === "digits" ? <Check /> : <Copy />}{copied === "digits" ? "คัดลอกแล้ว" : "คัดลอก 6 ตัว"}</button>
+          <button type="button" onClick={() => copyValues("digits", digits)}>{copied === "digits" ? <Check /> : <Copy />}{copied === "digits" ? "คัดลอกแล้ว" : `คัดลอก ${winSize} ตัว`}</button>
           <button type="button" className="global-win-copy-pairs" onClick={() => copyValues("pairs", winSet.uniquePairsWithDoubles)}>{copied === "pairs" ? <Check /> : <Copy />}{copied === "pairs" ? "คัดลอกแล้ว" : `รวมเลขเบิ้ล ${winSet.uniquePairsWithDoubles.length} คู่`}</button>
         </div>
       </footer>
