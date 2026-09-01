@@ -11,6 +11,7 @@ export function GlobalWeekdayWinCard() {
   const [result, setResult] = useState<GlobalWeekdayWinResult | null>(null),
     [error, setError] = useState<string | null>(null),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
+    [method, setMethod] = useState<"ranking" | "411">("ranking"),
     [copied, setCopied] = useState<"digits" | "pairs" | null>(null);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export function GlobalWeekdayWinCard() {
       </div>
       <div className="global-win-head-actions">
         <div className="global-win-size" role="group" aria-label="จำนวนเลขวินรวมทุกหวย">
-          {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setCopied(null); }}>{size}</button>)}
+          {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setMethod("ranking"); setCopied(null); }}>{size}</button>)}
         </div>
         <span className={result?.sufficient ? "ready" : "waiting"}>{result?.sufficient ? "ข้อมูลพร้อมสำรวจ" : "ทดลอง"}</span>
       </div>
@@ -54,12 +55,17 @@ export function GlobalWeekdayWinCard() {
     {!result && !error && <p className="global-win-loading">กำลังรวมสถิติของหวยทั้งหมด…</p>}
     {error && <p className="global-win-error">โหลดวินรวมทุกหวยไม่สำเร็จ · ลองรีเฟรชอีกครั้ง</p>}
     {result && (() => {
-      const digits = result.rankedDigits.slice(0, winSize).map((item) => item.digit),
+      const digits = (method === "411" ? result.global411.digits : result.rankedDigits.slice(0, winSize)).map((item) => item.digit),
         winSet = buildWinSet(digits, winSize);
       return <>
+      <div className="global-win-method" role="group" aria-label="วิธีคัดเลขวินรวมทุกหวย">
+        <button type="button" className={method === "ranking" ? "active" : ""} aria-pressed={method === "ranking"} onClick={() => setMethod("ranking")}>อันดับรวม</button>
+        <button type="button" className={method === "411" ? "active" : ""} aria-pressed={method === "411"} onClick={() => { setMethod("411"); setWinSize(6); setCopied(null); }}>4+1+1</button>
+      </div>
       <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${digits.join(" ")}`}>
         {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
       </div>
+      {method === "411" && <div className="global-win-411-detail"><span>แกนรวม 4 <b>{result.global411.core.map((item) => item.digit).join(" · ")}</b></span><span>เด่นบน 1 <b>{result.global411.topExtra.digit}</b></span><span>เด่นล่าง 1 <b>{result.global411.bottomExtra.digit}</b></span></div>}
       <div className="global-win-meta">
         <span>รวม {result.lotteryCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>

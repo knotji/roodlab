@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-09-01T00:28:58.399Z",
+  "thresholds": {
+    "minimumOverlap": 10,
+    "exactFullRate": 0.8
+  },
+  "lotteryCount": 44,
+  "comparablePairCount": 862,
+  "duplicateGroups": [],
+  "strongestPairs": [
+    {
+      "left": "laotv",
+      "right": "minhngocstar",
+      "overlap": 99,
+      "exactFullRate": 0.020202020202020204,
+      "topRate": 0.020202020202020204,
+      "bottomRate": 0.030303030303030304
+    },
+    {
+      "left": "hsi-afternoon",
+      "right": "laosasean",
+      "overlap": 69,
+      "exactFullRate": 0.014492753623188406,
+      "topRate": 0.028985507246376812,
+      "bottomRate": 0.014492753623188406
+    },
+    {
+      "left": "laostars",
+      "right": "szse-afternoon",
+      "overlap": 72,
+      "exactFullRate": 0.013888888888888888,
+      "topRate": 0.013888888888888888,
+      "bottomRate": 0.013888888888888888
+    },
+    {
+      "left": "szse-morning",
+      "right": "xosohd",
+      "overlap": 72,
+      "exactFullRate": 0.013888888888888888,
+      "topRate": 0.013888888888888888,
+      "bottomRate": 0.013888888888888888
+    },
+    {
+      "left": "hsi-morning",
+      "right": "twse",
+      "overlap": 84,
+      "exactFullRate": 0.011904761904761904,
+      "topRate": 0.011904761904761904,
+      "bottomRate": 0.03571428571428571
+    },
+    {
+      "left": "laocitizen",
+      "right": "laostars",
+      "overlap": 97,
+      "exactFullRate": 0.010309278350515464,
+      "topRate": 0.030927835051546393,
+      "bottomRate": 0.020618556701030927
+    },
+    {
+      "left": "hanoiasean",
+      "right": "twse-vip",
+      "overlap": 99,
+      "exactFullRate": 0.010101010101010102,
+      "topRate": 0.020202020202020204,
+      "bottomRate": 0.020202020202020204
+    },
+    {
+      "left": "laostars",
+      "right": "xosoextra",
+      "overlap": 99,
+      "exactFullRate": 0.010101010101010102,
+      "topRate": 0.020202020202020204,
+      "bottomRate": 0.010101010101010102
+    },
+    {
+      "left": "laounionvip",
+      "right": "minhngocstar",
+      "overlap": 99,
+      "exactFullRate": 0.010101010101010102,
+      "topRate": 0.010101010101010102,
+      "bottomRate": 0.020202020202020204
+    },
+    {
+      "left": "hanoiasean",
+      "right": "nikkei-vip-morning",
+      "overlap": 100,
+      "exactFullRate": 0.01,
+      "topRate": 0.02,
+      "bottomRate": 0.03
+    },
+    {
+      "left": "laosvip",
+      "right": "xosoextra",
+      "overlap": 100,
+      "exactFullRate": 0.01,
+      "topRate": 0.02,
+      "bottomRate": 0.02
+    },
+    {
+      "left": "laounionvip",
+      "right": "mlnhngo",
+      "overlap": 100,
+      "exactFullRate": 0.01,
+      "topRate": 0.02,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "germany-vip",
+      "right": "laosasean",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.02,
+      "bottomRate": 0
+    },
+    {
+      "left": "germany-vip",
+      "right": "laostarsvip",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.05,
+      "bottomRate": 0
+    },
+    {
+      "left": "germany-vip",
+      "right": "laosvip",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0
+    },
+    {
+      "left": "germany-vip",
+      "right": "laounion",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "germany-vip",
+      "right": "laounionvip",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0
+    },
+    {
+      "left": "germany-vip",
+      "right": "mlnhngo",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0
+    },
+    {
+      "left": "germany-vip",
+      "right": "xosodevelop",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "germany-vip",
+      "right": "xosoextra",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0
+    },
+    {
+      "left": "hanoiasean",
+      "right": "laoextra",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0
+    },
+    {
+      "left": "hanoiasean",
+      "right": "laoshd",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "hanoiasean",
+      "right": "laotv",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "hanoiasean",
+      "right": "minhngoctv",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "hanoiasean",
+      "right": "nikkei-vip-afternoon",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "hanoiasean",
+      "right": "szse-vip-afternoon",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0.02
+    },
+    {
+      "left": "hanoiasean",
+      "right": "szse-vip-morning",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.01,
+      "bottomRate": 0.01
+    },
+    {
+      "left": "ktop30-vip",
+      "right": "laostars",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0,
+      "bottomRate": 0
+    },
+    {
+      "left": "ktop30-vip",
+      "right": "minhngocstar",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.02,
+      "bottomRate": 0
+    },
+    {
+      "left": "ktop30-vip",
+      "right": "sgx-vip",
+      "overlap": 100,
+      "exactFullRate": 0,
+      "topRate": 0.04,
+      "bottomRate": 0
+    }
+  ]
+}

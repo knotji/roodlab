@@ -19,6 +19,11 @@ const METHODS: { id: GlobalWeekdayMethod; name: string }[] = [
     { id: "weekday-frequency", name: "พบบ่อยตามวัน" },
     { id: "weekday-lift", name: "เด่นกว่าวันอื่น" },
     { id: "all-days-frequency", name: "ความถี่รวมทุกวัน" },
+    { id: "group-weighted-frequency", name: "ถ่วงน้ำหนักกลุ่มแหล่งข้อมูล" },
+    { id: "three-block-stability", name: "เสถียรข้าม 3 ช่วง" },
+    { id: "lottery-consensus", name: "Consensus รายหวย" },
+    { id: "top-bottom-balance", name: "สมดุลบนและล่าง" },
+    { id: "global-4-1-1", name: "Global 4+1+1" },
   ],
   SIZES = [5, 6, 7] as const,
   WEEKDAY_LOOKBACK = 12,
@@ -192,14 +197,24 @@ const pct = (value: number) => `${(value * 100).toFixed(2)}%`,
   protocolHash = createHash("sha256").update(protocol).digest("hex").slice(0, 16),
   historyHash = createHash("sha256").update(Object.values(snapshots).sort((a, b) => a.lotteryId.localeCompare(b.lotteryId)).map((snapshot) => `${snapshot.lotteryId}:${snapshot.historyVersion}`).join("|")).digest("hex").slice(0, 16);
 
+const tournamentCandidates: GlobalWeekdayMethod[] = ["three-block-stability", "lottery-consensus", "top-bottom-balance", "global-4-1-1"],
+  tournament = Object.fromEntries(tournamentCandidates.map((method) => [method, Object.fromEntries(SIZES.map((size) => {
+    const paired = compare(method, "weekday-frequency", size, holdoutDates), result = results.holdout[size][method],
+      weekdayValues = Array.from({ length: 7 }, (_, weekday) => { const items = paired.pairs.filter((row) => row.weekday === weekday), denominator = items.reduce((total, row) => total + row.denominator, 0); return denominator ? items.reduce((total, row) => total + row.numerator, 0) / denominator : null; }).filter((value): value is number => value !== null),
+      passed = result.sideRandomCi.low > 0 && paired.ci.low > 0 && weekdayValues.filter((value) => value > 0).length >= 4 && Math.min(...weekdayValues) >= -0.03;
+    return [size, { passed, sidePairRate: result.sidePairRate, randomUplift: result.sideRandomUplift, randomCi: result.sideRandomCi, versusCurrent: paired.uplift, versusCurrentCi: paired.ci, positiveWeekdays: weekdayValues.filter((value) => value > 0).length, evaluatedWeekdays: weekdayValues.length, worstWeekday: Math.min(...weekdayValues) }];
+  }))])),
+  tournamentWinners = tournamentCandidates.flatMap((method) => SIZES.filter((size) => tournament[method][size].passed).map((size) => `${method}:${size}`)),
+  tournamentDecision = tournamentWinners.length ? `PROMOTE ${tournamentWinners.join(", ")}` : "RESEARCH_ONLY_NO_PROMOTION";
+
 const table = (section: "development" | "holdout" | "all") => SIZES.flatMap((size) => METHODS.map((method) => {
     const result = results[section][size][method.id], versus = method.id === "weekday-lift" ? comparisons[section][size] : null;
     return `| ${size} | ${method.name} | ${result.dates} | ${result.outcomes} | ${pct(result.sidePairRate)} | ${pct(result.sideRandomRate)} | ${signed(result.sideRandomUplift)} | ${signed(result.sideRandomCi.low)} to ${signed(result.sideRandomCi.high)} | ${pct(result.bothRate)} | ${pct(result.recallRate)} | ${versus ? `${signed(versus.uplift)} (${signed(versus.ci.low)} to ${signed(versus.ci.high)})` : "—"} |`;
   })).join("\n"),
   report = `# Global weekday lift walk-forward study
 
-Freeze date: 2026-09-01  
-Protocol fingerprint: \`${protocolHash}\`  
+Freeze date: 2026-09-01
+Protocol fingerprint: \`${protocolHash}\`
 History fingerprint: \`${historyHash}\`
 
 ## Frozen protocol
@@ -209,7 +224,7 @@ History fingerprint: \`${historyHash}\`
 - Weekday history: up to ${WEEKDAY_LOOKBACK} matching weekdays per lottery; all-days reference: up to ${ALL_DAYS_LOOKBACK} prior draws per lottery.
 - Minimum training: ${MIN_WEEKDAY_DRAWS} matching weekdays and ${MIN_ALL_DAYS_DRAWS} all-days draws per lottery, at least ${MIN_TRAINING_LOTTERIES} training lotteries and ${MIN_TARGET_LOTTERIES} target lotteries.
 - Top2 and bottom2 have equal weight. Each lottery has equal weight inside a ranking. Doubles count once for digit presence.
-- Methods were fixed before result generation: weekday frequency (current), weekday lift (weekday rate minus all-days rate), and all-days frequency.
+- Methods were fixed before result generation: current weekday frequency, weekday lift, all-days frequency, duplicate-group weighting, three-block stability, per-lottery consensus, and top-bottom balance.
 - Sizes: 5, 6, 7. Exact random baselines enumerate all equally likely digit subsets, including double-specific probabilities.
 - Pair costs are fixed at 15, 21, and 28 pairs including doubles; exact random four-position recall is 50%, 60%, and 70% respectively.
 - Primary metric: complete coverage of an actual top2 or bottom2 pair. Secondary: both sides covered and four-position digit recall.
@@ -244,12 +259,18 @@ ${SIZES.map((size) => `- Win ${size}: **${promotion[size].passed ? "PASS" : "FAI
 
 **${decision}**
 
+## Experimental tournament
+
+${tournamentCandidates.flatMap((method) => SIZES.map((size) => { const item = tournament[method][size]; return `- ${method} win ${size}: ${pct(item.sidePairRate)}; vs current ${signed(item.versusCurrent)} (${signed(item.versusCurrentCi.low)} to ${signed(item.versusCurrentCi.high)}); ${item.passed ? "PASS" : "FAIL"}.`; })).join("\n")}
+
+**${tournamentDecision}**
+
 No production formula, weight, or Analyze option is changed by this study. A positive point estimate without the frozen consistency gates is not treated as predictive evidence.
 `;
 
 await fs.mkdir(path.join(process.cwd(), "reports"), { recursive: true });
 await Promise.all([
   fs.writeFile(path.join(process.cwd(), "reports", "global-weekday-lift-study.md"), report, "utf8"),
-  fs.writeFile(path.join(process.cwd(), "reports", "global-weekday-lift-study.json"), JSON.stringify({ protocol: JSON.parse(protocol), protocolHash, historyHash, eligibleDates, developmentDates: [...developmentDates], holdoutDates: [...holdoutDates], results, comparisons: Object.fromEntries(Object.entries(comparisons).map(([section, sizes]) => [section, Object.fromEntries(Object.entries(sizes).map(([size, value]) => [size, { uplift: value.uplift, ci: value.ci }]))])), holdoutWeekdayWins, promotion, decision }, null, 2), "utf8"),
+  fs.writeFile(path.join(process.cwd(), "reports", "global-weekday-lift-study.json"), JSON.stringify({ protocol: JSON.parse(protocol), protocolHash, historyHash, eligibleDates, developmentDates: [...developmentDates], holdoutDates: [...holdoutDates], results, comparisons: Object.fromEntries(Object.entries(comparisons).map(([section, sizes]) => [section, Object.fromEntries(Object.entries(sizes).map(([size, value]) => [size, { uplift: value.uplift, ci: value.ci }]))])), holdoutWeekdayWins, promotion, decision, tournament, tournamentDecision }, null, 2), "utf8"),
 ]);
-console.log(JSON.stringify({ protocolHash, historyHash, dates: eligibleDates.length, developmentDates: developmentDates.size, holdoutDates: holdoutDates.size, decision, promotion, report: "reports/global-weekday-lift-study.md" }, null, 2));
+console.log(JSON.stringify({ protocolHash, historyHash, dates: eligibleDates.length, developmentDates: developmentDates.size, holdoutDates: holdoutDates.size, decision, promotion, tournamentDecision, tournament, report: "reports/global-weekday-lift-study.md" }, null, 2));

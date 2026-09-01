@@ -12,6 +12,26 @@
       {
         "id": "all-days-frequency",
         "name": "ความถี่รวมทุกวัน"
+      },
+      {
+        "id": "group-weighted-frequency",
+        "name": "ถ่วงน้ำหนักกลุ่มแหล่งข้อมูล"
+      },
+      {
+        "id": "three-block-stability",
+        "name": "เสถียรข้าม 3 ช่วง"
+      },
+      {
+        "id": "lottery-consensus",
+        "name": "Consensus รายหวย"
+      },
+      {
+        "id": "top-bottom-balance",
+        "name": "สมดุลบนและล่าง"
+      },
+      {
+        "id": "global-4-1-1",
+        "name": "Global 4+1+1"
       }
     ],
     "SIZES": [
@@ -28,7 +48,7 @@
     "BOOTSTRAPS": 10000,
     "SEED": 20260901
   },
-  "protocolHash": "7b3b3071d38bdf27",
+  "protocolHash": "763738995f526b19",
   "historyHash": "b0e3fb1ec15f04af",
   "eligibleDates": [
     "2026-05-22",
@@ -268,6 +288,86 @@
           "bothRate": 0.05681396212402525,
           "bothRandomRate": 0.058540955681690876,
           "recallRate": 0.5
+        },
+        "group-weighted-frequency": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.2435945042703305,
+          "sideRandomRate": 0.2473903535916159,
+          "sideRandomUplift": -0.003795849321285408,
+          "sideRandomCi": {
+            "low": -0.0127062916295447,
+            "high": 0.0048291078639524565
+          },
+          "topRate": 0.25176383215744524,
+          "bottomRate": 0.23542517638321575,
+          "bothRate": 0.060527292981804676,
+          "bothRandomRate": 0.058540955681690876,
+          "recallRate": 0.49517266988488673
+        },
+        "three-block-stability": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.24285183809877461,
+          "sideRandomRate": 0.2473903535916159,
+          "sideRandomUplift": -0.004538515492841294,
+          "sideRandomCi": {
+            "low": -0.014160401002506188,
+            "high": 0.005186422502680939
+          },
+          "topRate": 0.2499071667285555,
+          "bottomRate": 0.2357965094689937,
+          "bothRate": 0.06238395841069439,
+          "bothRandomRate": 0.058540955681690876,
+          "recallRate": 0.49795766802822133
+        },
+        "lottery-consensus": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.24860750092833273,
+          "sideRandomRate": 0.2473903535916159,
+          "sideRandomUplift": 0.0012171473367168202,
+          "sideRandomCi": {
+            "low": -0.009788752733424012,
+            "high": 0.012465719272002072
+          },
+          "topRate": 0.25176383215744524,
+          "bottomRate": 0.2454511696992202,
+          "bothRate": 0.060898626067582624,
+          "bothRandomRate": 0.058540955681690876,
+          "recallRate": 0.5026921648718901
+        },
+        "top-bottom-balance": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.24452283698477534,
+          "sideRandomRate": 0.2473903535916159,
+          "sideRandomUplift": -0.002867516606840551,
+          "sideRandomCi": {
+            "low": -0.01212195923734376,
+            "high": 0.006091080042515005
+          },
+          "topRate": 0.2454511696992202,
+          "bottomRate": 0.2435945042703305,
+          "bothRate": 0.06164129223913851,
+          "bothRandomRate": 0.058540955681690876,
+          "recallRate": 0.4961938358707761
+        },
+        "global-4-1-1": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.24322317118455256,
+          "sideRandomRate": 0.2473903535916159,
+          "sideRandomUplift": -0.00416718240706335,
+          "sideRandomCi": {
+            "low": -0.013253037373355125,
+            "high": 0.004875114098415149
+          },
+          "topRate": 0.2558484961010026,
+          "bottomRate": 0.23059784626810248,
+          "bothRate": 0.05904196063869291,
+          "bothRandomRate": 0.058540955681690876,
+          "recallRate": 0.4953583364277757
         }
       },
       "6": {
@@ -318,6 +418,86 @@
           "bothRate": 0.12328258447827702,
           "bothRandomRate": 0.12457694552013157,
           "recallRate": 0.5998886000742666
+        },
+        "group-weighted-frequency": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.35035276643148905,
+          "sideRandomRate": 0.3574947394479513,
+          "sideRandomUplift": -0.00714197301646227,
+          "sideRandomCi": {
+            "low": -0.018714093631585535,
+            "high": 0.004189772027110137
+          },
+          "topRate": 0.3613070924619384,
+          "bottomRate": 0.3393984404010397,
+          "bothRate": 0.1273672484218344,
+          "bothRandomRate": 0.12457694552013157,
+          "recallRate": 0.5981247679168213
+        },
+        "three-block-stability": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.34719643520237653,
+          "sideRandomRate": 0.3574947394479513,
+          "sideRandomUplift": -0.010298304245574784,
+          "sideRandomCi": {
+            "low": -0.022791497726993633,
+            "high": 0.0022877035931864772
+          },
+          "topRate": 0.35499443000371333,
+          "bottomRate": 0.3393984404010397,
+          "bothRate": 0.12439658373561084,
+          "bothRandomRate": 0.12457694552013157,
+          "recallRate": 0.59478277014482
+        },
+        "lottery-consensus": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.3566654288897141,
+          "sideRandomRate": 0.3574947394479513,
+          "sideRandomUplift": -0.0008293105582372423,
+          "sideRandomCi": {
+            "low": -0.01314780457637614,
+            "high": 0.011235535647629568
+          },
+          "topRate": 0.36204975863349426,
+          "bottomRate": 0.3512810991459339,
+          "bothRate": 0.12588191607872262,
+          "bothRandomRate": 0.12457694552013157,
+          "recallRate": 0.6025807649461568
+        },
+        "top-bottom-balance": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.3522094318603788,
+          "sideRandomRate": 0.3574947394479513,
+          "sideRandomUplift": -0.005285307587572556,
+          "sideRandomCi": {
+            "low": -0.016362507759155962,
+            "high": 0.005204872646732962
+          },
+          "topRate": 0.3494244337170442,
+          "bottomRate": 0.35499443000371333,
+          "bothRate": 0.1266245822502785,
+          "bothRandomRate": 0.12457694552013157,
+          "recallRate": 0.5992387671741553
+        },
+        "global-4-1-1": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.34701076865948755,
+          "sideRandomRate": 0.3574947394479513,
+          "sideRandomUplift": -0.010483970788463755,
+          "sideRandomCi": {
+            "low": -0.020857628765792176,
+            "high": -0.0004827330115114737
+          },
+          "topRate": 0.3653917564054957,
+          "bottomRate": 0.3286297809134794,
+          "bothRate": 0.12142591904938731,
+          "bothRandomRate": 0.12457694552013157,
+          "recallRate": 0.591162272558485
         }
       },
       "7": {
@@ -368,6 +548,86 @@
           "bothRate": 0.23876717415521723,
           "bothRandomRate": 0.23453397697734868,
           "recallRate": 0.7034905310063126
+        },
+        "group-weighted-frequency": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.4844040103973264,
+          "sideRandomRate": 0.48780789701695726,
+          "sideRandomUplift": -0.003403886619630833,
+          "sideRandomCi": {
+            "low": -0.014005396124601159,
+            "high": 0.006799552906110521
+          },
+          "topRate": 0.4916450055699963,
+          "bottomRate": 0.47716301522465654,
+          "bothRate": 0.23542517638321575,
+          "bothRandomRate": 0.23453397697734868,
+          "recallRate": 0.6978277014481991
+        },
+        "three-block-stability": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.48143334571110286,
+          "sideRandomRate": 0.48780789701695726,
+          "sideRandomUplift": -0.006374551305854376,
+          "sideRandomCi": {
+            "low": -0.018045850190020585,
+            "high": 0.004542618245351543
+          },
+          "topRate": 0.49461567025621983,
+          "bottomRate": 0.4682510211659859,
+          "bothRate": 0.23096917935388042,
+          "bothRandomRate": 0.23453397697734868,
+          "recallRate": 0.6958782027478648
+        },
+        "lottery-consensus": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.48607500928332714,
+          "sideRandomRate": 0.48780789701695726,
+          "sideRandomUplift": -0.0017328877336300903,
+          "sideRandomCi": {
+            "low": -0.013786238646260798,
+            "high": 0.010127680674352525
+          },
+          "topRate": 0.49053100631266244,
+          "bottomRate": 0.48161901225399184,
+          "bothRate": 0.24062383958410694,
+          "bothRandomRate": 0.23453397697734868,
+          "recallRate": 0.7003341997772001
+        },
+        "top-bottom-balance": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.4864463423691051,
+          "sideRandomRate": 0.48780789701695726,
+          "sideRandomUplift": -0.0013615546478521474,
+          "sideRandomCi": {
+            "low": -0.01172955974842745,
+            "high": 0.009154320987654568
+          },
+          "topRate": 0.48867434088377276,
+          "bottomRate": 0.4842183438544374,
+          "bothRate": 0.23468251021165987,
+          "bothRandomRate": 0.23453397697734868,
+          "recallRate": 0.7004270330486446
+        },
+        "global-4-1-1": {
+          "dates": 68,
+          "outcomes": 2693,
+          "sidePairRate": 0.4831043445971036,
+          "sideRandomRate": 0.48780789701695726,
+          "sideRandomUplift": -0.0047035524198536325,
+          "sideRandomCi": {
+            "low": -0.013771897130078035,
+            "high": 0.0042938931297712086
+          },
+          "topRate": 0.49907166728555513,
+          "bottomRate": 0.4671370219086521,
+          "bothRate": 0.2324545116969922,
+          "bothRandomRate": 0.23453397697734868,
+          "recallRate": 0.6955997029335313
         }
       }
     },
@@ -420,6 +680,86 @@
           "bothRate": 0.05232558139534884,
           "bothRandomRate": 0.057562753783684,
           "recallRate": 0.5026162790697675
+        },
+        "group-weighted-frequency": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.2575581395348837,
+          "sideRandomRate": 0.24790051679586572,
+          "sideRandomUplift": 0.009657622739018008,
+          "sideRandomCi": {
+            "low": -0.003857160632076549,
+            "high": 0.02270747791464484
+          },
+          "topRate": 0.2709302325581395,
+          "bottomRate": 0.2441860465116279,
+          "bothRate": 0.06395348837209303,
+          "bothRandomRate": 0.057562753783684,
+          "recallRate": 0.5110465116279069
+        },
+        "three-block-stability": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.26627906976744187,
+          "sideRandomRate": 0.24790051679586572,
+          "sideRandomUplift": 0.018378552971576145,
+          "sideRandomCi": {
+            "low": -0.005813185361342234,
+            "high": 0.040713660792401025
+          },
+          "topRate": 0.29186046511627906,
+          "bottomRate": 0.24069767441860465,
+          "bothRate": 0.06162790697674419,
+          "bothRandomRate": 0.057562753783684,
+          "recallRate": 0.515406976744186
+        },
+        "lottery-consensus": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.2569767441860465,
+          "sideRandomRate": 0.24790051679586572,
+          "sideRandomUplift": 0.009076227390180798,
+          "sideRandomCi": {
+            "low": -0.011085915847820519,
+            "high": 0.029521816336884932
+          },
+          "topRate": 0.2441860465116279,
+          "bottomRate": 0.26976744186046514,
+          "bothRate": 0.05581395348837209,
+          "bothRandomRate": 0.057562753783684,
+          "recallRate": 0.5084302325581396
+        },
+        "top-bottom-balance": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.2569767441860465,
+          "sideRandomRate": 0.24790051679586572,
+          "sideRandomUplift": 0.009076227390180798,
+          "sideRandomCi": {
+            "low": -0.009394964299135583,
+            "high": 0.02554909560723523
+          },
+          "topRate": 0.2744186046511628,
+          "bottomRate": 0.23953488372093024,
+          "bothRate": 0.06046511627906977,
+          "bothRandomRate": 0.057562753783684,
+          "recallRate": 0.5101744186046512
+        },
+        "global-4-1-1": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.2558139534883721,
+          "sideRandomRate": 0.24790051679586572,
+          "sideRandomUplift": 0.00791343669250638,
+          "sideRandomCi": {
+            "low": -0.0057843137254901325,
+            "high": 0.021245355387750315
+          },
+          "topRate": 0.28837209302325584,
+          "bottomRate": 0.22325581395348837,
+          "bothRate": 0.06511627906976744,
+          "bothRandomRate": 0.057562753783684,
+          "recallRate": 0.5101744186046512
         }
       },
       "6": {
@@ -470,6 +810,86 @@
           "bothRate": 0.12441860465116279,
           "bothRandomRate": 0.12251384274640091,
           "recallRate": 0.608139534883721
+        },
+        "group-weighted-frequency": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.37267441860465117,
+          "sideRandomRate": 0.3579844961240312,
+          "sideRandomUplift": 0.014689922480619948,
+          "sideRandomCi": {
+            "low": -0.0016269841269842438,
+            "high": 0.030498084291187628
+          },
+          "topRate": 0.39069767441860465,
+          "bottomRate": 0.3546511627906977,
+          "bothRate": 0.12558139534883722,
+          "bothRandomRate": 0.12251384274640091,
+          "recallRate": 0.6145348837209302
+        },
+        "three-block-stability": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.3656976744186046,
+          "sideRandomRate": 0.3579844961240312,
+          "sideRandomUplift": 0.007713178294573436,
+          "sideRandomCi": {
+            "low": -0.018015774180157873,
+            "high": 0.0312832194381168
+          },
+          "topRate": 0.3802325581395349,
+          "bottomRate": 0.3511627906976744,
+          "bothRate": 0.11976744186046512,
+          "bothRandomRate": 0.12251384274640091,
+          "recallRate": 0.611046511627907
+        },
+        "lottery-consensus": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.37267441860465117,
+          "sideRandomRate": 0.3579844961240312,
+          "sideRandomUplift": 0.014689922480619948,
+          "sideRandomCi": {
+            "low": -0.0054600992745324,
+            "high": 0.0341463414634145
+          },
+          "topRate": 0.3686046511627907,
+          "bottomRate": 0.3767441860465116,
+          "bothRate": 0.1325581395348837,
+          "bothRandomRate": 0.12251384274640091,
+          "recallRate": 0.6101744186046512
+        },
+        "top-bottom-balance": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.3697674418604651,
+          "sideRandomRate": 0.3579844961240312,
+          "sideRandomUplift": 0.011782945736433901,
+          "sideRandomCi": {
+            "low": -0.0010656436487639677,
+            "high": 0.025315515961395568
+          },
+          "topRate": 0.3825581395348837,
+          "bottomRate": 0.3569767441860465,
+          "bothRate": 0.1186046511627907,
+          "bothRandomRate": 0.12251384274640091,
+          "recallRate": 0.609593023255814
+        },
+        "global-4-1-1": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.37209302325581395,
+          "sideRandomRate": 0.3579844961240312,
+          "sideRandomUplift": 0.014108527131782738,
+          "sideRandomCi": {
+            "low": -0.001851851851851966,
+            "high": 0.028571428571428466
+          },
+          "topRate": 0.3941860465116279,
+          "bottomRate": 0.35,
+          "bothRate": 0.13372093023255813,
+          "bothRandomRate": 0.12251384274640091,
+          "recallRate": 0.6104651162790697
         }
       },
       "7": {
@@ -520,6 +940,86 @@
           "bothRate": 0.2453488372093023,
           "bothRandomRate": 0.23144379844961235,
           "recallRate": 0.7113372093023256
+        },
+        "group-weighted-frequency": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.5063953488372093,
+          "sideRandomRate": 0.48823643410852685,
+          "sideRandomUplift": 0.018158914728682442,
+          "sideRandomCi": {
+            "low": 0.0015310077519381609,
+            "high": 0.03295019157088142
+          },
+          "topRate": 0.5197674418604651,
+          "bottomRate": 0.4930232558139535,
+          "bothRate": 0.23604651162790696,
+          "bothRandomRate": 0.23144379844961235,
+          "recallRate": 0.7148255813953488
+        },
+        "three-block-stability": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.4965116279069767,
+          "sideRandomRate": 0.48823643410852685,
+          "sideRandomUplift": 0.008275193798449886,
+          "sideRandomCi": {
+            "low": -0.01647662485746845,
+            "high": 0.03247027234369028
+          },
+          "topRate": 0.5174418604651163,
+          "bottomRate": 0.4755813953488372,
+          "bothRate": 0.23255813953488372,
+          "bothRandomRate": 0.23144379844961235,
+          "recallRate": 0.7069767441860465
+        },
+        "lottery-consensus": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.4965116279069767,
+          "sideRandomRate": 0.48823643410852685,
+          "sideRandomUplift": 0.008275193798449886,
+          "sideRandomCi": {
+            "low": -0.01253875968992232,
+            "high": 0.02670520231213893
+          },
+          "topRate": 0.49767441860465117,
+          "bottomRate": 0.49534883720930234,
+          "bothRate": 0.24069767441860465,
+          "bothRandomRate": 0.23144379844961235,
+          "recallRate": 0.7127906976744186
+        },
+        "top-bottom-balance": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.5052325581395349,
+          "sideRandomRate": 0.48823643410852685,
+          "sideRandomUplift": 0.016996124031008024,
+          "sideRandomCi": {
+            "low": -0.001183657884688613,
+            "high": 0.0352363782051284
+          },
+          "topRate": 0.5197674418604651,
+          "bottomRate": 0.4906976744186046,
+          "bothRate": 0.2372093023255814,
+          "bothRandomRate": 0.23144379844961235,
+          "recallRate": 0.7162790697674418
+        },
+        "global-4-1-1": {
+          "dates": 23,
+          "outcomes": 860,
+          "sidePairRate": 0.5081395348837209,
+          "sideRandomRate": 0.48823643410852685,
+          "sideRandomUplift": 0.019903100775194072,
+          "sideRandomCi": {
+            "low": 0.0016014234875447021,
+            "high": 0.03567970204841736
+          },
+          "topRate": 0.5255813953488372,
+          "bottomRate": 0.4906976744186046,
+          "bothRate": 0.23372093023255813,
+          "bothRandomRate": 0.23144379844961235,
+          "recallRate": 0.7133720930232558
         }
       }
     },
@@ -572,6 +1072,86 @@
           "bothRate": 0.05572755417956656,
           "bothRandomRate": 0.05830418291718596,
           "recallRate": 0.5006332676611315
+        },
+        "group-weighted-frequency": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.2469743878412609,
+          "sideRandomRate": 0.2475138380711134,
+          "sideRandomUplift": -0.000539450229852504,
+          "sideRandomCi": {
+            "low": -0.008110243539691303,
+            "high": 0.0070194052341852825
+          },
+          "topRate": 0.2564030396847734,
+          "bottomRate": 0.2375457359977484,
+          "bothRate": 0.061356600056290456,
+          "bothRandomRate": 0.05830418291718596,
+          "recallRate": 0.4990149169715733
+        },
+        "three-block-stability": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.24852237545735997,
+          "sideRandomRate": 0.2475138380711134,
+          "sideRandomUplift": 0.0010085373862465672,
+          "sideRandomCi": {
+            "low": -0.008587962962962874,
+            "high": 0.010306545670003511
+          },
+          "topRate": 0.26006191950464397,
+          "bottomRate": 0.236982831410076,
+          "bothRate": 0.06220095693779904,
+          "bothRandomRate": 0.05830418291718596,
+          "recallRate": 0.5021812552772306
+        },
+        "lottery-consensus": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.2506332676611314,
+          "sideRandomRate": 0.2475138380711134,
+          "sideRandomUplift": 0.003119429590018028,
+          "sideRandomCi": {
+            "low": -0.006594724220623415,
+            "high": 0.01300170463350388
+          },
+          "topRate": 0.24992963692654094,
+          "bottomRate": 0.25133689839572193,
+          "bothRate": 0.05966788629327329,
+          "bothRandomRate": 0.05830418291718596,
+          "recallRate": 0.5040810582606248
+        },
+        "top-bottom-balance": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.2475372924289333,
+          "sideRandomRate": 0.2475138380711134,
+          "sideRandomUplift": 0.000023454357819885547,
+          "sideRandomCi": {
+            "low": -0.008276092348788323,
+            "high": 0.008356807511737166
+          },
+          "topRate": 0.2524627075710667,
+          "bottomRate": 0.2426118772867999,
+          "bothRate": 0.061356600056290456,
+          "bothRandomRate": 0.05830418291718596,
+          "recallRate": 0.4995778215592457
+        },
+        "global-4-1-1": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.24627075710667043,
+          "sideRandomRate": 0.2475138380711134,
+          "sideRandomUplift": -0.0012430809644429909,
+          "sideRandomCi": {
+            "low": -0.008925498294689993,
+            "high": 0.006591076696165283
+          },
+          "topRate": 0.2637207993245145,
+          "bottomRate": 0.22882071488882635,
+          "bothRate": 0.06051224317478188,
+          "bothRandomRate": 0.05830418291718596,
+          "recallRate": 0.49894455389811426
         }
       },
       "6": {
@@ -622,6 +1202,86 @@
           "bothRate": 0.1235575569940895,
           "bothRandomRate": 0.12407757361317731,
           "recallRate": 0.6018857303687025
+        },
+        "group-weighted-frequency": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.3557556994089502,
+          "sideRandomRate": 0.357613284548269,
+          "sideRandomUplift": -0.0018575851393188598,
+          "sideRandomCi": {
+            "low": -0.011645804357904636,
+            "high": 0.0077469990766388264
+          },
+          "topRate": 0.3684210526315789,
+          "bottomRate": 0.3430903461863214,
+          "bothRate": 0.12693498452012383,
+          "bothRandomRate": 0.12407757361317731,
+          "recallRate": 0.6020968195890797
+        },
+        "three-block-stability": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.35167464114832536,
+          "sideRandomRate": 0.357613284548269,
+          "sideRandomUplift": -0.005938643399943684,
+          "sideRandomCi": {
+            "low": -0.01747170852884364,
+            "high": 0.005187955504411067
+          },
+          "topRate": 0.3611032929918379,
+          "bottomRate": 0.3422459893048128,
+          "bothRate": 0.12327610470025331,
+          "bothRandomRate": 0.12407757361317731,
+          "recallRate": 0.5987193920630454
+        },
+        "lottery-consensus": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.36054038840416547,
+          "sideRandomRate": 0.357613284548269,
+          "sideRandomUplift": 0.0029271038558964513,
+          "sideRandomCi": {
+            "low": -0.007414772727272862,
+            "high": 0.013274919917090493
+          },
+          "topRate": 0.36363636363636365,
+          "bottomRate": 0.35744441317196735,
+          "bothRate": 0.12749788910779622,
+          "bothRandomRate": 0.12407757361317731,
+          "recallRate": 0.6044188010132283
+        },
+        "top-bottom-balance": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.35645933014354064,
+          "sideRandomRate": 0.357613284548269,
+          "sideRandomUplift": -0.001153954404728373,
+          "sideRandomCi": {
+            "low": -0.010154405086285342,
+            "high": 0.007801022780102134
+          },
+          "topRate": 0.35744441317196735,
+          "bottomRate": 0.355474247115114,
+          "bothRate": 0.12468336616943428,
+          "bothRandomRate": 0.12407757361317731,
+          "recallRate": 0.6017450042217845
+        },
+        "global-4-1-1": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.3530819026175063,
+          "sideRandomRate": 0.357613284548269,
+          "sideRandomUplift": -0.00453138193076271,
+          "sideRandomCi": {
+            "low": -0.013605631193850286,
+            "high": 0.0043400320784978295
+          },
+          "topRate": 0.3723613847452857,
+          "bottomRate": 0.33380242048972697,
+          "bothRate": 0.12440191387559808,
+          "bothRandomRate": 0.12407757361317731,
+          "recallRate": 0.5958345060512243
         }
       },
       "7": {
@@ -672,6 +1332,86 @@
           "bothRate": 0.24036025893611032,
           "bothRandomRate": 0.2337860024392532,
           "recallRate": 0.7053898114269631
+        },
+        "group-weighted-frequency": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.4897269912749789,
+          "sideRandomRate": 0.48791162397973514,
+          "sideRandomUplift": 0.001815367295243725,
+          "sideRandomCi": {
+            "low": -0.007121716611172533,
+            "high": 0.01068387932630045
+          },
+          "topRate": 0.4984520123839009,
+          "bottomRate": 0.48100197016605684,
+          "bothRate": 0.235575569940895,
+          "bothRandomRate": 0.2337860024392532,
+          "recallRate": 0.7019420208274697
+        },
+        "three-block-stability": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.48508302842668166,
+          "sideRandomRate": 0.48791162397973514,
+          "sideRandomUplift": -0.0028285955530534886,
+          "sideRandomCi": {
+            "low": -0.013250047321597345,
+            "high": 0.007587239217887787
+          },
+          "topRate": 0.5001407261469181,
+          "bottomRate": 0.47002533070644525,
+          "bothRate": 0.2313537855333521,
+          "bothRandomRate": 0.2337860024392532,
+          "recallRate": 0.6985645933014354
+        },
+        "lottery-consensus": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.4886011820996341,
+          "sideRandomRate": 0.48791162397973514,
+          "sideRandomUplift": 0.000689558119898946,
+          "sideRandomCi": {
+            "low": -0.009554436987322652,
+            "high": 0.010845204178537734
+          },
+          "topRate": 0.49226006191950467,
+          "bottomRate": 0.4849423022797636,
+          "bothRate": 0.24064171122994651,
+          "bothRandomRate": 0.2337860024392532,
+          "recallRate": 0.7033492822966507
+        },
+        "top-bottom-balance": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.49099352659724177,
+          "sideRandomRate": 0.48791162397973514,
+          "sideRandomUplift": 0.0030819026175066015,
+          "sideRandomCi": {
+            "low": -0.006034977064219956,
+            "high": 0.01221377627627651
+          },
+          "topRate": 0.49620039403321137,
+          "bottomRate": 0.48578665916127217,
+          "bothRate": 0.23529411764705882,
+          "bothRandomRate": 0.2337860024392532,
+          "recallRate": 0.7042640022516183
+        },
+        "global-4-1-1": {
+          "dates": 91,
+          "outcomes": 3553,
+          "sidePairRate": 0.4891640866873065,
+          "sideRandomRate": 0.48791162397973514,
+          "sideRandomUplift": 0.0012524627075713355,
+          "sideRandomCi": {
+            "low": -0.007210300429184337,
+            "high": 0.009682672622371354
+          },
+          "topRate": 0.5054883197298058,
+          "bottomRate": 0.4728398536448072,
+          "bothRate": 0.23276104700253308,
+          "bothRandomRate": 0.2337860024392532,
+          "recallRate": 0.6999014916971573
         }
       }
     }
@@ -820,5 +1560,220 @@
       "worstWeekday": -0.03184713375796178
     }
   },
-  "decision": "RESEARCH_ONLY_NO_PROMOTION"
+  "decision": "RESEARCH_ONLY_NO_PROMOTION",
+  "tournament": {
+    "three-block-stability": {
+      "5": {
+        "passed": false,
+        "sidePairRate": 0.26627906976744187,
+        "randomUplift": 0.018378552971576145,
+        "randomCi": {
+          "low": -0.005813185361342234,
+          "high": 0.040713660792401025
+        },
+        "versusCurrent": 0.013372093023255814,
+        "versusCurrentCi": {
+          "low": -0.008177570093457943,
+          "high": 0.033866995073891626
+        },
+        "positiveWeekdays": 4,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.03821656050955414
+      },
+      "6": {
+        "passed": false,
+        "sidePairRate": 0.3656976744186046,
+        "randomUplift": 0.007713178294573436,
+        "randomCi": {
+          "low": -0.018015774180157873,
+          "high": 0.0312832194381168
+        },
+        "versusCurrent": -0.0069767441860465115,
+        "versusCurrentCi": {
+          "low": -0.027842227378190254,
+          "high": 0.013348164627363738
+        },
+        "positiveWeekdays": 2,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.03503184713375796
+      },
+      "7": {
+        "passed": false,
+        "sidePairRate": 0.4965116279069767,
+        "randomUplift": 0.008275193798449886,
+        "randomCi": {
+          "low": -0.01647662485746845,
+          "high": 0.03247027234369028
+        },
+        "versusCurrent": -0.009883720930232558,
+        "versusCurrentCi": {
+          "low": -0.0302863436123348,
+          "high": 0.00809464508094645
+        },
+        "positiveWeekdays": 3,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.044585987261146494
+      }
+    },
+    "lottery-consensus": {
+      "5": {
+        "passed": false,
+        "sidePairRate": 0.2569767441860465,
+        "randomUplift": 0.009076227390180798,
+        "randomCi": {
+          "low": -0.011085915847820519,
+          "high": 0.029521816336884932
+        },
+        "versusCurrent": 0.004069767441860465,
+        "versusCurrentCi": {
+          "low": -0.016590389016018305,
+          "high": 0.02386780905752754
+        },
+        "positiveWeekdays": 5,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.05732484076433121
+      },
+      "6": {
+        "passed": false,
+        "sidePairRate": 0.37267441860465117,
+        "randomUplift": 0.014689922480619948,
+        "randomCi": {
+          "low": -0.0054600992745324,
+          "high": 0.0341463414634145
+        },
+        "versusCurrent": 0,
+        "versusCurrentCi": {
+          "low": -0.018922018348623854,
+          "high": 0.01744186046511628
+        },
+        "positiveWeekdays": 4,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.06687898089171974
+      },
+      "7": {
+        "passed": false,
+        "sidePairRate": 0.4965116279069767,
+        "randomUplift": 0.008275193798449886,
+        "randomCi": {
+          "low": -0.01253875968992232,
+          "high": 0.02670520231213893
+        },
+        "versusCurrent": -0.009883720930232558,
+        "versusCurrentCi": {
+          "low": -0.030575539568345324,
+          "high": 0.009159482758620689
+        },
+        "positiveWeekdays": 1,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.050955414012738856
+      }
+    },
+    "top-bottom-balance": {
+      "5": {
+        "passed": false,
+        "sidePairRate": 0.2569767441860465,
+        "randomUplift": 0.009076227390180798,
+        "randomCi": {
+          "low": -0.009394964299135583,
+          "high": 0.02554909560723523
+        },
+        "versusCurrent": 0.004069767441860465,
+        "versusCurrentCi": {
+          "low": -0.004640371229698376,
+          "high": 0.012834821428571428
+        },
+        "positiveWeekdays": 3,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.010416666666666666
+      },
+      "6": {
+        "passed": false,
+        "sidePairRate": 0.3697674418604651,
+        "randomUplift": 0.011782945736433901,
+        "randomCi": {
+          "low": -0.0010656436487639677,
+          "high": 0.025315515961395568
+        },
+        "versusCurrent": -0.0029069767441860465,
+        "versusCurrentCi": {
+          "low": -0.013498312710911136,
+          "high": 0.008187134502923977
+        },
+        "positiveWeekdays": 2,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.022292993630573247
+      },
+      "7": {
+        "passed": false,
+        "sidePairRate": 0.5052325581395349,
+        "randomUplift": 0.016996124031008024,
+        "randomCi": {
+          "low": -0.001183657884688613,
+          "high": 0.0352363782051284
+        },
+        "versusCurrent": -0.0011627906976744186,
+        "versusCurrentCi": {
+          "low": -0.01093210586881473,
+          "high": 0.00823529411764706
+        },
+        "positiveWeekdays": 2,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.02
+      }
+    },
+    "global-4-1-1": {
+      "5": {
+        "passed": false,
+        "sidePairRate": 0.2558139534883721,
+        "randomUplift": 0.00791343669250638,
+        "randomCi": {
+          "low": -0.0057843137254901325,
+          "high": 0.021245355387750315
+        },
+        "versusCurrent": 0.0029069767441860465,
+        "versusCurrentCi": {
+          "low": -0.010588235294117647,
+          "high": 0.01820250284414107
+        },
+        "positiveWeekdays": 4,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.03225806451612903
+      },
+      "6": {
+        "passed": false,
+        "sidePairRate": 0.37209302325581395,
+        "randomUplift": 0.014108527131782738,
+        "randomCi": {
+          "low": -0.001851851851851966,
+          "high": 0.028571428571428466
+        },
+        "versusCurrent": -0.0005813953488372093,
+        "versusCurrentCi": {
+          "low": -0.0165016501650165,
+          "high": 0.01558891454965358
+        },
+        "positiveWeekdays": 4,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.03237410071942446
+      },
+      "7": {
+        "passed": false,
+        "sidePairRate": 0.5081395348837209,
+        "randomUplift": 0.019903100775194072,
+        "randomCi": {
+          "low": 0.0016014234875447021,
+          "high": 0.03567970204841736
+        },
+        "versusCurrent": 0.0017441860465116279,
+        "versusCurrentCi": {
+          "low": -0.011918951132300357,
+          "high": 0.017119244391971666
+        },
+        "positiveWeekdays": 3,
+        "evaluatedWeekdays": 7,
+        "worstWeekday": -0.017985611510791366
+      }
+    }
+  },
+  "tournamentDecision": "RESEARCH_ONLY_NO_PROMOTION"
 }

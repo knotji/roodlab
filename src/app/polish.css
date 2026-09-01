@@ -635,6 +635,27 @@
   color: var(--ink);
   box-shadow: 0 1px 4px #00000012;
 }
+.global-win-method {
+  display: inline-flex;
+  gap: 2px;
+  margin-top: 14px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--muted-surface);
+}
+.global-win-method button {
+  min-height: 32px;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.global-win-method button.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 4px #00000012; }
+.global-win-411-detail { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.global-win-411-detail span { padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 9px; }
+.global-win-411-detail b { margin-left: 5px; color: var(--ink); font-size: 11px; }
 .global-win-digits {
   display: flex;
   flex-wrap: wrap;

@@ -22,10 +22,18 @@ export async function migrateDatabase(): Promise<void> {
   await sql.query(`CREATE TABLE IF NOT EXISTS prediction_snapshots (id uuid PRIMARY KEY, lottery_id text NOT NULL, draw_date date NOT NULL, history_version text NOT NULL, algorithm_version text NOT NULL, standout_digits jsonb NOT NULL, ranked_pairs jsonb NOT NULL, analysis_options jsonb NOT NULL DEFAULT '{}'::jsonb, created_at timestamptz NOT NULL DEFAULT now(), UNIQUE (lottery_id, draw_date, algorithm_version))`);
   await sql.query(`ALTER TABLE prediction_snapshots ADD COLUMN IF NOT EXISTS analysis_options jsonb NOT NULL DEFAULT '{}'::jsonb`);
   await sql.query(`CREATE TABLE IF NOT EXISTS prediction_outcomes (prediction_id uuid PRIMARY KEY REFERENCES prediction_snapshots(id), outcome jsonb NOT NULL, recorded_at timestamptz NOT NULL DEFAULT now())`);
+  await sql.query(`CREATE TABLE IF NOT EXISTS global_prediction_snapshots (id uuid PRIMARY KEY, target_date date NOT NULL, weekday smallint NOT NULL CHECK (weekday BETWEEN 0 AND 6), formula_version text NOT NULL, history_version text NOT NULL, ranked_digits jsonb NOT NULL, source_lottery_ids jsonb NOT NULL, analysis_options jsonb NOT NULL DEFAULT '{}'::jsonb, created_at timestamptz NOT NULL DEFAULT now(), UNIQUE (target_date, formula_version))`);
+  await sql.query(`CREATE TABLE IF NOT EXISTS global_prediction_outcomes (prediction_id uuid NOT NULL REFERENCES global_prediction_snapshots(id), lottery_id text NOT NULL, outcome jsonb NOT NULL, recorded_at timestamptz NOT NULL DEFAULT now(), PRIMARY KEY (prediction_id, lottery_id))`);
   await sql.query(`CREATE OR REPLACE FUNCTION prevent_prediction_snapshot_mutation() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'prediction snapshots are immutable'; END; $$`);
   await sql.query(`DO $$ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'prediction_snapshots_immutable') THEN
       CREATE TRIGGER prediction_snapshots_immutable BEFORE UPDATE OR DELETE ON prediction_snapshots FOR EACH ROW EXECUTE FUNCTION prevent_prediction_snapshot_mutation();
+    END IF;
+  EXCEPTION WHEN duplicate_object THEN NULL;
+  END $$`);
+  await sql.query(`DO $$ BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'global_prediction_snapshots_immutable') THEN
+      CREATE TRIGGER global_prediction_snapshots_immutable BEFORE UPDATE OR DELETE ON global_prediction_snapshots FOR EACH ROW EXECUTE FUNCTION prevent_prediction_snapshot_mutation();
     END IF;
   EXCEPTION WHEN duplicate_object THEN NULL;
   END $$`);

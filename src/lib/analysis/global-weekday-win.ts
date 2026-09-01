@@ -23,6 +23,7 @@ export type GlobalWeekdayWinResult = {
   lookbackPerLottery: number;
   cutoffDate: string;
   sufficient: boolean;
+  global411: { digits: GlobalWeekdayWinDigit[]; core: GlobalWeekdayWinDigit[]; topExtra: GlobalWeekdayWinDigit; bottomExtra: GlobalWeekdayWinDigit };
 };
 
 type GlobalWinSource = { lotteryId: string; draws: LotteryDraw[] };
@@ -65,6 +66,11 @@ export function buildGlobalWeekdayWin(
       return { digit, score, topRate, bottomRate };
     }).sort((a, b) => b.score - a.score || b.topRate + b.bottomRate - (a.topRate + a.bottomRate) || a.digit.localeCompare(b.digit));
 
+  const core = ranked.slice(0, 4), used = new Set(core.map((item) => item.digit)),
+    topExtra = [...ranked].sort((a, b) => b.topRate - a.topRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
+  used.add(topExtra.digit);
+  const bottomExtra = [...ranked].sort((a, b) => b.bottomRate - a.bottomRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
+
   return {
     weekday: options.weekday,
     weekdayLabel: dayPatternLabel(options.weekday),
@@ -78,5 +84,6 @@ export function buildGlobalWeekdayWin(
     lookbackPerLottery,
     cutoffDate: options.cutoffDate,
     sufficient: perLottery.length >= 10 && topSources.length >= 5 && bottomSources.length >= 5,
+    global411: { digits: [...core, topExtra, bottomExtra], core, topExtra, bottomExtra },
   };
 }
