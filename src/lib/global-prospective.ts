@@ -5,8 +5,9 @@ import { readAllSnapshots } from "./cache";
 import { database, ensureDatabase, hasDatabase } from "./database";
 import { isCompleteDraw } from "./data-sources/integrity";
 import type { LotteryDraw } from "./types";
+import { curatedGlobalSources } from "./analysis/global-daily-sources";
 
-export const GLOBAL_PROSPECTIVE_VERSION = "weekday-frequency-v1";
+export const GLOBAL_PROSPECTIVE_VERSION = "weekday-frequency-curated-v2";
 let schemaReady: Promise<void> | null = null;
 
 function ensureGlobalSchema() {
@@ -27,7 +28,7 @@ function addDays(date: string, days: number) {
 
 export async function captureNextGlobalProspective() {
   if (!hasDatabase()) return { created: false, reason: "database-unavailable" };
-  const targetDate = addDays(currentBangkokDateKey(), 1), snapshots = Object.values(await readAllSnapshots()),
+  const targetDate = addDays(currentBangkokDateKey(), 1), snapshots = curatedGlobalSources(Object.values(await readAllSnapshots())),
     result = buildGlobalWeekdayWin(snapshots, { weekday: drawWeekday(targetDate) as 0 | 1 | 2 | 3 | 4 | 5 | 6, cutoffDate: targetDate });
   if (!result.sufficient) return { created: false, reason: "insufficient-data", targetDate };
   const sourceLotteryIds = snapshots.map((item) => item.lotteryId).sort(),

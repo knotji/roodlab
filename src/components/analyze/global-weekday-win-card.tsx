@@ -67,7 +67,7 @@ export function GlobalWeekdayWinCard() {
       </div>
       {method === "411" && <div className="global-win-411-detail"><span>แกนรวม 4 <b>{result.global411.core.map((item) => item.digit).join(" · ")}</b></span><span>เด่นบน 1 <b>{result.global411.topExtra.digit}</b></span><span>เด่นล่าง 1 <b>{result.global411.bottomExtra.digit}</b></span></div>}
       <div className="global-win-meta">
-        <span>รวม {result.lotteryCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
+        <span>ใช้จริง {result.lotteryCount} จากชุดหวยรายวัน {result.sourcePoolCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>
       </div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}

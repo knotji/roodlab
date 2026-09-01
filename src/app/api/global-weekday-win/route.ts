@@ -1,6 +1,7 @@
 import { currentBangkokDateKey, currentBangkokWeekday } from "@/lib/analysis/day-pattern";
 import { buildGlobalWeekdayWin, type GlobalWeekdayWinResult } from "@/lib/analysis/global-weekday-win";
 import { readAllSnapshots } from "@/lib/cache";
+import { curatedGlobalSources } from "@/lib/analysis/global-daily-sources";
 
 const CACHE_MS = 5 * 60 * 1000;
 let cached: { dateKey: string; expiresAt: number; result: GlobalWeekdayWinResult } | null = null;
@@ -11,7 +12,7 @@ export async function GET() {
     if (cached && cached.dateKey === dateKey && cached.expiresAt > Date.now())
       return Response.json({ ok: true, ...cached.result });
 
-    const snapshots = Object.values(await readAllSnapshots()),
+    const snapshots = curatedGlobalSources(Object.values(await readAllSnapshots())),
       result = buildGlobalWeekdayWin(snapshots, {
         weekday: currentBangkokWeekday(),
         cutoffDate: dateKey,

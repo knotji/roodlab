@@ -23,6 +23,7 @@ export type GlobalWeekdayWinResult = {
   lookbackPerLottery: number;
   cutoffDate: string;
   sufficient: boolean;
+  sourcePoolCount: number;
   global411: { digits: GlobalWeekdayWinDigit[]; core: GlobalWeekdayWinDigit[]; topExtra: GlobalWeekdayWinDigit; bottomExtra: GlobalWeekdayWinDigit };
 };
 
@@ -84,6 +85,7 @@ export function buildGlobalWeekdayWin(
     lookbackPerLottery,
     cutoffDate: options.cutoffDate,
     sufficient: perLottery.length >= 10 && topSources.length >= 5 && bottomSources.length >= 5,
+    sourcePoolCount: sources.length,
     global411: { digits: [...core, topExtra, bottomExtra], core, topExtra, bottomExtra },
   };
 }

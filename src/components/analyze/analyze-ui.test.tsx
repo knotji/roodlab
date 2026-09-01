@@ -67,6 +67,7 @@ describe("Analyze presentation", () => {
         lookbackPerLottery: 12,
         cutoffDate: "2026-09-01",
         sufficient: true,
+        sourcePoolCount: 46,
         global411: {
           digits: ["7", "1", "9", "3", "2", "4"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
           core: ["7", "1", "9", "3"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
