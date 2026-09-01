@@ -71,6 +71,7 @@ describe("Analyze presentation", () => {
     render(<GlobalWeekdayWinCard />);
     expect(await screen.findByRole("heading", { name: "วินรวมทุกหวย · วันอังคาร" })).toBeTruthy();
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8").children).toHaveLength(6);
+    expect(screen.getByRole("button", { name: "รวมเลขเบิ้ล 21 คู่" })).toBeTruthy();
     expect(screen.getByText("ใช้ผลบนและล่าง 2 ตัวอย่างละ 50% · หวยแต่ละชนิดมีน้ำหนักเท่ากัน · ไม่ใช่ความน่าจะเป็น")).toBeTruthy();
   });
 

@@ -642,6 +642,11 @@
   color: var(--muted);
   font-size: 9px;
 }
+.global-weekday-win-card > footer > div {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
 .global-weekday-win-card > footer button {
   display: inline-flex;
   flex: 0 0 auto;
@@ -654,6 +659,11 @@
   background: var(--surface);
   color: var(--accent);
   cursor: pointer;
+}
+.global-weekday-win-card > footer .global-win-copy-pairs {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
 }
 .global-weekday-win-card > footer button svg { width: 14px; height: 14px; }
 .global-win-loading,
@@ -1014,6 +1024,7 @@
   .global-win-digits { justify-content: space-between; gap: 5px; }
   .global-win-digits strong { width: 42px; height: 42px; font-size: 20px; }
   .global-weekday-win-card > footer { align-items: stretch; flex-direction: column; }
+  .global-weekday-win-card > footer > div { display: grid; grid-template-columns: 1fr; }
   .global-weekday-win-card > footer button { justify-content: center; }
   .day-pattern-options {
     overflow-x: auto;
