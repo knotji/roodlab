@@ -1,0 +1,650 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-02",
+    "pool": [
+      "nikkei-vip-morning",
+      "hanoiasean",
+      "nikkei-morning",
+      "szse-vip-morning",
+      "szse-morning",
+      "laotv",
+      "hsi-vip-morning",
+      "hsi-morning",
+      "xosohd",
+      "twse-vip",
+      "minhngocstar",
+      "twse",
+      "ktop30-vip",
+      "ktop30",
+      "nikkei-afternoon",
+      "nikkei-vip-afternoon",
+      "laoshd",
+      "szse-afternoon",
+      "minhngoctv",
+      "szse-vip-afternoon",
+      "hsi-vip-afternoon",
+      "hsi-afternoon",
+      "laostars",
+      "sgx",
+      "xosoredcross",
+      "set",
+      "sgx-vip",
+      "laounion",
+      "laosasean",
+      "laosvip",
+      "laounionvip",
+      "laostarsvip",
+      "england-vip",
+      "moexbc",
+      "xosoextra",
+      "gdaxi",
+      "ftse100",
+      "germany-vip",
+      "laoredcross",
+      "russia-vip",
+      "dowjones-vip",
+      "dowjonestar",
+      "dji",
+      "laocitizen",
+      "laosantipap",
+      "laopatuxay"
+    ],
+    "poolSize": 46,
+    "formula": "production weekday-frequency overall ranking",
+    "winSize": 6,
+    "weekdayLookback": 12,
+    "sideWeights": {
+      "top2": 0.5,
+      "bottom2": 0.5
+    },
+    "digitPresence": "duplicate digit counted once per side/result",
+    "targetRule": "drawDate equals target date; complete top2 and bottom2 required",
+    "leakageRule": "training drawDate must be strictly before target date",
+    "minimumTargetLotteriesPerDate": 10,
+    "bootstrap": {
+      "resamples": 10000,
+      "cluster": "target date",
+      "seed": 20260902
+    }
+  },
+  "protocolHash": "60c58d469de69be1",
+  "historyHash": "d928fbac36f7629f",
+  "storageCoverage": {
+    "stored": 35,
+    "readOnlyHydrated": [
+      "ktop30",
+      "set",
+      "england-vip",
+      "moexbc",
+      "gdaxi",
+      "ftse100",
+      "laoredcross",
+      "russia-vip",
+      "dowjones-vip",
+      "dowjonestar",
+      "dji"
+    ]
+  },
+  "dates": 120,
+  "outcomes": 4366,
+  "summary": {
+    "outcomes": 4366,
+    "metrics": {
+      "top": {
+        "rate": 0.3831882730187815,
+        "baseline": 0.3581310123683008,
+        "uplift": 0.025057260650480695
+      },
+      "bottom": {
+        "rate": 0.34516720109940446,
+        "baseline": 0.35629867155290923,
+        "uplift": -0.011131470453504766
+      },
+      "either": {
+        "rate": 0.5945945945945946,
+        "baseline": 0.594263028161333,
+        "uplift": 0.0003315664332615986
+      },
+      "both": {
+        "rate": 0.1337608795235914,
+        "baseline": 0.12016665575987613,
+        "uplift": 0.01359422376371526
+      },
+      "recall": {
+        "rate": 0.6049015116811727,
+        "baseline": 0.5999999999999994,
+        "uplift": 0.004901511681173254
+      }
+    }
+  },
+  "confidence": {
+    "top": {
+      "rate95": [
+        0.36798687269516095,
+        0.398150724219182
+      ],
+      "uplift95": [
+        0.010594915292192544,
+        0.03955219152790731
+      ]
+    },
+    "bottom": {
+      "rate95": [
+        0.3331797208459201,
+        0.3576678542043497
+      ],
+      "uplift95": [
+        -0.023166918390334197,
+        0.001278612236499679
+      ]
+    },
+    "either": {
+      "rate95": [
+        0.5806025172588358,
+        0.6085761480593658
+      ],
+      "uplift95": [
+        -0.012763803567955836,
+        0.01365386636004149
+      ]
+    },
+    "both": {
+      "rate95": [
+        0.1252988152534842,
+        0.14244007852882545
+      ],
+      "uplift95": [
+        0.005285513537447745,
+        0.02196272208258456
+      ]
+    },
+    "recall": {
+      "rate95": [
+        0.5984748766220899,
+        0.6114072583570282
+      ],
+      "uplift95": [
+        -0.0015251233779098928,
+        0.011407258357028754
+      ]
+    }
+  },
+  "coverage": [
+    {
+      "lotteryId": "nikkei-vip-morning",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "hanoiasean",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "nikkei-morning",
+      "predictionDates": 94,
+      "trainingTotal": 842,
+      "min": 2,
+      "max": 12,
+      "targetOutcomes": 87,
+      "mean": 8.957446808510639
+    },
+    {
+      "lotteryId": "szse-vip-morning",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "szse-morning",
+      "predictionDates": 94,
+      "trainingTotal": 808,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 91,
+      "mean": 8.595744680851064
+    },
+    {
+      "lotteryId": "laotv",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "hsi-vip-morning",
+      "predictionDates": 96,
+      "trainingTotal": 668,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 93,
+      "mean": 6.958333333333333
+    },
+    {
+      "lotteryId": "hsi-morning",
+      "predictionDates": 94,
+      "trainingTotal": 816,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 88,
+      "mean": 8.680851063829786
+    },
+    {
+      "lotteryId": "xosohd",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "twse-vip",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "minhngocstar",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "twse",
+      "predictionDates": 94,
+      "trainingTotal": 856,
+      "min": 2,
+      "max": 12,
+      "targetOutcomes": 82,
+      "mean": 9.106382978723405
+    },
+    {
+      "lotteryId": "ktop30-vip",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "ktop30",
+      "predictionDates": 93,
+      "trainingTotal": 794,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 90,
+      "mean": 8.53763440860215
+    },
+    {
+      "lotteryId": "nikkei-afternoon",
+      "predictionDates": 94,
+      "trainingTotal": 842,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 88,
+      "mean": 8.957446808510639
+    },
+    {
+      "lotteryId": "nikkei-vip-afternoon",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "laoshd",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "szse-afternoon",
+      "predictionDates": 94,
+      "trainingTotal": 808,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 91,
+      "mean": 8.595744680851064
+    },
+    {
+      "lotteryId": "minhngoctv",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "szse-vip-afternoon",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.136842105263158
+    },
+    {
+      "lotteryId": "hsi-vip-afternoon",
+      "predictionDates": 96,
+      "trainingTotal": 667,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 93,
+      "mean": 6.947916666666667
+    },
+    {
+      "lotteryId": "hsi-afternoon",
+      "predictionDates": 94,
+      "trainingTotal": 816,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 88,
+      "mean": 8.680851063829786
+    },
+    {
+      "lotteryId": "laostars",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "sgx",
+      "predictionDates": 94,
+      "trainingTotal": 815,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 88,
+      "mean": 8.670212765957446
+    },
+    {
+      "lotteryId": "xosoredcross",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "set",
+      "predictionDates": 91,
+      "trainingTotal": 796,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 92,
+      "mean": 8.747252747252746
+    },
+    {
+      "lotteryId": "sgx-vip",
+      "predictionDates": 96,
+      "trainingTotal": 690,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.1875
+    },
+    {
+      "lotteryId": "laounion",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "laosasean",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "laosvip",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "laounionvip",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "laostarsvip",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "england-vip",
+      "predictionDates": 91,
+      "trainingTotal": 630,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 6.923076923076923
+    },
+    {
+      "lotteryId": "moexbc",
+      "predictionDates": 94,
+      "trainingTotal": 811,
+      "min": 2,
+      "max": 12,
+      "targetOutcomes": 87,
+      "mean": 8.627659574468085
+    },
+    {
+      "lotteryId": "xosoextra",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "gdaxi",
+      "predictionDates": 94,
+      "trainingTotal": 808,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 93,
+      "mean": 8.595744680851064
+    },
+    {
+      "lotteryId": "ftse100",
+      "predictionDates": 94,
+      "trainingTotal": 799,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 91,
+      "mean": 8.5
+    },
+    {
+      "lotteryId": "germany-vip",
+      "predictionDates": 97,
+      "trainingTotal": 702,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 7.237113402061856
+    },
+    {
+      "lotteryId": "laoredcross",
+      "predictionDates": 91,
+      "trainingTotal": 630,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 6.923076923076923
+    },
+    {
+      "lotteryId": "russia-vip",
+      "predictionDates": 91,
+      "trainingTotal": 630,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 6.923076923076923
+    },
+    {
+      "lotteryId": "dowjones-vip",
+      "predictionDates": 91,
+      "trainingTotal": 630,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 98,
+      "mean": 6.923076923076923
+    },
+    {
+      "lotteryId": "dowjonestar",
+      "predictionDates": 91,
+      "trainingTotal": 627,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 97,
+      "mean": 6.8901098901098905
+    },
+    {
+      "lotteryId": "dji",
+      "predictionDates": 92,
+      "trainingTotal": 771,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 90,
+      "mean": 8.380434782608695
+    },
+    {
+      "lotteryId": "laocitizen",
+      "predictionDates": 95,
+      "trainingTotal": 665,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 96,
+      "mean": 7
+    },
+    {
+      "lotteryId": "laosantipap",
+      "predictionDates": 96,
+      "trainingTotal": 685,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 97,
+      "mean": 7.135416666666667
+    },
+    {
+      "lotteryId": "laopatuxay",
+      "predictionDates": 95,
+      "trainingTotal": 678,
+      "min": 1,
+      "max": 12,
+      "targetOutcomes": 96,
+      "mean": 7.136842105263158
+    }
+  ],
+  "similarity": [
+    {
+      "left": "laotv",
+      "right": "minhngocstar",
+      "aligned": 99,
+      "exactRate": 0.020202020202020204
+    },
+    {
+      "left": "nikkei-afternoon",
+      "right": "russia-vip",
+      "aligned": 67,
+      "exactRate": 0.014925373134328358
+    },
+    {
+      "left": "hsi-afternoon",
+      "right": "laosasean",
+      "aligned": 69,
+      "exactRate": 0.014492753623188406
+    },
+    {
+      "left": "england-vip",
+      "right": "dji",
+      "aligned": 71,
+      "exactRate": 0.014084507042253521
+    },
+    {
+      "left": "szse-morning",
+      "right": "xosohd",
+      "aligned": 72,
+      "exactRate": 0.013888888888888888
+    },
+    {
+      "left": "szse-afternoon",
+      "right": "laostars",
+      "aligned": 72,
+      "exactRate": 0.013888888888888888
+    },
+    {
+      "left": "hsi-morning",
+      "right": "twse",
+      "aligned": 84,
+      "exactRate": 0.011904761904761904
+    },
+    {
+      "left": "twse",
+      "right": "gdaxi",
+      "aligned": 87,
+      "exactRate": 0.011494252873563218
+    },
+    {
+      "left": "hsi-afternoon",
+      "right": "moexbc",
+      "aligned": 87,
+      "exactRate": 0.011494252873563218
+    },
+    {
+      "left": "laostars",
+      "right": "laocitizen",
+      "aligned": 97,
+      "exactRate": 0.010309278350515464
+    }
+  ]
+}

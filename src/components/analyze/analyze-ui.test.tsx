@@ -86,7 +86,8 @@ describe("Analyze presentation", () => {
     fireEvent.click(screen.getByRole("button", { name: "4+1+1" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 2 4").children).toHaveLength(6);
     expect(screen.getByText("แกนรวม 4").textContent).toContain("7 · 1 · 9 · 3");
-    expect(screen.getByText("ใช้ผลบนและล่าง 2 ตัวอย่างละ 50% · หวยแต่ละชนิดมีน้ำหนักเท่ากัน · ไม่ใช่ความน่าจะเป็น")).toBeTruthy();
+    const disclosure = screen.getByText((_, element) => element?.tagName === "SMALL" && element.textContent?.includes("จัดอันดับจากรูปแบบย้อนหลังของหวยรายวัน") === true);
+    expect(disclosure.textContent).toContain("ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็น");
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {

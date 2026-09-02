@@ -72,7 +72,7 @@ export function GlobalWeekdayWinCard() {
       </div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
       <footer>
-        <small>ใช้ผลบนและล่าง 2 ตัวอย่างละ 50% · หวยแต่ละชนิดมีน้ำหนักเท่ากัน · ไม่ใช่ความน่าจะเป็น</small>
+        <small>จัดอันดับจากรูปแบบย้อนหลังของหวยรายวัน<br />ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็น</small>
         <div>
           <button type="button" onClick={() => copyValues("digits", digits)}>{copied === "digits" ? <Check /> : <Copy />}{copied === "digits" ? "คัดลอกแล้ว" : `คัดลอก ${winSize} ตัว`}</button>
           <button type="button" className="global-win-copy-pairs" onClick={() => copyValues("pairs", winSet.uniquePairsWithDoubles)}>{copied === "pairs" ? <Check /> : <Copy />}{copied === "pairs" ? "คัดลอกแล้ว" : `รวมเลขเบิ้ล ${winSet.uniquePairsWithDoubles.length} คู่`}</button>

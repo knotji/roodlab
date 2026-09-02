@@ -14,6 +14,7 @@
     "evaluate:ablations": "tsx scripts/evaluate-pair-ablations.mts",
     "evaluate:standout-baseline": "tsx scripts/evaluate-standout-baseline.mts",
     "evaluate:global-weekday-lift": "tsx scripts/evaluate-global-weekday-lift.mts",
+    "validate:global-win6-production": "tsx scripts/validate-global-win6-production.mts",
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
     "sync:backfill": "tsx scripts/backfill-history.mts",
     "storage:migrate": "tsx scripts/migrate-storage.mts",

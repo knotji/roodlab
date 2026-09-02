@@ -3,7 +3,6 @@ import { readCatalog, readSnapshot } from "./cache";
 import { AllHuayDataSource } from "./data-sources/allhuay";
 import { buildFreshnessInfo, latestDrawDate, mergeDrawHistory } from "./freshness";
 import { reconcileProspectiveOutcomes } from "./prospective";
-import { reconcileGlobalProspectiveOutcomes } from "./global-prospective";
 
 export async function syncLotteryFromSource(lotteryId: string) {
   const [existing, catalog] = await Promise.all([readSnapshot(lotteryId), readCatalog()]),
@@ -18,11 +17,10 @@ export async function syncLotteryFromSource(lotteryId: string) {
       sourceReachable: true,
     }),
     result = await commitCanonicalSync({ lotteryId, existing, incoming, freshness });
-  let reconciledPredictions = 0, reconciledGlobalPredictions = 0;
+  let reconciledPredictions = 0;
   try {
-    if (!result.addedDraws) return { ...result, freshness, reconciledPredictions, reconciledGlobalPredictions };
+    if (!result.addedDraws) return { ...result, freshness, reconciledPredictions };
     reconciledPredictions = await reconcileProspectiveOutcomes(lotteryId, result.snapshot.draws);
-    reconciledGlobalPredictions = await reconcileGlobalProspectiveOutcomes(lotteryId, result.snapshot.draws);
   } catch {}
-  return { ...result, freshness, reconciledPredictions, reconciledGlobalPredictions };
+  return { ...result, freshness, reconciledPredictions };
 }
