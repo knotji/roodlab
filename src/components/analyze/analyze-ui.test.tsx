@@ -68,6 +68,14 @@ describe("Analyze presentation", () => {
         cutoffDate: "2026-09-01",
         sufficient: true,
         sourcePoolCount: 46,
+        scoreDistribution: {
+          rankedScores: ["7", "1", "9", "3", "5", "8", "2", "4", "0", "6"].map((digit, index) => ({ rank: index + 1, digit, score: 0.2 - index * 0.001 })),
+          rank6To7Gap: 0.0042,
+          top6Spread: 0.01,
+          allDigitSpread: 0.02,
+          normalizedEntropy: 0.99,
+          concentration: 0.01,
+        },
         global411: {
           digits: ["7", "1", "9", "3", "2", "4"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
           core: ["7", "1", "9", "3"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
@@ -86,6 +94,8 @@ describe("Analyze presentation", () => {
     expect(screen.getByText("คู่ไม่เบิ้ล · 15 คู่")).toBeTruthy();
     expect(screen.getByText("เลขเบิ้ล · 6 คู่")).toBeTruthy();
     expect(screen.getByRole("button", { name: "คัดลอกทั้งหมด 21 คู่" })).toBeTruthy();
+    expect(screen.getByText("โครงสร้างคะแนนวันนี้")).toBeTruthy();
+    expect(screen.getByText("อันดับ 6 กับอันดับ 7 ต่างกัน 0.42 จุด")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "7" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8 2").children).toHaveLength(7);
     expect(screen.getByRole("button", { name: "ดูชุดทั้งหมด 28 คู่" })).toBeTruthy();

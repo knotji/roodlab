@@ -656,6 +656,15 @@
   color: var(--muted);
   font-size: 9px;
 }
+.global-win-score-gap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 9px;
+}
+.global-win-score-gap strong { color: var(--ink); font-weight: 500; }
 .global-win-head-actions > span.ready {
   background: var(--secondary);
   color: var(--accent);

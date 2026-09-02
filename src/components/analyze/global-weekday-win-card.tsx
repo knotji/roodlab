@@ -3,6 +3,7 @@
 import { Check, ChevronDown, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { GlobalWeekdayWinResult } from "@/lib/analysis/global-weekday-win";
+import { formatRankBoundaryGap } from "@/lib/analysis/global-score-distribution";
 import { buildWinSet } from "@/lib/analysis/win-set";
 
 type ApiResult = ({ ok: true } & GlobalWeekdayWinResult) | { ok: false; error: string };
@@ -71,6 +72,7 @@ export function GlobalWeekdayWinCard() {
         <span>ใช้จริง {result.lotteryCount} จากชุดหวยรายวัน {result.sourcePoolCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>
       </div>
+      <div className="global-win-score-gap"><span>โครงสร้างคะแนนวันนี้</span><strong>{formatRankBoundaryGap(result.scoreDistribution.rank6To7Gap)}</strong></div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
       {showPairs && <div className="global-win-pair-space" id="global-win-pair-space">
         <div>

@@ -1,5 +1,6 @@
 import type { LotteryDraw } from "../types";
 import { dayPatternLabel, drawWeekday, type DayPattern } from "./day-pattern";
+import { analyzeGlobalScoreDistribution, rankGlobalDigitScores, type GlobalScoreDistribution } from "./global-score-distribution";
 
 export const GLOBAL_WEEKDAY_LOOKBACK = 12;
 
@@ -24,6 +25,7 @@ export type GlobalWeekdayWinResult = {
   cutoffDate: string;
   sufficient: boolean;
   sourcePoolCount: number;
+  scoreDistribution: GlobalScoreDistribution;
   global411: { digits: GlobalWeekdayWinDigit[]; core: GlobalWeekdayWinDigit[]; topExtra: GlobalWeekdayWinDigit; bottomExtra: GlobalWeekdayWinDigit };
 };
 
@@ -58,14 +60,14 @@ export function buildGlobalWeekdayWin(
       eligible.length
         ? eligible.reduce((total, source) => total + (source[side]?.[digit] ?? 0), 0) / eligible.length
         : 0,
-    ranked = Array.from({ length: 10 }, (_, value) => {
+    ranked = rankGlobalDigitScores(Array.from({ length: 10 }, (_, value) => {
       const digit = String(value),
         topRate = average(digit, "top", topSources),
         bottomRate = average(digit, "bottom", bottomSources),
         availableSides = Number(topSources.length > 0) + Number(bottomSources.length > 0),
         score = availableSides ? (topRate + bottomRate) / availableSides : 0;
       return { digit, score, topRate, bottomRate };
-    }).sort((a, b) => b.score - a.score || b.topRate + b.bottomRate - (a.topRate + a.bottomRate) || a.digit.localeCompare(b.digit));
+    }));
 
   const core = ranked.slice(0, 4), used = new Set(core.map((item) => item.digit)),
     topExtra = [...ranked].sort((a, b) => b.topRate - a.topRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
@@ -86,6 +88,7 @@ export function buildGlobalWeekdayWin(
     cutoffDate: options.cutoffDate,
     sufficient: perLottery.length >= 10 && topSources.length >= 5 && bottomSources.length >= 5,
     sourcePoolCount: sources.length,
+    scoreDistribution: analyzeGlobalScoreDistribution(ranked),
     global411: { digits: [...core, topExtra, bottomExtra], core, topExtra, bottomExtra },
   };
 }

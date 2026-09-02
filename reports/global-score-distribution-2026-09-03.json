@@ -1,0 +1,406 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-03",
+    "pool": [
+      "nikkei-vip-morning",
+      "hanoiasean",
+      "nikkei-morning",
+      "szse-vip-morning",
+      "szse-morning",
+      "laotv",
+      "hsi-vip-morning",
+      "hsi-morning",
+      "xosohd",
+      "twse-vip",
+      "minhngocstar",
+      "twse",
+      "ktop30-vip",
+      "ktop30",
+      "nikkei-afternoon",
+      "nikkei-vip-afternoon",
+      "laoshd",
+      "szse-afternoon",
+      "minhngoctv",
+      "szse-vip-afternoon",
+      "hsi-vip-afternoon",
+      "hsi-afternoon",
+      "laostars",
+      "sgx",
+      "xosoredcross",
+      "set",
+      "sgx-vip",
+      "laounion",
+      "laosasean",
+      "laosvip",
+      "laounionvip",
+      "laostarsvip",
+      "england-vip",
+      "moexbc",
+      "xosoextra",
+      "gdaxi",
+      "ftse100",
+      "germany-vip",
+      "laoredcross",
+      "russia-vip",
+      "dowjones-vip",
+      "dowjonestar",
+      "dji",
+      "laocitizen",
+      "laosantipap",
+      "laopatuxay"
+    ],
+    "poolSize": 46,
+    "productionContract": {
+      "ranking": "overall",
+      "winSize": 6,
+      "weekdayOnly": true,
+      "weekdayLookback": 12,
+      "topWeight": 0.5,
+      "bottomWeight": 0.5,
+      "perLotteryNormalization": true,
+      "presencePerDraw": true
+    },
+    "diagnostic": {
+      "rank6To7Gap": "score(rank 6) - score(rank 7)",
+      "top6Spread": "score(rank 1) - score(rank 6)",
+      "allDigitSpread": "score(rank 1) - score(rank 10)",
+      "normalizedEntropy": "Shannon entropy of non-negative scores divided by ln(10)",
+      "concentration": "1 - normalizedEntropy"
+    },
+    "evaluation": {
+      "walkForward": true,
+      "targetExcluded": true,
+      "minimumTargetLotteries": 10,
+      "chronologicalDevelopmentShare": 0.75,
+      "gapBands": "development tertiles applied unchanged to holdout",
+      "bootstrap": {
+        "iterations": 10000,
+        "cluster": "target date",
+        "seed": 20260903
+      }
+    },
+    "labelGate": "Labels require monotonic low-to-high side-pair uplift in development and holdout plus a holdout high-minus-low bootstrap CI entirely above zero.",
+    "prohibition": "Validation only; no ranking, weighting, window, pool, strategy, or production interpretation change."
+  },
+  "protocolHash": "2b1bc6e29c03d3fe",
+  "historyHash": "7e8168eee826c46a",
+  "dataPeriod": {
+    "first": "2026-04-16",
+    "last": "2026-09-01"
+  },
+  "sample": {
+    "dates": 123,
+    "developmentDates": 92,
+    "holdoutDates": 31,
+    "outcomes": 4400
+  },
+  "diagnosticSummary": {
+    "gap": {
+      "min": 0,
+      "p25": 0.0011089152393500418,
+      "median": 0.0024154589371980506,
+      "p75": 0.007082862789384511,
+      "max": 0.029761904761904767,
+      "mean": 0.004708458804878851
+    },
+    "top6SpreadMean": 0.03931027054203019,
+    "allSpreadMean": 0.07118908547056202,
+    "entropyMean": 0.9958874977204965,
+    "concentrationMean": 0.0041125022795033914
+  },
+  "gapBands": {
+    "developmentTertileCuts": {
+      "lowCut": 0.0014622153209109625,
+      "highCut": 0.004761904761904773
+    },
+    "results": {
+      "development": {
+        "low": {
+          "dates": 31,
+          "outcomes": 1108,
+          "top": 0.38898916967509023,
+          "bottom": 0.33393501805054154,
+          "sidePair": 0.36146209386281586,
+          "either": 0.5992779783393501,
+          "both": 0.12364620938628158,
+          "expectedTop": 0.3605294825511433,
+          "expectedBottom": 0.35595667870036113,
+          "expectedSidePair": 0.35824308062575244,
+          "expectedEither": 0.5953326456936566,
+          "expectedBoth": 0.12115351555784766,
+          "sidePairUplift": 0.0032190132370634172
+        },
+        "middle": {
+          "dates": 31,
+          "outcomes": 1164,
+          "top": 0.37285223367697595,
+          "bottom": 0.37199312714776633,
+          "sidePair": 0.37242268041237114,
+          "either": 0.6065292096219931,
+          "both": 0.13831615120274915,
+          "expectedTop": 0.3553264604810998,
+          "expectedBottom": 0.3592210767468501,
+          "expectedSidePair": 0.357273768613975,
+          "expectedEither": 0.5947594501718213,
+          "expectedBoth": 0.1197880870561283,
+          "sidePairUplift": 0.01514891179839617
+        },
+        "high": {
+          "dates": 30,
+          "outcomes": 906,
+          "top": 0.31125827814569534,
+          "bottom": 0.3565121412803532,
+          "sidePair": 0.33388520971302427,
+          "either": 0.5562913907284768,
+          "both": 0.11147902869757174,
+          "expectedTop": 0.35688005886681395,
+          "expectedBottom": 0.35629139072847704,
+          "expectedSidePair": 0.35658572479764544,
+          "expectedEither": 0.5890781036476399,
+          "expectedBoth": 0.12409334594765059,
+          "sidePairUplift": -0.022700515084621176
+        }
+      },
+      "holdout": {
+        "low": {
+          "dates": 10,
+          "outcomes": 389,
+          "top": 0.41131105398457585,
+          "bottom": 0.3341902313624679,
+          "sidePair": 0.37275064267352187,
+          "either": 0.6323907455012854,
+          "both": 0.11311053984575835,
+          "expectedTop": 0.3559554413024851,
+          "expectedBottom": 0.358011996572408,
+          "expectedSidePair": 0.3569837189374466,
+          "expectedEither": 0.5945525768147876,
+          "expectedBoth": 0.11941486106010528,
+          "sidePairUplift": 0.015766923736075245
+        },
+        "middle": {
+          "dates": 11,
+          "outcomes": 439,
+          "top": 0.4054669703872437,
+          "bottom": 0.3940774487471526,
+          "sidePair": 0.39977220956719817,
+          "either": 0.6355353075170843,
+          "both": 0.16400911161731208,
+          "expectedTop": 0.3588458618071375,
+          "expectedBottom": 0.3533788914198938,
+          "expectedSidePair": 0.35611237661351564,
+          "expectedEither": 0.5956177459594315,
+          "expectedBoth": 0.11660700726759952,
+          "sidePairUplift": 0.04365983295368253
+        },
+        "high": {
+          "dates": 10,
+          "outcomes": 394,
+          "top": 0.383248730964467,
+          "bottom": 0.35786802030456855,
+          "sidePair": 0.37055837563451777,
+          "either": 0.6040609137055838,
+          "both": 0.13705583756345177,
+          "expectedTop": 0.3617597292724198,
+          "expectedBottom": 0.3516074450084605,
+          "expectedSidePair": 0.35668358714044,
+          "expectedEither": 0.6001812907904277,
+          "expectedBoth": 0.11318588349045201,
+          "sidePairUplift": 0.01387478849407775
+        }
+      },
+      "all": {
+        "low": {
+          "dates": 41,
+          "outcomes": 1497,
+          "top": 0.39478957915831664,
+          "bottom": 0.33400133600534404,
+          "sidePair": 0.36439545758183034,
+          "either": 0.6078824315297261,
+          "both": 0.12090848363393454,
+          "expectedTop": 0.35934090403028296,
+          "expectedBottom": 0.35649075929637064,
+          "expectedSidePair": 0.357915831663327,
+          "expectedEither": 0.5951299424245318,
+          "expectedBoth": 0.12070172090212168,
+          "sidePairUplift": 0.006479625918503318
+        },
+        "middle": {
+          "dates": 42,
+          "outcomes": 1603,
+          "top": 0.3817841547099189,
+          "bottom": 0.37804117280099814,
+          "sidePair": 0.3799126637554585,
+          "either": 0.6144728633811604,
+          "both": 0.14535246412975672,
+          "expectedTop": 0.35629028904138094,
+          "expectedBottom": 0.3576211270534417,
+          "expectedSidePair": 0.3569557080474112,
+          "expectedEither": 0.594994504351959,
+          "expectedBoth": 0.11891691174286309,
+          "sidePairUplift": 0.02295695570804729
+        },
+        "high": {
+          "dates": 40,
+          "outcomes": 1300,
+          "top": 0.3330769230769231,
+          "bottom": 0.3569230769230769,
+          "sidePair": 0.345,
+          "either": 0.5707692307692308,
+          "both": 0.11923076923076924,
+          "expectedTop": 0.3583589743589744,
+          "expectedBottom": 0.354871794871795,
+          "expectedSidePair": 0.35661538461538467,
+          "expectedEither": 0.5924432234432235,
+          "expectedBoth": 0.12078754578754579,
+          "sidePairUplift": -0.011615384615384694
+        }
+      }
+    },
+    "holdoutHighMinusLowUplift": -0.0018921352419974946,
+    "holdoutHighMinusLow95": [
+      -0.024690672033752605,
+      0.026350349732262315
+    ],
+    "correlation": {
+      "development": {
+        "value": -0.2250532048006007,
+        "ci": [
+          -0.45118117001680474,
+          0.03183554844002714
+        ]
+      },
+      "holdout": {
+        "value": -0.10049836121476004,
+        "ci": [
+          -0.4598224253165222,
+          0.1711259146250662
+        ]
+      },
+      "all": {
+        "value": -0.22768626361408087,
+        "ci": [
+          -0.42368814558386875,
+          0.005519830370433192
+        ]
+      }
+    }
+  },
+  "rankBuckets": {
+    "development": {
+      "rank1to3": {
+        "outcomes": 3178,
+        "baseline": 0.3,
+        "top": 0.30852737570799244,
+        "bottom": 0.29295154185022027,
+        "combined": 0.30073945877910635,
+        "uplift": 0.0007394587791063612,
+        "uplift95": [
+          -0.006848949987536946,
+          0.008521809461696759
+        ]
+      },
+      "rank4to6": {
+        "outcomes": 3178,
+        "baseline": 0.3,
+        "top": 0.29546884833228443,
+        "bottom": 0.30333543108873506,
+        "combined": 0.2994021397105098,
+        "uplift": -0.0005978602894902152,
+        "uplift95": [
+          -0.007764573993666706,
+          0.006669914680136357
+        ]
+      },
+      "rank7to10": {
+        "outcomes": 3178,
+        "baseline": 0.4,
+        "top": 0.3960037759597231,
+        "bottom": 0.40371302706104467,
+        "combined": 0.3998584015103839,
+        "uplift": -0.00014159848961614596,
+        "uplift95": [
+          -0.008279779555836322,
+          0.007994734668544811
+        ]
+      }
+    },
+    "holdout": {
+      "rank1to3": {
+        "outcomes": 1222,
+        "baseline": 0.3,
+        "top": 0.324468085106383,
+        "bottom": 0.2864157119476268,
+        "combined": 0.3054418985270049,
+        "uplift": 0.005441898527004885,
+        "uplift95": [
+          -0.0046941647371349605,
+          0.015440712651352334
+        ]
+      },
+      "rank4to6": {
+        "outcomes": 1222,
+        "baseline": 0.3,
+        "top": 0.30564648117839605,
+        "bottom": 0.31873977086743044,
+        "combined": 0.31219312602291327,
+        "uplift": 0.012193126022913281,
+        "uplift95": [
+          0.0028845164609053397,
+          0.020743594847442218
+        ]
+      },
+      "rank7to10": {
+        "outcomes": 1222,
+        "baseline": 0.4,
+        "top": 0.3698854337152209,
+        "bottom": 0.39484451718494273,
+        "combined": 0.38236497545008186,
+        "uplift": -0.017635024549918166,
+        "uplift95": [
+          -0.025416078244941926,
+          -0.009311720132982168
+        ]
+      }
+    },
+    "all": {
+      "rank1to3": {
+        "outcomes": 4400,
+        "baseline": 0.3,
+        "top": 0.31295454545454543,
+        "bottom": 0.29113636363636364,
+        "combined": 0.3020454545454545,
+        "uplift": 0.002045454545454517,
+        "uplift95": [
+          -0.004082017556326145,
+          0.008315397500541985
+        ]
+      },
+      "rank4to6": {
+        "outcomes": 4400,
+        "baseline": 0.3,
+        "top": 0.29829545454545453,
+        "bottom": 0.30761363636363637,
+        "combined": 0.3029545454545455,
+        "uplift": 0.0029545454545454874,
+        "uplift95": [
+          -0.0028750100800983723,
+          0.008758514686470265
+        ]
+      },
+      "rank7to10": {
+        "outcomes": 4400,
+        "baseline": 0.4,
+        "top": 0.38875,
+        "bottom": 0.40125,
+        "combined": 0.395,
+        "uplift": -0.0050000000000000044,
+        "uplift95": [
+          -0.01143164498369059,
+          0.0015186019881317412
+        ]
+      }
+    }
+  },
+  "labelsJustified": false,
+  "conclusion": "No stable evidence that score concentration should change interpretation of the Top 6."
+}
