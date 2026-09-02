@@ -768,6 +768,41 @@
 }
 .global-win-error,
 .global-win-warning { color: var(--warning-foreground, #735c16); }
+.global-win-pair-space {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--muted-surface);
+}
+.global-win-pair-space > div > span { color: var(--muted); font-size: 9px; }
+.global-win-pair-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+.global-win-pair-list b {
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 10px;
+}
+.global-win-pair-list.doubles b { color: var(--warning-foreground, #735c16); }
+.global-win-pair-space > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+}
+.global-win-pair-space > button svg { width: 14px; height: 14px; }
+.global-win-copy-pairs svg.open { transform: rotate(180deg); }
 .win-method-options {
   margin-top: 12px;
   border: 1px solid var(--line);
@@ -1118,6 +1153,8 @@
   .global-win-head-actions { align-items: flex-end; flex-direction: column-reverse; }
   .global-win-digits { justify-content: space-between; gap: 5px; }
   .global-win-digits strong { width: 42px; height: 42px; font-size: 20px; }
+  .global-win-pair-space { grid-template-columns: 1fr; }
+  .global-win-pair-space > button { justify-content: center; }
   .global-weekday-win-card > footer { align-items: stretch; flex-direction: column; }
   .global-weekday-win-card > footer > div { display: grid; grid-template-columns: 1fr; }
   .global-weekday-win-card > footer button { justify-content: center; }

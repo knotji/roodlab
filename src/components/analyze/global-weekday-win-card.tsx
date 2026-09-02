@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
+import { Check, ChevronDown, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { GlobalWeekdayWinResult } from "@/lib/analysis/global-weekday-win";
 import { buildWinSet } from "@/lib/analysis/win-set";
@@ -12,6 +12,7 @@ export function GlobalWeekdayWinCard() {
     [error, setError] = useState<string | null>(null),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [method, setMethod] = useState<"ranking" | "411">("ranking"),
+    [showPairs, setShowPairs] = useState(false),
     [copied, setCopied] = useState<"digits" | "pairs" | null>(null);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export function GlobalWeekdayWinCard() {
       </div>
       <div className="global-win-head-actions">
         <div className="global-win-size" role="group" aria-label="จำนวนเลขวินรวมทุกหวย">
-          {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setMethod("ranking"); setCopied(null); }}>{size}</button>)}
+          {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setMethod("ranking"); setShowPairs(false); setCopied(null); }}>{size}</button>)}
         </div>
         <span className={result?.sufficient ? "ready" : "waiting"}>{result?.sufficient ? "ข้อมูลพร้อมสำรวจ" : "ทดลอง"}</span>
       </div>
@@ -59,8 +60,8 @@ export function GlobalWeekdayWinCard() {
         winSet = buildWinSet(digits, winSize);
       return <>
       <div className="global-win-method" role="group" aria-label="วิธีคัดเลขวินรวมทุกหวย">
-        <button type="button" className={method === "ranking" ? "active" : ""} aria-pressed={method === "ranking"} onClick={() => setMethod("ranking")}>อันดับรวม</button>
-        <button type="button" className={method === "411" ? "active" : ""} aria-pressed={method === "411"} onClick={() => { setMethod("411"); setWinSize(6); setCopied(null); }}>4+1+1</button>
+        <button type="button" className={method === "ranking" ? "active" : ""} aria-pressed={method === "ranking"} onClick={() => { setMethod("ranking"); setShowPairs(false); }}>อันดับรวม</button>
+        <button type="button" className={method === "411" ? "active" : ""} aria-pressed={method === "411"} onClick={() => { setMethod("411"); setWinSize(6); setShowPairs(false); setCopied(null); }}>4+1+1</button>
       </div>
       <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${digits.join(" ")}`}>
         {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
@@ -71,11 +72,22 @@ export function GlobalWeekdayWinCard() {
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>
       </div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
+      {showPairs && <div className="global-win-pair-space" id="global-win-pair-space">
+        <div>
+          <span>คู่ไม่เบิ้ล · {winSet.uniquePairs.length} คู่</span>
+          <div className="global-win-pair-list">{winSet.uniquePairs.map((pair) => <b key={pair}>{pair}</b>)}</div>
+        </div>
+        <div>
+          <span>เลขเบิ้ล · {winSet.doubles.length} คู่</span>
+          <div className="global-win-pair-list doubles">{winSet.doubles.map((pair) => <b key={pair}>{pair}</b>)}</div>
+        </div>
+        <button type="button" onClick={() => copyValues("pairs", winSet.uniquePairsWithDoubles)}>{copied === "pairs" ? <Check /> : <Copy />}{copied === "pairs" ? "คัดลอกแล้ว" : `คัดลอกทั้งหมด ${winSet.uniquePairsWithDoubles.length} คู่`}</button>
+      </div>}
       <footer>
         <small>จัดอันดับจากรูปแบบย้อนหลังของหวยรายวัน<br />ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็น</small>
         <div>
           <button type="button" onClick={() => copyValues("digits", digits)}>{copied === "digits" ? <Check /> : <Copy />}{copied === "digits" ? "คัดลอกแล้ว" : `คัดลอก ${winSize} ตัว`}</button>
-          <button type="button" className="global-win-copy-pairs" onClick={() => copyValues("pairs", winSet.uniquePairsWithDoubles)}>{copied === "pairs" ? <Check /> : <Copy />}{copied === "pairs" ? "คัดลอกแล้ว" : `รวมเลขเบิ้ล ${winSet.uniquePairsWithDoubles.length} คู่`}</button>
+          <button type="button" className="global-win-copy-pairs" aria-expanded={showPairs} aria-controls="global-win-pair-space" onClick={() => setShowPairs((visible) => !visible)}>ดูชุดทั้งหมด {winSet.uniquePairsWithDoubles.length} คู่<ChevronDown className={showPairs ? "open" : ""} /></button>
         </div>
       </footer>
       </>;

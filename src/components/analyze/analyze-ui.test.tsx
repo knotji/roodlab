@@ -79,10 +79,16 @@ describe("Analyze presentation", () => {
     render(<GlobalWeekdayWinCard />);
     expect(await screen.findByRole("heading", { name: "วินรวมทุกหวย · วันอังคาร" })).toBeTruthy();
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8").children).toHaveLength(6);
-    expect(screen.getByRole("button", { name: "รวมเลขเบิ้ล 21 คู่" })).toBeTruthy();
+    const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
+    expect(pairButton.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(pairButton);
+    expect(pairButton.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByText("คู่ไม่เบิ้ล · 15 คู่")).toBeTruthy();
+    expect(screen.getByText("เลขเบิ้ล · 6 คู่")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอกทั้งหมด 21 คู่" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "7" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8 2").children).toHaveLength(7);
-    expect(screen.getByRole("button", { name: "รวมเลขเบิ้ล 28 คู่" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "ดูชุดทั้งหมด 28 คู่" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "4+1+1" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 2 4").children).toHaveLength(6);
     expect(screen.getByText("แกนรวม 4").textContent).toContain("7 · 1 · 9 · 3");
