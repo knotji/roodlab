@@ -57,4 +57,5 @@ describe("global weekday win six", () => {
     expect(result.frequentPairs[0]).toMatchObject({ pair: "05", topRate: 1, bottomRate: 0.5, score: 0.75 });
     expect(result.frequentPairs).toHaveLength(21);
   });
+
 });

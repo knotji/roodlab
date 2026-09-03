@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import nextEnv from "@next/env";
-import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
+import { FROZEN_GLOBAL_POOL_39 } from "./frozen-global-pool-39";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { buildGlobalWeekdayWin } from "../src/lib/analysis/global-weekday-win";
 import { classifyGlobalSource, compareOutcomeSources, compareTop6Membership, cosineSimilarity, pearsonCorrelation, topSetOverlap } from "../src/lib/analysis/global-source-redundancy";
@@ -11,7 +11,7 @@ import { AllHuayDataSource } from "../src/lib/data-sources/allhuay";
 import { liveResultSource } from "../src/lib/live-results";
 import type { LotteryDraw } from "../src/lib/types";
 
-const FREEZE_DATE = "2026-09-03", REPORT_BASE = "global-source-family-redundancy-2026-09-03", MIN_OVERLAP = 10, STRONGER_OVERLAP = 30, MIN_SIGNAL_HISTORY = 4, POOL = [...GLOBAL_DAILY_SOURCE_IDS];
+const FREEZE_DATE = "2026-09-03", REPORT_BASE = "global-source-family-redundancy-2026-09-03", MIN_OVERLAP = 10, STRONGER_OVERLAP = 30, MIN_SIGNAL_HISTORY = 4, POOL = [...FROZEN_GLOBAL_POOL_39];
 if (POOL.length !== 39 || new Set(POOL).size !== 39) throw new Error(`Production pool mismatch: ${POOL.length}/39`);
 nextEnv.loadEnvConfig(process.cwd());
 

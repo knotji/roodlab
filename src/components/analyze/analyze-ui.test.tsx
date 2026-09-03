@@ -67,7 +67,7 @@ describe("Analyze presentation", () => {
         lookbackPerLottery: 12,
         cutoffDate: "2026-09-01",
         sufficient: true,
-        sourcePoolCount: 39,
+        sourcePoolCount: 43,
         scoreDistribution: {
           rankedScores: ["7", "1", "9", "3", "5", "8", "2", "4", "0", "6"].map((digit, index) => ({ rank: index + 1, digit, score: 0.2 - index * 0.001 })),
           rank6To7Gap: 0.0042,
@@ -77,12 +77,6 @@ describe("Analyze presentation", () => {
           concentration: 0.01,
         },
         frequentPairs: ["05", "17", "42", "71", "09", "33", "24", "81", "56", "90", "12", "44", "68", "03", "27", "75", "11", "39", "60", "88", "96"].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
-        global411: {
-          digits: ["7", "1", "9", "3", "2", "4"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
-          core: ["7", "1", "9", "3"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
-          topExtra: { digit: "2", score: 0.2, topRate: 0.3, bottomRate: 0.1 },
-          bottomExtra: { digit: "4", score: 0.2, topRate: 0.1, bottomRate: 0.3 },
-        },
       }),
     }));
     render(<GlobalWeekdayWinCard />);
@@ -103,9 +97,6 @@ describe("Analyze presentation", () => {
     fireEvent.click(screen.getByRole("button", { name: "7" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8 2").children).toHaveLength(7);
     expect(screen.getByRole("button", { name: "ดูชุดทั้งหมด 28 คู่" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "4+1+1" }));
-    expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 2 4").children).toHaveLength(6);
-    expect(screen.getByText("แกนรวม 4").textContent).toContain("7 · 1 · 9 · 3");
     const disclosure = screen.getByText((_, element) => element?.tagName === "SMALL" && element.textContent?.includes("จัดอันดับจากรูปแบบย้อนหลังของหวยรายวัน") === true);
     expect(disclosure.textContent).toContain("ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็น");
   });

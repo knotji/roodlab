@@ -2,12 +2,14 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
-## Current production universe — 39 lotteries
+## Historical archive — 39 lotteries
 
 - [Global Hot 3 + Cold 3 study — 2026-09-03](global-hot3-cold3-study-2026-09-03.md)  
   Pre-registered comparison of Overall Top 6 against ranks 1–3 + 8–10. Decision: reject Hot3Cold3 for production, retain Overall Top 6, and freeze further Hot/Cold search.
 - [Global source-family redundancy audit — 2026-09-03](global-source-family-redundancy-2026-09-03.md)
   Read-only source-outcome, historical-signal, family-contribution, and leave-one-family-out sensitivity audit. It does not test predictive performance or authorize weighting or pool changes.
+
+These reports preserve the production universe at `main@f0b28b4`. Current production now uses 46 lotteries, so their absolute rates must not be treated as current-production validation.
 
 ## Historical archive — 46 lotteries
 

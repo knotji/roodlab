@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import nextEnv from "@next/env";
-import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
+import { FROZEN_GLOBAL_POOL_39 } from "./frozen-global-pool-39";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { exactRandomBothCoverage, exactRandomPairCoverage } from "../src/lib/analysis/global-weekday-evaluation";
 import { buildGlobalWeekdayWin, GLOBAL_WEEKDAY_LOOKBACK } from "../src/lib/analysis/global-weekday-win";
@@ -12,7 +12,7 @@ import { AllHuayDataSource } from "../src/lib/data-sources/allhuay";
 import type { LotteryDraw } from "../src/lib/types";
 
 const FREEZE_DATE = "2026-09-03", MIN_TARGET_LOTTERIES = 10, BOOTSTRAPS = 10_000, SEED = 20260903,
-  REPORT_BASE = "global-hot3-cold3-study-2026-09-03", POOL = [...GLOBAL_DAILY_SOURCE_IDS];
+  REPORT_BASE = "global-hot3-cold3-study-2026-09-03", POOL = [...FROZEN_GLOBAL_POOL_39];
 
 const protocol = {
   freezeDate: FREEZE_DATE,

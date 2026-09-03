@@ -34,7 +34,6 @@ export type GlobalWeekdayWinResult = {
   sourcePoolCount: number;
   scoreDistribution: GlobalScoreDistribution;
   frequentPairs: GlobalWeekdayFrequentPair[];
-  global411: { digits: GlobalWeekdayWinDigit[]; core: GlobalWeekdayWinDigit[]; topExtra: GlobalWeekdayWinDigit; bottomExtra: GlobalWeekdayWinDigit };
 };
 
 type GlobalWinSource = { lotteryId: string; draws: LotteryDraw[] };
@@ -101,11 +100,6 @@ export function buildGlobalWeekdayWin(
       return { pair, topRate, bottomRate, score: availableSides ? (topRate + bottomRate) / availableSides : 0 };
     }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)).slice(0, 21);
 
-  const core = ranked.slice(0, 4), used = new Set(core.map((item) => item.digit)),
-    topExtra = [...ranked].sort((a, b) => b.topRate - a.topRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
-  used.add(topExtra.digit);
-  const bottomExtra = [...ranked].sort((a, b) => b.bottomRate - a.bottomRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
-
   return {
     weekday: options.weekday,
     weekdayLabel: dayPatternLabel(options.weekday),
@@ -122,6 +116,5 @@ export function buildGlobalWeekdayWin(
     sourcePoolCount: sources.length,
     scoreDistribution: analyzeGlobalScoreDistribution(ranked),
     frequentPairs,
-    global411: { digits: [...core, topExtra, bottomExtra], core, topExtra, bottomExtra },
   };
 }
