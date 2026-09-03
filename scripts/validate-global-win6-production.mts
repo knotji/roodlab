@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
+import { FROZEN_GLOBAL_POOL_46 } from "./frozen-global-pool-46";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { pairCovered } from "../src/lib/analysis/global-weekday-evaluation";
 import { buildGlobalWeekdayWin, GLOBAL_WEEKDAY_LOOKBACK } from "../src/lib/analysis/global-weekday-win";
@@ -11,7 +11,7 @@ import type { LotteryDraw } from "../src/lib/types";
 
 const FREEZE_DATE = "2026-09-02", WIN_SIZE = 6, MIN_TARGET_LOTTERIES = 10, BOOTSTRAPS = 10_000, SEED = 20260902,
   reportBase = "global-win6-production-validation-2026-09-02";
-const FROZEN_POOL_IDS = [...GLOBAL_DAILY_SOURCE_IDS.slice(0, -3), "dowjones-vip", "dowjonestar", "dji", ...GLOBAL_DAILY_SOURCE_IDS.slice(-3)];
+const FROZEN_POOL_IDS = FROZEN_GLOBAL_POOL_46;
 
 type Source = { lotteryId: string; historyVersion: string; draws: LotteryDraw[] };
 type MetricKey = "top" | "bottom" | "either" | "both" | "recall";
@@ -87,7 +87,7 @@ function confidence(rows: DateRow[]) {
 function pct(value: number) { return `${(value * 100).toFixed(2)}%`; }
 function pp(value: number) { return `${value >= 0 ? "+" : ""}${(value * 100).toFixed(2)}pp`; }
 
-const snapshots = await readAllSnapshots(), frozenSet = new Set(FROZEN_POOL_IDS), storedSources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[],
+const snapshots = await readAllSnapshots(), frozenSet = new Set<string>(FROZEN_POOL_IDS), storedSources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[],
   missing = FROZEN_POOL_IDS.filter((id) => !storedSources.some((source) => source.lotteryId === id)), catalog = await readCatalog(), dataSource = new AllHuayDataSource(catalog),
   fetchedSources = await Promise.all(missing.map(async (lotteryId): Promise<Source> => {
     const result = await dataSource.getCanonicalHistory(lotteryId, { limit: 100 });

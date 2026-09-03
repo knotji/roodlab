@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import nextEnv from "@next/env";
-import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
+import { FROZEN_GLOBAL_POOL_46 } from "./frozen-global-pool-46";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { digitRecall, exactRandomBothCoverage, exactRandomPairCoverage, pairCovered } from "../src/lib/analysis/global-weekday-evaluation";
 import { buildGlobalWeekdayWin, GLOBAL_WEEKDAY_LOOKBACK } from "../src/lib/analysis/global-weekday-win";
@@ -11,7 +11,7 @@ import type { LotteryDraw } from "../src/lib/types";
 
 const FREEZE_DATE = "2026-09-03", WIN_SIZE = 6, MIN_TARGET_LOTTERIES = 10, BOOTSTRAPS = 10_000, SEED = 20260903,
   REPORT_BASE = "global-score-distribution-2026-09-03";
-const FROZEN_POOL_IDS = [...GLOBAL_DAILY_SOURCE_IDS.slice(0, -3), "dowjones-vip", "dowjonestar", "dji", ...GLOBAL_DAILY_SOURCE_IDS.slice(-3)];
+const FROZEN_POOL_IDS = FROZEN_GLOBAL_POOL_46;
 nextEnv.loadEnvConfig(process.cwd());
 const BUCKETS = [{ id: "rank1to3", label: "Rank 1–3", start: 0, end: 3 }, { id: "rank4to6", label: "Rank 4–6", start: 3, end: 6 }, { id: "rank7to10", label: "Rank 7–10", start: 6, end: 10 }] as const;
 type BucketId = typeof BUCKETS[number]["id"];
@@ -83,7 +83,7 @@ function bucketSummaryPoint(rows: DateRow[], bucket: typeof BUCKETS[number]) {
   return rows.reduce((sum, row) => sum + row.buckets[bucket.id].top + row.buckets[bucket.id].bottom, 0) / denominator;
 }
 
-const snapshots = await readAllSnapshots(), frozenSet = new Set(FROZEN_POOL_IDS), sources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[];
+const snapshots = await readAllSnapshots(), frozenSet = new Set<string>(FROZEN_POOL_IDS), sources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[];
 if (sources.length !== FROZEN_POOL_IDS.length) throw new Error(`Exact frozen pool required: found ${sources.length}/${FROZEN_POOL_IDS.length}`);
 const dates = [...new Set(sources.flatMap((source) => source.draws.map((draw) => draw.drawDate)))].filter((date) => date <= FREEZE_DATE).sort(), rows: DateRow[] = [];
 
