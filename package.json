@@ -18,6 +18,7 @@
     "evaluate:global-score-distribution": "tsx scripts/evaluate-global-score-distribution.mts",
     "evaluate:global-hot3-cold3": "tsx scripts/evaluate-global-hot3-cold3.mts",
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
+    "audit:global-source-families": "tsx scripts/audit-global-source-family-redundancy.mts",
     "sync:backfill": "tsx scripts/backfill-history.mts",
     "storage:migrate": "tsx scripts/migrate-storage.mts",
     "storage:import": "tsx scripts/import-storage.mts"
