@@ -1,0 +1,720 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-03",
+    "codeBaseline": "main@37da122",
+    "universe": {
+      "source": "GLOBAL_DAILY_SOURCE_IDS",
+      "size": 39,
+      "ids": [
+        "nikkei-vip-morning",
+        "hanoiasean",
+        "nikkei-morning",
+        "szse-vip-morning",
+        "szse-morning",
+        "laotv",
+        "hsi-vip-morning",
+        "hsi-morning",
+        "xosohd",
+        "twse-vip",
+        "minhngocstar",
+        "twse",
+        "ktop30-vip",
+        "ktop30",
+        "nikkei-afternoon",
+        "nikkei-vip-afternoon",
+        "laoshd",
+        "szse-afternoon",
+        "minhngoctv",
+        "szse-vip-afternoon",
+        "hsi-vip-afternoon",
+        "hsi-afternoon",
+        "laostars",
+        "sgx",
+        "xosoredcross",
+        "sgx-vip",
+        "laounion",
+        "laosasean",
+        "laosvip",
+        "laounionvip",
+        "laostarsvip",
+        "england-vip",
+        "xosoextra",
+        "germany-vip",
+        "laoredcross",
+        "russia-vip",
+        "laocitizen",
+        "laosantipap",
+        "laopatuxay"
+      ]
+    },
+    "productionRanking": {
+      "sameWeekdayOnly": true,
+      "maximumPriorObservationsPerLottery": 12,
+      "presencePerDraw": true,
+      "normalizePerLotteryFirst": true,
+      "topBottomWeights": [
+        0.5,
+        0.5
+      ],
+      "comparator": "production buildGlobalWeekdayWin comparator"
+    },
+    "strategies": {
+      "overallTop6": {
+        "ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "hot3Cold3": {
+        "ranks": [
+          1,
+          2,
+          3,
+          8,
+          9,
+          10
+        ],
+        "rank7Excluded": true
+      }
+    },
+    "primaryMetric": "full two-digit hit on either top2 or bottom2",
+    "targets": {
+      "completeTop2AndBottom2Required": true,
+      "sameTargetsForBothStrategies": true,
+      "minimumLotteriesPerDate": 10,
+      "targetAndFutureExcluded": true
+    },
+    "split": {
+      "development": "oldest 75% target dates",
+      "holdout": "newest 25% target dates"
+    },
+    "randomBaseline": "exact enumeration of all 6-of-10 sets with double-aware pair coverage",
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260903
+    },
+    "prohibition": "One pre-registered comparison only; no tuning or production change. Frozen 46-lottery studies are historical archives and are excluded from this experiment."
+  },
+  "protocolHash": "25e1427fd0daee60",
+  "historyHash": "b81983030358d616",
+  "data": {
+    "range": [
+      "2026-05-26",
+      "2026-09-01"
+    ],
+    "storedSources": 39,
+    "readOnlyHydratedSources": [],
+    "targetDates": 99,
+    "outcomes": 3516
+  },
+  "sections": {
+    "development": {
+      "dates": 74,
+      "outcomes": 2683,
+      "overall": {
+        "top": {
+          "rate": 0.3749534103615356,
+          "baseline": 0.3582805317430737,
+          "uplift": 0.016672878618461895
+        },
+        "bottom": {
+          "rate": 0.36265374580693255,
+          "baseline": 0.357087836998385,
+          "uplift": 0.0055659088085475705
+        },
+        "either": {
+          "rate": 0.6079016026835632,
+          "baseline": 0.5949789681060644,
+          "uplift": 0.01292263457749876
+        },
+        "both": {
+          "rate": 0.12970555348490495,
+          "baseline": 0.12038940063539398,
+          "uplift": 0.00931615284951097
+        },
+        "recall": {
+          "rate": 0.6085538576220648,
+          "baseline": 0.6000000000000005,
+          "uplift": 0.008553857622064287
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.3548266865449124,
+          "baseline": 0.3582805317430737,
+          "uplift": -0.0034538451981613316
+        },
+        "bottom": {
+          "rate": 0.33842713380544165,
+          "baseline": 0.357087836998385,
+          "uplift": -0.01866070319294333
+        },
+        "either": {
+          "rate": 0.583302273574357,
+          "baseline": 0.5949789681060644,
+          "uplift": -0.011676694531707388
+        },
+        "both": {
+          "rate": 0.10995154677599701,
+          "baseline": 0.12038940063539398,
+          "uplift": -0.010437853859396967
+        },
+        "recall": {
+          "rate": 0.5920611256056653,
+          "baseline": 0.6000000000000005,
+          "uplift": -0.007938874394335271
+        }
+      },
+      "pairedEitherDifference": -0.024599329109206113,
+      "decomposition": {
+        "both": 855,
+        "overallOnly": 776,
+        "hotColdOnly": 710,
+        "neither": 342
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.3104733507267984,
+        "rank8to10Recall": 0.2939806187103988
+      }
+    },
+    "holdout": {
+      "dates": 25,
+      "outcomes": 833,
+      "overall": {
+        "top": {
+          "rate": 0.382953181272509,
+          "baseline": 0.35798319327731104,
+          "uplift": 0.02496998799519795
+        },
+        "bottom": {
+          "rate": 0.3457382953181273,
+          "baseline": 0.35414165666266506,
+          "uplift": -0.008403361344537785
+        },
+        "either": {
+          "rate": 0.6086434573829532,
+          "baseline": 0.5970788315326131,
+          "uplift": 0.011564625850340127
+        },
+        "both": {
+          "rate": 0.12004801920768307,
+          "baseline": 0.11504601840736298,
+          "uplift": 0.005002000800320094
+        },
+        "recall": {
+          "rate": 0.6074429771908764,
+          "baseline": 0.6000000000000002,
+          "uplift": 0.0074429771908761655
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.33733493397358943,
+          "baseline": 0.35798319327731104,
+          "uplift": -0.020648259303721606
+        },
+        "bottom": {
+          "rate": 0.3625450180072029,
+          "baseline": 0.35414165666266506,
+          "uplift": 0.00840336134453784
+        },
+        "either": {
+          "rate": 0.5774309723889556,
+          "baseline": 0.5970788315326131,
+          "uplift": -0.01964785914365752
+        },
+        "both": {
+          "rate": 0.12244897959183673,
+          "baseline": 0.11504601840736298,
+          "uplift": 0.007402961184473755
+        },
+        "recall": {
+          "rate": 0.59093637454982,
+          "baseline": 0.6000000000000002,
+          "uplift": -0.009063625450180246
+        }
+      },
+      "pairedEitherDifference": -0.031212484993997598,
+      "decomposition": {
+        "both": 264,
+        "overallOnly": 243,
+        "hotColdOnly": 217,
+        "neither": 109
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.30762304921968786,
+        "rank8to10Recall": 0.29111644657863145
+      }
+    },
+    "all": {
+      "dates": 99,
+      "outcomes": 3516,
+      "overall": {
+        "top": {
+          "rate": 0.3768486916951081,
+          "baseline": 0.35821008722032616,
+          "uplift": 0.01863860447478194
+        },
+        "bottom": {
+          "rate": 0.358646188850967,
+          "baseline": 0.35638983693591203,
+          "uplift": 0.002256351915054966
+        },
+        "either": {
+          "rate": 0.6080773606370876,
+          "baseline": 0.5954764613467683,
+          "uplift": 0.012600899290319267
+        },
+        "both": {
+          "rate": 0.12741751990898748,
+          "baseline": 0.11912346280946969,
+          "uplift": 0.00829405709951779
+        },
+        "recall": {
+          "rate": 0.6082906712172924,
+          "baseline": 0.6000000000000008,
+          "uplift": 0.008290671217291656
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.3506825938566553,
+          "baseline": 0.35821008722032616,
+          "uplift": -0.007527493363670867
+        },
+        "bottom": {
+          "rate": 0.3441410693970421,
+          "baseline": 0.35638983693591203,
+          "uplift": -0.012248767538869942
+        },
+        "either": {
+          "rate": 0.5819112627986348,
+          "baseline": 0.5954764613467683,
+          "uplift": -0.013565198548133539
+        },
+        "both": {
+          "rate": 0.11291240045506257,
+          "baseline": 0.11912346280946969,
+          "uplift": -0.006211062354407118
+        },
+        "recall": {
+          "rate": 0.5917946530147895,
+          "baseline": 0.6000000000000008,
+          "uplift": -0.008205346985211248
+        }
+      },
+      "pairedEitherDifference": -0.026166097838452786,
+      "decomposition": {
+        "both": 1119,
+        "overallOnly": 1019,
+        "hotColdOnly": 927,
+        "neither": 451
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.30979806598407283,
+        "rank8to10Recall": 0.29330204778157
+      }
+    }
+  },
+  "confidence": {
+    "development": {
+      "overallUplift95": [
+        -0.0020155856312410315,
+        0.027804554436176045
+      ],
+      "hotColdUplift95": [
+        -0.027049510491339065,
+        0.00337259436807138
+      ],
+      "pairedDifference95": [
+        -0.04510478732437002,
+        -0.0044642027349973456
+      ]
+    },
+    "holdout": {
+      "overallUplift95": [
+        -0.016962251432643082,
+        0.03949949248883475
+      ],
+      "hotColdUplift95": [
+        -0.04670577954562695,
+        0.008116770407314832
+      ],
+      "pairedDifference95": [
+        -0.06422073950514318,
+        0.004860415133051294
+      ]
+    },
+    "all": {
+      "overallUplift95": [
+        -0.0005611311949842323,
+        0.02593039518431352
+      ],
+      "hotColdUplift95": [
+        -0.026908021683618177,
+        -0.0003036042152038643
+      ],
+      "pairedDifference95": [
+        -0.04362705620414084,
+        -0.008640490797342503
+      ]
+    }
+  },
+  "months": [
+    {
+      "month": "2026-05",
+      "dates": 6,
+      "outcomes": 215,
+      "overall": {
+        "top": {
+          "rate": 0.386046511627907,
+          "baseline": 0.3556589147286822,
+          "uplift": 0.030387596899224767
+        },
+        "bottom": {
+          "rate": 0.3674418604651163,
+          "baseline": 0.3568992248062016,
+          "uplift": 0.010542635658914667
+        },
+        "either": {
+          "rate": 0.6,
+          "baseline": 0.5925138427464008,
+          "uplift": 0.007486157253599135
+        },
+        "both": {
+          "rate": 0.15348837209302327,
+          "baseline": 0.12004429678848284,
+          "uplift": 0.033444075304540424
+        },
+        "recall": {
+          "rate": 0.6174418604651163,
+          "baseline": 0.6000000000000003,
+          "uplift": 0.017441860465115977
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.34418604651162793,
+          "baseline": 0.3556589147286822,
+          "uplift": -0.011472868217054288
+        },
+        "bottom": {
+          "rate": 0.3302325581395349,
+          "baseline": 0.3568992248062016,
+          "uplift": -0.026666666666666727
+        },
+        "either": {
+          "rate": 0.5813953488372093,
+          "baseline": 0.5925138427464008,
+          "uplift": -0.011118493909191507
+        },
+        "both": {
+          "rate": 0.09302325581395349,
+          "baseline": 0.12004429678848284,
+          "uplift": -0.027021040974529356
+        },
+        "recall": {
+          "rate": 0.5941860465116279,
+          "baseline": 0.6000000000000003,
+          "uplift": -0.005813953488372436
+        }
+      },
+      "pairedEitherDifference": -0.018604651162790697,
+      "decomposition": {
+        "both": 67,
+        "overallOnly": 62,
+        "hotColdOnly": 58,
+        "neither": 28
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.31627906976744186,
+        "rank8to10Recall": 0.2930232558139535
+      }
+    },
+    {
+      "month": "2026-06",
+      "dates": 30,
+      "outcomes": 1093,
+      "overall": {
+        "top": {
+          "rate": 0.3559011893870082,
+          "baseline": 0.35675510826471485,
+          "uplift": -0.0008539188777066387
+        },
+        "bottom": {
+          "rate": 0.3677950594693504,
+          "baseline": 0.354559316864898,
+          "uplift": 0.013235742604452427
+        },
+        "either": {
+          "rate": 0.6111619396157365,
+          "baseline": 0.5923757243061907,
+          "uplift": 0.01878621530954583
+        },
+        "both": {
+          "rate": 0.11253430924062215,
+          "baseline": 0.1189387008234218,
+          "uplift": -0.006404391582799651
+        },
+        "recall": {
+          "rate": 0.6045288197621226,
+          "baseline": 0.6000000000000002,
+          "uplift": 0.0045288197621223825
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.3412625800548948,
+          "baseline": 0.35675510826471485,
+          "uplift": -0.015492528209820056
+        },
+        "bottom": {
+          "rate": 0.3376029277218664,
+          "baseline": 0.354559316864898,
+          "uplift": -0.016956389143031603
+        },
+        "either": {
+          "rate": 0.5736505032021958,
+          "baseline": 0.5923757243061907,
+          "uplift": -0.018725221103994882
+        },
+        "both": {
+          "rate": 0.10521500457456541,
+          "baseline": 0.1189387008234218,
+          "uplift": -0.013723696248856387
+        },
+        "recall": {
+          "rate": 0.588975297346752,
+          "baseline": 0.6000000000000002,
+          "uplift": -0.011024702653248175
+        }
+      },
+      "pairedEitherDifference": -0.03751143641354071,
+      "decomposition": {
+        "both": 342,
+        "overallOnly": 326,
+        "hotColdOnly": 285,
+        "neither": 140
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.31495882891125343,
+        "rank8to10Recall": 0.2994053064958829
+      }
+    },
+    {
+      "month": "2026-07",
+      "dates": 31,
+      "outcomes": 1120,
+      "overall": {
+        "top": {
+          "rate": 0.3821428571428571,
+          "baseline": 0.3600000000000002,
+          "uplift": 0.02214285714285691
+        },
+        "bottom": {
+          "rate": 0.34910714285714284,
+          "baseline": 0.35904761904761906,
+          "uplift": -0.009940476190476222
+        },
+        "either": {
+          "rate": 0.6017857142857143,
+          "baseline": 0.597253401360544,
+          "uplift": 0.004532312925170312
+        },
+        "both": {
+          "rate": 0.12946428571428573,
+          "baseline": 0.12179421768707487,
+          "uplift": 0.007670068027210861
+        },
+        "recall": {
+          "rate": 0.6060267857142857,
+          "baseline": 0.6000000000000001,
+          "uplift": 0.00602678571428561
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.3651785714285714,
+          "baseline": 0.3600000000000002,
+          "uplift": 0.005178571428571199
+        },
+        "bottom": {
+          "rate": 0.34732142857142856,
+          "baseline": 0.35904761904761906,
+          "uplift": -0.011726190476190501
+        },
+        "either": {
+          "rate": 0.5910714285714286,
+          "baseline": 0.597253401360544,
+          "uplift": -0.006181972789115364
+        },
+        "both": {
+          "rate": 0.12142857142857143,
+          "baseline": 0.12179421768707487,
+          "uplift": -0.0003656462585034381
+        },
+        "recall": {
+          "rate": 0.5928571428571429,
+          "baseline": 0.6000000000000001,
+          "uplift": -0.0071428571428572285
+        }
+      },
+      "pairedEitherDifference": -0.010714285714285714,
+      "decomposition": {
+        "both": 357,
+        "overallOnly": 317,
+        "hotColdOnly": 305,
+        "neither": 141
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.30558035714285714,
+        "rank8to10Recall": 0.2924107142857143
+      }
+    },
+    {
+      "month": "2026-08",
+      "dates": 31,
+      "outcomes": 1071,
+      "overall": {
+        "top": {
+          "rate": 0.39215686274509803,
+          "baseline": 0.3587301587301588,
+          "uplift": 0.033426704014939246
+        },
+        "bottom": {
+          "rate": 0.3585434173669468,
+          "baseline": 0.3557422969187675,
+          "uplift": 0.0028011204481792618
+        },
+        "either": {
+          "rate": 0.6134453781512605,
+          "baseline": 0.5976479480681158,
+          "uplift": 0.015797430083144715
+        },
+        "both": {
+          "rate": 0.13725490196078433,
+          "baseline": 0.11682450758081013,
+          "uplift": 0.020430394379974195
+        },
+        "recall": {
+          "rate": 0.6136788048552755,
+          "baseline": 0.6000000000000002,
+          "uplift": 0.013678804855275284
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.3445378151260504,
+          "baseline": 0.3587301587301588,
+          "uplift": -0.01419234360410837
+        },
+        "bottom": {
+          "rate": 0.3492063492063492,
+          "baseline": 0.3557422969187675,
+          "uplift": -0.006535947712418333
+        },
+        "either": {
+          "rate": 0.5788982259570495,
+          "baseline": 0.5976479480681158,
+          "uplift": -0.01874972211106629
+        },
+        "both": {
+          "rate": 0.11484593837535013,
+          "baseline": 0.11682450758081013,
+          "uplift": -0.0019785692054599957
+        },
+        "recall": {
+          "rate": 0.5919701213818861,
+          "baseline": 0.6000000000000002,
+          "uplift": -0.008029878618114106
+        }
+      },
+      "pairedEitherDifference": -0.03454715219421102,
+      "decomposition": {
+        "both": 346,
+        "overallOnly": 311,
+        "hotColdOnly": 274,
+        "neither": 140
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.3085901027077498,
+        "rank8to10Recall": 0.2868814192343604
+      }
+    },
+    {
+      "month": "2026-09",
+      "dates": 1,
+      "outcomes": 17,
+      "overall": {
+        "top": {
+          "rate": 0.29411764705882354,
+          "baseline": 0.33333333333333326,
+          "uplift": -0.03921568627450972
+        },
+        "bottom": {
+          "rate": 0.29411764705882354,
+          "baseline": 0.33333333333333326,
+          "uplift": -0.03921568627450972
+        },
+        "either": {
+          "rate": 0.5882352941176471,
+          "baseline": 0.5784313725490196,
+          "uplift": 0.009803921568627527
+        },
+        "both": {
+          "rate": 0,
+          "baseline": 0.08823529411764704,
+          "uplift": -0.08823529411764704
+        },
+        "recall": {
+          "rate": 0.5441176470588235,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.05588235294117638
+        }
+      },
+      "hotCold": {
+        "top": {
+          "rate": 0.47058823529411764,
+          "baseline": 0.33333333333333326,
+          "uplift": 0.13725490196078438
+        },
+        "bottom": {
+          "rate": 0.4117647058823529,
+          "baseline": 0.33333333333333326,
+          "uplift": 0.07843137254901966
+        },
+        "either": {
+          "rate": 0.7058823529411765,
+          "baseline": 0.5784313725490196,
+          "uplift": 0.12745098039215697
+        },
+        "both": {
+          "rate": 0.17647058823529413,
+          "baseline": 0.08823529411764704,
+          "uplift": 0.08823529411764709
+        },
+        "recall": {
+          "rate": 0.6617647058823529,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.061764705882353055
+        }
+      },
+      "pairedEitherDifference": 0.11764705882352941,
+      "decomposition": {
+        "both": 7,
+        "overallOnly": 3,
+        "hotColdOnly": 5,
+        "neither": 2
+      },
+      "rankOccurrence": {
+        "rank4to6Recall": 0.25,
+        "rank8to10Recall": 0.36764705882352944
+      }
+    }
+  ]
+}

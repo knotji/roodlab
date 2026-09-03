@@ -58,3 +58,7 @@ Useful options:
 - `--reset-checkpoint` starts a new local checkpoint while preserving Neon data.
 
 The runner only selects active catalog entries that are not marked `failed` by the catalog audit. Sync validation remains fail-safe: invalid or suspicious source responses do not replace the last valid snapshot.
+
+## Research reports
+
+See the [research report index](reports/README.md) for frozen protocols, universe boundaries, and decisions. Reports are offline diagnostics and do not modify the production formula.
