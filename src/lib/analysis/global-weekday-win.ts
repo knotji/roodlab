@@ -11,6 +11,13 @@ export type GlobalWeekdayWinDigit = {
   bottomRate: number;
 };
 
+export type GlobalWeekdayFrequentPair = {
+  pair: string;
+  score: number;
+  topRate: number;
+  bottomRate: number;
+};
+
 export type GlobalWeekdayWinResult = {
   weekday: Exclude<DayPattern, "all">;
   weekdayLabel: string;
@@ -26,6 +33,7 @@ export type GlobalWeekdayWinResult = {
   sufficient: boolean;
   sourcePoolCount: number;
   scoreDistribution: GlobalScoreDistribution;
+  frequentPairs: GlobalWeekdayFrequentPair[];
   global411: { digits: GlobalWeekdayWinDigit[]; core: GlobalWeekdayWinDigit[]; topExtra: GlobalWeekdayWinDigit; bottomExtra: GlobalWeekdayWinDigit };
 };
 
@@ -42,6 +50,17 @@ function sideRates(draws: LotteryDraw[], side: "top2" | "bottom2") {
   ) as Record<string, number>;
 }
 
+function pairRates(draws: LotteryDraw[], side: "top2" | "bottom2") {
+  const eligible = draws.filter((draw) => draw[side]);
+  if (!eligible.length) return null;
+  return Object.fromEntries(
+    Array.from({ length: 100 }, (_, value) => {
+      const pair = String(value).padStart(2, "0"), hits = eligible.filter((draw) => draw[side] === pair).length;
+      return [pair, hits / eligible.length];
+    }),
+  ) as Record<string, number>;
+}
+
 export function buildGlobalWeekdayWin(
   sources: GlobalWinSource[],
   options: { weekday: Exclude<DayPattern, "all">; cutoffDate: string; lookbackPerLottery?: number },
@@ -52,7 +71,13 @@ export function buildGlobalWeekdayWin(
         .filter((draw) => draw.drawDate < options.cutoffDate && drawWeekday(draw.drawDate) === options.weekday)
         .sort((a, b) => b.drawDate.localeCompare(a.drawDate))
         .slice(0, lookbackPerLottery);
-      return { draws, top: sideRates(draws, "top2"), bottom: sideRates(draws, "bottom2") };
+      return {
+        draws,
+        top: sideRates(draws, "top2"),
+        bottom: sideRates(draws, "bottom2"),
+        topPairs: pairRates(draws, "top2"),
+        bottomPairs: pairRates(draws, "bottom2"),
+      };
     }).filter((source) => source.top || source.bottom),
     topSources = perLottery.filter((source) => source.top),
     bottomSources = perLottery.filter((source) => source.bottom),
@@ -67,7 +92,14 @@ export function buildGlobalWeekdayWin(
         availableSides = Number(topSources.length > 0) + Number(bottomSources.length > 0),
         score = availableSides ? (topRate + bottomRate) / availableSides : 0;
       return { digit, score, topRate, bottomRate };
-    }));
+    })),
+    frequentPairs = Array.from({ length: 100 }, (_, value) => {
+      const pair = String(value).padStart(2, "0"),
+        topRate = topSources.length ? topSources.reduce((total, source) => total + (source.topPairs?.[pair] ?? 0), 0) / topSources.length : 0,
+        bottomRate = bottomSources.length ? bottomSources.reduce((total, source) => total + (source.bottomPairs?.[pair] ?? 0), 0) / bottomSources.length : 0,
+        availableSides = Number(topSources.length > 0) + Number(bottomSources.length > 0);
+      return { pair, topRate, bottomRate, score: availableSides ? (topRate + bottomRate) / availableSides : 0 };
+    }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)).slice(0, 21);
 
   const core = ranked.slice(0, 4), used = new Set(core.map((item) => item.digit)),
     topExtra = [...ranked].sort((a, b) => b.topRate - a.topRate || b.score - a.score || a.digit.localeCompare(b.digit)).find((item) => !used.has(item.digit))!;
@@ -89,6 +121,7 @@ export function buildGlobalWeekdayWin(
     sufficient: perLottery.length >= 10 && topSources.length >= 5 && bottomSources.length >= 5,
     sourcePoolCount: sources.length,
     scoreDistribution: analyzeGlobalScoreDistribution(ranked),
+    frequentPairs,
     global411: { digits: [...core, topExtra, bottomExtra], core, topExtra, bottomExtra },
   };
 }

@@ -14,7 +14,7 @@ export function GlobalWeekdayWinCard() {
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [method, setMethod] = useState<"ranking" | "411">("ranking"),
     [showPairs, setShowPairs] = useState(false),
-    [copied, setCopied] = useState<"digits" | "pairs" | null>(null);
+    [copied, setCopied] = useState<"digits" | "pairs" | "frequentTop10" | "frequentPairs" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -31,7 +31,7 @@ export function GlobalWeekdayWinCard() {
     return () => { cancelled = true; };
   }, []);
 
-  async function copyValues(mode: "digits" | "pairs", values: string[]) {
+  async function copyValues(mode: "digits" | "pairs" | "frequentTop10" | "frequentPairs", values: string[]) {
     try {
       await navigator.clipboard.writeText(values.join(" "));
       setCopied(mode);
@@ -73,6 +73,19 @@ export function GlobalWeekdayWinCard() {
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>
       </div>
       <div className="global-win-score-gap"><span>โครงสร้างคะแนนวันนี้</span><strong>{formatRankBoundaryGap(result.scoreDistribution.rank6To7Gap)}</strong></div>
+      <div className="global-win-frequent-pairs">
+        <div><strong>คู่ออกบ่อยประจำ{result.weekdayLabel} · 21 คู่</strong><span>รวมเลขเบิ้ล · พบซ้ำบ่อยจากข้อมูลย้อนหลังของวันเดียวกัน</span></div>
+        <div className="global-win-frequent-pair-list" aria-label={`คู่ออกบ่อยประจำ${result.weekdayLabel} ${result.frequentPairs.map((item) => item.pair).join(" ")}`}>
+          {result.frequentPairs.map((item) => <b key={item.pair}>{item.pair}</b>)}
+        </div>
+        <div className="global-win-frequent-pair-footer">
+          <small>สรุปจากบน–ล่างน้ำหนักเท่ากัน · ไม่ใช่ค่าความน่าจะเป็น</small>
+          <div>
+            <button type="button" onClick={() => copyValues("frequentTop10", result.frequentPairs.slice(0, 10).map((item) => item.pair))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "คัดลอกเน้น 10 คู่"}</button>
+            <button type="button" onClick={() => copyValues("frequentPairs", result.frequentPairs.map((item) => item.pair))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "คัดลอก 21 คู่"}</button>
+          </div>
+        </div>
+      </div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
       {showPairs && <div className="global-win-pair-space" id="global-win-pair-space">
         <div>

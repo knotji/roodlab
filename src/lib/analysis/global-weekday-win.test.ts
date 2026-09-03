@@ -45,4 +45,16 @@ describe("global weekday win six", () => {
     expect(result.digits[0].digit).toBe("1");
     expect(result.digits.map((item) => item.digit)).not.toContain("9");
   });
+
+  it("ranks exact weekday pairs without losing leading zeroes", () => {
+    const result = buildGlobalWeekdayWin(
+      [
+        { lotteryId: "a", draws: [draw("a", "2026-08-25", "05", "71")] },
+        { lotteryId: "b", draws: [draw("b", "2026-08-25", "05", "05")] },
+      ],
+      { weekday: 2, cutoffDate: "2026-09-01" },
+    );
+    expect(result.frequentPairs[0]).toMatchObject({ pair: "05", topRate: 1, bottomRate: 0.5, score: 0.75 });
+    expect(result.frequentPairs).toHaveLength(21);
+  });
 });

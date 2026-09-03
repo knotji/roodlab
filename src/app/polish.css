@@ -665,6 +665,47 @@
   font-size: 9px;
 }
 .global-win-score-gap strong { color: var(--ink); font-weight: 500; }
+.global-win-frequent-pairs {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--muted-surface);
+}
+.global-win-frequent-pairs > div:first-child { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.global-win-frequent-pairs > div:first-child strong { color: var(--ink); font-size: 11px; }
+.global-win-frequent-pairs > div:first-child span,
+.global-win-frequent-pairs small { color: var(--muted); font-size: 9px; }
+.global-win-frequent-pair-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.global-win-frequent-pair-list b {
+  min-width: 34px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--accent);
+  text-align: center;
+  font-size: 12px;
+}
+.global-win-frequent-pair-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.global-win-frequent-pair-footer button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 10px;
+}
+.global-win-frequent-pair-footer > div { display: flex; flex-wrap: wrap; gap: 6px; }
+.global-win-frequent-pair-footer button svg { width: 13px; height: 13px; }
 .global-win-head-actions > span.ready {
   background: var(--secondary);
   color: var(--accent);
