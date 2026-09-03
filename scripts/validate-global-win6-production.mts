@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { curatedGlobalSources, GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
+import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { pairCovered } from "../src/lib/analysis/global-weekday-evaluation";
 import { buildGlobalWeekdayWin, GLOBAL_WEEKDAY_LOOKBACK } from "../src/lib/analysis/global-weekday-win";
@@ -11,6 +11,7 @@ import type { LotteryDraw } from "../src/lib/types";
 
 const FREEZE_DATE = "2026-09-02", WIN_SIZE = 6, MIN_TARGET_LOTTERIES = 10, BOOTSTRAPS = 10_000, SEED = 20260902,
   reportBase = "global-win6-production-validation-2026-09-02";
+const FROZEN_POOL_IDS = [...GLOBAL_DAILY_SOURCE_IDS.slice(0, -3), "dowjones-vip", "dowjonestar", "dji", ...GLOBAL_DAILY_SOURCE_IDS.slice(-3)];
 
 type Source = { lotteryId: string; historyVersion: string; draws: LotteryDraw[] };
 type MetricKey = "top" | "bottom" | "either" | "both" | "recall";
@@ -18,8 +19,8 @@ type DateRow = Record<MetricKey | `expected_${MetricKey}`, number> & { date: str
 
 const protocol = {
   freezeDate: FREEZE_DATE,
-  pool: [...GLOBAL_DAILY_SOURCE_IDS],
-  poolSize: GLOBAL_DAILY_SOURCE_IDS.length,
+  pool: FROZEN_POOL_IDS,
+  poolSize: FROZEN_POOL_IDS.length,
   formula: "production weekday-frequency overall ranking",
   winSize: WIN_SIZE,
   weekdayLookback: GLOBAL_WEEKDAY_LOOKBACK,
@@ -86,15 +87,15 @@ function confidence(rows: DateRow[]) {
 function pct(value: number) { return `${(value * 100).toFixed(2)}%`; }
 function pp(value: number) { return `${value >= 0 ? "+" : ""}${(value * 100).toFixed(2)}pp`; }
 
-const snapshots = await readAllSnapshots(), storedSources = curatedGlobalSources(Object.values(snapshots)) as Source[],
-  missing = GLOBAL_DAILY_SOURCE_IDS.filter((id) => !storedSources.some((source) => source.lotteryId === id)), catalog = await readCatalog(), dataSource = new AllHuayDataSource(catalog),
+const snapshots = await readAllSnapshots(), frozenSet = new Set(FROZEN_POOL_IDS), storedSources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[],
+  missing = FROZEN_POOL_IDS.filter((id) => !storedSources.some((source) => source.lotteryId === id)), catalog = await readCatalog(), dataSource = new AllHuayDataSource(catalog),
   fetchedSources = await Promise.all(missing.map(async (lotteryId): Promise<Source> => {
     const result = await dataSource.getCanonicalHistory(lotteryId, { limit: 100 });
     if (!result.draws.length) throw new Error(`No historical draws returned for ${lotteryId}`);
     return { lotteryId, draws: result.draws, historyVersion: computeHistoryVersion(lotteryId, result.draws) };
   })), byId = new Map([...storedSources, ...fetchedSources].map((source) => [source.lotteryId, source])),
-  sources = GLOBAL_DAILY_SOURCE_IDS.map((id) => byId.get(id)).filter((source): source is Source => Boolean(source));
-if (sources.length !== 46) throw new Error(`Frozen pool unavailable after read-only hydration: found ${sources.length}/46`);
+  sources = FROZEN_POOL_IDS.map((id) => byId.get(id)).filter((source): source is Source => Boolean(source));
+if (sources.length !== FROZEN_POOL_IDS.length) throw new Error(`Frozen pool unavailable after read-only hydration: found ${sources.length}/${FROZEN_POOL_IDS.length}`);
 
 const dates = [...new Set(sources.flatMap((source) => source.draws.map((draw) => draw.drawDate)))].filter((date) => date <= FREEZE_DATE).sort(), rows: DateRow[] = [],
   coverage = new Map(sources.map((source) => [source.lotteryId, { predictionDates: 0, trainingTotal: 0, min: 12, max: 0, targetOutcomes: 0 }]));

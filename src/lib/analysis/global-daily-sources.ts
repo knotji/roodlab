@@ -5,7 +5,7 @@ export const GLOBAL_DAILY_SOURCE_IDS = [
   "minhngoctv", "szse-vip-afternoon", "hsi-vip-afternoon", "hsi-afternoon", "laostars", "sgx",
   "xosoredcross", "set", "sgx-vip", "laounion", "laosasean", "laosvip", "laounionvip", "laostarsvip",
   "england-vip", "moexbc", "xosoextra", "gdaxi", "ftse100", "germany-vip", "laoredcross", "russia-vip",
-  "dowjones-vip", "dowjonestar", "dji", "laocitizen", "laosantipap", "laopatuxay",
+  "laocitizen", "laosantipap", "laopatuxay",
 ] as const;
 
 const GLOBAL_DAILY_SOURCE_SET = new Set<string>(GLOBAL_DAILY_SOURCE_IDS);

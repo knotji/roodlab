@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import nextEnv from "@next/env";
-import { GLOBAL_DAILY_SOURCE_IDS, curatedGlobalSources } from "../src/lib/analysis/global-daily-sources";
+import { GLOBAL_DAILY_SOURCE_IDS } from "../src/lib/analysis/global-daily-sources";
 import { drawWeekday } from "../src/lib/analysis/day-pattern";
 import { digitRecall, exactRandomBothCoverage, exactRandomPairCoverage, pairCovered } from "../src/lib/analysis/global-weekday-evaluation";
 import { buildGlobalWeekdayWin, GLOBAL_WEEKDAY_LOOKBACK } from "../src/lib/analysis/global-weekday-win";
@@ -11,6 +11,7 @@ import type { LotteryDraw } from "../src/lib/types";
 
 const FREEZE_DATE = "2026-09-03", WIN_SIZE = 6, MIN_TARGET_LOTTERIES = 10, BOOTSTRAPS = 10_000, SEED = 20260903,
   REPORT_BASE = "global-score-distribution-2026-09-03";
+const FROZEN_POOL_IDS = [...GLOBAL_DAILY_SOURCE_IDS.slice(0, -3), "dowjones-vip", "dowjonestar", "dji", ...GLOBAL_DAILY_SOURCE_IDS.slice(-3)];
 nextEnv.loadEnvConfig(process.cwd());
 const BUCKETS = [{ id: "rank1to3", label: "Rank 1–3", start: 0, end: 3 }, { id: "rank4to6", label: "Rank 4–6", start: 3, end: 6 }, { id: "rank7to10", label: "Rank 7–10", start: 6, end: 10 }] as const;
 type BucketId = typeof BUCKETS[number]["id"];
@@ -23,7 +24,7 @@ type DateRow = {
 };
 
 const protocol = {
-  freezeDate: FREEZE_DATE, pool: [...GLOBAL_DAILY_SOURCE_IDS], poolSize: 46,
+  freezeDate: FREEZE_DATE, pool: FROZEN_POOL_IDS, poolSize: FROZEN_POOL_IDS.length,
   productionContract: { ranking: "overall", winSize: WIN_SIZE, weekdayOnly: true, weekdayLookback: GLOBAL_WEEKDAY_LOOKBACK, topWeight: 0.5, bottomWeight: 0.5, perLotteryNormalization: true, presencePerDraw: true },
   diagnostic: { rank6To7Gap: "score(rank 6) - score(rank 7)", top6Spread: "score(rank 1) - score(rank 6)", allDigitSpread: "score(rank 1) - score(rank 10)", normalizedEntropy: "Shannon entropy of non-negative scores divided by ln(10)", concentration: "1 - normalizedEntropy" },
   evaluation: { walkForward: true, targetExcluded: true, minimumTargetLotteries: MIN_TARGET_LOTTERIES, chronologicalDevelopmentShare: 0.75, gapBands: "development tertiles applied unchanged to holdout", bootstrap: { iterations: BOOTSTRAPS, cluster: "target date", seed: SEED } },
@@ -82,8 +83,8 @@ function bucketSummaryPoint(rows: DateRow[], bucket: typeof BUCKETS[number]) {
   return rows.reduce((sum, row) => sum + row.buckets[bucket.id].top + row.buckets[bucket.id].bottom, 0) / denominator;
 }
 
-const snapshots = await readAllSnapshots(), sources = curatedGlobalSources(Object.values(snapshots)) as Source[];
-if (sources.length !== GLOBAL_DAILY_SOURCE_IDS.length) throw new Error(`Exact curated pool required: found ${sources.length}/${GLOBAL_DAILY_SOURCE_IDS.length}`);
+const snapshots = await readAllSnapshots(), frozenSet = new Set(FROZEN_POOL_IDS), sources = Object.values(snapshots).filter((source) => frozenSet.has(source.lotteryId)) as Source[];
+if (sources.length !== FROZEN_POOL_IDS.length) throw new Error(`Exact frozen pool required: found ${sources.length}/${FROZEN_POOL_IDS.length}`);
 const dates = [...new Set(sources.flatMap((source) => source.draws.map((draw) => draw.drawDate)))].filter((date) => date <= FREEZE_DATE).sort(), rows: DateRow[] = [];
 
 for (const date of dates) {
