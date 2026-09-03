@@ -92,10 +92,15 @@ export function buildGlobalWeekdayWin(
         score = availableSides ? (topRate + bottomRate) / availableSides : 0;
       return { digit, score, topRate, bottomRate };
     })),
-    frequentPairs = Array.from({ length: 100 }, (_, value) => {
-      const pair = String(value).padStart(2, "0"),
-        topRate = topSources.length ? topSources.reduce((total, source) => total + (source.topPairs?.[pair] ?? 0), 0) / topSources.length : 0,
-        bottomRate = bottomSources.length ? bottomSources.reduce((total, source) => total + (source.bottomPairs?.[pair] ?? 0), 0) / bottomSources.length : 0,
+    unorderedPairs = Array.from({ length: 10 }, (_, first) =>
+      Array.from({ length: 10 - first }, (_, offset) => `${first}${first + offset}`),
+    ).flat(),
+    frequentPairs = unorderedPairs.map((pair) => {
+      const reversed = `${pair[1]}${pair[0]}`,
+        sourcePairRate = (source: (typeof perLottery)[number], side: "topPairs" | "bottomPairs") =>
+          (source[side]?.[pair] ?? 0) + (reversed === pair ? 0 : (source[side]?.[reversed] ?? 0)),
+        topRate = topSources.length ? topSources.reduce((total, source) => total + sourcePairRate(source, "topPairs"), 0) / topSources.length : 0,
+        bottomRate = bottomSources.length ? bottomSources.reduce((total, source) => total + sourcePairRate(source, "bottomPairs"), 0) / bottomSources.length : 0,
         availableSides = Number(topSources.length > 0) + Number(bottomSources.length > 0);
       return { pair, topRate, bottomRate, score: availableSides ? (topRate + bottomRate) / availableSides : 0 };
     }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)).slice(0, 21);
