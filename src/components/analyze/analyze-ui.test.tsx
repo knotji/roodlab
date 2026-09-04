@@ -76,15 +76,20 @@ describe("Analyze presentation", () => {
           normalizedEntropy: 0.99,
           concentration: 0.01,
         },
-        frequentPairs: ["05", "17", "42", "71", "09", "33", "24", "81", "56", "90", "12", "44", "68", "03", "27", "75", "11", "39", "60", "88", "96"].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
+        frequentPairs: ["05", "17", "24", "19", "09", "33", "28", "18", "56", "49", "12", "44", "68", "03", "27", "57", "11", "39", "06", "88", "69"].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
       }),
     }));
     render(<GlobalWeekdayWinCard />);
     expect(await screen.findByRole("heading", { name: "วินรวมทุกหวย · วันอังคาร" })).toBeTruthy();
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8").children).toHaveLength(6);
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
-    expect(screen.getByLabelText(/คู่ออกบ่อย/).children).toHaveLength(21);
+    const recommendedPairs = screen.getByLabelText(/คู่เน้นรอบโลก/);
+    const shownPairs = Array.from(recommendedPairs.querySelectorAll("b"), (item) => item.textContent);
+    expect(shownPairs).toHaveLength(21);
+    expect(new Set(shownPairs).size).toBe(21);
+    expect(screen.getByText("เน้น 10 คู่").parentElement?.querySelectorAll("b")).toHaveLength(10);
     expect(screen.getByRole("button", { name: "คัดลอกเน้น 10 คู่" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอก 15 คู่" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "คัดลอก 21 คู่" })).toBeTruthy();
     expect(pairButton.getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(pairButton);

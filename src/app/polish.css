@@ -679,6 +679,11 @@
 .global-win-frequent-pairs > div:first-child span,
 .global-win-frequent-pairs small { color: var(--muted); font-size: 9px; }
 .global-win-frequent-pair-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.global-win-frequent-pair-groups { display: grid; gap: 8px; }
+.global-win-frequent-pair-groups > div > span,
+.global-win-frequent-pair-groups summary { display: block; margin-bottom: 6px; color: var(--muted); font-size: 9px; }
+.global-win-frequent-pair-groups summary { cursor: pointer; }
+.global-win-frequent-pair-list.focused b { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); background: var(--accent-soft); font-weight: 700; }
 .global-win-frequent-pair-list b {
   min-width: 34px;
   padding: 6px 8px;

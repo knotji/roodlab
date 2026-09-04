@@ -13,7 +13,7 @@ export function GlobalWeekdayWinCard() {
     [error, setError] = useState<string | null>(null),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [showPairs, setShowPairs] = useState(false),
-    [copied, setCopied] = useState<"digits" | "pairs" | "frequentTop10" | "frequentPairs" | null>(null);
+    [copied, setCopied] = useState<"digits" | "pairs" | "frequentTop10" | "frequentTop15" | "frequentPairs" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -30,7 +30,7 @@ export function GlobalWeekdayWinCard() {
     return () => { cancelled = true; };
   }, []);
 
-  async function copyValues(mode: "digits" | "pairs" | "frequentTop10" | "frequentPairs", values: string[]) {
+  async function copyValues(mode: "digits" | "pairs" | "frequentTop10" | "frequentTop15" | "frequentPairs", values: string[]) {
     try {
       await navigator.clipboard.writeText(values.join(" "));
       setCopied(mode);
@@ -57,7 +57,9 @@ export function GlobalWeekdayWinCard() {
     {error && <p className="global-win-error">โหลดวินรวมทุกหวยไม่สำเร็จ · ลองรีเฟรชอีกครั้ง</p>}
     {result && (() => {
       const digits = result.rankedDigits.slice(0, winSize).map((item) => item.digit),
-        winSet = buildWinSet(digits, winSize);
+        winSet = buildWinSet(digits, winSize),
+        recommendedPairs = result.frequentPairs.slice(0, 21),
+        focusedPairs = recommendedPairs.slice(0, 10);
       return <>
       <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${digits.join(" ")}`}>
         {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
@@ -68,15 +70,17 @@ export function GlobalWeekdayWinCard() {
       </div>
       <div className="global-win-score-gap"><span>โครงสร้างคะแนนวันนี้</span><strong>{formatRankBoundaryGap(result.scoreDistribution.rank6To7Gap)}</strong></div>
       <div className="global-win-frequent-pairs">
-        <div><strong>คู่ออกบ่อยประจำ{result.weekdayLabel} · 21 คู่</strong><span>รวมเลขเบิ้ล · พบซ้ำบ่อยจากข้อมูลย้อนหลังของวันเดียวกัน</span></div>
-        <div className="global-win-frequent-pair-list" aria-label={`คู่ออกบ่อยประจำ${result.weekdayLabel} ${result.frequentPairs.map((item) => item.pair).join(" ")}`}>
-          {result.frequentPairs.map((item) => <b key={item.pair}>{item.pair}</b>)}
+        <div><strong>คู่เน้นรอบโลกประจำ{result.weekdayLabel} · 21 คู่</strong><span>คัดจากคู่ที่พบบ่อยที่สุด รวมเลขเบิ้ล และไม่นับคู่กลับซ้ำ</span></div>
+        <div className="global-win-frequent-pair-groups" aria-label={`คู่เน้นรอบโลก ${recommendedPairs.map((item) => item.pair).join(" ")}`}>
+          <div><span>เน้น 10 คู่</span><div className="global-win-frequent-pair-list focused">{focusedPairs.map((item) => <b key={item.pair}>{item.pair}</b>)}</div></div>
+          <details><summary>ดูชุดรองอีก 11 คู่</summary><div className="global-win-frequent-pair-list">{recommendedPairs.slice(10).map((item) => <b key={item.pair}>{item.pair}</b>)}</div></details>
         </div>
         <div className="global-win-frequent-pair-footer">
           <small>สรุปจากบน–ล่างน้ำหนักเท่ากัน · ไม่ใช่ค่าความน่าจะเป็น</small>
           <div>
-            <button type="button" onClick={() => copyValues("frequentTop10", result.frequentPairs.slice(0, 10).map((item) => item.pair))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "คัดลอกเน้น 10 คู่"}</button>
-            <button type="button" onClick={() => copyValues("frequentPairs", result.frequentPairs.map((item) => item.pair))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "คัดลอก 21 คู่"}</button>
+            <button type="button" onClick={() => copyValues("frequentTop10", focusedPairs.map((item) => item.pair))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "คัดลอกเน้น 10 คู่"}</button>
+            <button type="button" onClick={() => copyValues("frequentTop15", recommendedPairs.slice(0, 15).map((item) => item.pair))}>{copied === "frequentTop15" ? <Check /> : <Copy />}{copied === "frequentTop15" ? "คัดลอกแล้ว" : "คัดลอก 15 คู่"}</button>
+            <button type="button" onClick={() => copyValues("frequentPairs", recommendedPairs.map((item) => item.pair))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "คัดลอก 21 คู่"}</button>
           </div>
         </div>
       </div>
