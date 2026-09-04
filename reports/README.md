@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [Global Rank Consensus study — 2026-09-04](global-rank-consensus-study-2026-09-04.md)
+  One-shot paired comparison of current Production against equal per-lottery 10-to-1 rank ballots; research only, with no production change authorized.
+
 ## Historical archive — 39 lotteries
 
 - [Global Hot 3 + Cold 3 study — 2026-09-03](global-hot3-cold3-study-2026-09-03.md)  

@@ -17,6 +17,7 @@
     "validate:global-win6-production": "tsx scripts/validate-global-win6-production.mts",
     "evaluate:global-score-distribution": "tsx scripts/evaluate-global-score-distribution.mts",
     "evaluate:global-hot3-cold3": "tsx scripts/evaluate-global-hot3-cold3.mts",
+    "evaluate:global-rank-consensus": "tsx scripts/evaluate-global-rank-consensus.mts",
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
     "audit:global-source-families": "tsx scripts/audit-global-source-family-redundancy.mts",
     "sync:backfill": "tsx scripts/backfill-history.mts",

@@ -1,0 +1,1198 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-04",
+    "codeBaseline": "main@ae43052",
+    "universe": {
+      "source": "src/lib/analysis/global-daily-sources.ts#GLOBAL_DAILY_SOURCE_IDS",
+      "size": 46,
+      "ids": [
+        "nikkei-vip-morning",
+        "hanoiasean",
+        "nikkei-morning",
+        "szse-vip-morning",
+        "szse-morning",
+        "laotv",
+        "hsi-vip-morning",
+        "hsi-morning",
+        "xosohd",
+        "twse-vip",
+        "minhngocstar",
+        "twse",
+        "ktop30-vip",
+        "ktop30",
+        "nikkei-afternoon",
+        "nikkei-vip-afternoon",
+        "laoshd",
+        "szse-afternoon",
+        "minhngoctv",
+        "szse-vip-afternoon",
+        "hsi-vip-afternoon",
+        "hsi-afternoon",
+        "laostars",
+        "sgx",
+        "xosoredcross",
+        "set",
+        "sgx-vip",
+        "laounion",
+        "laosasean",
+        "laosvip",
+        "laounionvip",
+        "laostarsvip",
+        "england-vip",
+        "moexbc",
+        "xosoextra",
+        "gdaxi",
+        "ftse100",
+        "germany-vip",
+        "laoredcross",
+        "russia-vip",
+        "dowjones-vip",
+        "dowjonestar",
+        "dji",
+        "laocitizen",
+        "laosantipap",
+        "laopatuxay"
+      ]
+    },
+    "commonData": {
+      "sameWeekdayOnly": true,
+      "maximumPriorObservationsPerLottery": 12,
+      "targetAndFutureExcluded": true,
+      "presencePerDraw": true,
+      "duplicateDigitCountedOncePerSide": true,
+      "noImputation": true
+    },
+    "strategyA": "exact production buildGlobalWeekdayWin overall Top 6",
+    "strategyB": {
+      "name": "Global Rank Consensus",
+      "localSignal": "same per-lottery normalized top/bottom presence rates as production",
+      "rankPoints": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "oneBallotPerEligibleLottery": true,
+      "aggregation": "mean rank points",
+      "winSize": 6
+    },
+    "ties": {
+      "withinLottery": "score descending, topRate+bottomRate descending, digit ascending via rankGlobalDigitScores",
+      "globalConsensus": "mean rank points descending, digit ascending via rankGlobalDigitScores with neutral side fields"
+    },
+    "targets": {
+      "completeTop2AndBottom2Required": true,
+      "sameTargetsForBothStrategies": true,
+      "minimumLotteriesPerDate": 10
+    },
+    "primaryMetric": "full two-digit hit on either top2 or bottom2",
+    "secondaryMetrics": [
+      "full top2 hit",
+      "full bottom2 hit",
+      "either-side full hit",
+      "both-sides full hit",
+      "digit recall"
+    ],
+    "randomBaseline": "exact enumeration of all 6-of-10 sets with double-aware pair coverage",
+    "split": {
+      "development": "oldest 75% eligible target dates",
+      "holdout": "newest 25% eligible target dates"
+    },
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260904
+    },
+    "prohibition": "One comparison only; no tuning, production, UI, pool, persistence, or prospective change."
+  },
+  "protocolHash": "94cda607a7652f13",
+  "historyHash": "d3cfc005aae69edb",
+  "pool": [
+    {
+      "id": "nikkei-vip-morning",
+      "name": "หุ้นนิคเคอิ VIP เช้า"
+    },
+    {
+      "id": "hanoiasean",
+      "name": "ฮานอยอาเซียน"
+    },
+    {
+      "id": "nikkei-morning",
+      "name": "หุ้นนิคเคอิเช้า"
+    },
+    {
+      "id": "szse-vip-morning",
+      "name": "หุ้นจีน VIP เช้า"
+    },
+    {
+      "id": "szse-morning",
+      "name": "หุ้นจีนเช้า"
+    },
+    {
+      "id": "laotv",
+      "name": "ลาวทีวี"
+    },
+    {
+      "id": "hsi-vip-morning",
+      "name": "หุ้นฮั่งเส็ง VIP เช้า"
+    },
+    {
+      "id": "hsi-morning",
+      "name": "หุ้นฮั่งเส็งเช้า"
+    },
+    {
+      "id": "xosohd",
+      "name": "ฮานอย HD"
+    },
+    {
+      "id": "twse-vip",
+      "name": "หุ้นไต้หวัน VIP"
+    },
+    {
+      "id": "minhngocstar",
+      "name": "ฮานอยสตาร์"
+    },
+    {
+      "id": "twse",
+      "name": "หุ้นไต้หวัน"
+    },
+    {
+      "id": "ktop30-vip",
+      "name": "หุ้นเกาหลี VIP"
+    },
+    {
+      "id": "ktop30",
+      "name": "หุ้นเกาหลี"
+    },
+    {
+      "id": "nikkei-afternoon",
+      "name": "หุ้นนิคเคอิบ่าย"
+    },
+    {
+      "id": "nikkei-vip-afternoon",
+      "name": "หุ้นนิคเคอิ VIP บ่าย"
+    },
+    {
+      "id": "laoshd",
+      "name": "ลาว HD"
+    },
+    {
+      "id": "szse-afternoon",
+      "name": "หุ้นจีนบ่าย"
+    },
+    {
+      "id": "minhngoctv",
+      "name": "ฮานอยทีวี"
+    },
+    {
+      "id": "szse-vip-afternoon",
+      "name": "หุ้นจีน VIP บ่าย"
+    },
+    {
+      "id": "hsi-vip-afternoon",
+      "name": "หุ้นฮั่งเส็ง VIP บ่าย"
+    },
+    {
+      "id": "hsi-afternoon",
+      "name": "หุ้นฮั่งเส็งบ่าย"
+    },
+    {
+      "id": "laostars",
+      "name": "ลาวสตาร์"
+    },
+    {
+      "id": "sgx",
+      "name": "หุ้นสิงคโปร์"
+    },
+    {
+      "id": "xosoredcross",
+      "name": "ฮานอยกาชาด"
+    },
+    {
+      "id": "set",
+      "name": "หุ้นไทยเย็น"
+    },
+    {
+      "id": "sgx-vip",
+      "name": "หุ้นสิงคโปร์ VIP"
+    },
+    {
+      "id": "laounion",
+      "name": "ลาวสามัคคี"
+    },
+    {
+      "id": "laosasean",
+      "name": "ลาวอาเซียน"
+    },
+    {
+      "id": "laosvip",
+      "name": "ลาว VIP"
+    },
+    {
+      "id": "laounionvip",
+      "name": "ลาวสามัคคี VIP"
+    },
+    {
+      "id": "laostarsvip",
+      "name": "ลาวสตาร์ VIP"
+    },
+    {
+      "id": "england-vip",
+      "name": "อังกฤษ VIP"
+    },
+    {
+      "id": "moexbc",
+      "name": "หุ้นรัสเซีย"
+    },
+    {
+      "id": "xosoextra",
+      "name": "ฮานอย Extra"
+    },
+    {
+      "id": "gdaxi",
+      "name": "หุ้นเยอรมัน"
+    },
+    {
+      "id": "ftse100",
+      "name": "หุ้นอังกฤษ"
+    },
+    {
+      "id": "germany-vip",
+      "name": "เยอรมัน VIP"
+    },
+    {
+      "id": "laoredcross",
+      "name": "ลาวกาชาด"
+    },
+    {
+      "id": "russia-vip",
+      "name": "รัสเซีย VIP"
+    },
+    {
+      "id": "dowjones-vip",
+      "name": "ดาวโจนส์ VIP"
+    },
+    {
+      "id": "dowjonestar",
+      "name": "ดาวโจนส์สตาร์"
+    },
+    {
+      "id": "dji",
+      "name": "หุ้นดาวโจนส์"
+    },
+    {
+      "id": "laocitizen",
+      "name": "ประชาชนลาว"
+    },
+    {
+      "id": "laosantipap",
+      "name": "ลาวสันติภาพ"
+    },
+    {
+      "id": "laopatuxay",
+      "name": "ลาวประตูชัย"
+    }
+  ],
+  "data": {
+    "range": [
+      "2026-04-16",
+      "2026-09-02"
+    ],
+    "storedSources": 46,
+    "readOnlyHydratedSources": [],
+    "targetDates": 124,
+    "outcomes": 4411
+  },
+  "sections": {
+    "development": {
+      "dates": 93,
+      "outcomes": 3208,
+      "production": {
+        "top": {
+          "rate": 0.3634663341645885,
+          "baseline": 0.3574397339983377,
+          "uplift": 0.006026600166250784
+        },
+        "bottom": {
+          "rate": 0.35380299251870323,
+          "baseline": 0.3574397339983377,
+          "uplift": -0.0036367414796344977
+        },
+        "either": {
+          "rate": 0.5897755610972568,
+          "baseline": 0.5934405058781617,
+          "uplift": -0.003664944780904844
+        },
+        "both": {
+          "rate": 0.12749376558603492,
+          "baseline": 0.12143896211851325,
+          "uplift": 0.006054803467521672
+        },
+        "recall": {
+          "rate": 0.6007637157107232,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.0007637157107233117
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.368142144638404,
+          "baseline": 0.3574397339983377,
+          "uplift": 0.010702410640066273
+        },
+        "bottom": {
+          "rate": 0.36315461346633415,
+          "baseline": 0.3574397339983377,
+          "uplift": 0.005714879467996425
+        },
+        "either": {
+          "rate": 0.5988154613466334,
+          "baseline": 0.5934405058781617,
+          "uplift": 0.005374955468471776
+        },
+        "both": {
+          "rate": 0.13248129675810474,
+          "baseline": 0.12143896211851325,
+          "uplift": 0.011042334639591492
+        },
+        "recall": {
+          "rate": 0.6042705735660848,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.004270573566084956
+        }
+      },
+      "pairedDifference": 0.00903990024937656,
+      "decomposition": {
+        "both": 1326,
+        "productionOnly": 566,
+        "consensusOnly": 595,
+        "neither": 721
+      },
+      "similarity": {
+        "meanShared": 4.290322580645161,
+        "medianShared": 4,
+        "meanChanged": 1.7096774193548387,
+        "meanJaccard": 0.5784434203789044,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 17,
+          "4": 37,
+          "5": 30,
+          "6": 8
+        }
+      }
+    },
+    "holdout": {
+      "dates": 31,
+      "outcomes": 1203,
+      "production": {
+        "top": {
+          "rate": 0.39817123857024106,
+          "baseline": 0.35971183153228053,
+          "uplift": 0.038459407037960525
+        },
+        "bottom": {
+          "rate": 0.35993349958437243,
+          "baseline": 0.3535051260737047,
+          "uplift": 0.0064283735106677176
+        },
+        "either": {
+          "rate": 0.6234413965087282,
+          "baseline": 0.5967422713058622,
+          "uplift": 0.026699125202865992
+        },
+        "both": {
+          "rate": 0.13466334164588528,
+          "baseline": 0.11647468630012271,
+          "uplift": 0.01818865534576257
+        },
+        "recall": {
+          "rate": 0.614713216957606,
+          "baseline": 0.6000000000000002,
+          "uplift": 0.014713216957605746
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.3848711554447215,
+          "baseline": 0.35971183153228053,
+          "uplift": 0.025159323912440967
+        },
+        "bottom": {
+          "rate": 0.34497090606816294,
+          "baseline": 0.3535051260737047,
+          "uplift": -0.00853422000554177
+        },
+        "either": {
+          "rate": 0.6068162926018288,
+          "baseline": 0.5967422713058622,
+          "uplift": 0.010074021295966573
+        },
+        "both": {
+          "rate": 0.1230257689110557,
+          "baseline": 0.11647468630012271,
+          "uplift": 0.0065510826109329845
+        },
+        "recall": {
+          "rate": 0.6074397339983375,
+          "baseline": 0.6000000000000002,
+          "uplift": 0.007439733998337306
+        }
+      },
+      "pairedDifference": -0.01662510390689942,
+      "decomposition": {
+        "both": 574,
+        "productionOnly": 176,
+        "consensusOnly": 156,
+        "neither": 297
+      },
+      "similarity": {
+        "meanShared": 4.903225806451613,
+        "medianShared": 5,
+        "meanChanged": 1.096774193548387,
+        "meanJaccard": 0.6958525345622121,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 26,
+          "6": 1
+        }
+      }
+    },
+    "all": {
+      "dates": 124,
+      "outcomes": 4411,
+      "production": {
+        "top": {
+          "rate": 0.37293130809340286,
+          "baseline": 0.3580593969621403,
+          "uplift": 0.014871911131262572
+        },
+        "bottom": {
+          "rate": 0.35547494899115845,
+          "baseline": 0.3563666591098017,
+          "uplift": -0.0008917101186432519
+        },
+        "either": {
+          "rate": 0.5989571525731127,
+          "baseline": 0.5943409873584438,
+          "uplift": 0.004616165214668899
+        },
+        "both": {
+          "rate": 0.12944910451144864,
+          "baseline": 0.1200850687134977,
+          "uplift": 0.009364035797950948
+        },
+        "recall": {
+          "rate": 0.6045681251416912,
+          "baseline": 0.5999999999999994,
+          "uplift": 0.004568125141691803
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.37270460213103607,
+          "baseline": 0.3580593969621403,
+          "uplift": 0.01464520516889578
+        },
+        "bottom": {
+          "rate": 0.3581954205395602,
+          "baseline": 0.3563666591098017,
+          "uplift": 0.0018287614297585186
+        },
+        "either": {
+          "rate": 0.600997506234414,
+          "baseline": 0.5943409873584438,
+          "uplift": 0.0066565188759701854
+        },
+        "both": {
+          "rate": 0.12990251643618228,
+          "baseline": 0.1200850687134977,
+          "uplift": 0.009817447722684586
+        },
+        "recall": {
+          "rate": 0.6051348900476082,
+          "baseline": 0.5999999999999994,
+          "uplift": 0.005134890047608809
+        }
+      },
+      "pairedDifference": 0.0020403536613012923,
+      "decomposition": {
+        "both": 1900,
+        "productionOnly": 742,
+        "consensusOnly": 751,
+        "neither": 1018
+      },
+      "similarity": {
+        "meanShared": 4.443548387096774,
+        "medianShared": 5,
+        "meanChanged": 1.5564516129032258,
+        "meanJaccard": 0.6077956989247306,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 17,
+          "4": 41,
+          "5": 56,
+          "6": 9
+        }
+      }
+    }
+  },
+  "confidence": {
+    "development": {
+      "productionUplift95": [
+        -0.017973435687534595,
+        0.011059595365509423
+      ],
+      "consensusUplift95": [
+        -0.009425421130456364,
+        0.020151370196393143
+      ],
+      "pairedDifference95": [
+        -0.009588691552614896,
+        0.027553884628525864
+      ]
+    },
+    "holdout": {
+      "productionUplift95": [
+        0.009281692449707297,
+        0.04315053319227634
+      ],
+      "consensusUplift95": [
+        -0.010357126748841646,
+        0.02974381822896599
+      ],
+      "pairedDifference95": [
+        -0.03486394557823129,
+        0.0009209596567314711
+      ]
+    },
+    "all": {
+      "productionUplift95": [
+        -0.007466740355894849,
+        0.01627076208928056
+      ],
+      "consensusUplift95": [
+        -0.005480561547170346,
+        0.01865668306538823
+      ],
+      "pairedDifference95": [
+        -0.012186990065041472,
+        0.016704571934685622
+      ]
+    }
+  },
+  "months": [
+    {
+      "month": "2026-04",
+      "dates": 10,
+      "outcomes": 130,
+      "production": {
+        "top": {
+          "rate": 0.26153846153846155,
+          "baseline": 0.35589743589743594,
+          "uplift": -0.09435897435897439
+        },
+        "bottom": {
+          "rate": 0.34615384615384615,
+          "baseline": 0.3661538461538462,
+          "uplift": -0.020000000000000073
+        },
+        "either": {
+          "rate": 0.5076923076923077,
+          "baseline": 0.5764468864468864,
+          "uplift": -0.06875457875457869
+        },
+        "both": {
+          "rate": 0.1,
+          "baseline": 0.1456043956043956,
+          "uplift": -0.04560439560439558
+        },
+        "recall": {
+          "rate": 0.5711538461538461,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.028846153846153744
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.34615384615384615,
+          "baseline": 0.35589743589743594,
+          "uplift": -0.009743589743589798
+        },
+        "bottom": {
+          "rate": 0.3076923076923077,
+          "baseline": 0.3661538461538462,
+          "uplift": -0.05846153846153851
+        },
+        "either": {
+          "rate": 0.5307692307692308,
+          "baseline": 0.5764468864468864,
+          "uplift": -0.04567765567765558
+        },
+        "both": {
+          "rate": 0.12307692307692308,
+          "baseline": 0.1456043956043956,
+          "uplift": -0.022527472527472503
+        },
+        "recall": {
+          "rate": 0.5692307692307692,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.03076923076923066
+        }
+      },
+      "pairedDifference": 0.023076923076923078,
+      "decomposition": {
+        "both": 36,
+        "productionOnly": 30,
+        "consensusOnly": 33,
+        "neither": 31
+      },
+      "similarity": {
+        "meanShared": 3.7,
+        "medianShared": 3.5,
+        "meanChanged": 2.3,
+        "meanJaccard": 0.45952380952380956,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 5,
+          "4": 3,
+          "5": 2,
+          "6": 0
+        }
+      }
+    },
+    {
+      "month": "2026-05",
+      "dates": 20,
+      "outcomes": 459,
+      "production": {
+        "top": {
+          "rate": 0.32679738562091504,
+          "baseline": 0.3571532316630357,
+          "uplift": -0.03035584604212066
+        },
+        "bottom": {
+          "rate": 0.3899782135076253,
+          "baseline": 0.35541031227305747,
+          "uplift": 0.03456790123456782
+        },
+        "either": {
+          "rate": 0.5816993464052288,
+          "baseline": 0.5898848428260192,
+          "uplift": -0.008185496420790361
+        },
+        "both": {
+          "rate": 0.13507625272331156,
+          "baseline": 0.12267870111007367,
+          "uplift": 0.012397551613237884
+        },
+        "recall": {
+          "rate": 0.5985838779956427,
+          "baseline": 0.6000000000000001,
+          "uplift": -0.0014161220043573675
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.32461873638344224,
+          "baseline": 0.3571532316630357,
+          "uplift": -0.032534495279593456
+        },
+        "bottom": {
+          "rate": 0.33986928104575165,
+          "baseline": 0.35541031227305747,
+          "uplift": -0.015541031227305824
+        },
+        "either": {
+          "rate": 0.5664488017429193,
+          "baseline": 0.5898848428260192,
+          "uplift": -0.023436041083099823
+        },
+        "both": {
+          "rate": 0.09803921568627451,
+          "baseline": 0.12267870111007367,
+          "uplift": -0.024639485423799165
+        },
+        "recall": {
+          "rate": 0.5849673202614379,
+          "baseline": 0.6000000000000001,
+          "uplift": -0.015032679738562149
+        }
+      },
+      "pairedDifference": -0.015250544662309368,
+      "decomposition": {
+        "both": 174,
+        "productionOnly": 93,
+        "consensusOnly": 86,
+        "neither": 106
+      },
+      "similarity": {
+        "meanShared": 4.4,
+        "medianShared": 4,
+        "meanChanged": 1.6,
+        "meanJaccard": 0.594047619047619,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 2,
+          "4": 9,
+          "5": 8,
+          "6": 1
+        }
+      }
+    },
+    {
+      "month": "2026-06",
+      "dates": 30,
+      "outcomes": 1261,
+      "production": {
+        "top": {
+          "rate": 0.36241078509119745,
+          "baseline": 0.35680676711604575,
+          "uplift": 0.005604017975151698
+        },
+        "bottom": {
+          "rate": 0.352101506740682,
+          "baseline": 0.35511498810467895,
+          "uplift": -0.0030134813639969282
+        },
+        "either": {
+          "rate": 0.5995241871530531,
+          "baseline": 0.593006306408368,
+          "uplift": 0.006517880744685067
+        },
+        "both": {
+          "rate": 0.11498810467882632,
+          "baseline": 0.11891544881235601,
+          "uplift": -0.003927344133529687
+        },
+        "recall": {
+          "rate": 0.6019032513877874,
+          "baseline": 0.6000000000000004,
+          "uplift": 0.0019032513877870194
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.3647898493259318,
+          "baseline": 0.35680676711604575,
+          "uplift": 0.007983082209886028
+        },
+        "bottom": {
+          "rate": 0.366375892149088,
+          "baseline": 0.35511498810467895,
+          "uplift": 0.011260904044409048
+        },
+        "either": {
+          "rate": 0.6019032513877874,
+          "baseline": 0.593006306408368,
+          "uplift": 0.008896944979419397
+        },
+        "both": {
+          "rate": 0.12926249008723237,
+          "baseline": 0.11891544881235601,
+          "uplift": 0.010347041274876359
+        },
+        "recall": {
+          "rate": 0.6015067406819984,
+          "baseline": 0.6000000000000004,
+          "uplift": 0.0015067406819979645
+        }
+      },
+      "pairedDifference": 0.0023790642347343376,
+      "decomposition": {
+        "both": 492,
+        "productionOnly": 264,
+        "consensusOnly": 267,
+        "neither": 238
+      },
+      "similarity": {
+        "meanShared": 3.933333333333333,
+        "medianShared": 4,
+        "meanChanged": 2.066666666666667,
+        "meanJaccard": 0.509047619047619,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 9,
+          "4": 13,
+          "5": 5,
+          "6": 2
+        }
+      }
+    },
+    {
+      "month": "2026-07",
+      "dates": 31,
+      "outcomes": 1295,
+      "production": {
+        "top": {
+          "rate": 0.3853281853281853,
+          "baseline": 0.358867438867439,
+          "uplift": 0.02646074646074631
+        },
+        "bottom": {
+          "rate": 0.34285714285714286,
+          "baseline": 0.3590733590733593,
+          "uplift": -0.01621621621621644
+        },
+        "either": {
+          "rate": 0.5915057915057915,
+          "baseline": 0.5966464423607281,
+          "uplift": -0.005140650854936535
+        },
+        "both": {
+          "rate": 0.13667953667953667,
+          "baseline": 0.12129435558006989,
+          "uplift": 0.01538518109946678
+        },
+        "recall": {
+          "rate": 0.6015444015444016,
+          "baseline": 0.6000000000000004,
+          "uplift": 0.0015444015444011638
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.38687258687258685,
+          "baseline": 0.358867438867439,
+          "uplift": 0.028005148005147862
+        },
+        "bottom": {
+          "rate": 0.37374517374517374,
+          "baseline": 0.3590733590733593,
+          "uplift": 0.014671814671814443
+        },
+        "either": {
+          "rate": 0.6146718146718146,
+          "baseline": 0.5966464423607281,
+          "uplift": 0.018025372311086585
+        },
+        "both": {
+          "rate": 0.14594594594594595,
+          "baseline": 0.12129435558006989,
+          "uplift": 0.024651590365876067
+        },
+        "recall": {
+          "rate": 0.6156370656370657,
+          "baseline": 0.6000000000000004,
+          "uplift": 0.01563706563706524
+        }
+      },
+      "pairedDifference": 0.023166023166023165,
+      "decomposition": {
+        "both": 587,
+        "productionOnly": 179,
+        "consensusOnly": 209,
+        "neither": 320
+      },
+      "similarity": {
+        "meanShared": 4.645161290322581,
+        "medianShared": 5,
+        "meanChanged": 1.3548387096774193,
+        "meanJaccard": 0.6466973886328725,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1,
+          "4": 12,
+          "5": 15,
+          "6": 3
+        }
+      }
+    },
+    {
+      "month": "2026-08",
+      "dates": 31,
+      "outcomes": 1237,
+      "production": {
+        "top": {
+          "rate": 0.4009700889248181,
+          "baseline": 0.35920237132848304,
+          "uplift": 0.041767717596335074
+        },
+        "bottom": {
+          "rate": 0.36135812449474536,
+          "baseline": 0.3546752896793318,
+          "uplift": 0.006682834815413541
+        },
+        "either": {
+          "rate": 0.6232821341956346,
+          "baseline": 0.5971397774954766,
+          "uplift": 0.026142356700157965
+        },
+        "both": {
+          "rate": 0.13904607922392886,
+          "baseline": 0.11673788351233785,
+          "uplift": 0.02230819571159101
+        },
+        "recall": {
+          "rate": 0.6172190784155214,
+          "baseline": 0.6000000000000003,
+          "uplift": 0.01721907841552106
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.38641875505254647,
+          "baseline": 0.35920237132848304,
+          "uplift": 0.02721638372406343
+        },
+        "bottom": {
+          "rate": 0.349232012934519,
+          "baseline": 0.3546752896793318,
+          "uplift": -0.005443276744812819
+        },
+        "either": {
+          "rate": 0.608730800323363,
+          "baseline": 0.5971397774954766,
+          "uplift": 0.011591022827886377
+        },
+        "both": {
+          "rate": 0.1269199676637025,
+          "baseline": 0.11673788351233785,
+          "uplift": 0.010182084151364651
+        },
+        "recall": {
+          "rate": 0.6097413096200485,
+          "baseline": 0.6000000000000003,
+          "uplift": 0.009741309620048155
+        }
+      },
+      "pairedDifference": -0.014551333872271624,
+      "decomposition": {
+        "both": 599,
+        "productionOnly": 172,
+        "consensusOnly": 154,
+        "neither": 312
+      },
+      "similarity": {
+        "meanShared": 4.967741935483871,
+        "medianShared": 5,
+        "meanChanged": 1.032258064516129,
+        "meanJaccard": 0.7142857142857143,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 24,
+          "6": 3
+        }
+      }
+    },
+    {
+      "month": "2026-09",
+      "dates": 2,
+      "outcomes": 29,
+      "production": {
+        "top": {
+          "rate": 0.3103448275862069,
+          "baseline": 0.35172413793103446,
+          "uplift": -0.04137931034482756
+        },
+        "bottom": {
+          "rate": 0.3103448275862069,
+          "baseline": 0.33333333333333326,
+          "uplift": -0.022988505747126353
+        },
+        "either": {
+          "rate": 0.5517241379310345,
+          "baseline": 0.5807881773399014,
+          "uplift": -0.029064039408866926
+        },
+        "both": {
+          "rate": 0.06896551724137931,
+          "baseline": 0.10426929392446632,
+          "uplift": -0.03530377668308701
+        },
+        "recall": {
+          "rate": 0.5603448275862069,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.039655172413793016
+        }
+      },
+      "consensus": {
+        "top": {
+          "rate": 0.3793103448275862,
+          "baseline": 0.35172413793103446,
+          "uplift": 0.027586206896551724
+        },
+        "bottom": {
+          "rate": 0.20689655172413793,
+          "baseline": 0.33333333333333326,
+          "uplift": -0.12643678160919533
+        },
+        "either": {
+          "rate": 0.4827586206896552,
+          "baseline": 0.5807881773399014,
+          "uplift": -0.09802955665024621
+        },
+        "both": {
+          "rate": 0.10344827586206896,
+          "baseline": 0.10426929392446632,
+          "uplift": -0.0008210180623973579
+        },
+        "recall": {
+          "rate": 0.5775862068965517,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.022413793103448154
+        }
+      },
+      "pairedDifference": -0.06896551724137931,
+      "decomposition": {
+        "both": 12,
+        "productionOnly": 4,
+        "consensusOnly": 2,
+        "neither": 11
+      },
+      "similarity": {
+        "meanShared": 5,
+        "medianShared": 5,
+        "meanChanged": 1,
+        "meanJaccard": 0.7142857142857143,
+        "distribution": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 2,
+          "6": 0
+        }
+      }
+    }
+  ],
+  "consensusDiagnostics": {
+    "0": {
+      "ballots": 4371,
+      "meanRank": 4.449782658430565,
+      "medianRank": 4,
+      "top1Count": 731,
+      "top1Share": 0.1672386181651796,
+      "top3Count": 1859,
+      "top3Share": 0.42530313429421185,
+      "top6Count": 3263,
+      "top6Share": 0.7465110958590712
+    },
+    "1": {
+      "ballots": 4371,
+      "meanRank": 4.690002287805994,
+      "medianRank": 4,
+      "top1Count": 633,
+      "top1Share": 0.1448181194234729,
+      "top3Count": 1721,
+      "top3Share": 0.3937314115762983,
+      "top6Count": 3145,
+      "top6Share": 0.719514985129261
+    },
+    "2": {
+      "ballots": 4371,
+      "meanRank": 4.952871196522535,
+      "medianRank": 5,
+      "top1Count": 562,
+      "top1Share": 0.1285746968657058,
+      "top3Count": 1600,
+      "top3Share": 0.3660489590482727,
+      "top6Count": 2967,
+      "top6Share": 0.6787920384351407
+    },
+    "3": {
+      "ballots": 4371,
+      "meanRank": 5.2475406085563945,
+      "medianRank": 5,
+      "top1Count": 434,
+      "top1Share": 0.09929078014184398,
+      "top3Count": 1356,
+      "top3Share": 0.31022649279341113,
+      "top6Count": 2804,
+      "top6Share": 0.6415008007320979
+    },
+    "4": {
+      "ballots": 4371,
+      "meanRank": 5.435598261267445,
+      "medianRank": 6,
+      "top1Count": 452,
+      "top1Share": 0.10340883093113704,
+      "top3Count": 1319,
+      "top3Share": 0.30176161061541984,
+      "top6Count": 2613,
+      "top6Share": 0.5978037062457103
+    },
+    "5": {
+      "ballots": 4371,
+      "meanRank": 5.525966598032487,
+      "medianRank": 6,
+      "top1Count": 388,
+      "top1Share": 0.08876687256920614,
+      "top3Count": 1317,
+      "top3Share": 0.3013040494166095,
+      "top6Count": 2592,
+      "top6Share": 0.5929993136582018
+    },
+    "6": {
+      "ballots": 4371,
+      "meanRank": 5.800960878517501,
+      "medianRank": 6,
+      "top1Count": 291,
+      "top1Share": 0.06657515442690459,
+      "top3Count": 1093,
+      "top3Share": 0.2500571951498513,
+      "top6Count": 2486,
+      "top6Share": 0.5687485701212537
+    },
+    "7": {
+      "ballots": 4371,
+      "meanRank": 6.026309768931594,
+      "medianRank": 6,
+      "top1Count": 314,
+      "top1Share": 0.07183710821322352,
+      "top3Count": 1033,
+      "top3Share": 0.23633035918554107,
+      "top6Count": 2313,
+      "top6Share": 0.5291695264241593
+    },
+    "8": {
+      "ballots": 4371,
+      "meanRank": 6.407687028140014,
+      "medianRank": 7,
+      "top1Count": 249,
+      "top1Share": 0.05696636925188744,
+      "top3Count": 867,
+      "top3Share": 0.19835277968428278,
+      "top6Count": 2045,
+      "top6Share": 0.46785632578357356
+    },
+    "9": {
+      "ballots": 4371,
+      "meanRank": 6.46328071379547,
+      "medianRank": 7,
+      "top1Count": 317,
+      "top1Share": 0.07252345001143903,
+      "top3Count": 948,
+      "top3Share": 0.21688400823610157,
+      "top6Count": 1998,
+      "top6Share": 0.45710363761153056
+    }
+  }
+}
