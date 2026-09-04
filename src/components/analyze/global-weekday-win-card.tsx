@@ -13,7 +13,7 @@ export function GlobalWeekdayWinCard() {
     [error, setError] = useState<string | null>(null),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [showPairs, setShowPairs] = useState(false),
-    [copied, setCopied] = useState<"digits" | "pairs" | "frequentTop10" | "frequentTop15" | "frequentPairs" | null>(null);
+    [copied, setCopied] = useState<"digits" | "pairs" | "pairDigits" | "frequentTop10" | "frequentTop15" | "frequentPairs" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -30,7 +30,7 @@ export function GlobalWeekdayWinCard() {
     return () => { cancelled = true; };
   }, []);
 
-  async function copyValues(mode: "digits" | "pairs" | "frequentTop10" | "frequentTop15" | "frequentPairs", values: string[]) {
+  async function copyValues(mode: "digits" | "pairs" | "pairDigits" | "frequentTop10" | "frequentTop15" | "frequentPairs", values: string[]) {
     try {
       await navigator.clipboard.writeText(values.join(" "));
       setCopied(mode);
@@ -62,7 +62,7 @@ export function GlobalWeekdayWinCard() {
         focusedPairs = recommendedPairs.slice(0, 10);
       return <>
       <div className="global-win-digits" aria-label={`วินรวมทุกหวย ${digits.join(" ")}`}>
-        {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
+        {digits.map((digit, index) => <strong key={digit}><small aria-hidden="true">#{index + 1}</small>{digit}</strong>)}
       </div>
       <div className="global-win-meta">
         <span>ข้อมูลพร้อม {result.lotteryCount} จากทั้งหมด {result.eligibility?.totalCatalog ?? result.sourcePoolCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
@@ -83,6 +83,11 @@ export function GlobalWeekdayWinCard() {
             <button type="button" onClick={() => copyValues("frequentPairs", recommendedPairs.map((item) => item.pair))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "คัดลอก 21 คู่"}</button>
           </div>
         </div>
+      </div>
+      <div className="global-win-pair-derived">
+        <div><strong>วิน 6 จากคู่เน้น 21 คู่</strong><span>รวมแรงสนับสนุนของเลขที่ปรากฏในคู่คะแนนสูง · ชุดทดลอง</span></div>
+        <div className="global-win-pair-derived-digits" aria-label={`วิน 6 จากคู่เน้น ${result.pairDerivedDigits.map((item) => item.digit).join(" ")}`}>{result.pairDerivedDigits.map((item) => <b key={item.digit}>{item.digit}</b>)}</div>
+        <button type="button" onClick={() => copyValues("pairDigits", result.pairDerivedDigits.map((item) => item.digit))}>{copied === "pairDigits" ? <Check /> : <Copy />}{copied === "pairDigits" ? "คัดลอกแล้ว" : "คัดลอกวิน 6"}</button>
       </div>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
       {showPairs && <div className="global-win-pair-space" id="global-win-pair-space">

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { LotteryDraw } from "../types";
-import { buildGlobalWeekdayWin } from "./global-weekday-win";
+import { buildGlobalWeekdayWin, deriveDigitsFromFrequentPairs } from "./global-weekday-win";
 
 const draw = (lotteryId: string, drawDate: string, top2: string, bottom2: string): LotteryDraw => ({
   id: `${lotteryId}-${drawDate}`,
@@ -58,6 +58,22 @@ describe("global weekday win six", () => {
     expect(result.frequentPairs).toHaveLength(21);
     const shown = new Set(result.frequentPairs.map((item) => item.pair));
     expect(result.frequentPairs.every((item) => !shown.has(`${item.pair[1]}${item.pair[0]}`) || item.pair[0] === item.pair[1])).toBe(true);
+    expect(result.pairDerivedDigits).toHaveLength(6);
+    expect(new Set(result.pairDerivedDigits.map((item) => item.digit)).size).toBe(6);
   });
+
+  it("derives six digits from pair support and counts a double once", () => {
+    const pairs = [
+      { pair: "11", score: 2, topRate: 0, bottomRate: 0 },
+      { pair: "12", score: 1, topRate: 0, bottomRate: 0 },
+      { pair: "23", score: 0.5, topRate: 0, bottomRate: 0 },
+    ];
+    expect(deriveDigitsFromFrequentPairs(pairs, 3)).toEqual([
+      { digit: "1", score: 3 },
+      { digit: "2", score: 1.5 },
+      { digit: "3", score: 0.5 },
+    ]);
+  });
+
 
 });
