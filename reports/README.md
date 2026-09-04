@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [Source liveness audit — 2026-09-04](source-liveness-audit-2026-09-04.md)
+  Read-only cadence and current-provider audit for sources with older latest-complete dates; no production exclusion is authorized.
+
 - [All-lottery operational sync report — 2026-09-04](all-lottery-sync-2026-09-04.md)
   Dynamic canonical-catalog sync, storage quality, idempotency, and target-date eligibility evidence; not a performance study.
 
