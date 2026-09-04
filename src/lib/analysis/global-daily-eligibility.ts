@@ -12,7 +12,19 @@ export type GlobalDailyExclusionReason =
   | "no-complete-history"
   | "invalid-history"
   | "insufficient-same-weekday-history"
-  | "known-stale";
+  | "known-stale"
+  | "provider-results-suspended";
+
+export type SourceOperationalState = {
+  catalogPresent: boolean;
+  providerSynchronized: boolean;
+  latestObservedDate: string | null;
+  latestCompleteDate: string | null;
+  providerResultStatus: "normal" | "suspended" | "unknown";
+  cadenceStatus: "normal" | "anomalous" | "insufficient-data";
+  currentOperationalEligibility: "eligible" | "excluded" | "unknown";
+  exclusionReasons: GlobalDailyExclusionReason[];
+};
 
 export type GlobalDailyEligibility = {
   lotteryId: string;
@@ -53,6 +65,7 @@ export function getGlobalDailyEligibility(input: {
   // Current freshness compares provider and cache, not calendar schedules. Only a
   // positively known stale cache is excluded; historical eligibility never uses today's state.
   if (!input.historical && snapshot?.freshness?.status === "cache-behind") reasons.push("known-stale");
+  if (!input.historical && snapshot?.providerResultStatus === "suspended") reasons.push("provider-results-suspended");
 
   return {
     lotteryId: lottery.id,
@@ -63,6 +76,25 @@ export function getGlobalDailyEligibility(input: {
     latestObservedDate: allDraws[0]?.drawDate ?? null,
     latestCompleteDate: allDraws.find(isCompleteDraw)?.drawDate ?? null,
     freshnessStatus: snapshot?.freshness?.status ?? "unknown",
+  };
+}
+
+export function getSourceOperationalState(input: {
+  lottery: LotteryDefinition;
+  snapshot?: Snapshot | null;
+  eligibility: GlobalDailyEligibility;
+}): SourceOperationalState {
+  const providerResultStatus = input.snapshot?.providerResultStatus ?? "unknown",
+    hardExcluded = input.eligibility.reasons.length > 0;
+  return {
+    catalogPresent: true,
+    providerSynchronized: Boolean(input.snapshot?.freshness && input.snapshot.freshness.status !== "source-unreachable"),
+    latestObservedDate: input.eligibility.latestObservedDate,
+    latestCompleteDate: input.eligibility.latestCompleteDate,
+    providerResultStatus,
+    cadenceStatus: "insufficient-data",
+    currentOperationalEligibility: hardExcluded ? "excluded" : providerResultStatus === "unknown" ? "unknown" : "eligible",
+    exclusionReasons: input.eligibility.reasons,
   };
 }
 

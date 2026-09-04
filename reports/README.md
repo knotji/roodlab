@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [All-lottery dynamic production freeze acceptance — 2026-09-04](all-lottery-production-freeze-2026-09-04.md)
+  Final operational acceptance for explicit provider suspension, current eligibility, historical safety, and sync idempotency.
+
 - [Source liveness audit — 2026-09-04](source-liveness-audit-2026-09-04.md)
   Read-only cadence and current-provider audit for sources with older latest-complete dates; no production exclusion is authorized.
 
