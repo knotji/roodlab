@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [Global Win 6 miss-structure audit — 2026-09-04](global-win6-miss-structure-2026-09-04.md)
+  Leakage-safe side/outcome audit of the four digits outside Production Top 6; no Win 7 or guard strategy is evaluated.
+
 - [Global Rank Consensus study — 2026-09-04](global-rank-consensus-study-2026-09-04.md)
   One-shot paired comparison of current Production against equal per-lottery 10-to-1 rank ballots; research only, with no production change authorized.
 
