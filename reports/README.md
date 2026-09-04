@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [Global production rank-gradient audit — 2026-09-04](global-rank-gradient-audit-2026-09-04.md)
+  Full rank 1–10 ordinal diagnostic with a prior-only digit-identity adjustment; no alternative strategy is evaluated.
+
 - [Global Win 6 miss-structure audit — 2026-09-04](global-win6-miss-structure-2026-09-04.md)
   Leakage-safe side/outcome audit of the four digits outside Production Top 6; no Win 7 or guard strategy is evaluated.
 

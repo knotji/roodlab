@@ -19,6 +19,7 @@
     "evaluate:global-hot3-cold3": "tsx scripts/evaluate-global-hot3-cold3.mts",
     "evaluate:global-rank-consensus": "tsx scripts/evaluate-global-rank-consensus.mts",
     "audit:global-win6-misses": "tsx scripts/audit-global-win6-miss-structure.mts",
+    "audit:global-rank-gradient": "tsx scripts/audit-global-rank-gradient.mts",
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
     "audit:global-source-families": "tsx scripts/audit-global-source-family-redundancy.mts",
     "sync:backfill": "tsx scripts/backfill-history.mts",

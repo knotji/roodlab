@@ -1,0 +1,3829 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-04",
+    "codeBaseline": "main@05fb4e2",
+    "universe": {
+      "source": "src/lib/analysis/global-daily-sources.ts#GLOBAL_DAILY_SOURCE_IDS",
+      "size": 46,
+      "ids": [
+        "nikkei-vip-morning",
+        "hanoiasean",
+        "nikkei-morning",
+        "szse-vip-morning",
+        "szse-morning",
+        "laotv",
+        "hsi-vip-morning",
+        "hsi-morning",
+        "xosohd",
+        "twse-vip",
+        "minhngocstar",
+        "twse",
+        "ktop30-vip",
+        "ktop30",
+        "nikkei-afternoon",
+        "nikkei-vip-afternoon",
+        "laoshd",
+        "szse-afternoon",
+        "minhngoctv",
+        "szse-vip-afternoon",
+        "hsi-vip-afternoon",
+        "hsi-afternoon",
+        "laostars",
+        "sgx",
+        "xosoredcross",
+        "set",
+        "sgx-vip",
+        "laounion",
+        "laosasean",
+        "laosvip",
+        "laounionvip",
+        "laostarsvip",
+        "england-vip",
+        "moexbc",
+        "xosoextra",
+        "gdaxi",
+        "ftse100",
+        "germany-vip",
+        "laoredcross",
+        "russia-vip",
+        "dowjones-vip",
+        "dowjonestar",
+        "dji",
+        "laocitizen",
+        "laosantipap",
+        "laopatuxay"
+      ]
+    },
+    "production": {
+      "implementation": "buildGlobalWeekdayWin",
+      "sameWeekdayOnly": true,
+      "lookback": 12,
+      "presencePerDraw": true,
+      "duplicateOncePerSide": true,
+      "perLotteryNormalization": true,
+      "topBottomWeight": "equal available sides",
+      "tie": "score desc, topRate+bottomRate desc, digit asc",
+      "ranking": "all ranks 1-10"
+    },
+    "targets": {
+      "completeTop2AndBottom2": true,
+      "minimumLotteriesPerDate": 10,
+      "targetAndFutureExcluded": true
+    },
+    "primary": {
+      "statistic": "unweighted mean of target-date Spearman correlations between production rank 1-10 and future either-side appearance rate",
+      "reason": "target dates are the clustering unit; negative is expected"
+    },
+    "monotonicity": {
+      "tieTolerance": 0,
+      "adjacentRawPooledRates": true
+    },
+    "groups": {
+      "high": [
+        1,
+        2
+      ],
+      "middle": [
+        5,
+        6
+      ],
+      "low": [
+        9,
+        10
+      ],
+      "allBands": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          9,
+          10
+        ]
+      ]
+    },
+    "identityAdjustment": "prior-only expanding per-digit either-side target marginal; residual = observed either presence minus prior marginal; no model fitting",
+    "uniformContext": {
+      "perSide": 0.19,
+      "eitherSide": 0.3439
+    },
+    "split": "oldest 75% eligible target dates / newest 25%",
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260904
+    },
+    "interpretation": [
+      "meaningful ordinal gradient",
+      "raw gradient explained by identity",
+      "weak or unstable gradient",
+      "no gradient"
+    ],
+    "prohibition": "Diagnostic only; no 2+2+2 strategy, alternate Win set, tuning, UI, pool, persistence, or prospective change."
+  },
+  "protocolHash": "3e82ebb4d742b66e",
+  "historyHash": "d3cfc005aae69edb",
+  "data": {
+    "range": [
+      "2026-04-16",
+      "2026-09-02"
+    ],
+    "targetDates": 124,
+    "outcomes": 4411,
+    "sides": 8822,
+    "storedSources": 46,
+    "readOnlyHydratedSources": []
+  },
+  "sections": {
+    "development": {
+      "dates": 93,
+      "outcomes": 3208,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 3208,
+          "top": 612,
+          "bottom": 610,
+          "either": 1123,
+          "topRate": 0.19077306733167082,
+          "bottomRate": 0.1901496259351621,
+          "eitherRate": 0.35006234413965087,
+          "adjustedRate": -0.0027466860870235823
+        },
+        {
+          "rank": 2,
+          "opportunities": 3208,
+          "top": 658,
+          "bottom": 591,
+          "either": 1146,
+          "topRate": 0.20511221945137156,
+          "bottomRate": 0.18422693266832918,
+          "eitherRate": 0.35723192019950123,
+          "adjustedRate": 0.007925413979085012
+        },
+        {
+          "rank": 3,
+          "opportunities": 3208,
+          "top": 613,
+          "bottom": 602,
+          "either": 1125,
+          "topRate": 0.19108478802992518,
+          "bottomRate": 0.18765586034912718,
+          "eitherRate": 0.3506857855361596,
+          "adjustedRate": 0.0008023196037581258
+        },
+        {
+          "rank": 4,
+          "opportunities": 3208,
+          "top": 626,
+          "bottom": 628,
+          "either": 1146,
+          "topRate": 0.19513715710723192,
+          "bottomRate": 0.19576059850374064,
+          "eitherRate": 0.35723192019950123,
+          "adjustedRate": 0.009181294921967481
+        },
+        {
+          "rank": 5,
+          "opportunities": 3208,
+          "top": 592,
+          "bottom": 591,
+          "either": 1088,
+          "topRate": 0.18453865336658354,
+          "bottomRate": 0.18422693266832918,
+          "eitherRate": 0.33915211970074816,
+          "adjustedRate": -0.008049800164352946
+        },
+        {
+          "rank": 6,
+          "opportunities": 3208,
+          "top": 601,
+          "bottom": 624,
+          "either": 1120,
+          "topRate": 0.18734413965087282,
+          "bottomRate": 0.19451371571072318,
+          "eitherRate": 0.3491271820448878,
+          "adjustedRate": 0.002391766142090744
+        },
+        {
+          "rank": 7,
+          "opportunities": 3208,
+          "top": 608,
+          "bottom": 632,
+          "either": 1123,
+          "topRate": 0.18952618453865336,
+          "bottomRate": 0.1970074812967581,
+          "eitherRate": 0.35006234413965087,
+          "adjustedRate": 0.0017114012914728443
+        },
+        {
+          "rank": 8,
+          "opportunities": 3208,
+          "top": 624,
+          "bottom": 618,
+          "either": 1140,
+          "topRate": 0.19451371571072318,
+          "bottomRate": 0.192643391521197,
+          "eitherRate": 0.3553615960099751,
+          "adjustedRate": 0.01168483072630588
+        },
+        {
+          "rank": 9,
+          "opportunities": 3208,
+          "top": 590,
+          "bottom": 632,
+          "either": 1118,
+          "topRate": 0.18391521197007482,
+          "bottomRate": 0.1970074812967581,
+          "eitherRate": 0.3485037406483791,
+          "adjustedRate": 0.00476077334106699
+        },
+        {
+          "rank": 10,
+          "opportunities": 3208,
+          "top": 602,
+          "bottom": 598,
+          "either": 1114,
+          "topRate": 0.18765586034912718,
+          "bottomRate": 0.18640897755610972,
+          "eitherRate": 0.3472568578553616,
+          "adjustedRate": 0.005391327405662844
+        }
+      ],
+      "primarySpearman": 0.004813575486446877,
+      "pooledSpearman": -0.4939116209884744,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.018079800498753074
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.00997506234413964
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 6416,
+          "topRate": 0.1979426433915212,
+          "bottomRate": 0.18718827930174564,
+          "eitherRate": 0.35364713216957605,
+          "adjustedRate": 0.0025893639460307146
+        },
+        "r3_4": {
+          "opportunities": 6416,
+          "topRate": 0.19311097256857856,
+          "bottomRate": 0.19170822942643392,
+          "eitherRate": 0.3539588528678304,
+          "adjustedRate": 0.004991807262862804
+        },
+        "r5_6": {
+          "opportunities": 6416,
+          "topRate": 0.18594139650872818,
+          "bottomRate": 0.18937032418952618,
+          "eitherRate": 0.34413965087281795,
+          "adjustedRate": -0.002829017011131101
+        },
+        "r7_8": {
+          "opportunities": 6416,
+          "topRate": 0.19201995012468828,
+          "bottomRate": 0.19482543640897756,
+          "eitherRate": 0.352711970074813,
+          "adjustedRate": 0.006698116008889362
+        },
+        "r9_10": {
+          "opportunities": 6416,
+          "topRate": 0.185785536159601,
+          "bottomRate": 0.19170822942643392,
+          "eitherRate": 0.3478802992518703,
+          "adjustedRate": 0.0050760503733649175
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 6416,
+          "topRate": 0.1979426433915212,
+          "bottomRate": 0.18718827930174564,
+          "eitherRate": 0.35364713216957605,
+          "adjustedRate": 0.0025893639460307146
+        },
+        "middle": {
+          "opportunities": 6416,
+          "topRate": 0.18594139650872818,
+          "bottomRate": 0.18937032418952618,
+          "eitherRate": 0.34413965087281795,
+          "adjustedRate": -0.002829017011131101
+        },
+        "low": {
+          "opportunities": 6416,
+          "topRate": 0.185785536159601,
+          "bottomRate": 0.19170822942643392,
+          "eitherRate": 0.3478802992518703,
+          "adjustedRate": 0.0050760503733649175
+        }
+      },
+      "highMinusMiddle": 0.009507481296758102,
+      "middleMinusLow": -0.003740648379052358,
+      "highMinusLow": 0.005766832917705744,
+      "adjustedHighMinusLow": -0.002486686427334203
+    },
+    "holdout": {
+      "dates": 31,
+      "outcomes": 1203,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 1203,
+          "top": 247,
+          "bottom": 226,
+          "either": 435,
+          "topRate": 0.2053200332502078,
+          "bottomRate": 0.18786367414796343,
+          "eitherRate": 0.36159600997506236,
+          "adjustedRate": 0.003940106881902076
+        },
+        {
+          "rank": 2,
+          "opportunities": 1203,
+          "top": 254,
+          "bottom": 220,
+          "either": 438,
+          "topRate": 0.2111388196176226,
+          "bottomRate": 0.1828761429758936,
+          "eitherRate": 0.3640897755610973,
+          "adjustedRate": 0.011020724527637995
+        },
+        {
+          "rank": 3,
+          "opportunities": 1203,
+          "top": 237,
+          "bottom": 233,
+          "either": 429,
+          "topRate": 0.1970074812967581,
+          "bottomRate": 0.1936824605153782,
+          "eitherRate": 0.3566084788029925,
+          "adjustedRate": 0.004575810339017222
+        },
+        {
+          "rank": 4,
+          "opportunities": 1203,
+          "top": 231,
+          "bottom": 237,
+          "either": 437,
+          "topRate": 0.19201995012468828,
+          "bottomRate": 0.1970074812967581,
+          "eitherRate": 0.3632585203657523,
+          "adjustedRate": 0.011455338819441694
+        },
+        {
+          "rank": 5,
+          "opportunities": 1203,
+          "top": 219,
+          "bottom": 233,
+          "either": 423,
+          "topRate": 0.18204488778054864,
+          "bottomRate": 0.1936824605153782,
+          "eitherRate": 0.3516209476309227,
+          "adjustedRate": 0.000176203328744336
+        },
+        {
+          "rank": 6,
+          "opportunities": 1203,
+          "top": 243,
+          "bottom": 247,
+          "either": 457,
+          "topRate": 0.20199501246882792,
+          "bottomRate": 0.2053200332502078,
+          "eitherRate": 0.3798836242726517,
+          "adjustedRate": 0.02750961351985834
+        },
+        {
+          "rank": 7,
+          "opportunities": 1203,
+          "top": 209,
+          "bottom": 224,
+          "either": 405,
+          "topRate": 0.17373233582709893,
+          "bottomRate": 0.1862011637572735,
+          "eitherRate": 0.33665835411471323,
+          "adjustedRate": -0.011986356068112472
+        },
+        {
+          "rank": 8,
+          "opportunities": 1203,
+          "top": 231,
+          "bottom": 226,
+          "either": 423,
+          "topRate": 0.19201995012468828,
+          "bottomRate": 0.18786367414796343,
+          "eitherRate": 0.3516209476309227,
+          "adjustedRate": 0.0023574681401187566
+        },
+        {
+          "rank": 9,
+          "opportunities": 1203,
+          "top": 204,
+          "bottom": 226,
+          "either": 398,
+          "topRate": 0.16957605985037408,
+          "bottomRate": 0.18786367414796343,
+          "eitherRate": 0.33083956774729845,
+          "adjustedRate": -0.01647054434757686
+        },
+        {
+          "rank": 10,
+          "opportunities": 1203,
+          "top": 212,
+          "bottom": 243,
+          "either": 428,
+          "topRate": 0.17622610141313383,
+          "bottomRate": 0.20199501246882792,
+          "eitherRate": 0.3557772236076476,
+          "adjustedRate": 0.008236914710341109
+        }
+      ],
+      "primarySpearman": -0.09642665768848946,
+      "pooledSpearman": -0.5957474328064633,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 6,
+          "difference": 0.04322527015793848
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.02826267664172899
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 2406,
+          "topRate": 0.2082294264339152,
+          "bottomRate": 0.1853699085619285,
+          "eitherRate": 0.3628428927680798,
+          "adjustedRate": 0.0074804157047700355
+        },
+        "r3_4": {
+          "opportunities": 2406,
+          "topRate": 0.19451371571072318,
+          "bottomRate": 0.19534497090606817,
+          "eitherRate": 0.35993349958437243,
+          "adjustedRate": 0.008015574579229457
+        },
+        "r5_6": {
+          "opportunities": 2406,
+          "topRate": 0.19201995012468828,
+          "bottomRate": 0.19950124688279303,
+          "eitherRate": 0.3657522859517872,
+          "adjustedRate": 0.013842908424301338
+        },
+        "r7_8": {
+          "opportunities": 2406,
+          "topRate": 0.1828761429758936,
+          "bottomRate": 0.18703241895261846,
+          "eitherRate": 0.34413965087281795,
+          "adjustedRate": -0.004814443963996858
+        },
+        "r9_10": {
+          "opportunities": 2406,
+          "topRate": 0.17290108063175394,
+          "bottomRate": 0.19492934330839568,
+          "eitherRate": 0.343308395677473,
+          "adjustedRate": -0.004116814818617876
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 2406,
+          "topRate": 0.2082294264339152,
+          "bottomRate": 0.1853699085619285,
+          "eitherRate": 0.3628428927680798,
+          "adjustedRate": 0.0074804157047700355
+        },
+        "middle": {
+          "opportunities": 2406,
+          "topRate": 0.19201995012468828,
+          "bottomRate": 0.19950124688279303,
+          "eitherRate": 0.3657522859517872,
+          "adjustedRate": 0.013842908424301338
+        },
+        "low": {
+          "opportunities": 2406,
+          "topRate": 0.17290108063175394,
+          "bottomRate": 0.19492934330839568,
+          "eitherRate": 0.343308395677473,
+          "adjustedRate": -0.004116814818617876
+        }
+      },
+      "highMinusMiddle": -0.0029093931837074205,
+      "middleMinusLow": 0.022443890274314204,
+      "highMinusLow": 0.019534497090606784,
+      "adjustedHighMinusLow": 0.011597230523387911
+    },
+    "all": {
+      "dates": 124,
+      "outcomes": 4411,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 4411,
+          "top": 859,
+          "bottom": 836,
+          "either": 1558,
+          "topRate": 0.19474042167309,
+          "bottomRate": 0.18952618453865336,
+          "eitherRate": 0.35320788936749037,
+          "adjustedRate": -0.0009172087293666421
+        },
+        {
+          "rank": 2,
+          "opportunities": 4411,
+          "top": 912,
+          "bottom": 811,
+          "either": 1584,
+          "topRate": 0.20675583767853095,
+          "bottomRate": 0.1838585354794831,
+          "eitherRate": 0.35910224438902744,
+          "adjustedRate": 0.00877227742914397
+        },
+        {
+          "rank": 3,
+          "opportunities": 4411,
+          "top": 850,
+          "bottom": 835,
+          "either": 1554,
+          "topRate": 0.1927000680117887,
+          "bottomRate": 0.18929947857628657,
+          "eitherRate": 0.35230106551802315,
+          "adjustedRate": 0.0018347301915490498
+        },
+        {
+          "rank": 4,
+          "opportunities": 4411,
+          "top": 857,
+          "bottom": 865,
+          "either": 1583,
+          "topRate": 0.1942870097483564,
+          "bottomRate": 0.19610065744729085,
+          "eitherRate": 0.35887553842666065,
+          "adjustedRate": 0.009803463402445417
+        },
+        {
+          "rank": 5,
+          "opportunities": 4411,
+          "top": 811,
+          "bottom": 824,
+          "either": 1511,
+          "topRate": 0.1838585354794831,
+          "bottomRate": 0.18680571299025164,
+          "eitherRate": 0.3425527091362503,
+          "adjustedRate": -0.005799201528420257
+        },
+        {
+          "rank": 6,
+          "opportunities": 4411,
+          "top": 844,
+          "bottom": 871,
+          "either": 1577,
+          "topRate": 0.19133983223758785,
+          "bottomRate": 0.1974608932214917,
+          "eitherRate": 0.35751530265245973,
+          "adjustedRate": 0.00926389950471399
+        },
+        {
+          "rank": 7,
+          "opportunities": 4411,
+          "top": 817,
+          "bottom": 856,
+          "either": 1528,
+          "topRate": 0.18521877125368397,
+          "bottomRate": 0.19406030378598957,
+          "eitherRate": 0.3464067104964861,
+          "adjustedRate": -0.0020362453092961194
+        },
+        {
+          "rank": 8,
+          "opportunities": 4411,
+          "top": 855,
+          "bottom": 844,
+          "either": 1563,
+          "topRate": 0.19383359782362275,
+          "bottomRate": 0.19133983223758785,
+          "eitherRate": 0.35434141917932443,
+          "adjustedRate": 0.009132905051713405
+        },
+        {
+          "rank": 9,
+          "opportunities": 4411,
+          "top": 794,
+          "bottom": 858,
+          "either": 1516,
+          "topRate": 0.18000453411924733,
+          "bottomRate": 0.19451371571072318,
+          "eitherRate": 0.3436862389480843,
+          "adjustedRate": -0.001048022469585397
+        },
+        {
+          "rank": 10,
+          "opportunities": 4411,
+          "top": 814,
+          "bottom": 841,
+          "either": 1542,
+          "topRate": 0.18453865336658354,
+          "bottomRate": 0.19065971435048742,
+          "eitherRate": 0.3495805939696214,
+          "adjustedRate": 0.006169867666642591
+        }
+      ],
+      "primarySpearman": -0.02049648280728721,
+      "pooledSpearman": -0.45454545454545453,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.016322829290410346
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.014962593516209433
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 8822,
+          "topRate": 0.20074812967581046,
+          "bottomRate": 0.18669236000906825,
+          "eitherRate": 0.3561550668782589,
+          "adjustedRate": 0.003927534349888664
+        },
+        "r3_4": {
+          "opportunities": 8822,
+          "topRate": 0.19349353888007254,
+          "bottomRate": 0.1927000680117887,
+          "eitherRate": 0.35558830197234187,
+          "adjustedRate": 0.005819096796997233
+        },
+        "r5_6": {
+          "opportunities": 8822,
+          "topRate": 0.18759918385853547,
+          "bottomRate": 0.19213330310587168,
+          "eitherRate": 0.350034005894355,
+          "adjustedRate": 0.0017323489881468667
+        },
+        "r7_8": {
+          "opportunities": 8822,
+          "topRate": 0.18952618453865336,
+          "bottomRate": 0.1927000680117887,
+          "eitherRate": 0.35037406483790523,
+          "adjustedRate": 0.003548329871208643
+        },
+        "r9_10": {
+          "opportunities": 8822,
+          "topRate": 0.18227159374291543,
+          "bottomRate": 0.19258671503060532,
+          "eitherRate": 0.34663341645885287,
+          "adjustedRate": 0.0025609225985285967
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 8822,
+          "topRate": 0.20074812967581046,
+          "bottomRate": 0.18669236000906825,
+          "eitherRate": 0.3561550668782589,
+          "adjustedRate": 0.003927534349888664
+        },
+        "middle": {
+          "opportunities": 8822,
+          "topRate": 0.18759918385853547,
+          "bottomRate": 0.19213330310587168,
+          "eitherRate": 0.350034005894355,
+          "adjustedRate": 0.0017323489881468667
+        },
+        "low": {
+          "opportunities": 8822,
+          "topRate": 0.18227159374291543,
+          "bottomRate": 0.19258671503060532,
+          "eitherRate": 0.34663341645885287,
+          "adjustedRate": 0.0025609225985285967
+        }
+      },
+      "highMinusMiddle": 0.006121060983903859,
+      "middleMinusLow": 0.0034005894355021438,
+      "highMinusLow": 0.009521650419406003,
+      "adjustedHighMinusLow": 0.0013666117513600673
+    }
+  },
+  "confidence": {
+    "development": {
+      "spearman": [
+        -0.06350202647745623,
+        0.0713683134893619
+      ],
+      "high": [
+        0.34270509802290877,
+        0.36484866466309207
+      ],
+      "middle": [
+        0.3341738387978142,
+        0.35406157745536215
+      ],
+      "low": [
+        0.33648350180715175,
+        0.3589429606257952
+      ],
+      "highMinusLow": [
+        -0.010963888152481387,
+        0.02310086244902462
+      ],
+      "adjustedHighMinusLow": [
+        -0.019453575364966863,
+        0.015136674282461736
+      ]
+    },
+    "holdout": {
+      "spearman": [
+        -0.19927863060440343,
+        0.010884152765380534
+      ],
+      "high": [
+        0.34825196873769876,
+        0.37684759597769
+      ],
+      "middle": [
+        0.3531326281529699,
+        0.3794938323690132
+      ],
+      "low": [
+        0.3327479470928417,
+        0.3542003397359295
+      ],
+      "highMinusLow": [
+        -0.0012722916315659708,
+        0.03934214446920403
+      ],
+      "adjustedHighMinusLow": [
+        -0.009360073168054562,
+        0.031457883942592677
+      ]
+    },
+    "all": {
+      "spearman": [
+        -0.07780268925960851,
+        0.03812995336583634
+      ],
+      "high": [
+        0.3470373896987114,
+        0.3651907001300339
+      ],
+      "middle": [
+        0.3418006355230242,
+        0.3586790087575854
+      ],
+      "low": [
+        0.33785310734463275,
+        0.3551988919383923
+      ],
+      "highMinusLow": [
+        -0.004208199314387284,
+        0.023122675009635933
+      ],
+      "adjustedHighMinusLow": [
+        -0.012496434893010973,
+        0.015117192399459363
+      ]
+    }
+  },
+  "digitIdentity": [
+    {
+      "digit": "0",
+      "dates": 124,
+      "meanRank": 4.830645161290323,
+      "medianRank": 5,
+      "rank1to2Share": 0.3225806451612903,
+      "rank1to6Share": 0.6774193548387096,
+      "targetEitherRate": 0.3586488324642938,
+      "withinDigitSpearman": -0.15732354851928554
+    },
+    {
+      "digit": "1",
+      "dates": 124,
+      "meanRank": 5.008064516129032,
+      "medianRank": 5,
+      "rank1to2Share": 0.20161290322580644,
+      "rank1to6Share": 0.7096774193548387,
+      "targetEitherRate": 0.3611425980503287,
+      "withinDigitSpearman": 0.010318827064734044
+    },
+    {
+      "digit": "2",
+      "dates": 124,
+      "meanRank": 5.008064516129032,
+      "medianRank": 4,
+      "rank1to2Share": 0.3709677419354839,
+      "rank1to6Share": 0.6612903225806451,
+      "targetEitherRate": 0.35275447744275673,
+      "withinDigitSpearman": -0.18088297556158253
+    },
+    {
+      "digit": "3",
+      "dates": 124,
+      "meanRank": 6.209677419354839,
+      "medianRank": 7,
+      "rank1to2Share": 0.1693548387096774,
+      "rank1to6Share": 0.4596774193548387,
+      "targetEitherRate": 0.3427794150986171,
+      "withinDigitSpearman": -0.034752395951751704
+    },
+    {
+      "digit": "4",
+      "dates": 124,
+      "meanRank": 5.306451612903226,
+      "medianRank": 5,
+      "rank1to2Share": 0.25,
+      "rank1to6Share": 0.6451612903225806,
+      "targetEitherRate": 0.358422126501927,
+      "withinDigitSpearman": 0.0452761353059658
+    },
+    {
+      "digit": "5",
+      "dates": 124,
+      "meanRank": 4.895161290322581,
+      "medianRank": 4.5,
+      "rank1to2Share": 0.1693548387096774,
+      "rank1to6Share": 0.7096774193548387,
+      "targetEitherRate": 0.35094082974382224,
+      "withinDigitSpearman": -0.03813623498210572
+    },
+    {
+      "digit": "6",
+      "dates": 124,
+      "meanRank": 5.92741935483871,
+      "medianRank": 6,
+      "rank1to2Share": 0.056451612903225805,
+      "rank1to6Share": 0.5887096774193549,
+      "targetEitherRate": 0.35343459532985716,
+      "withinDigitSpearman": 0.1428630822265489
+    },
+    {
+      "digit": "7",
+      "dates": 124,
+      "meanRank": 5.782258064516129,
+      "medianRank": 6,
+      "rank1to2Share": 0.20161290322580644,
+      "rank1to6Share": 0.5241935483870968,
+      "targetEitherRate": 0.34572659260938565,
+      "withinDigitSpearman": 0.03433045839053128
+    },
+    {
+      "digit": "8",
+      "dates": 124,
+      "meanRank": 6.57258064516129,
+      "medianRank": 7,
+      "rank1to2Share": 0.03225806451612903,
+      "rank1to6Share": 0.4274193548387097,
+      "targetEitherRate": 0.3445930627975516,
+      "withinDigitSpearman": 0.19912852532300968
+    },
+    {
+      "digit": "9",
+      "dates": 124,
+      "meanRank": 5.459677419354839,
+      "medianRank": 5.5,
+      "rank1to2Share": 0.22580645161290322,
+      "rank1to6Share": 0.5967741935483871,
+      "targetEitherRate": 0.3491271820448878,
+      "withinDigitSpearman": -0.10885188313889543
+    }
+  ],
+  "months": [
+    {
+      "month": "2026-04",
+      "dates": 10,
+      "outcomes": 130,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 130,
+          "top": 26,
+          "bottom": 23,
+          "either": 43,
+          "topRate": 0.2,
+          "bottomRate": 0.17692307692307693,
+          "eitherRate": 0.33076923076923076,
+          "adjustedRate": -0.019057211945142972
+        },
+        {
+          "rank": 2,
+          "opportunities": 130,
+          "top": 27,
+          "bottom": 27,
+          "either": 47,
+          "topRate": 0.2076923076923077,
+          "bottomRate": 0.2076923076923077,
+          "eitherRate": 0.36153846153846153,
+          "adjustedRate": 0.08090532551739449
+        },
+        {
+          "rank": 3,
+          "opportunities": 130,
+          "top": 19,
+          "bottom": 23,
+          "either": 38,
+          "topRate": 0.14615384615384616,
+          "bottomRate": 0.17692307692307693,
+          "eitherRate": 0.2923076923076923,
+          "adjustedRate": -0.07316629730422833
+        },
+        {
+          "rank": 4,
+          "opportunities": 130,
+          "top": 18,
+          "bottom": 26,
+          "either": 37,
+          "topRate": 0.13846153846153847,
+          "bottomRate": 0.2,
+          "eitherRate": 0.2846153846153846,
+          "adjustedRate": -0.045048940523078444
+        },
+        {
+          "rank": 5,
+          "opportunities": 130,
+          "top": 17,
+          "bottom": 24,
+          "either": 36,
+          "topRate": 0.13076923076923078,
+          "bottomRate": 0.18461538461538463,
+          "eitherRate": 0.27692307692307694,
+          "adjustedRate": -0.046210255261979395
+        },
+        {
+          "rank": 6,
+          "opportunities": 130,
+          "top": 30,
+          "bottom": 22,
+          "either": 46,
+          "topRate": 0.23076923076923078,
+          "bottomRate": 0.16923076923076924,
+          "eitherRate": 0.35384615384615387,
+          "adjustedRate": 0.05731756270549374
+        },
+        {
+          "rank": 7,
+          "opportunities": 130,
+          "top": 28,
+          "bottom": 34,
+          "either": 51,
+          "topRate": 0.2153846153846154,
+          "bottomRate": 0.26153846153846155,
+          "eitherRate": 0.3923076923076923,
+          "adjustedRate": 0.05332442940201562
+        },
+        {
+          "rank": 8,
+          "opportunities": 130,
+          "top": 35,
+          "bottom": 22,
+          "either": 48,
+          "topRate": 0.2692307692307692,
+          "bottomRate": 0.16923076923076924,
+          "eitherRate": 0.36923076923076925,
+          "adjustedRate": 0.06389946260635916
+        },
+        {
+          "rank": 9,
+          "opportunities": 130,
+          "top": 22,
+          "bottom": 20,
+          "either": 37,
+          "topRate": 0.16923076923076924,
+          "bottomRate": 0.15384615384615385,
+          "eitherRate": 0.2846153846153846,
+          "adjustedRate": -0.0273189454223937
+        },
+        {
+          "rank": 10,
+          "opportunities": 130,
+          "top": 27,
+          "bottom": 23,
+          "either": 47,
+          "topRate": 0.2076923076923077,
+          "bottomRate": 0.17692307692307693,
+          "eitherRate": 0.36153846153846153,
+          "adjustedRate": 0.04541399692261763
+        }
+      ],
+      "primarySpearman": 0.07379684697170333,
+      "pooledSpearman": 0.2439069733276417,
+      "adjacent": {
+        "decreases": 5,
+        "ties": 0,
+        "reversals": 4,
+        "largestExpected": {
+          "afterRank": 8,
+          "difference": 0.08461538461538465
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.07692307692307693
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 260,
+          "topRate": 0.20384615384615384,
+          "bottomRate": 0.19230769230769232,
+          "eitherRate": 0.34615384615384615,
+          "adjustedRate": 0.03092405678612576
+        },
+        "r3_4": {
+          "opportunities": 260,
+          "topRate": 0.1423076923076923,
+          "bottomRate": 0.18846153846153846,
+          "eitherRate": 0.28846153846153844,
+          "adjustedRate": -0.05910761891365339
+        },
+        "r5_6": {
+          "opportunities": 260,
+          "topRate": 0.18076923076923077,
+          "bottomRate": 0.17692307692307693,
+          "eitherRate": 0.3153846153846154,
+          "adjustedRate": 0.0055536537217571735
+        },
+        "r7_8": {
+          "opportunities": 260,
+          "topRate": 0.2423076923076923,
+          "bottomRate": 0.2153846153846154,
+          "eitherRate": 0.38076923076923075,
+          "adjustedRate": 0.05861194600418739
+        },
+        "r9_10": {
+          "opportunities": 260,
+          "topRate": 0.18846153846153846,
+          "bottomRate": 0.16538461538461538,
+          "eitherRate": 0.3230769230769231,
+          "adjustedRate": 0.009047525750111966
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 260,
+          "topRate": 0.20384615384615384,
+          "bottomRate": 0.19230769230769232,
+          "eitherRate": 0.34615384615384615,
+          "adjustedRate": 0.03092405678612576
+        },
+        "middle": {
+          "opportunities": 260,
+          "topRate": 0.18076923076923077,
+          "bottomRate": 0.17692307692307693,
+          "eitherRate": 0.3153846153846154,
+          "adjustedRate": 0.0055536537217571735
+        },
+        "low": {
+          "opportunities": 260,
+          "topRate": 0.18846153846153846,
+          "bottomRate": 0.16538461538461538,
+          "eitherRate": 0.3230769230769231,
+          "adjustedRate": 0.009047525750111966
+        }
+      },
+      "highMinusMiddle": 0.03076923076923077,
+      "middleMinusLow": -0.0076923076923077205,
+      "highMinusLow": 0.02307692307692305,
+      "adjustedHighMinusLow": 0.021876531036013794
+    },
+    {
+      "month": "2026-05",
+      "dates": 20,
+      "outcomes": 459,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 459,
+          "top": 80,
+          "bottom": 99,
+          "either": 166,
+          "topRate": 0.17429193899782136,
+          "bottomRate": 0.21568627450980393,
+          "eitherRate": 0.3616557734204793,
+          "adjustedRate": 0.010375778039002592
+        },
+        {
+          "rank": 2,
+          "opportunities": 459,
+          "top": 84,
+          "bottom": 94,
+          "either": 159,
+          "topRate": 0.1830065359477124,
+          "bottomRate": 0.2047930283224401,
+          "eitherRate": 0.3464052287581699,
+          "adjustedRate": -0.0021200022867173453
+        },
+        {
+          "rank": 3,
+          "opportunities": 459,
+          "top": 86,
+          "bottom": 99,
+          "either": 168,
+          "topRate": 0.18736383442265794,
+          "bottomRate": 0.21568627450980393,
+          "eitherRate": 0.3660130718954248,
+          "adjustedRate": 0.021162148514121352
+        },
+        {
+          "rank": 4,
+          "opportunities": 459,
+          "top": 99,
+          "bottom": 82,
+          "either": 167,
+          "topRate": 0.21568627450980393,
+          "bottomRate": 0.1786492374727669,
+          "eitherRate": 0.3638344226579521,
+          "adjustedRate": 0.0252629698125988
+        },
+        {
+          "rank": 5,
+          "opportunities": 459,
+          "top": 76,
+          "bottom": 85,
+          "either": 149,
+          "topRate": 0.1655773420479303,
+          "bottomRate": 0.18518518518518517,
+          "eitherRate": 0.32461873638344224,
+          "adjustedRate": -0.016645737105028594
+        },
+        {
+          "rank": 6,
+          "opportunities": 459,
+          "top": 86,
+          "bottom": 78,
+          "either": 154,
+          "topRate": 0.18736383442265794,
+          "bottomRate": 0.16993464052287582,
+          "eitherRate": 0.3355119825708061,
+          "adjustedRate": -0.0074624215919733014
+        },
+        {
+          "rank": 7,
+          "opportunities": 459,
+          "top": 100,
+          "bottom": 92,
+          "either": 167,
+          "topRate": 0.2178649237472767,
+          "bottomRate": 0.20043572984749455,
+          "eitherRate": 0.3638344226579521,
+          "adjustedRate": 0.01758696610537328
+        },
+        {
+          "rank": 8,
+          "opportunities": 459,
+          "top": 85,
+          "bottom": 86,
+          "either": 160,
+          "topRate": 0.18518518518518517,
+          "bottomRate": 0.18736383442265794,
+          "eitherRate": 0.3485838779956427,
+          "adjustedRate": 0.01482856143992645
+        },
+        {
+          "rank": 9,
+          "opportunities": 459,
+          "top": 90,
+          "bottom": 86,
+          "either": 160,
+          "topRate": 0.19607843137254902,
+          "bottomRate": 0.18736383442265794,
+          "eitherRate": 0.3485838779956427,
+          "adjustedRate": 0.022371873219220042
+        },
+        {
+          "rank": 10,
+          "opportunities": 459,
+          "top": 91,
+          "bottom": 79,
+          "either": 154,
+          "topRate": 0.19825708061002179,
+          "bottomRate": 0.1721132897603486,
+          "eitherRate": 0.3355119825708061,
+          "adjustedRate": 0.009281433335587863
+        }
+      ],
+      "primarySpearman": -0.04707601266239677,
+      "pooledSpearman": -0.31193973345246884,
+      "adjacent": {
+        "decreases": 5,
+        "ties": 1,
+        "reversals": 3,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.03921568627450983
+        },
+        "largestReversal": {
+          "afterRank": 6,
+          "difference": -0.02832244008714596
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 918,
+          "topRate": 0.1786492374727669,
+          "bottomRate": 0.210239651416122,
+          "eitherRate": 0.3540305010893246,
+          "adjustedRate": 0.004127887876142623
+        },
+        "r3_4": {
+          "opportunities": 918,
+          "topRate": 0.20152505446623092,
+          "bottomRate": 0.19716775599128541,
+          "eitherRate": 0.36492374727668847,
+          "adjustedRate": 0.023212559163360076
+        },
+        "r5_6": {
+          "opportunities": 918,
+          "topRate": 0.17647058823529413,
+          "bottomRate": 0.1775599128540305,
+          "eitherRate": 0.3300653594771242,
+          "adjustedRate": -0.012054079348500947
+        },
+        "r7_8": {
+          "opportunities": 918,
+          "topRate": 0.20152505446623092,
+          "bottomRate": 0.19389978213507625,
+          "eitherRate": 0.3562091503267974,
+          "adjustedRate": 0.016207763772649864
+        },
+        "r9_10": {
+          "opportunities": 918,
+          "topRate": 0.19716775599128541,
+          "bottomRate": 0.17973856209150327,
+          "eitherRate": 0.3420479302832244,
+          "adjustedRate": 0.015826653277403954
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 918,
+          "topRate": 0.1786492374727669,
+          "bottomRate": 0.210239651416122,
+          "eitherRate": 0.3540305010893246,
+          "adjustedRate": 0.004127887876142623
+        },
+        "middle": {
+          "opportunities": 918,
+          "topRate": 0.17647058823529413,
+          "bottomRate": 0.1775599128540305,
+          "eitherRate": 0.3300653594771242,
+          "adjustedRate": -0.012054079348500947
+        },
+        "low": {
+          "opportunities": 918,
+          "topRate": 0.19716775599128541,
+          "bottomRate": 0.17973856209150327,
+          "eitherRate": 0.3420479302832244,
+          "adjustedRate": 0.015826653277403954
+        }
+      },
+      "highMinusMiddle": 0.023965141612200425,
+      "middleMinusLow": -0.011982570806100212,
+      "highMinusLow": 0.011982570806100212,
+      "adjustedHighMinusLow": -0.01169876540126133
+    },
+    {
+      "month": "2026-06",
+      "dates": 30,
+      "outcomes": 1261,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 1261,
+          "top": 241,
+          "bottom": 248,
+          "either": 448,
+          "topRate": 0.19111816019032513,
+          "bottomRate": 0.19666931007137192,
+          "eitherRate": 0.35527359238699446,
+          "adjustedRate": 0.0019711283981542894
+        },
+        {
+          "rank": 2,
+          "opportunities": 1261,
+          "top": 251,
+          "bottom": 229,
+          "either": 446,
+          "topRate": 0.19904837430610625,
+          "bottomRate": 0.18160190325138778,
+          "eitherRate": 0.35368754956383824,
+          "adjustedRate": 0.0017328160720548676
+        },
+        {
+          "rank": 3,
+          "opportunities": 1261,
+          "top": 236,
+          "bottom": 239,
+          "either": 443,
+          "topRate": 0.18715305313243458,
+          "bottomRate": 0.1895321173671689,
+          "eitherRate": 0.35130848532910386,
+          "adjustedRate": 0.0015842809241495101
+        },
+        {
+          "rank": 4,
+          "opportunities": 1261,
+          "top": 246,
+          "bottom": 248,
+          "either": 452,
+          "topRate": 0.1950832672482157,
+          "bottomRate": 0.19666931007137192,
+          "eitherRate": 0.3584456780333069,
+          "adjustedRate": 0.008279550876051634
+        },
+        {
+          "rank": 5,
+          "opportunities": 1261,
+          "top": 248,
+          "bottom": 230,
+          "either": 442,
+          "topRate": 0.19666931007137192,
+          "bottomRate": 0.1823949246629659,
+          "eitherRate": 0.35051546391752575,
+          "adjustedRate": 0.0012640325149092873
+        },
+        {
+          "rank": 6,
+          "opportunities": 1261,
+          "top": 235,
+          "bottom": 251,
+          "either": 441,
+          "topRate": 0.18636003172085647,
+          "bottomRate": 0.19904837430610625,
+          "eitherRate": 0.34972244250594764,
+          "adjustedRate": 0.0010617602244544211
+        },
+        {
+          "rank": 7,
+          "opportunities": 1261,
+          "top": 231,
+          "bottom": 261,
+          "either": 444,
+          "topRate": 0.183187946074544,
+          "bottomRate": 0.20697858842188738,
+          "eitherRate": 0.352101506740682,
+          "adjustedRate": 0.0033183646949511473
+        },
+        {
+          "rank": 8,
+          "opportunities": 1261,
+          "top": 255,
+          "bottom": 248,
+          "either": 459,
+          "topRate": 0.20222045995241872,
+          "bottomRate": 0.19666931007137192,
+          "eitherRate": 0.36399682791435367,
+          "adjustedRate": 0.017993808508380223
+        },
+        {
+          "rank": 9,
+          "opportunities": 1261,
+          "top": 231,
+          "bottom": 239,
+          "either": 428,
+          "topRate": 0.183187946074544,
+          "bottomRate": 0.1895321173671689,
+          "eitherRate": 0.3394131641554322,
+          "adjustedRate": -0.00856830563230413
+        },
+        {
+          "rank": 10,
+          "opportunities": 1261,
+          "top": 237,
+          "bottom": 226,
+          "either": 440,
+          "topRate": 0.1879460745440127,
+          "bottomRate": 0.17922283901665345,
+          "eitherRate": 0.34892942109436953,
+          "adjustedRate": 0.006044792285603097
+        }
+      ],
+      "primarySpearman": -0.000040301725518950465,
+      "pooledSpearman": -0.4909090909090909,
+      "adjacent": {
+        "decreases": 5,
+        "ties": 0,
+        "reversals": 4,
+        "largestExpected": {
+          "afterRank": 8,
+          "difference": 0.02458366375892146
+        },
+        "largestReversal": {
+          "afterRank": 7,
+          "difference": -0.011895321173671647
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 2522,
+          "topRate": 0.1950832672482157,
+          "bottomRate": 0.18913560666137985,
+          "eitherRate": 0.35448057097541635,
+          "adjustedRate": 0.0018519722351045785
+        },
+        "r3_4": {
+          "opportunities": 2522,
+          "topRate": 0.19111816019032513,
+          "bottomRate": 0.19310071371927043,
+          "eitherRate": 0.3548770816812054,
+          "adjustedRate": 0.0049319159001005725
+        },
+        "r5_6": {
+          "opportunities": 2522,
+          "topRate": 0.1915146708961142,
+          "bottomRate": 0.19072164948453607,
+          "eitherRate": 0.3501189532117367,
+          "adjustedRate": 0.0011628963696818542
+        },
+        "r7_8": {
+          "opportunities": 2522,
+          "topRate": 0.19270420301348137,
+          "bottomRate": 0.20182394924662966,
+          "eitherRate": 0.35804916732751785,
+          "adjustedRate": 0.010656086601665685
+        },
+        "r9_10": {
+          "opportunities": 2522,
+          "topRate": 0.18556701030927836,
+          "bottomRate": 0.1843774781919112,
+          "eitherRate": 0.34417129262490087,
+          "adjustedRate": -0.0012617566733505161
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 2522,
+          "topRate": 0.1950832672482157,
+          "bottomRate": 0.18913560666137985,
+          "eitherRate": 0.35448057097541635,
+          "adjustedRate": 0.0018519722351045785
+        },
+        "middle": {
+          "opportunities": 2522,
+          "topRate": 0.1915146708961142,
+          "bottomRate": 0.19072164948453607,
+          "eitherRate": 0.3501189532117367,
+          "adjustedRate": 0.0011628963696818542
+        },
+        "low": {
+          "opportunities": 2522,
+          "topRate": 0.18556701030927836,
+          "bottomRate": 0.1843774781919112,
+          "eitherRate": 0.34417129262490087,
+          "adjustedRate": -0.0012617566733505161
+        }
+      },
+      "highMinusMiddle": 0.004361617763679659,
+      "middleMinusLow": 0.0059476605868358234,
+      "highMinusLow": 0.010309278350515483,
+      "adjustedHighMinusLow": 0.0031137289084550946
+    },
+    {
+      "month": "2026-07",
+      "dates": 31,
+      "outcomes": 1295,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 1295,
+          "top": 251,
+          "bottom": 232,
+          "either": 447,
+          "topRate": 0.19382239382239383,
+          "bottomRate": 0.17915057915057914,
+          "eitherRate": 0.34517374517374516,
+          "adjustedRate": -0.008113806159668786
+        },
+        {
+          "rank": 2,
+          "opportunities": 1295,
+          "top": 276,
+          "bottom": 227,
+          "either": 463,
+          "topRate": 0.21312741312741312,
+          "bottomRate": 0.17528957528957528,
+          "eitherRate": 0.3575289575289575,
+          "adjustedRate": 0.004719028798588178
+        },
+        {
+          "rank": 3,
+          "opportunities": 1295,
+          "top": 256,
+          "bottom": 233,
+          "either": 452,
+          "topRate": 0.19768339768339768,
+          "bottomRate": 0.1799227799227799,
+          "eitherRate": 0.349034749034749,
+          "adjustedRate": -0.0022181962131303215
+        },
+        {
+          "rank": 4,
+          "opportunities": 1295,
+          "top": 250,
+          "bottom": 255,
+          "either": 463,
+          "topRate": 0.19305019305019305,
+          "bottomRate": 0.1969111969111969,
+          "eitherRate": 0.3575289575289575,
+          "adjustedRate": 0.005884562569338291
+        },
+        {
+          "rank": 5,
+          "opportunities": 1295,
+          "top": 243,
+          "bottom": 235,
+          "either": 437,
+          "topRate": 0.18764478764478765,
+          "bottomRate": 0.18146718146718147,
+          "eitherRate": 0.33745173745173745,
+          "adjustedRate": -0.012039961573702705
+        },
+        {
+          "rank": 6,
+          "opportunities": 1295,
+          "top": 240,
+          "bottom": 264,
+          "either": 461,
+          "topRate": 0.18532818532818532,
+          "bottomRate": 0.20386100386100386,
+          "eitherRate": 0.355984555984556,
+          "adjustedRate": 0.005445410185036803
+        },
+        {
+          "rank": 7,
+          "opportunities": 1295,
+          "top": 236,
+          "bottom": 236,
+          "either": 439,
+          "topRate": 0.18223938223938224,
+          "bottomRate": 0.18223938223938224,
+          "eitherRate": 0.338996138996139,
+          "adjustedRate": -0.009932532640715424
+        },
+        {
+          "rank": 8,
+          "opportunities": 1295,
+          "top": 240,
+          "bottom": 251,
+          "either": 454,
+          "topRate": 0.18532818532818532,
+          "bottomRate": 0.19382239382239383,
+          "eitherRate": 0.35057915057915057,
+          "adjustedRate": 0.0024264767702143358
+        },
+        {
+          "rank": 9,
+          "opportunities": 1295,
+          "top": 236,
+          "bottom": 270,
+          "either": 469,
+          "topRate": 0.18223938223938224,
+          "bottomRate": 0.2084942084942085,
+          "eitherRate": 0.3621621621621622,
+          "adjustedRate": 0.012885449922516622
+        },
+        {
+          "rank": 10,
+          "opportunities": 1295,
+          "top": 238,
+          "bottom": 262,
+          "either": 457,
+          "topRate": 0.1837837837837838,
+          "bottomRate": 0.2023166023166023,
+          "eitherRate": 0.3528957528957529,
+          "adjustedRate": 0.004578319679400819
+        }
+      ],
+      "primarySpearman": 0.040595164073507536,
+      "pooledSpearman": 0.17629260766721871,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.02007722007722007
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.018532818532818518
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 2590,
+          "topRate": 0.20347490347490346,
+          "bottomRate": 0.1772200772200772,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.001697388680540304
+        },
+        "r3_4": {
+          "opportunities": 2590,
+          "topRate": 0.19536679536679535,
+          "bottomRate": 0.18841698841698842,
+          "eitherRate": 0.3532818532818533,
+          "adjustedRate": 0.0018331831781039849
+        },
+        "r5_6": {
+          "opportunities": 2590,
+          "topRate": 0.1864864864864865,
+          "bottomRate": 0.19266409266409265,
+          "eitherRate": 0.3467181467181467,
+          "adjustedRate": -0.003297275694332951
+        },
+        "r7_8": {
+          "opportunities": 2590,
+          "topRate": 0.1837837837837838,
+          "bottomRate": 0.18803088803088802,
+          "eitherRate": 0.3447876447876448,
+          "adjustedRate": -0.0037530279352505445
+        },
+        "r9_10": {
+          "opportunities": 2590,
+          "topRate": 0.18301158301158302,
+          "bottomRate": 0.20540540540540542,
+          "eitherRate": 0.3575289575289575,
+          "adjustedRate": 0.008731884800958722
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 2590,
+          "topRate": 0.20347490347490346,
+          "bottomRate": 0.1772200772200772,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.001697388680540304
+        },
+        "middle": {
+          "opportunities": 2590,
+          "topRate": 0.1864864864864865,
+          "bottomRate": 0.19266409266409265,
+          "eitherRate": 0.3467181467181467,
+          "adjustedRate": -0.003297275694332951
+        },
+        "low": {
+          "opportunities": 2590,
+          "topRate": 0.18301158301158302,
+          "bottomRate": 0.20540540540540542,
+          "eitherRate": 0.3575289575289575,
+          "adjustedRate": 0.008731884800958722
+        }
+      },
+      "highMinusMiddle": 0.004633204633204657,
+      "middleMinusLow": -0.010810810810810811,
+      "highMinusLow": -0.006177606177606154,
+      "adjustedHighMinusLow": -0.010429273481499026
+    },
+    {
+      "month": "2026-08",
+      "dates": 31,
+      "outcomes": 1237,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 1237,
+          "top": 255,
+          "bottom": 229,
+          "either": 445,
+          "topRate": 0.206143896523848,
+          "bottomRate": 0.185125303152789,
+          "eitherRate": 0.3597413096200485,
+          "adjustedRate": 0.002208385601916349
+        },
+        {
+          "rank": 2,
+          "opportunities": 1237,
+          "top": 270,
+          "bottom": 228,
+          "either": 459,
+          "topRate": 0.21827000808407437,
+          "bottomRate": 0.18431689571544058,
+          "eitherRate": 0.37105901374292644,
+          "adjustedRate": 0.0179100214601785
+        },
+        {
+          "rank": 3,
+          "opportunities": 1237,
+          "top": 247,
+          "bottom": 235,
+          "either": 441,
+          "topRate": 0.19967663702506064,
+          "bottomRate": 0.18997574777687956,
+          "eitherRate": 0.3565076798706548,
+          "adjustedRate": 0.004795408345573032
+        },
+        {
+          "rank": 4,
+          "opportunities": 1237,
+          "top": 240,
+          "bottom": 252,
+          "either": 458,
+          "topRate": 0.19401778496362165,
+          "bottomRate": 0.20371867421180276,
+          "eitherRate": 0.370250606305578,
+          "adjustedRate": 0.018669149956568324
+        },
+        {
+          "rank": 5,
+          "opportunities": 1237,
+          "top": 222,
+          "bottom": 243,
+          "either": 435,
+          "topRate": 0.17946645109135004,
+          "bottomRate": 0.19644300727566694,
+          "eitherRate": 0.3516572352465643,
+          "adjustedRate": -0.00006841366900964687
+        },
+        {
+          "rank": 6,
+          "opportunities": 1237,
+          "top": 248,
+          "bottom": 248,
+          "either": 463,
+          "topRate": 0.20048504446240906,
+          "bottomRate": 0.20048504446240906,
+          "eitherRate": 0.3742926434923201,
+          "adjustedRate": 0.022054974610433972
+        },
+        {
+          "rank": 7,
+          "opportunities": 1237,
+          "top": 217,
+          "bottom": 226,
+          "either": 417,
+          "topRate": 0.17542441390460792,
+          "bottomRate": 0.18270008084074374,
+          "eitherRate": 0.33710590137429264,
+          "adjustedRate": -0.011727268351004808
+        },
+        {
+          "rank": 8,
+          "opportunities": 1237,
+          "top": 230,
+          "bottom": 233,
+          "either": 428,
+          "topRate": 0.18593371059013744,
+          "bottomRate": 0.1883589329021827,
+          "eitherRate": 0.3459983831851253,
+          "adjustedRate": -0.0031818070163900565
+        },
+        {
+          "rank": 9,
+          "opportunities": 1237,
+          "top": 209,
+          "bottom": 238,
+          "either": 413,
+          "topRate": 0.16895715440582054,
+          "bottomRate": 0.19240097008892482,
+          "eitherRate": 0.33387227162489896,
+          "adjustedRate": -0.013328919559825816
+        },
+        {
+          "rank": 10,
+          "opportunities": 1237,
+          "top": 216,
+          "bottom": 243,
+          "either": 432,
+          "topRate": 0.1746160064672595,
+          "bottomRate": 0.19644300727566694,
+          "eitherRate": 0.349232012934519,
+          "adjustedRate": 0.0017446008307151156
+        }
+      ],
+      "primarySpearman": -0.12696214241758755,
+      "pooledSpearman": -0.6727272727272727,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 6,
+          "difference": 0.03718674211802747
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.022635408245755828
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 2474,
+          "topRate": 0.2122069523039612,
+          "bottomRate": 0.1847210994341148,
+          "eitherRate": 0.3654001616814875,
+          "adjustedRate": 0.010059203531047426
+        },
+        "r3_4": {
+          "opportunities": 2474,
+          "topRate": 0.19684721099434116,
+          "bottomRate": 0.19684721099434116,
+          "eitherRate": 0.3633791430881164,
+          "adjustedRate": 0.011732279151070679
+        },
+        "r5_6": {
+          "opportunities": 2474,
+          "topRate": 0.18997574777687956,
+          "bottomRate": 0.198464025869038,
+          "eitherRate": 0.3629749393694422,
+          "adjustedRate": 0.010993280470712163
+        },
+        "r7_8": {
+          "opportunities": 2474,
+          "topRate": 0.18067906224737268,
+          "bottomRate": 0.18552950687146322,
+          "eitherRate": 0.341552142279709,
+          "adjustedRate": -0.007454537683697432
+        },
+        "r9_10": {
+          "opportunities": 2474,
+          "topRate": 0.17178658043654002,
+          "bottomRate": 0.19442198868229588,
+          "eitherRate": 0.341552142279709,
+          "adjustedRate": -0.00579215936455535
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 2474,
+          "topRate": 0.2122069523039612,
+          "bottomRate": 0.1847210994341148,
+          "eitherRate": 0.3654001616814875,
+          "adjustedRate": 0.010059203531047426
+        },
+        "middle": {
+          "opportunities": 2474,
+          "topRate": 0.18997574777687956,
+          "bottomRate": 0.198464025869038,
+          "eitherRate": 0.3629749393694422,
+          "adjustedRate": 0.010993280470712163
+        },
+        "low": {
+          "opportunities": 2474,
+          "topRate": 0.17178658043654002,
+          "bottomRate": 0.19442198868229588,
+          "eitherRate": 0.341552142279709,
+          "adjustedRate": -0.00579215936455535
+        }
+      },
+      "highMinusMiddle": 0.002425222312045283,
+      "middleMinusLow": 0.021422797089733214,
+      "highMinusLow": 0.023848019401778497,
+      "adjustedHighMinusLow": 0.015851362895602777
+    },
+    {
+      "month": "2026-09",
+      "dates": 2,
+      "outcomes": 29,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 29,
+          "top": 6,
+          "bottom": 5,
+          "either": 9,
+          "topRate": 0.20689655172413793,
+          "bottomRate": 0.1724137931034483,
+          "eitherRate": 0.3103448275862069,
+          "adjustedRate": -0.04464824966078386
+        },
+        {
+          "rank": 2,
+          "opportunities": 29,
+          "top": 4,
+          "bottom": 6,
+          "either": 10,
+          "topRate": 0.13793103448275862,
+          "bottomRate": 0.20689655172413793,
+          "eitherRate": 0.3448275862068966,
+          "adjustedRate": -0.010039750404901761
+        },
+        {
+          "rank": 3,
+          "opportunities": 29,
+          "top": 6,
+          "bottom": 6,
+          "either": 12,
+          "topRate": 0.20689655172413793,
+          "bottomRate": 0.20689655172413793,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.0615185758181843
+        },
+        {
+          "rank": 4,
+          "opportunities": 29,
+          "top": 4,
+          "bottom": 2,
+          "either": 6,
+          "topRate": 0.13793103448275862,
+          "bottomRate": 0.06896551724137931,
+          "eitherRate": 0.20689655172413793,
+          "adjustedRate": -0.15237786693180935
+        },
+        {
+          "rank": 5,
+          "opportunities": 29,
+          "top": 5,
+          "bottom": 7,
+          "either": 12,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.2413793103448276,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.054625060908386036
+        },
+        {
+          "rank": 6,
+          "opportunities": 29,
+          "top": 5,
+          "bottom": 8,
+          "either": 12,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.27586206896551724,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.06334796321859963
+        },
+        {
+          "rank": 7,
+          "opportunities": 29,
+          "top": 5,
+          "bottom": 7,
+          "either": 10,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.2413793103448276,
+          "eitherRate": 0.3448275862068966,
+          "adjustedRate": -0.0009178978754883971
+        },
+        {
+          "rank": 8,
+          "opportunities": 29,
+          "top": 10,
+          "bottom": 4,
+          "either": 14,
+          "topRate": 0.3448275862068966,
+          "bottomRate": 0.13793103448275862,
+          "eitherRate": 0.4827586206896552,
+          "adjustedRate": 0.13938453385860064
+        },
+        {
+          "rank": 9,
+          "opportunities": 29,
+          "top": 6,
+          "bottom": 5,
+          "either": 9,
+          "topRate": 0.20689655172413793,
+          "bottomRate": 0.1724137931034483,
+          "eitherRate": 0.3103448275862069,
+          "adjustedRate": -0.037999920317596414
+        },
+        {
+          "rank": 10,
+          "opportunities": 29,
+          "top": 5,
+          "bottom": 8,
+          "either": 12,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.27586206896551724,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.06521476902085613
+        }
+      ],
+      "primarySpearman": 0.17028664792966836,
+      "pooledSpearman": 0.3398647104222125,
+      "adjacent": {
+        "decreases": 3,
+        "ties": 1,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 3,
+          "difference": 0.20689655172413793
+        },
+        "largestReversal": {
+          "afterRank": 4,
+          "difference": -0.20689655172413793
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 58,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.1896551724137931,
+          "eitherRate": 0.3275862068965517,
+          "adjustedRate": -0.027344000032842812
+        },
+        "r3_4": {
+          "opportunities": 58,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.13793103448275862,
+          "eitherRate": 0.3103448275862069,
+          "adjustedRate": -0.04542964555681253
+        },
+        "r5_6": {
+          "opportunities": 58,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.25862068965517243,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.058986512063492834
+        },
+        "r7_8": {
+          "opportunities": 58,
+          "topRate": 0.25862068965517243,
+          "bottomRate": 0.1896551724137931,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.06923331799155612
+        },
+        "r9_10": {
+          "opportunities": 58,
+          "topRate": 0.1896551724137931,
+          "bottomRate": 0.22413793103448276,
+          "eitherRate": 0.3620689655172414,
+          "adjustedRate": 0.013607424351629857
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 58,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.1896551724137931,
+          "eitherRate": 0.3275862068965517,
+          "adjustedRate": -0.027344000032842812
+        },
+        "middle": {
+          "opportunities": 58,
+          "topRate": 0.1724137931034483,
+          "bottomRate": 0.25862068965517243,
+          "eitherRate": 0.41379310344827586,
+          "adjustedRate": 0.058986512063492834
+        },
+        "low": {
+          "opportunities": 58,
+          "topRate": 0.1896551724137931,
+          "bottomRate": 0.22413793103448276,
+          "eitherRate": 0.3620689655172414,
+          "adjustedRate": 0.013607424351629857
+        }
+      },
+      "highMinusMiddle": -0.08620689655172414,
+      "middleMinusLow": 0.051724137931034475,
+      "highMinusLow": -0.03448275862068967,
+      "adjustedHighMinusLow": -0.04095142438447267
+    }
+  ],
+  "weekdays": [
+    {
+      "weekday": 0,
+      "label": "วันอาทิตย์",
+      "dates": 14,
+      "outcomes": 436,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 436,
+          "top": 80,
+          "bottom": 88,
+          "either": 155,
+          "topRate": 0.1834862385321101,
+          "bottomRate": 0.2018348623853211,
+          "eitherRate": 0.3555045871559633,
+          "adjustedRate": -0.004086109133835992
+        },
+        {
+          "rank": 2,
+          "opportunities": 436,
+          "top": 95,
+          "bottom": 93,
+          "either": 167,
+          "topRate": 0.21788990825688073,
+          "bottomRate": 0.21330275229357798,
+          "eitherRate": 0.3830275229357798,
+          "adjustedRate": 0.03254302719206808
+        },
+        {
+          "rank": 3,
+          "opportunities": 436,
+          "top": 91,
+          "bottom": 76,
+          "either": 157,
+          "topRate": 0.20871559633027523,
+          "bottomRate": 0.1743119266055046,
+          "eitherRate": 0.36009174311926606,
+          "adjustedRate": 0.008167072783859093
+        },
+        {
+          "rank": 4,
+          "opportunities": 436,
+          "top": 78,
+          "bottom": 86,
+          "either": 150,
+          "topRate": 0.17889908256880735,
+          "bottomRate": 0.19724770642201836,
+          "eitherRate": 0.3440366972477064,
+          "adjustedRate": -0.003575791425154082
+        },
+        {
+          "rank": 5,
+          "opportunities": 436,
+          "top": 78,
+          "bottom": 98,
+          "either": 162,
+          "topRate": 0.17889908256880735,
+          "bottomRate": 0.22477064220183487,
+          "eitherRate": 0.37155963302752293,
+          "adjustedRate": 0.021161626101065256
+        },
+        {
+          "rank": 6,
+          "opportunities": 436,
+          "top": 80,
+          "bottom": 82,
+          "either": 150,
+          "topRate": 0.1834862385321101,
+          "bottomRate": 0.18807339449541285,
+          "eitherRate": 0.3440366972477064,
+          "adjustedRate": -0.0015587976502885387
+        },
+        {
+          "rank": 7,
+          "opportunities": 436,
+          "top": 83,
+          "bottom": 67,
+          "either": 145,
+          "topRate": 0.19036697247706422,
+          "bottomRate": 0.1536697247706422,
+          "eitherRate": 0.33256880733944955,
+          "adjustedRate": -0.015272677330368132
+        },
+        {
+          "rank": 8,
+          "opportunities": 436,
+          "top": 88,
+          "bottom": 69,
+          "either": 146,
+          "topRate": 0.2018348623853211,
+          "bottomRate": 0.15825688073394495,
+          "eitherRate": 0.3348623853211009,
+          "adjustedRate": -0.01182616872251652
+        },
+        {
+          "rank": 9,
+          "opportunities": 436,
+          "top": 75,
+          "bottom": 97,
+          "either": 159,
+          "topRate": 0.1720183486238532,
+          "bottomRate": 0.22247706422018348,
+          "eitherRate": 0.3646788990825688,
+          "adjustedRate": 0.017390735663962553
+        },
+        {
+          "rank": 10,
+          "opportunities": 436,
+          "top": 88,
+          "bottom": 84,
+          "either": 161,
+          "topRate": 0.2018348623853211,
+          "bottomRate": 0.1926605504587156,
+          "eitherRate": 0.36926605504587157,
+          "adjustedRate": 0.017952417651555443
+        }
+      ],
+      "primarySpearman": -0.05694773175530386,
+      "pooledSpearman": -0.16413449679361744,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 5,
+          "difference": 0.027522935779816515
+        },
+        "largestReversal": {
+          "afterRank": 8,
+          "difference": -0.029816513761467878
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 872,
+          "topRate": 0.2006880733944954,
+          "bottomRate": 0.20756880733944955,
+          "eitherRate": 0.36926605504587157,
+          "adjustedRate": 0.014228459029116044
+        },
+        "r3_4": {
+          "opportunities": 872,
+          "topRate": 0.1938073394495413,
+          "bottomRate": 0.18577981651376146,
+          "eitherRate": 0.35206422018348627,
+          "adjustedRate": 0.0022956406793525055
+        },
+        "r5_6": {
+          "opportunities": 872,
+          "topRate": 0.1811926605504587,
+          "bottomRate": 0.20642201834862386,
+          "eitherRate": 0.3577981651376147,
+          "adjustedRate": 0.009801414225388359
+        },
+        "r7_8": {
+          "opportunities": 872,
+          "topRate": 0.19610091743119265,
+          "bottomRate": 0.1559633027522936,
+          "eitherRate": 0.33371559633027525,
+          "adjustedRate": -0.013549423026442325
+        },
+        "r9_10": {
+          "opportunities": 872,
+          "topRate": 0.18692660550458715,
+          "bottomRate": 0.20756880733944955,
+          "eitherRate": 0.3669724770642202,
+          "adjustedRate": 0.017671576657758998
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 872,
+          "topRate": 0.2006880733944954,
+          "bottomRate": 0.20756880733944955,
+          "eitherRate": 0.36926605504587157,
+          "adjustedRate": 0.014228459029116044
+        },
+        "middle": {
+          "opportunities": 872,
+          "topRate": 0.1811926605504587,
+          "bottomRate": 0.20642201834862386,
+          "eitherRate": 0.3577981651376147,
+          "adjustedRate": 0.009801414225388359
+        },
+        "low": {
+          "opportunities": 872,
+          "topRate": 0.18692660550458715,
+          "bottomRate": 0.20756880733944955,
+          "eitherRate": 0.3669724770642202,
+          "adjustedRate": 0.017671576657758998
+        }
+      },
+      "highMinusMiddle": 0.011467889908256867,
+      "middleMinusLow": -0.009174311926605505,
+      "highMinusLow": 0.0022935779816513624,
+      "adjustedHighMinusLow": -0.0034431176286429544
+    },
+    {
+      "weekday": 1,
+      "label": "วันจันทร์",
+      "dates": 19,
+      "outcomes": 699,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 699,
+          "top": 137,
+          "bottom": 140,
+          "either": 257,
+          "topRate": 0.19599427753934193,
+          "bottomRate": 0.20028612303290416,
+          "eitherRate": 0.3676680972818312,
+          "adjustedRate": 0.017455557300335177
+        },
+        {
+          "rank": 2,
+          "opportunities": 699,
+          "top": 142,
+          "bottom": 120,
+          "either": 241,
+          "topRate": 0.20314735336194564,
+          "bottomRate": 0.17167381974248927,
+          "eitherRate": 0.3447782546494993,
+          "adjustedRate": -0.004112536296744808
+        },
+        {
+          "rank": 3,
+          "opportunities": 699,
+          "top": 124,
+          "bottom": 156,
+          "either": 257,
+          "topRate": 0.17739628040057226,
+          "bottomRate": 0.22317596566523606,
+          "eitherRate": 0.3676680972818312,
+          "adjustedRate": 0.01428634402636794
+        },
+        {
+          "rank": 4,
+          "opportunities": 699,
+          "top": 150,
+          "bottom": 136,
+          "either": 259,
+          "topRate": 0.2145922746781116,
+          "bottomRate": 0.19456366237482117,
+          "eitherRate": 0.37052932761087265,
+          "adjustedRate": 0.021701899545278017
+        },
+        {
+          "rank": 5,
+          "opportunities": 699,
+          "top": 120,
+          "bottom": 118,
+          "either": 224,
+          "topRate": 0.17167381974248927,
+          "bottomRate": 0.1688125894134478,
+          "eitherRate": 0.32045779685264664,
+          "adjustedRate": -0.03161753851732701
+        },
+        {
+          "rank": 6,
+          "opportunities": 699,
+          "top": 126,
+          "bottom": 143,
+          "either": 247,
+          "topRate": 0.18025751072961374,
+          "bottomRate": 0.20457796852646637,
+          "eitherRate": 0.35336194563662376,
+          "adjustedRate": 0.0062451920714652765
+        },
+        {
+          "rank": 7,
+          "opportunities": 699,
+          "top": 129,
+          "bottom": 141,
+          "either": 249,
+          "topRate": 0.18454935622317598,
+          "bottomRate": 0.2017167381974249,
+          "eitherRate": 0.3562231759656652,
+          "adjustedRate": 0.008530859363913804
+        },
+        {
+          "rank": 8,
+          "opportunities": 699,
+          "top": 150,
+          "bottom": 137,
+          "either": 259,
+          "topRate": 0.2145922746781116,
+          "bottomRate": 0.19599427753934193,
+          "eitherRate": 0.37052932761087265,
+          "adjustedRate": 0.023971988169396854
+        },
+        {
+          "rank": 9,
+          "opportunities": 699,
+          "top": 134,
+          "bottom": 129,
+          "either": 244,
+          "topRate": 0.1917024320457797,
+          "bottomRate": 0.18454935622317598,
+          "eitherRate": 0.3490701001430615,
+          "adjustedRate": 0.002884980720334484
+        },
+        {
+          "rank": 10,
+          "opportunities": 699,
+          "top": 130,
+          "bottom": 112,
+          "either": 230,
+          "topRate": 0.1859799713876967,
+          "bottomRate": 0.16022889842632332,
+          "eitherRate": 0.3290414878397711,
+          "adjustedRate": -0.011306418284538012
+        }
+      ],
+      "primarySpearman": -0.04516804014854633,
+      "pooledSpearman": -0.23780929899445064,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.05007153075822601
+        },
+        "largestReversal": {
+          "afterRank": 5,
+          "difference": -0.03290414878397713
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 1398,
+          "topRate": 0.19957081545064378,
+          "bottomRate": 0.1859799713876967,
+          "eitherRate": 0.3562231759656652,
+          "adjustedRate": 0.006671510501795184
+        },
+        "r3_4": {
+          "opportunities": 1398,
+          "topRate": 0.19599427753934193,
+          "bottomRate": 0.2088698140200286,
+          "eitherRate": 0.36909871244635195,
+          "adjustedRate": 0.017994121785822978
+        },
+        "r5_6": {
+          "opportunities": 1398,
+          "topRate": 0.1759656652360515,
+          "bottomRate": 0.18669527896995708,
+          "eitherRate": 0.3369098712446352,
+          "adjustedRate": -0.012686173222930867
+        },
+        "r7_8": {
+          "opportunities": 1398,
+          "topRate": 0.19957081545064378,
+          "bottomRate": 0.1988555078683834,
+          "eitherRate": 0.36337625178826893,
+          "adjustedRate": 0.01625142376665533
+        },
+        "r9_10": {
+          "opportunities": 1398,
+          "topRate": 0.1888412017167382,
+          "bottomRate": 0.17238912732474965,
+          "eitherRate": 0.33905579399141633,
+          "adjustedRate": -0.004210718782101764
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 1398,
+          "topRate": 0.19957081545064378,
+          "bottomRate": 0.1859799713876967,
+          "eitherRate": 0.3562231759656652,
+          "adjustedRate": 0.006671510501795184
+        },
+        "middle": {
+          "opportunities": 1398,
+          "topRate": 0.1759656652360515,
+          "bottomRate": 0.18669527896995708,
+          "eitherRate": 0.3369098712446352,
+          "adjustedRate": -0.012686173222930867
+        },
+        "low": {
+          "opportunities": 1398,
+          "topRate": 0.1888412017167382,
+          "bottomRate": 0.17238912732474965,
+          "eitherRate": 0.33905579399141633,
+          "adjustedRate": -0.004210718782101764
+        }
+      },
+      "highMinusMiddle": 0.019313304721030045,
+      "middleMinusLow": -0.0021459227467811592,
+      "highMinusLow": 0.017167381974248885,
+      "adjustedHighMinusLow": 0.010882229283896948
+    },
+    {
+      "weekday": 2,
+      "label": "วันอังคาร",
+      "dates": 19,
+      "outcomes": 711,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 711,
+          "top": 151,
+          "bottom": 135,
+          "either": 255,
+          "topRate": 0.21237693389592124,
+          "bottomRate": 0.189873417721519,
+          "eitherRate": 0.35864978902953587,
+          "adjustedRate": 0.0012944090794804943
+        },
+        {
+          "rank": 2,
+          "opportunities": 711,
+          "top": 126,
+          "bottom": 140,
+          "either": 247,
+          "topRate": 0.17721518987341772,
+          "bottomRate": 0.19690576652601968,
+          "eitherRate": 0.34739803094233473,
+          "adjustedRate": -0.005581250808306785
+        },
+        {
+          "rank": 3,
+          "opportunities": 711,
+          "top": 139,
+          "bottom": 128,
+          "either": 248,
+          "topRate": 0.19549929676511954,
+          "bottomRate": 0.180028129395218,
+          "eitherRate": 0.3488045007032349,
+          "adjustedRate": -0.004160612253734883
+        },
+        {
+          "rank": 4,
+          "opportunities": 711,
+          "top": 145,
+          "bottom": 145,
+          "either": 270,
+          "topRate": 0.2039381153305204,
+          "bottomRate": 0.2039381153305204,
+          "eitherRate": 0.379746835443038,
+          "adjustedRate": 0.0277003043715465
+        },
+        {
+          "rank": 5,
+          "opportunities": 711,
+          "top": 144,
+          "bottom": 124,
+          "either": 247,
+          "topRate": 0.20253164556962025,
+          "bottomRate": 0.17440225035161744,
+          "eitherRate": 0.34739803094233473,
+          "adjustedRate": 0.0030357783000329935
+        },
+        {
+          "rank": 6,
+          "opportunities": 711,
+          "top": 137,
+          "bottom": 138,
+          "either": 253,
+          "topRate": 0.19268635724331926,
+          "bottomRate": 0.1940928270042194,
+          "eitherRate": 0.3558368495077356,
+          "adjustedRate": 0.009347616714297605
+        },
+        {
+          "rank": 7,
+          "opportunities": 711,
+          "top": 120,
+          "bottom": 141,
+          "either": 234,
+          "topRate": 0.16877637130801687,
+          "bottomRate": 0.19831223628691982,
+          "eitherRate": 0.3291139240506329,
+          "adjustedRate": -0.015825336078466
+        },
+        {
+          "rank": 8,
+          "opportunities": 711,
+          "top": 144,
+          "bottom": 142,
+          "either": 260,
+          "topRate": 0.20253164556962025,
+          "bottomRate": 0.19971870604781997,
+          "eitherRate": 0.3656821378340366,
+          "adjustedRate": 0.02206618665879483
+        },
+        {
+          "rank": 9,
+          "opportunities": 711,
+          "top": 129,
+          "bottom": 134,
+          "either": 240,
+          "topRate": 0.18143459915611815,
+          "bottomRate": 0.18846694796061886,
+          "eitherRate": 0.33755274261603374,
+          "adjustedRate": -0.0065228326547019455
+        },
+        {
+          "rank": 10,
+          "opportunities": 711,
+          "top": 118,
+          "bottom": 144,
+          "either": 243,
+          "topRate": 0.1659634317862166,
+          "bottomRate": 0.20253164556962025,
+          "eitherRate": 0.34177215189873417,
+          "adjustedRate": -0.00008123973241816622
+        }
+      ],
+      "primarySpearman": -0.030972525899136658,
+      "pooledSpearman": -0.4376919914496465,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 4,
+          "difference": 0.032348804500703265
+        },
+        "largestReversal": {
+          "afterRank": 7,
+          "difference": -0.03656821378340369
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 1422,
+          "topRate": 0.19479606188466947,
+          "bottomRate": 0.19338959212376933,
+          "eitherRate": 0.3530239099859353,
+          "adjustedRate": -0.0021434208644131453
+        },
+        "r3_4": {
+          "opportunities": 1422,
+          "topRate": 0.19971870604781997,
+          "bottomRate": 0.19198312236286919,
+          "eitherRate": 0.36427566807313644,
+          "adjustedRate": 0.011769846058905808
+        },
+        "r5_6": {
+          "opportunities": 1422,
+          "topRate": 0.19760900140646975,
+          "bottomRate": 0.18424753867791843,
+          "eitherRate": 0.35161744022503516,
+          "adjustedRate": 0.006191697507165299
+        },
+        "r7_8": {
+          "opportunities": 1422,
+          "topRate": 0.18565400843881857,
+          "bottomRate": 0.1990154711673699,
+          "eitherRate": 0.34739803094233473,
+          "adjustedRate": 0.0031204252901644147
+        },
+        "r9_10": {
+          "opportunities": 1422,
+          "topRate": 0.17369901547116737,
+          "bottomRate": 0.19549929676511954,
+          "eitherRate": 0.339662447257384,
+          "adjustedRate": -0.003302036193560056
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 1422,
+          "topRate": 0.19479606188466947,
+          "bottomRate": 0.19338959212376933,
+          "eitherRate": 0.3530239099859353,
+          "adjustedRate": -0.0021434208644131453
+        },
+        "middle": {
+          "opportunities": 1422,
+          "topRate": 0.19760900140646975,
+          "bottomRate": 0.18424753867791843,
+          "eitherRate": 0.35161744022503516,
+          "adjustedRate": 0.006191697507165299
+        },
+        "low": {
+          "opportunities": 1422,
+          "topRate": 0.17369901547116737,
+          "bottomRate": 0.19549929676511954,
+          "eitherRate": 0.339662447257384,
+          "adjustedRate": -0.003302036193560056
+        }
+      },
+      "highMinusMiddle": 0.001406469760900142,
+      "middleMinusLow": 0.011954992967651179,
+      "highMinusLow": 0.013361462728551321,
+      "adjustedHighMinusLow": 0.0011586153291469107
+    },
+    {
+      "weekday": 3,
+      "label": "วันพุธ",
+      "dates": 19,
+      "outcomes": 699,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 699,
+          "top": 139,
+          "bottom": 121,
+          "either": 239,
+          "topRate": 0.1988555078683834,
+          "bottomRate": 0.17310443490701002,
+          "eitherRate": 0.3419170243204578,
+          "adjustedRate": -0.01011777836747997
+        },
+        {
+          "rank": 2,
+          "opportunities": 699,
+          "top": 144,
+          "bottom": 121,
+          "either": 250,
+          "topRate": 0.20600858369098712,
+          "bottomRate": 0.17310443490701002,
+          "eitherRate": 0.35765379113018597,
+          "adjustedRate": 0.0058206309006804124
+        },
+        {
+          "rank": 3,
+          "opportunities": 699,
+          "top": 116,
+          "bottom": 135,
+          "either": 227,
+          "topRate": 0.1659513590844063,
+          "bottomRate": 0.19313304721030042,
+          "eitherRate": 0.32474964234620884,
+          "adjustedRate": -0.025807674042995086
+        },
+        {
+          "rank": 4,
+          "opportunities": 699,
+          "top": 149,
+          "bottom": 119,
+          "either": 245,
+          "topRate": 0.21316165951359084,
+          "bottomRate": 0.17024320457796852,
+          "eitherRate": 0.35050071530758226,
+          "adjustedRate": -0.0036661262157468627
+        },
+        {
+          "rank": 5,
+          "opportunities": 699,
+          "top": 131,
+          "bottom": 134,
+          "either": 248,
+          "topRate": 0.18741058655221746,
+          "bottomRate": 0.1917024320457797,
+          "eitherRate": 0.3547925608011445,
+          "adjustedRate": 0.0069176106576291745
+        },
+        {
+          "rank": 6,
+          "opportunities": 699,
+          "top": 132,
+          "bottom": 152,
+          "either": 264,
+          "topRate": 0.1888412017167382,
+          "bottomRate": 0.21745350500715308,
+          "eitherRate": 0.3776824034334764,
+          "adjustedRate": 0.03078586847342896
+        },
+        {
+          "rank": 7,
+          "opportunities": 699,
+          "top": 128,
+          "bottom": 141,
+          "either": 241,
+          "topRate": 0.18311874105865522,
+          "bottomRate": 0.2017167381974249,
+          "eitherRate": 0.3447782546494993,
+          "adjustedRate": -0.003097528733870719
+        },
+        {
+          "rank": 8,
+          "opportunities": 699,
+          "top": 128,
+          "bottom": 137,
+          "either": 237,
+          "topRate": 0.18311874105865522,
+          "bottomRate": 0.19599427753934193,
+          "eitherRate": 0.33905579399141633,
+          "adjustedRate": -0.001996915302918507
+        },
+        {
+          "rank": 9,
+          "opportunities": 699,
+          "top": 123,
+          "bottom": 151,
+          "either": 247,
+          "topRate": 0.1759656652360515,
+          "bottomRate": 0.21602288984263232,
+          "eitherRate": 0.35336194563662376,
+          "adjustedRate": 0.003985026125820308
+        },
+        {
+          "rank": 10,
+          "opportunities": 699,
+          "top": 134,
+          "bottom": 138,
+          "either": 255,
+          "topRate": 0.1917024320457797,
+          "bottomRate": 0.19742489270386265,
+          "eitherRate": 0.3648068669527897,
+          "adjustedRate": 0.023387804980050133
+        }
+      ],
+      "primarySpearman": 0.12446659440025677,
+      "pooledSpearman": 0.2727272727272727,
+      "adjacent": {
+        "decreases": 3,
+        "ties": 0,
+        "reversals": 6,
+        "largestExpected": {
+          "afterRank": 2,
+          "difference": 0.03290414878397713
+        },
+        "largestReversal": {
+          "afterRank": 3,
+          "difference": -0.02575107296137341
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 1398,
+          "topRate": 0.20243204577968527,
+          "bottomRate": 0.17310443490701002,
+          "eitherRate": 0.3497854077253219,
+          "adjustedRate": -0.0021485737333997784
+        },
+        "r3_4": {
+          "opportunities": 1398,
+          "topRate": 0.18955650929899856,
+          "bottomRate": 0.18168812589413447,
+          "eitherRate": 0.3376251788268956,
+          "adjustedRate": -0.014736900129370975
+        },
+        "r5_6": {
+          "opportunities": 1398,
+          "topRate": 0.18812589413447783,
+          "bottomRate": 0.20457796852646637,
+          "eitherRate": 0.36623748211731044,
+          "adjustedRate": 0.018851739565529067
+        },
+        "r7_8": {
+          "opportunities": 1398,
+          "topRate": 0.18311874105865522,
+          "bottomRate": 0.1988555078683834,
+          "eitherRate": 0.3419170243204578,
+          "adjustedRate": -0.002547222018394613
+        },
+        "r9_10": {
+          "opportunities": 1398,
+          "topRate": 0.1838340486409156,
+          "bottomRate": 0.2067238912732475,
+          "eitherRate": 0.3590844062947067,
+          "adjustedRate": 0.01368641555293522
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 1398,
+          "topRate": 0.20243204577968527,
+          "bottomRate": 0.17310443490701002,
+          "eitherRate": 0.3497854077253219,
+          "adjustedRate": -0.0021485737333997784
+        },
+        "middle": {
+          "opportunities": 1398,
+          "topRate": 0.18812589413447783,
+          "bottomRate": 0.20457796852646637,
+          "eitherRate": 0.36623748211731044,
+          "adjustedRate": 0.018851739565529067
+        },
+        "low": {
+          "opportunities": 1398,
+          "topRate": 0.1838340486409156,
+          "bottomRate": 0.2067238912732475,
+          "eitherRate": 0.3590844062947067,
+          "adjustedRate": 0.01368641555293522
+        }
+      },
+      "highMinusMiddle": -0.016452074391988536,
+      "middleMinusLow": 0.007153075822603716,
+      "highMinusLow": -0.00929899856938482,
+      "adjustedHighMinusLow": -0.015834989286334998
+    },
+    {
+      "weekday": 4,
+      "label": "วันพฤหัสบดี",
+      "dates": 20,
+      "outcomes": 717,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 717,
+          "top": 139,
+          "bottom": 127,
+          "either": 243,
+          "topRate": 0.19386331938633194,
+          "bottomRate": 0.17712691771269176,
+          "eitherRate": 0.3389121338912134,
+          "adjustedRate": -0.012566286896174316
+        },
+        {
+          "rank": 2,
+          "opportunities": 717,
+          "top": 146,
+          "bottom": 120,
+          "either": 240,
+          "topRate": 0.20362622036262204,
+          "bottomRate": 0.16736401673640167,
+          "eitherRate": 0.33472803347280333,
+          "adjustedRate": -0.014850997066474095
+        },
+        {
+          "rank": 3,
+          "opportunities": 717,
+          "top": 161,
+          "bottom": 128,
+          "either": 270,
+          "topRate": 0.22454672245467225,
+          "bottomRate": 0.17852161785216178,
+          "eitherRate": 0.37656903765690375,
+          "adjustedRate": 0.02541147450652382
+        },
+        {
+          "rank": 4,
+          "opportunities": 717,
+          "top": 121,
+          "bottom": 156,
+          "either": 260,
+          "topRate": 0.16875871687587168,
+          "bottomRate": 0.2175732217573222,
+          "eitherRate": 0.36262203626220363,
+          "adjustedRate": 0.014703923796127678
+        },
+        {
+          "rank": 5,
+          "opportunities": 717,
+          "top": 134,
+          "bottom": 132,
+          "either": 243,
+          "topRate": 0.18688981868898186,
+          "bottomRate": 0.18410041841004185,
+          "eitherRate": 0.3389121338912134,
+          "adjustedRate": -0.01201073208091386
+        },
+        {
+          "rank": 6,
+          "opportunities": 717,
+          "top": 146,
+          "bottom": 142,
+          "either": 265,
+          "topRate": 0.20362622036262204,
+          "bottomRate": 0.19804741980474197,
+          "eitherRate": 0.3695955369595537,
+          "adjustedRate": 0.023159800837937106
+        },
+        {
+          "rank": 7,
+          "opportunities": 717,
+          "top": 127,
+          "bottom": 142,
+          "either": 243,
+          "topRate": 0.17712691771269176,
+          "bottomRate": 0.19804741980474197,
+          "eitherRate": 0.3389121338912134,
+          "adjustedRate": -0.012839186793537034
+        },
+        {
+          "rank": 8,
+          "opportunities": 717,
+          "top": 133,
+          "bottom": 142,
+          "either": 253,
+          "topRate": 0.18549511854951187,
+          "bottomRate": 0.19804741980474197,
+          "eitherRate": 0.3528591352859135,
+          "adjustedRate": 0.009833365250054366
+        },
+        {
+          "rank": 9,
+          "opportunities": 717,
+          "top": 119,
+          "bottom": 121,
+          "either": 222,
+          "topRate": 0.16596931659693165,
+          "bottomRate": 0.16875871687587168,
+          "eitherRate": 0.30962343096234307,
+          "adjustedRate": -0.029947589247928598
+        },
+        {
+          "rank": 10,
+          "opportunities": 717,
+          "top": 142,
+          "bottom": 148,
+          "either": 265,
+          "topRate": 0.19804741980474197,
+          "bottomRate": 0.20641562064156208,
+          "eitherRate": 0.3695955369595537,
+          "adjustedRate": 0.029681960341984774
+        }
+      ],
+      "primarySpearman": -0.03269014258080076,
+      "pooledSpearman": 0.05539117094069973,
+      "adjacent": {
+        "decreases": 5,
+        "ties": 0,
+        "reversals": 4,
+        "largestExpected": {
+          "afterRank": 8,
+          "difference": 0.043235704323570434
+        },
+        "largestReversal": {
+          "afterRank": 9,
+          "difference": -0.059972105997210645
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 1434,
+          "topRate": 0.19874476987447698,
+          "bottomRate": 0.17224546722454673,
+          "eitherRate": 0.3368200836820084,
+          "adjustedRate": -0.013708641981324206
+        },
+        "r3_4": {
+          "opportunities": 1434,
+          "topRate": 0.19665271966527198,
+          "bottomRate": 0.19804741980474197,
+          "eitherRate": 0.3695955369595537,
+          "adjustedRate": 0.02005769915132575
+        },
+        "r5_6": {
+          "opportunities": 1434,
+          "topRate": 0.19525801952580196,
+          "bottomRate": 0.1910739191073919,
+          "eitherRate": 0.3542538354253835,
+          "adjustedRate": 0.005574534378511623
+        },
+        "r7_8": {
+          "opportunities": 1434,
+          "topRate": 0.18131101813110181,
+          "bottomRate": 0.19804741980474197,
+          "eitherRate": 0.3458856345885635,
+          "adjustedRate": -0.0015029107717413337
+        },
+        "r9_10": {
+          "opportunities": 1434,
+          "topRate": 0.18200836820083682,
+          "bottomRate": 0.18758716875871687,
+          "eitherRate": 0.3396094839609484,
+          "adjustedRate": -0.0001328144529719119
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 1434,
+          "topRate": 0.19874476987447698,
+          "bottomRate": 0.17224546722454673,
+          "eitherRate": 0.3368200836820084,
+          "adjustedRate": -0.013708641981324206
+        },
+        "middle": {
+          "opportunities": 1434,
+          "topRate": 0.19525801952580196,
+          "bottomRate": 0.1910739191073919,
+          "eitherRate": 0.3542538354253835,
+          "adjustedRate": 0.005574534378511623
+        },
+        "low": {
+          "opportunities": 1434,
+          "topRate": 0.18200836820083682,
+          "bottomRate": 0.18758716875871687,
+          "eitherRate": 0.3396094839609484,
+          "adjustedRate": -0.0001328144529719119
+        }
+      },
+      "highMinusMiddle": -0.017433751743375137,
+      "middleMinusLow": 0.014644351464435101,
+      "highMinusLow": -0.002789400278940035,
+      "adjustedHighMinusLow": -0.013575827528352295
+    },
+    {
+      "weekday": 5,
+      "label": "วันศุกร์",
+      "dates": 19,
+      "outcomes": 705,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 705,
+          "top": 132,
+          "bottom": 146,
+          "either": 261,
+          "topRate": 0.18723404255319148,
+          "bottomRate": 0.20709219858156028,
+          "eitherRate": 0.3702127659574468,
+          "adjustedRate": 0.01241243426530296
+        },
+        {
+          "rank": 2,
+          "opportunities": 705,
+          "top": 162,
+          "bottom": 136,
+          "either": 271,
+          "topRate": 0.2297872340425532,
+          "bottomRate": 0.19290780141843972,
+          "eitherRate": 0.3843971631205674,
+          "adjustedRate": 0.03711370860113892
+        },
+        {
+          "rank": 3,
+          "opportunities": 705,
+          "top": 130,
+          "bottom": 141,
+          "either": 246,
+          "topRate": 0.18439716312056736,
+          "bottomRate": 0.2,
+          "eitherRate": 0.34893617021276596,
+          "adjustedRate": 0.005578659084337055
+        },
+        {
+          "rank": 4,
+          "opportunities": 705,
+          "top": 134,
+          "bottom": 137,
+          "either": 248,
+          "topRate": 0.1900709219858156,
+          "bottomRate": 0.19432624113475178,
+          "eitherRate": 0.3517730496453901,
+          "adjustedRate": 0.010719677818538017
+        },
+        {
+          "rank": 5,
+          "opportunities": 705,
+          "top": 118,
+          "bottom": 131,
+          "either": 231,
+          "topRate": 0.1673758865248227,
+          "bottomRate": 0.18581560283687942,
+          "eitherRate": 0.3276595744680851,
+          "adjustedRate": -0.015508833120349766
+        },
+        {
+          "rank": 6,
+          "opportunities": 705,
+          "top": 138,
+          "bottom": 129,
+          "either": 242,
+          "topRate": 0.19574468085106383,
+          "bottomRate": 0.1829787234042553,
+          "eitherRate": 0.3432624113475177,
+          "adjustedRate": -0.009192827740017694
+        },
+        {
+          "rank": 7,
+          "opportunities": 705,
+          "top": 138,
+          "bottom": 141,
+          "either": 254,
+          "topRate": 0.19574468085106383,
+          "bottomRate": 0.2,
+          "eitherRate": 0.36028368794326243,
+          "adjustedRate": 0.00905632356449603
+        },
+        {
+          "rank": 8,
+          "opportunities": 705,
+          "top": 136,
+          "bottom": 137,
+          "either": 259,
+          "topRate": 0.19290780141843972,
+          "bottomRate": 0.19432624113475178,
+          "eitherRate": 0.36737588652482267,
+          "adjustedRate": 0.020308425830396562
+        },
+        {
+          "rank": 9,
+          "opportunities": 705,
+          "top": 134,
+          "bottom": 121,
+          "either": 234,
+          "topRate": 0.1900709219858156,
+          "bottomRate": 0.17163120567375886,
+          "eitherRate": 0.33191489361702126,
+          "adjustedRate": -0.011687320895755634
+        },
+        {
+          "rank": 10,
+          "opportunities": 705,
+          "top": 122,
+          "bottom": 125,
+          "either": 232,
+          "topRate": 0.17304964539007092,
+          "bottomRate": 0.1773049645390071,
+          "eitherRate": 0.32907801418439714,
+          "adjustedRate": -0.01925999241635472
+        }
+      ],
+      "primarySpearman": -0.1579143341920034,
+      "pooledSpearman": -0.5515151515151515,
+      "adjacent": {
+        "decreases": 4,
+        "ties": 0,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 2,
+          "difference": 0.035460992907801414
+        },
+        "largestReversal": {
+          "afterRank": 6,
+          "difference": -0.017021276595744705
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 1410,
+          "topRate": 0.20851063829787234,
+          "bottomRate": 0.2,
+          "eitherRate": 0.3773049645390071,
+          "adjustedRate": 0.02476307143322094
+        },
+        "r3_4": {
+          "opportunities": 1410,
+          "topRate": 0.18723404255319148,
+          "bottomRate": 0.1971631205673759,
+          "eitherRate": 0.350354609929078,
+          "adjustedRate": 0.008149168451437537
+        },
+        "r5_6": {
+          "opportunities": 1410,
+          "topRate": 0.18156028368794327,
+          "bottomRate": 0.18439716312056736,
+          "eitherRate": 0.3354609929078014,
+          "adjustedRate": -0.012350830430183729
+        },
+        "r7_8": {
+          "opportunities": 1410,
+          "topRate": 0.19432624113475178,
+          "bottomRate": 0.1971631205673759,
+          "eitherRate": 0.3638297872340426,
+          "adjustedRate": 0.014682374697446297
+        },
+        "r9_10": {
+          "opportunities": 1410,
+          "topRate": 0.18156028368794327,
+          "bottomRate": 0.17446808510638298,
+          "eitherRate": 0.3304964539007092,
+          "adjustedRate": -0.015473656656055178
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 1410,
+          "topRate": 0.20851063829787234,
+          "bottomRate": 0.2,
+          "eitherRate": 0.3773049645390071,
+          "adjustedRate": 0.02476307143322094
+        },
+        "middle": {
+          "opportunities": 1410,
+          "topRate": 0.18156028368794327,
+          "bottomRate": 0.18439716312056736,
+          "eitherRate": 0.3354609929078014,
+          "adjustedRate": -0.012350830430183729
+        },
+        "low": {
+          "opportunities": 1410,
+          "topRate": 0.18156028368794327,
+          "bottomRate": 0.17446808510638298,
+          "eitherRate": 0.3304964539007092,
+          "adjustedRate": -0.015473656656055178
+        }
+      },
+      "highMinusMiddle": 0.04184397163120568,
+      "middleMinusLow": 0.004964539007092206,
+      "highMinusLow": 0.046808510638297884,
+      "adjustedHighMinusLow": 0.040236728089276114
+    },
+    {
+      "weekday": 6,
+      "label": "วันเสาร์",
+      "dates": 14,
+      "outcomes": 444,
+      "ranks": [
+        {
+          "rank": 1,
+          "opportunities": 444,
+          "top": 81,
+          "bottom": 79,
+          "either": 148,
+          "topRate": 0.18243243243243243,
+          "bottomRate": 0.17792792792792791,
+          "eitherRate": 0.3333333333333333,
+          "adjustedRate": -0.01850793243080426
+        },
+        {
+          "rank": 2,
+          "opportunities": 444,
+          "top": 97,
+          "bottom": 81,
+          "either": 168,
+          "topRate": 0.21846846846846846,
+          "bottomRate": 0.18243243243243243,
+          "eitherRate": 0.3783783783783784,
+          "adjustedRate": 0.02574851705109875
+        },
+        {
+          "rank": 3,
+          "opportunities": 444,
+          "top": 89,
+          "bottom": 71,
+          "either": 149,
+          "topRate": 0.20045045045045046,
+          "bottomRate": 0.15990990990990991,
+          "eitherRate": 0.3355855855855856,
+          "adjustedRate": -0.01414223270278693
+        },
+        {
+          "rank": 4,
+          "opportunities": 444,
+          "top": 80,
+          "bottom": 86,
+          "either": 151,
+          "topRate": 0.18018018018018017,
+          "bottomRate": 0.19369369369369369,
+          "eitherRate": 0.3400900900900901,
+          "adjustedRate": -0.012457836969232493
+        },
+        {
+          "rank": 5,
+          "opportunities": 444,
+          "top": 86,
+          "bottom": 87,
+          "either": 156,
+          "topRate": 0.19369369369369369,
+          "bottomRate": 0.19594594594594594,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.000543862376562983
+        },
+        {
+          "rank": 6,
+          "opportunities": 444,
+          "top": 85,
+          "bottom": 85,
+          "either": 156,
+          "topRate": 0.19144144144144143,
+          "bottomRate": 0.19144144144144143,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.002068156169708899
+        },
+        {
+          "rank": 7,
+          "opportunities": 444,
+          "top": 92,
+          "bottom": 83,
+          "either": 162,
+          "topRate": 0.2072072072072072,
+          "bottomRate": 0.18693693693693694,
+          "eitherRate": 0.36486486486486486,
+          "adjustedRate": 0.017569082737255638
+        },
+        {
+          "rank": 8,
+          "opportunities": 444,
+          "top": 76,
+          "bottom": 80,
+          "either": 149,
+          "topRate": 0.17117117117117117,
+          "bottomRate": 0.18018018018018017,
+          "eitherRate": 0.3355855855855856,
+          "adjustedRate": -0.01568994944569422
+        },
+        {
+          "rank": 9,
+          "opportunities": 444,
+          "top": 80,
+          "bottom": 105,
+          "either": 170,
+          "topRate": 0.18018018018018017,
+          "bottomRate": 0.23648648648648649,
+          "eitherRate": 0.38288288288288286,
+          "adjustedRate": 0.03814819855085079
+        },
+        {
+          "rank": 10,
+          "opportunities": 444,
+          "top": 80,
+          "bottom": 90,
+          "either": 156,
+          "topRate": 0.18018018018018017,
+          "bottomRate": 0.20270270270270271,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": 0.00816757368660003
+        }
+      ],
+      "primarySpearman": 0.0708346456454156,
+      "pooledSpearman": 0.3938927711338647,
+      "adjacent": {
+        "decreases": 3,
+        "ties": 1,
+        "reversals": 5,
+        "largestExpected": {
+          "afterRank": 2,
+          "difference": 0.0427927927927928
+        },
+        "largestReversal": {
+          "afterRank": 8,
+          "difference": -0.04729729729729726
+        }
+      },
+      "bands": {
+        "r1_2": {
+          "opportunities": 888,
+          "topRate": 0.20045045045045046,
+          "bottomRate": 0.18018018018018017,
+          "eitherRate": 0.35585585585585583,
+          "adjustedRate": 0.0036202923101472436
+        },
+        "r3_4": {
+          "opportunities": 888,
+          "topRate": 0.19031531531531531,
+          "bottomRate": 0.1768018018018018,
+          "eitherRate": 0.33783783783783783,
+          "adjustedRate": -0.013300034836009712
+        },
+        "r5_6": {
+          "opportunities": 888,
+          "topRate": 0.19256756756756757,
+          "bottomRate": 0.19369369369369369,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.001306009273135941
+        },
+        "r7_8": {
+          "opportunities": 888,
+          "topRate": 0.1891891891891892,
+          "bottomRate": 0.18355855855855857,
+          "eitherRate": 0.3502252252252252,
+          "adjustedRate": 0.0009395666457807095
+        },
+        "r9_10": {
+          "opportunities": 888,
+          "topRate": 0.18018018018018017,
+          "bottomRate": 0.2195945945945946,
+          "eitherRate": 0.36711711711711714,
+          "adjustedRate": 0.02315788611872541
+        }
+      },
+      "groups": {
+        "high": {
+          "opportunities": 888,
+          "topRate": 0.20045045045045046,
+          "bottomRate": 0.18018018018018017,
+          "eitherRate": 0.35585585585585583,
+          "adjustedRate": 0.0036202923101472436
+        },
+        "middle": {
+          "opportunities": 888,
+          "topRate": 0.19256756756756757,
+          "bottomRate": 0.19369369369369369,
+          "eitherRate": 0.35135135135135137,
+          "adjustedRate": -0.001306009273135941
+        },
+        "low": {
+          "opportunities": 888,
+          "topRate": 0.18018018018018017,
+          "bottomRate": 0.2195945945945946,
+          "eitherRate": 0.36711711711711714,
+          "adjustedRate": 0.02315788611872541
+        }
+      },
+      "highMinusMiddle": 0.0045045045045044585,
+      "middleMinusLow": -0.01576576576576577,
+      "highMinusLow": -0.011261261261261313,
+      "adjustedHighMinusLow": -0.01953759380857817
+    }
+  ],
+  "lotterySummary": {
+    "minimumOutcomes": 30,
+    "eligible": 46,
+    "positive": 26,
+    "zero": 0,
+    "negative": 20,
+    "median": 0.005681818181818182,
+    "lowest": [
+      {
+        "lotteryId": "laosantipap",
+        "name": "ลาวสันติภาพ",
+        "outcomes": 99,
+        "highMinusLow": -0.09090909090909091
+      },
+      {
+        "lotteryId": "set",
+        "name": "หุ้นไทยเย็น",
+        "outcomes": 93,
+        "highMinusLow": -0.08064516129032258
+      },
+      {
+        "lotteryId": "szse-vip-afternoon",
+        "name": "หุ้นจีน VIP บ่าย",
+        "outcomes": 100,
+        "highMinusLow": -0.06
+      },
+      {
+        "lotteryId": "nikkei-vip-morning",
+        "name": "หุ้นนิคเคอิ VIP เช้า",
+        "outcomes": 98,
+        "highMinusLow": -0.05612244897959184
+      },
+      {
+        "lotteryId": "laocitizen",
+        "name": "ประชาชนลาว",
+        "outcomes": 98,
+        "highMinusLow": -0.05612244897959184
+      }
+    ],
+    "highest": [
+      {
+        "lotteryId": "laoshd",
+        "name": "ลาว HD",
+        "outcomes": 100,
+        "highMinusLow": 0.145
+      },
+      {
+        "lotteryId": "szse-morning",
+        "name": "หุ้นจีนเช้า",
+        "outcomes": 91,
+        "highMinusLow": 0.09340659340659341
+      },
+      {
+        "lotteryId": "nikkei-afternoon",
+        "name": "หุ้นนิคเคอิบ่าย",
+        "outcomes": 92,
+        "highMinusLow": 0.07608695652173914
+      },
+      {
+        "lotteryId": "laounionvip",
+        "name": "ลาวสามัคคี VIP",
+        "outcomes": 100,
+        "highMinusLow": 0.07
+      },
+      {
+        "lotteryId": "nikkei-morning",
+        "name": "หุ้นนิคเคอิเช้า",
+        "outcomes": 89,
+        "highMinusLow": 0.06179775280898876
+      }
+    ]
+  },
+  "lotteries": [
+    {
+      "lotteryId": "nikkei-vip-morning",
+      "name": "หุ้นนิคเคอิ VIP เช้า",
+      "outcomes": 98,
+      "highMinusLow": -0.05612244897959184
+    },
+    {
+      "lotteryId": "hanoiasean",
+      "name": "ฮานอยอาเซียน",
+      "outcomes": 98,
+      "highMinusLow": 0.025510204081632654
+    },
+    {
+      "lotteryId": "nikkei-morning",
+      "name": "หุ้นนิคเคอิเช้า",
+      "outcomes": 89,
+      "highMinusLow": 0.06179775280898876
+    },
+    {
+      "lotteryId": "szse-vip-morning",
+      "name": "หุ้นจีน VIP เช้า",
+      "outcomes": 98,
+      "highMinusLow": 0.01020408163265306
+    },
+    {
+      "lotteryId": "szse-morning",
+      "name": "หุ้นจีนเช้า",
+      "outcomes": 91,
+      "highMinusLow": 0.09340659340659341
+    },
+    {
+      "lotteryId": "laotv",
+      "name": "ลาวทีวี",
+      "outcomes": 98,
+      "highMinusLow": 0.00510204081632653
+    },
+    {
+      "lotteryId": "hsi-vip-morning",
+      "name": "หุ้นฮั่งเส็ง VIP เช้า",
+      "outcomes": 93,
+      "highMinusLow": 0.053763440860215055
+    },
+    {
+      "lotteryId": "hsi-morning",
+      "name": "หุ้นฮั่งเส็งเช้า",
+      "outcomes": 88,
+      "highMinusLow": 0.005681818181818182
+    },
+    {
+      "lotteryId": "xosohd",
+      "name": "ฮานอย HD",
+      "outcomes": 100,
+      "highMinusLow": 0.01
+    },
+    {
+      "lotteryId": "twse-vip",
+      "name": "หุ้นไต้หวัน VIP",
+      "outcomes": 100,
+      "highMinusLow": 0.05
+    },
+    {
+      "lotteryId": "minhngocstar",
+      "name": "ฮานอยสตาร์",
+      "outcomes": 100,
+      "highMinusLow": -0.02
+    },
+    {
+      "lotteryId": "twse",
+      "name": "หุ้นไต้หวัน",
+      "outcomes": 82,
+      "highMinusLow": 0.036585365853658534
+    },
+    {
+      "lotteryId": "ktop30-vip",
+      "name": "หุ้นเกาหลี VIP",
+      "outcomes": 100,
+      "highMinusLow": -0.02
+    },
+    {
+      "lotteryId": "ktop30",
+      "name": "หุ้นเกาหลี",
+      "outcomes": 91,
+      "highMinusLow": 0.038461538461538464
+    },
+    {
+      "lotteryId": "nikkei-afternoon",
+      "name": "หุ้นนิคเคอิบ่าย",
+      "outcomes": 92,
+      "highMinusLow": 0.07608695652173914
+    },
+    {
+      "lotteryId": "nikkei-vip-afternoon",
+      "name": "หุ้นนิคเคอิ VIP บ่าย",
+      "outcomes": 100,
+      "highMinusLow": -0.01
+    },
+    {
+      "lotteryId": "laoshd",
+      "name": "ลาว HD",
+      "outcomes": 100,
+      "highMinusLow": 0.145
+    },
+    {
+      "lotteryId": "szse-afternoon",
+      "name": "หุ้นจีนบ่าย",
+      "outcomes": 91,
+      "highMinusLow": -0.054945054945054944
+    },
+    {
+      "lotteryId": "minhngoctv",
+      "name": "ฮานอยทีวี",
+      "outcomes": 100,
+      "highMinusLow": 0.045
+    },
+    {
+      "lotteryId": "szse-vip-afternoon",
+      "name": "หุ้นจีน VIP บ่าย",
+      "outcomes": 100,
+      "highMinusLow": -0.06
+    },
+    {
+      "lotteryId": "hsi-vip-afternoon",
+      "name": "หุ้นฮั่งเส็ง VIP บ่าย",
+      "outcomes": 93,
+      "highMinusLow": 0.043010752688172046
+    },
+    {
+      "lotteryId": "hsi-afternoon",
+      "name": "หุ้นฮั่งเส็งบ่าย",
+      "outcomes": 88,
+      "highMinusLow": 0.005681818181818182
+    },
+    {
+      "lotteryId": "laostars",
+      "name": "ลาวสตาร์",
+      "outcomes": 98,
+      "highMinusLow": 0.04081632653061224
+    },
+    {
+      "lotteryId": "sgx",
+      "name": "หุ้นสิงคโปร์",
+      "outcomes": 88,
+      "highMinusLow": -0.045454545454545456
+    },
+    {
+      "lotteryId": "xosoredcross",
+      "name": "ฮานอยกาชาด",
+      "outcomes": 100,
+      "highMinusLow": 0.045
+    },
+    {
+      "lotteryId": "set",
+      "name": "หุ้นไทยเย็น",
+      "outcomes": 93,
+      "highMinusLow": -0.08064516129032258
+    },
+    {
+      "lotteryId": "sgx-vip",
+      "name": "หุ้นสิงคโปร์ VIP",
+      "outcomes": 98,
+      "highMinusLow": -0.025510204081632654
+    },
+    {
+      "lotteryId": "laounion",
+      "name": "ลาวสามัคคี",
+      "outcomes": 100,
+      "highMinusLow": 0.05
+    },
+    {
+      "lotteryId": "laosasean",
+      "name": "ลาวอาเซียน",
+      "outcomes": 100,
+      "highMinusLow": 0.015
+    },
+    {
+      "lotteryId": "laosvip",
+      "name": "ลาว VIP",
+      "outcomes": 98,
+      "highMinusLow": -0.00510204081632653
+    },
+    {
+      "lotteryId": "laounionvip",
+      "name": "ลาวสามัคคี VIP",
+      "outcomes": 100,
+      "highMinusLow": 0.07
+    },
+    {
+      "lotteryId": "laostarsvip",
+      "name": "ลาวสตาร์ VIP",
+      "outcomes": 100,
+      "highMinusLow": -0.015
+    },
+    {
+      "lotteryId": "england-vip",
+      "name": "อังกฤษ VIP",
+      "outcomes": 100,
+      "highMinusLow": 0.005
+    },
+    {
+      "lotteryId": "moexbc",
+      "name": "หุ้นรัสเซีย",
+      "outcomes": 87,
+      "highMinusLow": -0.017241379310344827
+    },
+    {
+      "lotteryId": "xosoextra",
+      "name": "ฮานอย Extra",
+      "outcomes": 98,
+      "highMinusLow": 0.05612244897959184
+    },
+    {
+      "lotteryId": "gdaxi",
+      "name": "หุ้นเยอรมัน",
+      "outcomes": 93,
+      "highMinusLow": -0.010752688172043012
+    },
+    {
+      "lotteryId": "ftse100",
+      "name": "หุ้นอังกฤษ",
+      "outcomes": 91,
+      "highMinusLow": 0.054945054945054944
+    },
+    {
+      "lotteryId": "germany-vip",
+      "name": "เยอรมัน VIP",
+      "outcomes": 98,
+      "highMinusLow": -0.025510204081632654
+    },
+    {
+      "lotteryId": "laoredcross",
+      "name": "ลาวกาชาด",
+      "outcomes": 99,
+      "highMinusLow": -0.015151515151515152
+    },
+    {
+      "lotteryId": "russia-vip",
+      "name": "รัสเซีย VIP",
+      "outcomes": 99,
+      "highMinusLow": -0.03535353535353535
+    },
+    {
+      "lotteryId": "dowjones-vip",
+      "name": "ดาวโจนส์ VIP",
+      "outcomes": 99,
+      "highMinusLow": -0.005050505050505051
+    },
+    {
+      "lotteryId": "dowjonestar",
+      "name": "ดาวโจนส์สตาร์",
+      "outcomes": 98,
+      "highMinusLow": -0.01020408163265306
+    },
+    {
+      "lotteryId": "dji",
+      "name": "หุ้นดาวโจนส์",
+      "outcomes": 90,
+      "highMinusLow": 0.027777777777777776
+    },
+    {
+      "lotteryId": "laocitizen",
+      "name": "ประชาชนลาว",
+      "outcomes": 98,
+      "highMinusLow": -0.05612244897959184
+    },
+    {
+      "lotteryId": "laosantipap",
+      "name": "ลาวสันติภาพ",
+      "outcomes": 99,
+      "highMinusLow": -0.09090909090909091
+    },
+    {
+      "lotteryId": "laopatuxay",
+      "name": "ลาวประตูชัย",
+      "outcomes": 97,
+      "highMinusLow": 0.03608247422680412
+    }
+  ],
+  "interpretation": "RAW_GRADIENT_MAINLY_EXPLAINED_BY_DIGIT_IDENTITY",
+  "uxImplication": "NOT SUPPORTED"
+}
