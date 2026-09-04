@@ -8,6 +8,8 @@ export const LotteryDrawSchema = z.object({
   sourceUrl: z.string().url().optional(),
   source: z.enum(["current-result", "historical-table"]).optional(),
   completeness: z.enum(["complete", "partial"]).optional(),
+  providerResultStatus: z.enum(["normal", "suspended", "unknown"]).optional(),
+  providerStatusRaw: z.string().optional(),
 });
 export type LotteryDraw = z.infer<typeof LotteryDrawSchema>;
 export type CanonicalLotteryDraw = LotteryDraw & {
@@ -16,9 +18,10 @@ export type CanonicalLotteryDraw = LotteryDraw & {
 };
 export type LotteryCapabilities = { top3: boolean; top2: boolean; bottom2: boolean };
 export type LotteryNormalizationRules = { deriveTop2FromTop3: boolean };
+export type ProviderResultStatus = "normal" | "suspended" | "unknown";
 export type LotteryDefinition = { id: string; name: string; slug: string; category: string; sourceUrl: string; isActive?: boolean; capabilities?: LotteryCapabilities; normalizationRules?: LotteryNormalizationRules };
 export interface LotteryDataSource {
   getLotteries(): Promise<LotteryDefinition[]>;
   getHistory(lotteryId: string, options?: { limit?: number }): Promise<LotteryDraw[]>;
 }
-export type CanonicalHistoryResult = { draws: LotteryDraw[]; currentSourceResultDate: string | null; conflicts: number; template: "hero+history" | "history-only" | "partial-hero" | "unsupported-template" };
+export type CanonicalHistoryResult = { draws: LotteryDraw[]; currentSourceResultDate: string | null; conflicts: number; template: "hero+history" | "history-only" | "partial-hero" | "unsupported-template"; providerResultStatus?: ProviderResultStatus; providerStatusRaw?: string };

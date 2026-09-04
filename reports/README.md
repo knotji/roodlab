@@ -2,6 +2,9 @@
 
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
+- [All-lottery operational sync report — 2026-09-04](all-lottery-sync-2026-09-04.md)
+  Dynamic canonical-catalog sync, storage quality, idempotency, and target-date eligibility evidence; not a performance study.
+
 - [Global production rank-gradient audit — 2026-09-04](global-rank-gradient-audit-2026-09-04.md)
   Full rank 1–10 ordinal diagnostic with a prior-only digit-identity adjustment; no alternative strategy is evaluated.
 

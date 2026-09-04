@@ -34,6 +34,14 @@ export type GlobalWeekdayWinResult = {
   sourcePoolCount: number;
   scoreDistribution: GlobalScoreDistribution;
   frequentPairs: GlobalWeekdayFrequentPair[];
+  eligibility?: {
+    totalCatalog: number;
+    historiesAvailable: number;
+    eligible: number;
+    excluded: number;
+    exclusionReasons: Record<string, number>;
+    latestSyncTimestamp: string | null;
+  };
 };
 
 type GlobalWinSource = { lotteryId: string; draws: LotteryDraw[] };

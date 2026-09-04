@@ -23,6 +23,7 @@
     "audit:global-correlation": "tsx scripts/audit-global-lottery-correlation.mts",
     "audit:global-source-families": "tsx scripts/audit-global-source-family-redundancy.mts",
     "sync:backfill": "tsx scripts/backfill-history.mts",
+    "sync:all-lotteries": "tsx scripts/sync-all-lotteries.mts",
     "storage:migrate": "tsx scripts/migrate-storage.mts",
     "storage:import": "tsx scripts/import-storage.mts"
   },

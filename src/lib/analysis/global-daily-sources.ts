@@ -1,3 +1,4 @@
+/** @deprecated Frozen research compatibility only. Production resolves the canonical catalog dynamically. */
 export const GLOBAL_DAILY_SOURCE_IDS = [
   "nikkei-vip-morning", "hanoiasean", "nikkei-morning", "szse-vip-morning", "szse-morning", "laotv",
   "hsi-vip-morning", "hsi-morning", "xosohd", "twse-vip", "minhngocstar", "twse",

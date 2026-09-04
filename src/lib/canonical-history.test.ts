@@ -147,6 +147,14 @@ describe("canonical history contract", () => {
     ).toMatchObject({ ok: false, outcome: "validation-failure" });
     expect(current.historyVersion).toBe(computeHistoryVersion("demo", old));
   });
+  it("accepts suspended provenance without losing last-known-good history and is idempotent", () => {
+    const complete = canonical().slice(0, 1), suspended = { id: "demo-2026-08-27", lotteryId: "demo", drawDate: "2026-08-27", source: "current-result" as const, completeness: "partial" as const, providerResultStatus: "suspended" as const, providerStatusRaw: "งด" }, incoming = { draws: [suspended, ...complete], currentSourceResultDate: "2026-08-27", conflicts: 0, template: "partial-hero" as const, providerResultStatus: "suspended" as const, providerStatusRaw: "งด" };
+    const first = validateCanonicalSync(snapshot(complete), incoming);
+    expect(first).toMatchObject({ ok: true, outcome: "updated", addedDraws: 1 });
+    if (!first.ok) throw new Error("expected valid suspended merge");
+    expect(first.draws.find((item) => item.completeness === "complete")?.drawDate).toBe("2026-08-26");
+    expect(validateCanonicalSync(snapshot(first.draws), incoming)).toMatchObject({ ok: true, outcome: "unchanged", addedDraws: 0 });
+  });
   it("keeps walk-forward training strictly before the hero evaluation date", async () => {
     const { backtest } = await import("./analysis/backtest");
     const draws = Array.from({ length: 31 }, (_, i) => {

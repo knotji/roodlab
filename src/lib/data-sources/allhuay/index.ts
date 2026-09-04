@@ -77,6 +77,8 @@ export class AllHuayDataSource implements LotteryDataSource {
       currentSourceResultDate: currentResult?.drawDate ?? null,
       conflicts: canonical.conflicts.length,
       template,
+      providerResultStatus: currentResult?.providerResultStatus ?? canonical.draws[0]?.providerResultStatus ?? "unknown",
+      ...(currentResult?.providerStatusRaw ? { providerStatusRaw: currentResult.providerStatusRaw } : {}),
     };
   }
   async getHistory(

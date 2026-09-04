@@ -4,7 +4,7 @@ import { AllHuayDataSource } from "./data-sources/allhuay";
 import { buildFreshnessInfo, latestDrawDate, mergeDrawHistory } from "./freshness";
 import { reconcileProspectiveOutcomes } from "./prospective";
 
-export async function syncLotteryFromSource(lotteryId: string) {
+export async function syncLotteryFromSource(lotteryId: string, options: { reconcileProspective?: boolean } = {}) {
   const [existing, catalog] = await Promise.all([readSnapshot(lotteryId), readCatalog()]),
     incoming = await new AllHuayDataSource(catalog).getCanonicalHistory(lotteryId, {
       // Existing history is merged safely below, so routine sync only needs the
@@ -19,7 +19,7 @@ export async function syncLotteryFromSource(lotteryId: string) {
     result = await commitCanonicalSync({ lotteryId, existing, incoming, freshness });
   let reconciledPredictions = 0;
   try {
-    if (!result.addedDraws) return { ...result, freshness, reconciledPredictions };
+    if (!result.addedDraws || options.reconcileProspective === false) return { ...result, freshness, reconciledPredictions };
     reconciledPredictions = await reconcileProspectiveOutcomes(lotteryId, result.snapshot.draws);
   } catch {}
   return { ...result, freshness, reconciledPredictions };

@@ -3,6 +3,7 @@ import {
   LotteryDrawSchema,
   type LotteryDraw,
   type LotteryNormalizationRules,
+  type ProviderResultStatus,
 } from "../../types";
 
 const thaiMonths: Record<string, string> = {
@@ -59,8 +60,7 @@ export function parseAllHuayHistory(
     if (cells.length < 4) return;
     const date = parseDate(cells[0]);
     if (!date) return;
-    const numeric = cells
-      .slice(1)
+    const resultCells = cells.slice(1), numeric = resultCells
       .map((x) => x.match(/\b\d{2,5}\b/)?.[0])
       .filter(Boolean) as string[];
     const top3 = numeric.find((x) => x.length === 3);
@@ -70,7 +70,7 @@ export function parseAllHuayHistory(
         explicitTop2 ??
         (rules?.deriveTop2FromTop3 ? top3?.slice(-2) : undefined),
       bottom2 = twos.length > 1 ? twos.at(-1) : undefined;
-    const candidate = {
+    const explicitlySuspended = resultCells.length > 0 && resultCells.every((value) => value === "งด"), candidate = {
       id: `${lotteryId}-${date}`,
       lotteryId,
       drawDate: date,
@@ -81,6 +81,8 @@ export function parseAllHuayHistory(
       source: "historical-table" as const,
       completeness:
         top3 && top2 && bottom2 ? ("complete" as const) : ("partial" as const),
+      providerResultStatus: top3 && top2 && bottom2 ? ("normal" as const) : explicitlySuspended ? ("suspended" as const) : ("unknown" as const),
+      ...(explicitlySuspended ? { providerStatusRaw: "งด" } : {}),
     };
     const parsed = LotteryDrawSchema.safeParse(candidate);
     if (parsed.success) rows.push(parsed.data);
@@ -98,7 +100,16 @@ export type ParsedCurrentResult = {
   top2?: string;
   bottom2?: string;
   completeness: "complete" | "partial";
+  providerResultStatus: ProviderResultStatus;
+  providerStatusRaw?: string;
 };
+
+export function parseAllHuayProviderResultStatus(values: string[]): { status: ProviderResultStatus; raw?: string } {
+  const normalized = values.map((value) => value.replace(/\s+/g, "").trim()).filter(Boolean);
+  if (normalized.length === values.length && normalized.length >= 2 && normalized.every((value) => value === "งด")) return { status: "suspended", raw: "งด" };
+  if (normalized.length === values.length && normalized.length >= 2 && normalized.every((value) => /^\d{2,3}$/.test(value))) return { status: "normal" };
+  return { status: "unknown" };
+}
 
 export function verifiedNormalizationRules(
   historicalDraws: LotteryDraw[],
@@ -142,7 +153,7 @@ export function parseAllHuayCurrentResult(
   if (!drawDate) return null;
 
   // Numbers from .result-item-value paired with .result-item-label
-  const fields: Partial<Record<"top3" | "top2" | "bottom2", string>> = {};
+  const fields: Partial<Record<"top3" | "top2" | "bottom2", string>> = {}, providerValues: string[] = [];
   container.find(".result-item").each((_, el) => {
     const label = $(el)
       .find(".result-item-label")
@@ -155,6 +166,7 @@ export function parseAllHuayCurrentResult(
       .replace(/\s+/g, "")
       .trim();
     const key = labelMap[label];
+    if (key) providerValues.push(value);
     if (key && /^\d{2,3}$/.test(value)) {
       fields[key] = value;
     }
@@ -170,8 +182,9 @@ export function parseAllHuayCurrentResult(
   // Completeness: "complete" requires at least top3 (top2 derived above).
   const completeness =
     fields.top3 && fields.top2 && fields.bottom2 ? "complete" : "partial";
+  const provider = completeness === "complete" ? { status: "normal" as const } : parseAllHuayProviderResultStatus(providerValues);
 
-  return { drawDate, ...fields, completeness };
+  return { drawDate, ...fields, completeness, providerResultStatus: provider.status, ...(provider.raw ? { providerStatusRaw: provider.raw } : {}) };
 }
 
 // ---------------------------------------------------------------------------
@@ -220,6 +233,8 @@ export function buildCanonicalHistory(
       sourceUrl,
       source: "current-result",
       completeness: currentResult.completeness,
+      providerResultStatus: currentResult.providerResultStatus,
+      providerStatusRaw: currentResult.providerStatusRaw,
     };
 
     const parsed = LotteryDrawSchema.safeParse(candidate);

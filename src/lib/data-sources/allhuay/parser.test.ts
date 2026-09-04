@@ -1,7 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { parseAllHuayHistory } from "./parser";
+import { parseAllHuayCurrentResult, parseAllHuayHistory, parseAllHuayProviderResultStatus } from "./parser";
 
 describe("AllHuay parser", () => {
+  it("parses exact provider suspension separately from partial and malformed values", () => {
+    expect(parseAllHuayProviderResultStatus(["งด", " งด ", "งด"])).toEqual({ status: "suspended", raw: "งด" });
+    expect(parseAllHuayProviderResultStatus(["งด", "งด"])).toEqual({ status: "suspended", raw: "งด" });
+    expect(parseAllHuayProviderResultStatus(["123", "23", "07"])).toEqual({ status: "normal" });
+    expect(parseAllHuayProviderResultStatus(["123", "", "07"])).toEqual({ status: "unknown" });
+    expect(parseAllHuayProviderResultStatus(["งด 12", "งด"])).toEqual({ status: "unknown" });
+    const hero = (values: [string, string, string]) => `<section id="lotto-latest-results"><div class="result-container"><h1 class="result-header-title">2026-09-03</h1>${[["3 ตัวบน",values[0]],["2 ตัวบน",values[1]],["2 ตัวล่าง",values[2]]].map(([label,value])=>`<div class="result-item"><span class="result-item-label">${label}</span><span class="result-item-value">${value}</span></div>`).join("")}</div></section>`;
+    expect(parseAllHuayCurrentResult(hero(["งด", "งด", "งด"]))).toMatchObject({ completeness: "partial", providerResultStatus: "suspended", providerStatusRaw: "งด" });
+    expect(parseAllHuayCurrentResult(hero(["123", "23", "07"]))).toMatchObject({ completeness: "complete", providerResultStatus: "normal", top2: "23", bottom2: "07" });
+    expect(parseAllHuayCurrentResult(hero(["123", "", "07"]))).toMatchObject({ completeness: "partial", providerResultStatus: "unknown" });
+  });
+
+  it("retains explicit suspended history rows as non-complete provenance", () => {
+    const html = `<table><tr><th>งวดวันที่</th><th>รางวัลที่ 1</th><th>3 ตัวบน</th><th>2 ตัวบน</th><th>2 ตัวล่าง</th></tr><tr><td>3 กันยายน 2569</td><td>งด</td><td>งด</td><td>งด</td><td>งด</td></tr></table>`;
+    expect(parseAllHuayHistory(html, "demo", "https://example.com")[0]).toMatchObject({ completeness: "partial", providerResultStatus: "suspended", providerStatusRaw: "งด" });
+  });
   it("parses observed history table and preserves zeroes", () => {
     const html = `<table><tr><th>งวดวันที่</th><th>รางวัลที่ 1</th><th>3 ตัวบน</th><th>2 ตัวบน</th><th>2 ตัวล่าง</th></tr><tr><td>Draw August 16, 2026</td><td>40062</td><td>062</td><td>62</td><td>02</td></tr><tr><td>16 สิงหาคม 2569</td><td>40062</td><td>062</td><td>62</td><td>02</td></tr></table>`;
     const draws = parseAllHuayHistory(html, "hanoi-vip", "https://example.com");

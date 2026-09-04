@@ -63,7 +63,7 @@ export function GlobalWeekdayWinCard() {
         {digits.map((digit) => <strong key={digit}>{digit}</strong>)}
       </div>
       <div className="global-win-meta">
-        <span>ใช้จริง {result.lotteryCount} จากชุดหวยรายวัน {result.sourcePoolCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
+        <span>ข้อมูลพร้อม {result.lotteryCount} จากทั้งหมด {result.eligibility?.totalCatalog ?? result.sourcePoolCount} หวย · บน {result.topDrawCount} งวด · ล่าง {result.bottomDrawCount} งวด</span>
         <span>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้</span>
       </div>
       <div className="global-win-score-gap"><span>โครงสร้างคะแนนวันนี้</span><strong>{formatRankBoundaryGap(result.scoreDistribution.rank6To7Gap)}</strong></div>
