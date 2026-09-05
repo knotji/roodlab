@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFocusedWinSet, buildTieredWinSet, buildWinSet } from "./win-set";
+import { buildFocusedWinSet, buildTieredWinSet, buildWinSet, deriveWin6PairSet } from "./win-set";
 
 describe("four-digit win set", () => {
   it("builds every ordered non-double pair from four unique digits", () => {
@@ -94,5 +94,83 @@ describe("focused six-digit win set", () => {
       all = [...result.focusedPairs, ...result.supportPairs];
     expect(all).toHaveLength(15);
     expect(new Set(all.map((pair) => [...pair].sort().join(""))).size).toBe(15);
+  });
+});
+
+describe("Win 6 play-set derivation", () => {
+  const WIN_6 = ["1", "2", "3", "4", "8", "9"];
+
+  it("derives exactly the 15 non-double pairs and 6 doubles from the worked example, in Win digit order", () => {
+    const result = deriveWin6PairSet(WIN_6);
+    expect(result.winDigits).toEqual(WIN_6);
+    expect(result.nonDoublePairs).toEqual([
+      "12", "13", "14", "18", "19",
+      "23", "24", "28", "29",
+      "34", "38", "39",
+      "48", "49",
+      "89",
+    ]);
+    expect(result.doubles).toEqual(["11", "22", "33", "44", "88", "99"]);
+  });
+
+  it("totals 21 items (C(6,2) = 15 non-double pairs + 6 doubles)", () => {
+    const result = deriveWin6PairSet(WIN_6);
+    expect(result.nonDoublePairs).toHaveLength(15);
+    expect(result.doubles).toHaveLength(6);
+    expect(result.totalItems).toBe(21);
+  });
+
+  it("expands to 36 actual numbers: both directions for the 15 non-double pairs plus the 6 doubles once", () => {
+    const result = deriveWin6PairSet(WIN_6);
+    expect(result.expandedNumbers).toHaveLength(36);
+    expect(new Set(result.expandedNumbers).size).toBe(36); // no duplicate expanded numbers
+    for (const pair of result.nonDoublePairs) {
+      expect(result.expandedNumbers).toContain(pair);
+      expect(result.expandedNumbers).toContain(`${pair[1]}${pair[0]}`); // reverse direction present
+    }
+    for (const double of result.doubles) {
+      expect(result.expandedNumbers.filter((value) => value === double)).toHaveLength(1); // doubles appear once, not twice
+    }
+  });
+
+  it("has no reversed duplicate canonical pairs in the 15-pair core set", () => {
+    const result = deriveWin6PairSet(WIN_6),
+      canonical = result.nonDoublePairs.map((pair) => [...pair].sort().join(""));
+    expect(new Set(canonical).size).toBe(15);
+  });
+
+  it("preserves leading zeroes for both pairs and doubles", () => {
+    const result = deriveWin6PairSet(["0", "1", "2", "3", "4", "8"]);
+    expect(result.nonDoublePairs).toContain("01");
+    expect(result.nonDoublePairs).toContain("04");
+    expect(result.nonDoublePairs).toContain("08");
+    expect(result.doubles).toContain("00");
+    expect(result.expandedNumbers).toContain("01");
+    expect(result.expandedNumbers).toContain("10");
+  });
+
+  it("requires exactly 6 Win digits", () => {
+    expect(() => deriveWin6PairSet(["1", "2", "3", "4", "8"])).toThrow(/exactly 6/);
+    expect(() => deriveWin6PairSet(["1", "2", "3", "4", "8", "9", "0"])).toThrow(/exactly 6/);
+  });
+
+  it("requires all 6 Win digits to be distinct", () => {
+    expect(() => deriveWin6PairSet(["1", "2", "3", "4", "8", "8"])).toThrow(/distinct/);
+  });
+
+  it("is deterministic: the same Win 6 always yields the same set", () => {
+    expect(deriveWin6PairSet(WIN_6)).toEqual(deriveWin6PairSet([...WIN_6]));
+  });
+
+  it("changes output when Win 6 changes", () => {
+    const other = deriveWin6PairSet(["0", "5", "6", "7", "2", "3"]);
+    expect(other.nonDoublePairs).not.toEqual(deriveWin6PairSet(WIN_6).nonDoublePairs);
+  });
+
+  it("depends only on the supplied Win digits - historical/Gemini evidence cannot influence it", () => {
+    // deriveWin6PairSet's signature accepts only win digits; there is no parameter through
+    // which frequentPairs, evidencePairs, or any other evidence-derived data could reach it.
+    expect(deriveWin6PairSet.length).toBe(1);
+    expect(deriveWin6PairSet(WIN_6)).toEqual(deriveWin6PairSet(WIN_6));
   });
 });

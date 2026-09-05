@@ -105,24 +105,60 @@ describe("Analyze presentation", () => {
     const primaryWin = screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8");
     expect(primaryWin.children).toHaveLength(6);
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
-    const recommendedPairs = screen.getByLabelText(/คู่เน้นรอบโลก/);
-    const shownPairs = Array.from(recommendedPairs.querySelectorAll("b"), (item) => item.textContent);
-    expect(shownPairs).toHaveLength(50);
-    expect(new Set(shownPairs).size).toBe(50);
-    expect(recommendedPairs.querySelectorAll(".focused b")).toHaveLength(10);
-    const secondaryPairs = screen.getByText("ดูคู่เลขอันดับที่ 11–50 (อีก 40 คู่)").closest("details");
-    expect(secondaryPairs?.open).toBe(false);
-    fireEvent.click(screen.getByText("ดูคู่เลขอันดับที่ 11–50 (อีก 40 คู่)"));
-    expect(secondaryPairs?.open).toBe(true);
-    const copyTenWithDoubles = screen.getByRole("button", { name: "คัดลอกเน้น 10 คู่ + เบิ้ล" });
-    expect(copyTenWithDoubles).toBeTruthy();
+
+    // Primary Win-6-derived play set - pure combinatorics from Production Win 6 (digits: 7 1 9 3 5 8),
+    // completely independent of frequentPairs/evidence data and of the hero's 5/6/7 selector.
+    expect(screen.getByText("ชุดวิน 6 — 15 คู่ + 6 เบิ้ล")).toBeTruthy();
+    expect(screen.getByText("แตกคู่จากวิน 6 ตัวหลักของวันนี้")).toBeTruthy();
+    expect(screen.getByText("ชุดหลัก")).toBeTruthy();
+    const win6Pairs = screen.getByLabelText(/ชุดวิน 6/);
+    const win6NonDoubles = Array.from(win6Pairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
+    expect(win6NonDoubles).toEqual(["71", "79", "73", "75", "78", "19", "13", "15", "18", "93", "95", "98", "35", "38", "58"]);
+    const win6Doubles = Array.from(win6Pairs.querySelectorAll(".global-win-frequent-pair-list.doubles b"), (item) => item.textContent);
+    expect(win6Doubles).toEqual(["77", "11", "99", "33", "55", "88"]);
+    expect(screen.getByText("คู่กลับ 15 คู่")).toBeTruthy();
+    expect(screen.getByText("เลขเบิ้ล 6 ตัว")).toBeTruthy();
+    const copyWin6Canonical = screen.getByRole("button", { name: "คัดลอก 15 คู่ + 6 เบิ้ล" });
+    fireEvent.click(copyWin6Canonical);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("71 79 73 75 78 19 13 15 18 93 95 98 35 38 58 77 11 99 33 55 88"));
+    const copyWin6Expanded = screen.getByRole("button", { name: "คัดลอกชุดเล่น 36 เลข" });
+    fireEvent.click(copyWin6Expanded);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith([
+      "71", "79", "73", "75", "78",
+      "17", "19", "13", "15", "18",
+      "97", "91", "93", "95", "98",
+      "37", "31", "39", "35", "38",
+      "57", "51", "59", "53", "58",
+      "87", "81", "89", "83", "85",
+      "77", "11", "99", "33", "55", "88",
+    ].join(" ")));
+
+    // Demoted historical-evidence pairs - explicitly not the primary set, only reachable via a details overflow.
+    expect(screen.getByText("คู่เด่นจากสถิติย้อนหลัง")).toBeTruthy();
+    expect(screen.getByText("ข้อมูลประกอบการตัดสินใจ ไม่ใช่ชุดหลัก")).toBeTruthy();
+    const evidencePairs = screen.getByLabelText(/คู่เด่นจากสถิติย้อนหลัง/);
+    const shownEvidencePairs = Array.from(evidencePairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
+    expect(shownEvidencePairs).toHaveLength(21); // all 21 evidence pairs shown directly, nothing hidden
+    expect(evidencePairs.querySelectorAll(".global-win-frequent-pair-list.focused b")).toHaveLength(10);
+    expect(screen.getByText("เน้นพิเศษ 10 คู่")).toBeTruthy();
+    expect(screen.getByText("คู่หลักที่เหลือ 11 คู่")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "คัดลอก 21 คู่ + เบิ้ล" })).toBeNull(); // no primary-looking CTA on the demoted section
+    const moreOptions = screen.getByText("ตัวเลือกคัดลอก").closest("details");
+    expect(moreOptions?.open).toBe(false);
+    fireEvent.click(screen.getByText("ตัวเลือกคัดลอก"));
+    expect(moreOptions?.open).toBe(true);
+    expect(screen.getByRole("button", { name: "10 คู่ + เบิ้ล" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "15 คู่ + เบิ้ล" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "21 คู่ + เบิ้ล" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "50 คู่ + เบิ้ล" })).toBeTruthy();
-    fireEvent.click(copyTenWithDoubles);
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 33 28 18 56 49 44 11"));
-    expect(screen.getByLabelText("เลขเบิ้ลที่พบบ่อย 33 44 11").children).toHaveLength(3);
-    expect(screen.getByRole("button", { name: "คัดลอกเลขเบิ้ล" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "21 คู่ + เบิ้ล" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 33 28 18 56 49 12 44 68 03 27 57 11 39 06 88 60"));
+    expect(screen.getByText("เลขเบิ้ลเด่น")).toBeTruthy();
+    expect(screen.getByLabelText("เลขเบิ้ลเด่น 33 44 11").children).toHaveLength(3);
+    const copyDoublesOnly = screen.getByRole("button", { name: "เฉพาะเลขเบิ้ล" });
+    fireEvent.click(copyDoublesOnly);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("33 44 11"));
+
     expect(screen.getByLabelText("วิน 6 จากคู่เน้น 1 2 9 0 8 7").children).toHaveLength(6);
     expect(screen.getByRole("button", { name: "คัดลอกชุดจาก 21 คู่แรก" })).toBeTruthy();
     expect(pairButton.getAttribute("aria-expanded")).toBe("false");
@@ -133,10 +169,74 @@ describe("Analyze presentation", () => {
     expect(screen.getByRole("button", { name: "คัดลอกทั้งหมด 21 คู่" })).toBeTruthy();
     expect(screen.getByText("โครงสร้างคะแนน และรายละเอียดการคำนวณ")).toBeTruthy();
     expect(screen.getByText("อันดับ 6 กับอันดับ 7 ต่างกัน 0.42 จุด")).toBeTruthy();
+
+    // Switching the hero's 5/6/7 selector must not change the Win-6-derived play set.
     fireEvent.click(screen.getByRole("button", { name: "7" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8 2").children).toHaveLength(7);
     expect(screen.getByRole("button", { name: "ดูชุดทั้งหมด 28 คู่" })).toBeTruthy();
+    expect(Array.from(screen.getByLabelText(/ชุดวิน 6/).querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent)).toEqual(win6NonDoubles);
     expect(screen.getByText(/ตัวเลขทั้งหมดมาจากสถิติย้อนหลัง/).textContent).toContain("ไม่ใช่ค่าความน่าจะเป็นของงวดถัดไป");
+  });
+
+  function globalWeekdayWinFixture(overrides: Record<string, unknown> = {}) {
+    return {
+      ok: true,
+      weekday: 2,
+      weekdayLabel: "วันอังคาร",
+      digits: ["7", "1", "9", "3", "5", "8"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
+      rankedDigits: ["7", "1", "9", "3", "5", "8", "2", "4", "0", "6"].map((digit) => ({ digit, score: 0.2, topRate: 0.2, bottomRate: 0.2 })),
+      lotteryCount: 37,
+      topLotteryCount: 37,
+      bottomLotteryCount: 35,
+      topDrawCount: 400,
+      bottomDrawCount: 380,
+      lookbackPerLottery: 12,
+      cutoffDate: "2026-09-01",
+      sufficient: true,
+      sourcePoolCount: 37,
+      scoreDistribution: {
+        rankedScores: ["7", "1", "9", "3", "5", "8", "2", "4", "0", "6"].map((digit, index) => ({ rank: index + 1, digit, score: 0.2 - index * 0.001 })),
+        rank6To7Gap: 0.0042,
+        top6Spread: 0.01,
+        allDigitSpread: 0.02,
+        normalizedEntropy: 0.99,
+        concentration: 0.01,
+      },
+      frequentPairs: [],
+      frequentDoubles: [],
+      pairDerivedDigits: [],
+      ...overrides,
+    };
+  }
+
+  it("shows played-universe copy and the configured/eligible source counts when Production resolves the Played Universe", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => globalWeekdayWinFixture({
+        eligibility: { totalCatalog: 151, historiesAvailable: 40, eligible: 35, excluded: 2, exclusionReasons: {}, latestSyncTimestamp: null },
+        universe: { mode: "played", weekday: 2, configuredCount: 37, eligibleCount: 35 },
+      }),
+    }));
+    render(<GlobalWeekdayWinCard />);
+    expect(await screen.findByText("คำนวณจากหวยที่เล่นวันนี้")).toBeTruthy();
+    expect(screen.getByText("ใช้ข้อมูลย้อนหลังของหวยในรายการที่เล่นวันนี้")).toBeTruthy();
+    expect(screen.getByText("รายการที่เล่น 37 หวย · ใช้คำนวณวันนี้ 35 หวย")).toBeTruthy();
+  });
+
+  it("shows the Dynamic All Eligible fallback copy when Sunday has no configured Played Universe", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => globalWeekdayWinFixture({
+        weekday: 0,
+        weekdayLabel: "วันอาทิตย์",
+        eligibility: { totalCatalog: 151, historiesAvailable: 40, eligible: 90, excluded: 61, exclusionReasons: {}, latestSyncTimestamp: null },
+        universe: { mode: "all_eligible_fallback", weekday: 0, configuredCount: 151, eligibleCount: 90 },
+      }),
+    }));
+    render(<GlobalWeekdayWinCard />);
+    expect(await screen.findByText("ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก")).toBeTruthy();
+    expect(screen.getByText("รายการที่เล่น 151 หวย · ใช้คำนวณวันนี้ 90 หวย")).toBeTruthy();
+    expect(screen.queryByText(/แม่นกว่า|โอกาสสูงกว่า|เพิ่มโอกาส|สูตรดีกว่า/)).toBeNull();
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {

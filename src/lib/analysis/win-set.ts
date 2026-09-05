@@ -40,6 +40,36 @@ export function buildWinSet(rankedDigits: readonly string[], size = 4): WinSet {
   };
 }
 
+export type Win6PairSet = {
+  winDigits: readonly string[];
+  nonDoublePairs: readonly string[];
+  doubles: readonly string[];
+  totalItems: number;
+  expandedNumbers: readonly string[];
+};
+
+/**
+ * Pure derivation of the actionable play set from Production Win 6 - the single
+ * source of truth is the caller-supplied win digits, never historical/Gemini
+ * evidence. Requires exactly 6 distinct digits so the result is always C(6,2) = 15
+ * non-double pairs + 6 doubles = 21 items, expanding to 15*2 + 6 = 36 actual numbers
+ * (both directions for non-doubles, doubles counted once). Delegates the actual
+ * combinatorics to `buildWinSet`, which the Win 5/6/7 hero selector also uses and
+ * which this function does not modify.
+ */
+export function deriveWin6PairSet(winDigits: readonly string[]): Win6PairSet {
+  if (winDigits.length !== 6) throw new Error(`deriveWin6PairSet requires exactly 6 Win digits, got ${winDigits.length}`);
+  if (new Set(winDigits).size !== 6) throw new Error("deriveWin6PairSet requires 6 distinct Win digits");
+  const winSet = buildWinSet(winDigits, 6);
+  return {
+    winDigits: winSet.digits,
+    nonDoublePairs: winSet.uniquePairs,
+    doubles: winSet.doubles,
+    totalItems: winSet.uniquePairs.length + winSet.doubles.length,
+    expandedNumbers: [...winSet.orderedPairs, ...winSet.doubles],
+  };
+}
+
 export function buildFocusedWinSet(
   rankedDigits: readonly string[],
   size = 6,
