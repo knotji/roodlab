@@ -55,7 +55,7 @@ describe("global weekday win six", () => {
       { weekday: 2, cutoffDate: "2026-09-01" },
     );
     expect(result.frequentPairs[0]).toMatchObject({ pair: "05", topRate: 1, bottomRate: 0.5, score: 0.75 });
-    expect(result.frequentPairs).toHaveLength(30);
+    expect(result.frequentPairs).toHaveLength(50);
     expect(result.frequentDoubles).toHaveLength(3);
     expect(result.frequentDoubles.every((item) => item.pair[0] === item.pair[1])).toBe(true);
     expect(result.frequentDoubles.map((item) => item.score)).toEqual([...result.frequentDoubles.map((item) => item.score)].sort((a, b) => b - a));

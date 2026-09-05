@@ -47,7 +47,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
     {result && (() => {
       const digits = result.rankedDigits.slice(0, winSize).map((item) => item.digit),
         winSet = buildWinSet(digits, winSize),
-        recommendedPairs = result.frequentPairs.slice(0, 30),
+        recommendedPairs = result.frequentPairs.slice(0, 50),
         focusedPairs = recommendedPairs.slice(0, 10),
         pairsWithDoubles = (size: number) => [...new Set([
           ...recommendedPairs.slice(0, size).map((item) => item.pair),
@@ -88,14 +88,14 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         </div>}
       </section>
       <div className="global-win-frequent-pairs">
-        <header><div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เลขที่พบบ่อย (เน้น 10 อันดับแรก)</strong><small>จากสถิติย้อนหลัง จัดเรียงตามความถี่ ไม่แสดงคู่กลับ</small></div></div></header>
+        <header><div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เลขที่พบบ่อย (เน้น 10 อันดับแรก)</strong><small>จากสถิติย้อนหลัง รวมหลักฐานคู่กลับไว้ในคู่เดียว</small></div></div></header>
         <div className="global-win-frequent-pair-groups" aria-label={`คู่เน้นรอบโลก ${recommendedPairs.map((item) => item.pair).join(" ")}`}>
           <div className="global-win-frequent-pair-list focused">{focusedPairs.map((item, index) => <span key={item.pair}><b>{item.pair}</b><small>#{index + 1}</small></span>)}</div>
-          <details><summary><ChevronDown />ดูคู่เลขอันดับที่ 11–30 (อีก 20 คู่)</summary><div className="global-win-frequent-pair-list secondary">{recommendedPairs.slice(10).map((item) => <b key={item.pair}>{item.pair}</b>)}</div></details>
+          <details><summary><ChevronDown />ดูคู่เลขอันดับที่ 11–50 (อีก 40 คู่)</summary><div className="global-win-frequent-pair-list secondary">{recommendedPairs.slice(10).map((item) => <b key={item.pair}>{item.pair}</b>)}</div></details>
         </div>
         <div className="global-win-frequent-pair-footer">
           <button className="primary" type="button" onClick={() => copyValues("frequentTop10", pairsWithDoubles(10))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "คัดลอกเน้น 10 คู่ + เบิ้ล"}</button>
-          <div><button type="button" onClick={() => copyValues("frequentTop15", pairsWithDoubles(15))}>{copied === "frequentTop15" ? <Check /> : <Copy />}{copied === "frequentTop15" ? "คัดลอกแล้ว" : "15 คู่ + เบิ้ล"}</button><button type="button" onClick={() => copyValues("frequentTop21", pairsWithDoubles(21))}>{copied === "frequentTop21" ? <Check /> : <Copy />}{copied === "frequentTop21" ? "คัดลอกแล้ว" : "21 คู่ + เบิ้ล"}</button><button type="button" onClick={() => copyValues("frequentPairs", pairsWithDoubles(30))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "30 คู่ + เบิ้ล"}</button></div>
+          <div><button type="button" onClick={() => copyValues("frequentTop15", pairsWithDoubles(15))}>{copied === "frequentTop15" ? <Check /> : <Copy />}{copied === "frequentTop15" ? "คัดลอกแล้ว" : "15 คู่ + เบิ้ล"}</button><button type="button" onClick={() => copyValues("frequentTop21", pairsWithDoubles(21))}>{copied === "frequentTop21" ? <Check /> : <Copy />}{copied === "frequentTop21" ? "คัดลอกแล้ว" : "21 คู่ + เบิ้ล"}</button><button type="button" onClick={() => copyValues("frequentPairs", pairsWithDoubles(50))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "50 คู่ + เบิ้ล"}</button></div>
         </div>
       </div>
       <div className="global-win-secondary-grid"><section className="global-win-frequent-doubles"><header><Flower2 /><div><strong>เลขเบิ้ลที่พบบ่อย (Top 3)</strong><span>จากสถิติย้อนหลังของทุกหวย</span></div></header><div className="global-win-frequent-double-list" aria-label={`เลขเบิ้ลที่พบบ่อย ${result.frequentDoubles.map((item) => item.pair).join(" ")}`}>{result.frequentDoubles.map((item, index) => <span key={item.pair}><b>{item.pair}</b><small>#{index + 1}</small></span>)}</div><button type="button" onClick={() => copyValues("frequentDoubles", result.frequentDoubles.map((item) => item.pair))}>{copied === "frequentDoubles" ? <Check /> : <Copy />}{copied === "frequentDoubles" ? "คัดลอกแล้ว" : "คัดลอกเลขเบิ้ล"}</button></section>
