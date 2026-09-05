@@ -55,11 +55,15 @@ describe("global weekday win six", () => {
       { weekday: 2, cutoffDate: "2026-09-01" },
     );
     expect(result.frequentPairs[0]).toMatchObject({ pair: "05", topRate: 1, bottomRate: 0.5, score: 0.75 });
-    expect(result.frequentPairs).toHaveLength(21);
+    expect(result.frequentPairs).toHaveLength(30);
+    expect(result.frequentDoubles).toHaveLength(3);
+    expect(result.frequentDoubles.every((item) => item.pair[0] === item.pair[1])).toBe(true);
+    expect(result.frequentDoubles.map((item) => item.score)).toEqual([...result.frequentDoubles.map((item) => item.score)].sort((a, b) => b - a));
     const shown = new Set(result.frequentPairs.map((item) => item.pair));
     expect(result.frequentPairs.every((item) => !shown.has(`${item.pair[1]}${item.pair[0]}`) || item.pair[0] === item.pair[1])).toBe(true);
     expect(result.pairDerivedDigits).toHaveLength(6);
     expect(new Set(result.pairDerivedDigits.map((item) => item.digit)).size).toBe(6);
+    expect(result.pairDerivedDigits).toEqual(deriveDigitsFromFrequentPairs(result.frequentPairs.slice(0, 21)));
   });
 
   it("derives six digits from pair support and counts a double once", () => {

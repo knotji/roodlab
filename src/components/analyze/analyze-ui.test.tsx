@@ -51,6 +51,8 @@ describe("Analyze presentation", () => {
   });
 
   it("renders one shared six-digit weekday set from the aggregate API", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText } });
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
@@ -76,7 +78,8 @@ describe("Analyze presentation", () => {
           normalizedEntropy: 0.99,
           concentration: 0.01,
         },
-        frequentPairs: ["05", "17", "24", "19", "09", "33", "28", "18", "56", "49", "12", "44", "68", "03", "27", "57", "11", "39", "06", "88", "69"].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
+        frequentPairs: ["05", "17", "24", "19", "09", "33", "28", "18", "56", "49", "12", "44", "68", "03", "27", "57", "11", "39", "06", "88", "69", "13", "14", "15", "16", "22", "23", "25", "26", "29"].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
+        frequentDoubles: ["33", "44", "11"].map((pair, index) => ({ pair, score: 0.1 - index * 0.01, topRate: 0.1, bottomRate: 0.1 })),
         pairDerivedDigits: ["1", "2", "9", "0", "8", "7"].map((digit, index) => ({ digit, score: 1 - index * 0.1 })),
       }),
     }));
@@ -88,12 +91,18 @@ describe("Analyze presentation", () => {
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
     const recommendedPairs = screen.getByLabelText(/คู่เน้นรอบโลก/);
     const shownPairs = Array.from(recommendedPairs.querySelectorAll("b"), (item) => item.textContent);
-    expect(shownPairs).toHaveLength(21);
-    expect(new Set(shownPairs).size).toBe(21);
+    expect(shownPairs).toHaveLength(30);
+    expect(new Set(shownPairs).size).toBe(30);
     expect(screen.getByText("เน้น 10 คู่").parentElement?.querySelectorAll("b")).toHaveLength(10);
-    expect(screen.getByRole("button", { name: "คัดลอกเน้น 10 คู่" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "คัดลอก 15 คู่" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "คัดลอก 21 คู่" })).toBeTruthy();
+    const copyTenWithDoubles = screen.getByRole("button", { name: "คัดลอก 10 คู่ + เบิ้ล" });
+    expect(copyTenWithDoubles).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอก 15 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอก 21 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอก 30 คู่ + เบิ้ล" })).toBeTruthy();
+    fireEvent.click(copyTenWithDoubles);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 33 28 18 56 49 44 11"));
+    expect(screen.getByLabelText("เลขเบิ้ลที่พบบ่อย 33 44 11").children).toHaveLength(3);
+    expect(screen.getByRole("button", { name: "คัดลอกเบิ้ล 3 ตัว" })).toBeTruthy();
     expect(screen.getByLabelText("วิน 6 จากคู่เน้น 1 2 9 0 8 7").children).toHaveLength(6);
     expect(screen.getByRole("button", { name: "คัดลอกวิน 6" })).toBeTruthy();
     expect(pairButton.getAttribute("aria-expanded")).toBe("false");

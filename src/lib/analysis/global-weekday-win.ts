@@ -34,6 +34,7 @@ export type GlobalWeekdayWinResult = {
   sourcePoolCount: number;
   scoreDistribution: GlobalScoreDistribution;
   frequentPairs: GlobalWeekdayFrequentPair[];
+  frequentDoubles: GlobalWeekdayFrequentPair[];
   pairDerivedDigits: Array<{ digit: string; score: number }>;
   eligibility?: {
     totalCatalog: number;
@@ -114,7 +115,7 @@ export function buildGlobalWeekdayWin(
     unorderedPairs = Array.from({ length: 10 }, (_, first) =>
       Array.from({ length: 10 - first }, (_, offset) => `${first}${first + offset}`),
     ).flat(),
-    frequentPairs = unorderedPairs.map((pair) => {
+    rankedPairCandidates = unorderedPairs.map((pair) => {
       const reversed = `${pair[1]}${pair[0]}`,
         sourcePairRate = (source: (typeof perLottery)[number], side: "topPairs" | "bottomPairs") =>
           (source[side]?.[pair] ?? 0) + (reversed === pair ? 0 : (source[side]?.[reversed] ?? 0)),
@@ -122,8 +123,10 @@ export function buildGlobalWeekdayWin(
         bottomRate = bottomSources.length ? bottomSources.reduce((total, source) => total + sourcePairRate(source, "bottomPairs"), 0) / bottomSources.length : 0,
         availableSides = Number(topSources.length > 0) + Number(bottomSources.length > 0);
       return { pair, topRate, bottomRate, score: availableSides ? (topRate + bottomRate) / availableSides : 0 };
-    }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)).slice(0, 21),
-    pairDerivedDigits = deriveDigitsFromFrequentPairs(frequentPairs);
+    }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)),
+    frequentPairs = rankedPairCandidates.slice(0, 30),
+    frequentDoubles = rankedPairCandidates.filter((item) => item.pair[0] === item.pair[1]).slice(0, 3),
+    pairDerivedDigits = deriveDigitsFromFrequentPairs(frequentPairs.slice(0, 21));
 
   return {
     weekday: options.weekday,
@@ -141,6 +144,7 @@ export function buildGlobalWeekdayWin(
     sourcePoolCount: sources.length,
     scoreDistribution: analyzeGlobalScoreDistribution(ranked),
     frequentPairs,
+    frequentDoubles,
     pairDerivedDigits,
   };
 }
