@@ -7,6 +7,7 @@ import { MobileNavigation } from "@/components/app-shell/navigation";
 import type { PairSignal } from "@/lib/analysis/types";
 import { AnalysisDisclosure } from "./analysis-disclosure";
 import { AnalyzeControls } from "./analyze-controls";
+import { AnalyzePageLayout } from "./analyze-page-layout";
 import { GlobalWeekdayWinCard } from "./global-weekday-win-card";
 import { PairSection } from "./pair-section";
 import { StandoutHero } from "./standout-hero";
@@ -18,6 +19,22 @@ afterEach(() => {
 });
 
 describe("Analyze presentation", () => {
+  it("places Global Daily before the per-lottery selector and details", () => {
+    const { container } = render(<AnalyzePageLayout analysisDate="2026-09-05" globalDaily={<section data-testid="global-daily">Global overview</section>} perLotteryHeader={<button type="button">เลือกหวย</button>}><section>รายละเอียดรายหวย</section></AnalyzePageLayout>);
+    const globalDaily = screen.getByTestId("global-daily"),
+      lotteryPicker = screen.getByRole("button", { name: "เลือกหวย" });
+    expect(globalDaily.compareDocumentPosition(lotteryPicker) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(container).getByRole("heading", { name: "วิเคราะห์รายหวย" })).toBeTruthy();
+  });
+
+  it("supports the Global Daily-only product view without mounting per-lottery UI", () => {
+    render(<AnalyzePageLayout analysisDate="2026-09-05" globalDaily={<section>Global overview</section>} perLotteryHeader={<button type="button">เลือกหวย</button>} showPerLottery={false}><section>รายละเอียดรายหวย</section></AnalyzePageLayout>);
+    expect(screen.getByText("Global overview")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "เลือกหวย" })).toBeNull();
+    expect(screen.queryByText("วิเคราะห์รายหวย")).toBeNull();
+    expect(screen.queryByRole("navigation", { name: "ส่วนต่าง ๆ ในหน้าวิเคราะห์" })).toBeNull();
+  });
+
   it("renders standout digits as the primary heading value", () => {
     render(<StandoutHero enoughData digits={["9", "0"]} context="วิเคราะห์จาก 30 งวดล่าสุด" insufficientCopy="ข้อมูลไม่พอ" consensusDigits={["9", "0", "5"]} integrity={{ requestedDraws: 30, usableDraws: 30, partialDraws: 0, invalidDraws: 0, latestCompleteDrawDate: "2026-08-30", status: "complete" }} stabilityScore={85} stabilityDetail="ค่อนข้างนิ่ง · ไม่ใช่ความน่าจะเป็น" />);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("9 · 0");
@@ -84,40 +101,42 @@ describe("Analyze presentation", () => {
       }),
     }));
     render(<GlobalWeekdayWinCard />);
-    expect(await screen.findByRole("heading", { name: "วินรวมทุกหวย · วันอังคาร" })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Global Daily" })).toBeTruthy();
     const primaryWin = screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8");
     expect(primaryWin.children).toHaveLength(6);
-    expect(Array.from(primaryWin.querySelectorAll("small"), (item) => item.textContent)).toEqual(["#1", "#2", "#3", "#4", "#5", "#6"]);
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
     const recommendedPairs = screen.getByLabelText(/คู่เน้นรอบโลก/);
     const shownPairs = Array.from(recommendedPairs.querySelectorAll("b"), (item) => item.textContent);
     expect(shownPairs).toHaveLength(30);
     expect(new Set(shownPairs).size).toBe(30);
-    expect(screen.getByText("เน้น 10 คู่").parentElement?.querySelectorAll("b")).toHaveLength(10);
-    const copyTenWithDoubles = screen.getByRole("button", { name: "คัดลอก 10 คู่ + เบิ้ล" });
+    expect(recommendedPairs.querySelectorAll(".focused b")).toHaveLength(10);
+    const secondaryPairs = screen.getByText("ดูคู่เลขอันดับที่ 11–30 (อีก 20 คู่)").closest("details");
+    expect(secondaryPairs?.open).toBe(false);
+    fireEvent.click(screen.getByText("ดูคู่เลขอันดับที่ 11–30 (อีก 20 คู่)"));
+    expect(secondaryPairs?.open).toBe(true);
+    const copyTenWithDoubles = screen.getByRole("button", { name: "คัดลอกเน้น 10 คู่ + เบิ้ล" });
     expect(copyTenWithDoubles).toBeTruthy();
-    expect(screen.getByRole("button", { name: "คัดลอก 15 คู่ + เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "คัดลอก 21 คู่ + เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "คัดลอก 30 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "15 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "21 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "30 คู่ + เบิ้ล" })).toBeTruthy();
     fireEvent.click(copyTenWithDoubles);
     await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 33 28 18 56 49 44 11"));
     expect(screen.getByLabelText("เลขเบิ้ลที่พบบ่อย 33 44 11").children).toHaveLength(3);
-    expect(screen.getByRole("button", { name: "คัดลอกเบิ้ล 3 ตัว" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอกเลขเบิ้ล" })).toBeTruthy();
     expect(screen.getByLabelText("วิน 6 จากคู่เน้น 1 2 9 0 8 7").children).toHaveLength(6);
-    expect(screen.getByRole("button", { name: "คัดลอกวิน 6" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "คัดลอกชุดจาก 21 คู่แรก" })).toBeTruthy();
     expect(pairButton.getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(pairButton);
     expect(pairButton.getAttribute("aria-expanded")).toBe("true");
     expect(screen.getByText("คู่ไม่เบิ้ล · 15 คู่")).toBeTruthy();
     expect(screen.getByText("เลขเบิ้ล · 6 คู่")).toBeTruthy();
     expect(screen.getByRole("button", { name: "คัดลอกทั้งหมด 21 คู่" })).toBeTruthy();
-    expect(screen.getByText("โครงสร้างคะแนนวันนี้")).toBeTruthy();
+    expect(screen.getByText("โครงสร้างคะแนน และรายละเอียดการคำนวณ")).toBeTruthy();
     expect(screen.getByText("อันดับ 6 กับอันดับ 7 ต่างกัน 0.42 จุด")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "7" }));
     expect(screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8 2").children).toHaveLength(7);
     expect(screen.getByRole("button", { name: "ดูชุดทั้งหมด 28 คู่" })).toBeTruthy();
-    const disclosure = screen.getByText((_, element) => element?.tagName === "SMALL" && element.textContent?.includes("จัดอันดับจากรูปแบบย้อนหลังของหวยรายวัน") === true);
-    expect(disclosure.textContent).toContain("ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็น");
+    expect(screen.getByText(/ตัวเลขทั้งหมดมาจากสถิติย้อนหลัง/).textContent).toContain("ไม่ใช่ค่าความน่าจะเป็นของงวดถัดไป");
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {

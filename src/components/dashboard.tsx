@@ -51,6 +51,7 @@ import { LotteryPicker } from "./analyze/lottery-picker";
 import { LotteryHeaderMeta, syncNeedsUpdate } from "./lottery-header-meta";
 import { AppSidebar, MobileNavigation } from "./app-shell/navigation";
 import { AnalyzeControls } from "./analyze/analyze-controls";
+import { AnalyzePageLayout } from "./analyze/analyze-page-layout";
 import { GlobalWeekdayWinCard } from "./analyze/global-weekday-win-card";
 import { AnalysisDisclosure } from "./analyze/analysis-disclosure";
 import { CoverageSummary } from "./analyze/coverage-summary";
@@ -387,7 +388,7 @@ export default function Dashboard({
         statusDetail={systemStatus?.connected ? `${systemStatus.snapshotCount} หวย · ล็อกล่วงหน้า ${systemStatus.predictionCount}` : snapshot ? "JSON fallback · ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}
       />
       <main>
-        <header className="topbar">
+        {section !== "analyze" && <header className="topbar">
           <div className="topbar-head">
             <div className="eyebrow">LOTTERY ANALYSIS</div>
             <LotteryPicker
@@ -441,17 +442,17 @@ export default function Dashboard({
                 ? "ซิงก์ข้อมูลใหม่"
                 : "ซิงก์ข้อมูล"}
           </button>
-        </header>
+        </header>}
         {error && (
           <div className="error">
             <strong>ดำเนินการไม่สำเร็จ</strong>
             <span>{error} — cache เดิมยังคงอยู่</span>
           </div>
         )}
-        {!analysis && !["history", "live", "prospective", "settings"].includes(section) && (
+        {!analysis && !["analyze", "history", "live", "prospective", "settings"].includes(section) && (
           <Empty onSync={sync} syncing={syncing} />
         )}{" "}
-        {analysis && section === "analyze" && (
+        {section === "analyze" && (
           <Analyze
             analysis={analysis}
             consensus={consensus}
@@ -470,6 +471,17 @@ export default function Dashboard({
             onProspectiveChange={loadSystemStatus}
             windowSize={windowSize}
             setWindow={setWindow}
+            perLotteryHeader={<header className="topbar per-lottery-header">
+              <div className="topbar-head">
+                <LotteryPicker catalog={catalog} selectedId={selectedId} onSelect={selectLottery} onRefresh={refreshCatalog} refreshing={catalogSync} auditStatuses={auditStatuses} />
+                <LotteryHeaderMeta windowSize={windowSize} latestDrawDate={latest} syncedAt={snapshot?.syncedAt} freshness={freshness} syncNotice={syncNotice} currentSourceResultDate={snapshot?.currentSourceResultDate} latestCompleteDrawDate={snapshot?.latestCompleteDrawDate} integrity={integrity} hydrated={hydrated} />
+              </div>
+              <div className={`storage-badge ${systemStatus?.connected ? "connected" : "fallback"}`}><Database /><span>{systemStatus?.connected ? "Neon" : "JSON fallback"}</span><i /></div>
+              {selectedLottery && selectedLiveResult && <a className="source-result-link" href={selectedLiveResult.url} target="_blank" rel="noopener noreferrer" aria-label={`ดูผลสด ${selectedLottery.name} จากเว็บไซต์ผลโดยตรง`}><ExternalLink /><span>ดูผลสด</span><small>{selectedLiveResult.resultAt}</small></a>}
+              <button className={`sync${syncNeedsUpdate(freshness, syncNotice) ? " sync-pending" : ""}`} disabled={syncing || !selectedId} onClick={sync}><RefreshCw className={syncing ? "spin" : ""} />{syncing ? "กำลังซิงก์" : syncNeedsUpdate(freshness, syncNotice) ? "ซิงก์ข้อมูลใหม่" : "ซิงก์ข้อมูล"}</button>
+            </header>}
+            onSync={sync}
+            syncing={syncing}
           />
         )}{" "}
         {analysis && section === "statistics" && (
@@ -593,8 +605,11 @@ function Analyze({
   onProspectiveChange,
   windowSize,
   setWindow,
+  perLotteryHeader,
+  onSync,
+  syncing,
 }: {
-  analysis: NonNullable<ReturnType<typeof analyzeLottery>>;
+  analysis: ReturnType<typeof analyzeLottery> | null;
   consensus: ConsensusResult | null;
   integrity: DataIntegritySummary;
   algorithmId: string;
@@ -611,15 +626,16 @@ function Analyze({
   onProspectiveChange: () => void;
   windowSize: number;
   setWindow: (value: number) => void;
+  perLotteryHeader: React.ReactNode;
+  onSync: () => void;
+  syncing: boolean;
 }) {
-  const enoughData =
-    analysis.sampleSize >=
-    (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS);
-  return (
-    <div className="content analyze">
+  const [globalAnalysisDate, setGlobalAnalysisDate] = useState<string>();
+  const enoughData = analysis ? analysis.sampleSize >= (dayPattern === "all" ? analysis.window : MIN_DAY_PATTERN_DRAWS) : false;
+  return <AnalyzePageLayout analysisDate={globalAnalysisDate ?? latestDrawDate} globalDaily={<GlobalWeekdayWinCard onCutoffDateChange={setGlobalAnalysisDate} />} perLotteryHeader={perLotteryHeader} showPerLottery={false}>
+      {!analysis ? <Empty onSync={onSync} syncing={syncing} /> : <>
       <AnalyzeControls windowSize={windowSize} onWindowChange={setWindow} dayPattern={dayPattern} onDayPatternChange={setDayPattern} sampleSize={analysis.sampleSize} minimumDayDraws={MIN_DAY_PATTERN_DRAWS} />
       <StandoutHero enoughData={enoughData} digits={analysis.standout.map((item) => item.digit)} context={`วิเคราะห์จาก ${dayPattern === "all" ? `${analysis.window} งวดล่าสุด` : `${analysis.sampleSize} งวด${dayPatternLabel(dayPattern)}`}`} insufficientCopy={`ข้อมูล${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)}ยังไม่พอ · มี ${analysis.sampleSize} งวด`} consensusDigits={consensus?.digits.slice(0, 5).map((item) => item.digit) ?? []} integrity={integrity} stabilityScore={consensus?.stabilityScore ?? null} stabilityDetail={consensus?.stabilityScore === null ? `มี ${analysis.sampleSize} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ต้องมีอย่างน้อย ${dayPattern === "all" ? "20 งวดเพื่อเทียบช่วง 10/20" : "10 งวดเพื่อเทียบช่วง 5/10"}` : `${consensus ? stabilityCopy[consensus.stabilityStatus] : "ข้อมูลยังไม่พอ"} · เทียบช่วง ${consensus?.eligibleWindows.join("/")} งวด${dayPattern === "all" ? "" : dayPatternLabel(dayPattern)} · ไม่ใช่ความน่าจะเป็น`} />
-      <GlobalWeekdayWinCard />
       {enoughData && (
         <>
           <WinSetContainer
@@ -651,10 +667,10 @@ function Analyze({
         </>
       )}
       {enoughData && (
-        <AnalysisDisclosure label="สำรวจคู่ที่น่าสนใจบน / ล่าง"><PairSection top={analysis.topPairs} bottom={analysis.bottomPairs} onSelect={onPair} /></AnalysisDisclosure>
+        <div id="per-lottery-pairs"><AnalysisDisclosure label="สำรวจคู่ที่น่าสนใจบน / ล่าง"><PairSection top={analysis.topPairs} bottom={analysis.bottomPairs} onSelect={onPair} /></AnalysisDisclosure></div>
       )}
       {enoughData && <AnalysisDisclosure label="ดูเหตุผลและรายละเอียดคะแนน">
-        <section className="why">
+        <section className="why" id="additional-analysis">
         <div className="section-kicker">ทำไมเลขนี้โดดเด่น</div>
         <div className="reason-grid">
           {analysis.standout.flatMap((d) =>
@@ -693,8 +709,8 @@ function Analyze({
         )}
         </section>
       </AnalysisDisclosure>}
-    </div>
-  );
+      </>}
+    </AnalyzePageLayout>;
 }
 
 function nextDrawDate(latestDrawDate: string | undefined, dayPattern: DayPattern = "all") {

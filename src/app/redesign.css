@@ -29,11 +29,11 @@
   --shadow-lg: 0 24px 70px rgb(19 31 27 / 16%);
   --content-width: 1120px;
   --sidebar-width: 248px;
-  --sidebar: #18211f;
-  --sidebar-foreground: #e8efeb;
-  --sidebar-muted-foreground: #94a29d;
-  --sidebar-border: #2c3a36;
-  --sidebar-accent: #293a35;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-muted-foreground: #94a3b8;
+  --sidebar-border: #263449;
+  --sidebar-accent: #1e3a5f;
   --sidebar-accent-foreground: #ffffff;
   --ring: #286554;
   --radius-control: var(--radius-sm);
@@ -54,18 +54,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 button:disabled { cursor: not-allowed; opacity: .55; }
 .app-shell { min-height: 100dvh; }
 
-.sidebar { width: var(--sidebar-width); padding: 24px 18px; background: var(--sidebar); border-right: 1px solid var(--sidebar-border); color: var(--sidebar-foreground); }
-.brand { min-height: 48px; margin: 0 6px 38px; gap: 11px; }
-.brand > span { width: 42px; height: 42px; border-radius: 13px; background: #22302c; border-color: #40564f; font-weight: 650; }
-.brand strong { font-size: 15px; font-weight: 650; letter-spacing: .01em; }
-.brand small { font-size: 10px; letter-spacing: .04em; }
-.sidebar nav { gap: 4px; }
-.sidebar nav button { min-height: 44px; border-radius: 10px; padding: 0 13px; font-size: 13px; font-weight: 450; }
-.sidebar nav button svg { width: 18px; height: 18px; }
-.sidebar nav button.active { background: #2b3d37; box-shadow: inset 0 0 0 1px #3a5049; }
-.sidebar-note { margin: auto 6px 0; padding: 18px 4px 0; }
-.sidebar-note strong { font-size: 11px; font-weight: 550; }
-.sidebar-note small { font-size: 9px; line-height: 1.5; }
+.app-shell > .sidebar { width: var(--sidebar-width); padding: 24px 18px; background: var(--sidebar); border-right: 1px solid var(--sidebar-border); color: var(--sidebar-foreground); }
+.app-shell > .sidebar .brand { min-height: 48px; margin: 0 6px 38px; gap: 11px; }
+.app-shell > .sidebar .brand > span { width: 42px; height: 42px; border-radius: 13px; background: #17233a; border-color: #334764; color: #bfdbfe; font-weight: 650; }
+.app-shell > .sidebar .brand strong { font-size: 15px; font-weight: 650; letter-spacing: .01em; }
+.app-shell > .sidebar .brand small { color: var(--sidebar-muted-foreground); font-size: 10px; letter-spacing: .04em; }
+.app-shell > .sidebar nav { gap: 4px; }
+.app-shell > .sidebar nav button { min-height: 44px; border-radius: 10px; padding: 0 13px; color: var(--sidebar-muted-foreground); font-size: 13px; font-weight: 450; }
+.app-shell > .sidebar nav button svg { width: 18px; height: 18px; }
+.app-shell > .sidebar nav button.active { background: var(--sidebar-accent); color: var(--sidebar-accent-foreground); box-shadow: inset 0 0 0 1px #315781; }
+.app-shell > .sidebar .sidebar-note { margin: auto 6px 0; padding: 18px 4px 0; border-color: var(--sidebar-border); }
+.app-shell > .sidebar .sidebar-note svg { color: #93c5fd; }
+.app-shell > .sidebar .sidebar-note strong { font-size: 11px; font-weight: 550; }
+.app-shell > .sidebar .sidebar-note small { color: var(--sidebar-muted-foreground); font-size: 9px; line-height: 1.5; }
 
 main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4vw, 64px) 40px; }
 .topbar { width: min(100%, var(--content-width)); min-height: 142px; margin: 0 auto; gap: 12px; }
@@ -86,6 +87,25 @@ main { margin-left: var(--sidebar-width); min-width: 0; padding: 0 clamp(24px, 4
 
 .content { width: min(100%, var(--content-width)); padding: clamp(28px, 4vw, 52px) 0; }
 .content.analyze { max-width: 1040px; }
+.analyze-global-first { padding-top: 30px; }
+.analyze-page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
+.analyze-page-header h1 { margin: 5px 0 0; color: #0f172a; font-size: clamp(28px, 3vw, 38px); line-height: 1.2; }
+.analyze-page-header p { margin: 3px 0 0; color: #64748b; font-size: 13px; }
+.analyze-date { position: relative; display: grid; min-width: 250px; padding: 10px 44px 10px 14px; border: 1px solid #dbe4ef; border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+.analyze-date span { color: #64748b; font-size: 10px; }
+.analyze-date strong { color: #23324a; font-size: 13px; }
+.analyze-date svg { position: absolute; top: 50%; right: 14px; width: 17px; color: #2563a9; transform: translateY(-50%); }
+.analyze-page-tabs { display: flex; gap: 4px; overflow-x: auto; margin-bottom: 14px; border-bottom: 1px solid #dbe4ef; scrollbar-width: none; }
+.analyze-page-tabs::-webkit-scrollbar { display: none; }
+.analyze-page-tabs a { flex: 0 0 auto; padding: 10px 16px 9px; border-bottom: 2px solid transparent; color: #52677a; font-size: 12px; text-decoration: none; }
+.analyze-page-tabs a.active { border-bottom-color: #1677ff; color: #0967e8; font-weight: 650; }
+.per-lottery-section { margin-top: 34px; padding-top: 30px; border-top: 1px solid #dbe4ef; }
+.per-lottery-title { margin-bottom: 14px; }
+.per-lottery-title h2 { margin: 4px 0 0; color: #0f172a; font-size: 24px; }
+.per-lottery-title p { margin: 2px 0 0; color: #64748b; font-size: 11px; }
+.per-lottery-header { min-height: 0; margin-bottom: 16px; padding: 14px 16px; border: 1px solid #dbe4ef; border-radius: var(--radius-lg); background: #fff; }
+.per-lottery-header .lottery-select { font-size: 22px; }
+.per-lottery-section > .empty-state { width: 100%; margin-top: 0; padding: 30px; }
 .section-head { margin-bottom: 28px; }
 .section-head h2, .settings h2 { font-size: clamp(28px, 3vw, 38px); font-weight: 580; letter-spacing: -.03em; }
 .section-head p { max-width: 620px; font-size: 13px; }
@@ -256,6 +276,14 @@ footer { width: min(100%, var(--content-width)); margin-top: 24px; padding-botto
   .source-result-link small { display: none; }
   .sync svg { width: 17px; }
   .content { padding: 18px 0 24px; }
+  .analyze-global-first { padding-top: 18px; }
+  .analyze-page-header { align-items: stretch; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+  .analyze-page-header p { font-size: 11px; }
+  .analyze-date { min-width: 0; }
+  .analyze-page-tabs { margin-inline: -2px; }
+  .analyze-page-tabs a { padding-inline: 12px; font-size: 11px; }
+  .per-lottery-section { margin-top: 26px; padding-top: 24px; }
+  .per-lottery-header { align-items: flex-start; min-height: 0; padding: 12px; }
   .analyze-control-panel { gap: 7px; margin-bottom: 12px; }
   .analyze-control-panel > p { grid-column: auto; flex-direction: row; flex-wrap: wrap; gap: 0 8px; line-height: 1.4; }
   .window-selector, .day-pattern-options { min-height: 38px; padding: 2px; border-radius: 9px; }
