@@ -1,0 +1,520 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-05",
+    "codeBaseline": "main@25d75de",
+    "researchQuestion": "Which source universe (dynamic All Eligible, frozen Legacy 46, or weekday-scoped Played Universe) produces the best Win 6 for the lotteries actually played on Saturday?",
+    "scoringEngine": "src/lib/analysis/global-weekday-win.ts#buildGlobalWeekdayWin - identical for every strategy, unmodified by this study",
+    "universes": {
+      "all_eligible": {
+        "source": "dynamic canonical catalog, same resolver production uses",
+        "note": "identical to /api/global-weekday-win in production"
+      },
+      "legacy_46": {
+        "source": "src/lib/analysis/global-daily-sources.ts#GLOBAL_DAILY_SOURCE_IDS (frozen)",
+        "size": 46,
+        "ids": [
+          "nikkei-vip-morning",
+          "hanoiasean",
+          "nikkei-morning",
+          "szse-vip-morning",
+          "szse-morning",
+          "laotv",
+          "hsi-vip-morning",
+          "hsi-morning",
+          "xosohd",
+          "twse-vip",
+          "minhngocstar",
+          "twse",
+          "ktop30-vip",
+          "ktop30",
+          "nikkei-afternoon",
+          "nikkei-vip-afternoon",
+          "laoshd",
+          "szse-afternoon",
+          "minhngoctv",
+          "szse-vip-afternoon",
+          "hsi-vip-afternoon",
+          "hsi-afternoon",
+          "laostars",
+          "sgx",
+          "xosoredcross",
+          "set",
+          "sgx-vip",
+          "laounion",
+          "laosasean",
+          "laosvip",
+          "laounionvip",
+          "laostarsvip",
+          "england-vip",
+          "moexbc",
+          "xosoextra",
+          "gdaxi",
+          "ftse100",
+          "germany-vip",
+          "laoredcross",
+          "russia-vip",
+          "dowjones-vip",
+          "dowjonestar",
+          "dji",
+          "laocitizen",
+          "laosantipap",
+          "laopatuxay"
+        ]
+      },
+      "played": {
+        "source": "src/lib/analysis/played-universe.ts#PLAYED_UNIVERSE_BY_WEEKDAY[6] (frozen, user-provided operational list)",
+        "size": 25,
+        "ids": [
+          "nikkei-vip-morning",
+          "hanoiasean",
+          "szse-vip-morning",
+          "dji",
+          "hsi-vip-morning",
+          "xosohd",
+          "twse-vip",
+          "minhngocstar",
+          "ktop30-vip",
+          "nikkei-vip-afternoon",
+          "laoshd",
+          "minhngoctv",
+          "szse-vip-afternoon",
+          "hsi-vip-afternoon",
+          "laostars",
+          "xosoredcross",
+          "laounion",
+          "laosasean",
+          "laosvip",
+          "laounionvip",
+          "laoredcross",
+          "england-vip",
+          "xosoextra",
+          "germany-vip",
+          "dowjonestar"
+        ]
+      }
+    },
+    "weekdayScope": "Saturday only - the only weekday with a real user-provided operational list as of this freeze date. Monday-Friday and Sunday are not evaluated.",
+    "commonData": {
+      "sameWeekdayOnly": true,
+      "maximumPriorObservationsPerLottery": 12,
+      "targetAndFutureExcluded": true,
+      "presencePerDraw": true,
+      "duplicateDigitCountedOncePerSide": true,
+      "noImputation": true,
+      "equalSourceWeighting": true
+    },
+    "targetPopulation": "Fixed per date: the Played Universe intersected with sources that report a complete top2 and bottom2 outcome on the target date. Identical for all three strategies - each strategy is graded on the same outcomes, never on its own universe.",
+    "primaryMetric": "full two-digit hit on either top2 or bottom2 (played-universe outcomes only)",
+    "secondaryMetrics": [
+      "full top2 hit",
+      "full bottom2 hit",
+      "both-sides full hit",
+      "digit recall"
+    ],
+    "randomBaseline": "exact enumeration of all 6-of-10 sets with double-aware pair coverage",
+    "split": {
+      "development": "oldest 75% eligible Saturday target dates",
+      "holdout": "newest 25% eligible Saturday target dates"
+    },
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260905
+    },
+    "decisionRule": {
+      "researchSupportedIf": [
+        "Played improves over All Eligible in Development, Holdout, and All",
+        "Played improves over or approximately ties Legacy 46 (within a 0.5pp tie band)",
+        "the paired-difference 95% CI vs All Eligible excludes zero on the low side"
+      ],
+      "tieEpsilon": 0.005,
+      "preRegisteredNote": "This decision rule was fixed before reading results. No weekday list, weight, or window size is tuned based on this study's outcome."
+    },
+    "prohibition": "One frozen comparison only; no tuning of played-universe lists, no production, UI, pool, or scoring change is authorized by this study."
+  },
+  "protocolHash": "08a14ed4b66a41c1",
+  "historyHash": "bdc06bc4cbd2c8cc",
+  "pool": {
+    "all_eligible": null,
+    "legacy_46": [
+      "nikkei-vip-morning",
+      "hanoiasean",
+      "nikkei-morning",
+      "szse-vip-morning",
+      "szse-morning",
+      "laotv",
+      "hsi-vip-morning",
+      "hsi-morning",
+      "xosohd",
+      "twse-vip",
+      "minhngocstar",
+      "twse",
+      "ktop30-vip",
+      "ktop30",
+      "nikkei-afternoon",
+      "nikkei-vip-afternoon",
+      "laoshd",
+      "szse-afternoon",
+      "minhngoctv",
+      "szse-vip-afternoon",
+      "hsi-vip-afternoon",
+      "hsi-afternoon",
+      "laostars",
+      "sgx",
+      "xosoredcross",
+      "set",
+      "sgx-vip",
+      "laounion",
+      "laosasean",
+      "laosvip",
+      "laounionvip",
+      "laostarsvip",
+      "england-vip",
+      "moexbc",
+      "xosoextra",
+      "gdaxi",
+      "ftse100",
+      "germany-vip",
+      "laoredcross",
+      "russia-vip",
+      "dowjones-vip",
+      "dowjonestar",
+      "dji",
+      "laocitizen",
+      "laosantipap",
+      "laopatuxay"
+    ],
+    "played": [
+      "nikkei-vip-morning",
+      "hanoiasean",
+      "szse-vip-morning",
+      "dji",
+      "hsi-vip-morning",
+      "xosohd",
+      "twse-vip",
+      "minhngocstar",
+      "ktop30-vip",
+      "nikkei-vip-afternoon",
+      "laoshd",
+      "minhngoctv",
+      "szse-vip-afternoon",
+      "hsi-vip-afternoon",
+      "laostars",
+      "xosoredcross",
+      "laounion",
+      "laosasean",
+      "laosvip",
+      "laounionvip",
+      "laoredcross",
+      "england-vip",
+      "xosoextra",
+      "germany-vip",
+      "dowjonestar"
+    ]
+  },
+  "data": {
+    "range": [
+      "2026-06-06",
+      "2026-08-29"
+    ],
+    "targetDates": 13,
+    "outcomes": 310,
+    "hydrated": []
+  },
+  "sections": {
+    "development": {
+      "dates": 9,
+      "outcomes": 214,
+      "all_eligible": {
+        "top": {
+          "rate": 0.3878504672897196,
+          "baseline": 0.35825545171339557,
+          "uplift": 0.029595015576324046
+        },
+        "bottom": {
+          "rate": 0.34579439252336447,
+          "baseline": 0.3557632398753893,
+          "uplift": -0.009968847352024857
+        },
+        "either": {
+          "rate": 0.5794392523364486,
+          "baseline": 0.5953048509123274,
+          "uplift": -0.01586559857587888
+        },
+        "both": {
+          "rate": 0.1542056074766355,
+          "baseline": 0.11871384067645753,
+          "uplift": 0.035491766800177973
+        },
+        "recall": {
+          "rate": 0.6133177570093458,
+          "baseline": 0.5999999999999998,
+          "uplift": 0.01331775700934601
+        }
+      },
+      "legacy_46": {
+        "top": {
+          "rate": 0.3411214953271028,
+          "baseline": 0.35825545171339557,
+          "uplift": -0.01713395638629278
+        },
+        "bottom": {
+          "rate": 0.3644859813084112,
+          "baseline": 0.3557632398753893,
+          "uplift": 0.008722741433021874
+        },
+        "either": {
+          "rate": 0.5607476635514018,
+          "baseline": 0.5953048509123274,
+          "uplift": -0.03455718736092561
+        },
+        "both": {
+          "rate": 0.14485981308411214,
+          "baseline": 0.11871384067645753,
+          "uplift": 0.026145972407654608
+        },
+        "recall": {
+          "rate": 0.5981308411214953,
+          "baseline": 0.5999999999999998,
+          "uplift": -0.0018691588785044733
+        }
+      },
+      "played": {
+        "top": {
+          "rate": 0.3644859813084112,
+          "baseline": 0.35825545171339557,
+          "uplift": 0.0062305295950156325
+        },
+        "bottom": {
+          "rate": 0.35514018691588783,
+          "baseline": 0.3557632398753893,
+          "uplift": -0.0006230529595014911
+        },
+        "either": {
+          "rate": 0.602803738317757,
+          "baseline": 0.5953048509123274,
+          "uplift": 0.007498887405429588
+        },
+        "both": {
+          "rate": 0.11682242990654206,
+          "baseline": 0.11871384067645753,
+          "uplift": -0.0018914107699154747
+        },
+        "recall": {
+          "rate": 0.602803738317757,
+          "baseline": 0.5999999999999998,
+          "uplift": 0.002803738317757265
+        }
+      },
+      "pairedVsAllEligible": 0.02336448598130841,
+      "pairedVsLegacy46": 0.04205607476635514
+    },
+    "holdout": {
+      "dates": 4,
+      "outcomes": 96,
+      "all_eligible": {
+        "top": {
+          "rate": 0.3854166666666667,
+          "baseline": 0.35555555555555546,
+          "uplift": 0.029861111111111227
+        },
+        "bottom": {
+          "rate": 0.3645833333333333,
+          "baseline": 0.35277777777777763,
+          "uplift": 0.01180555555555568
+        },
+        "either": {
+          "rate": 0.6770833333333334,
+          "baseline": 0.5835813492063492,
+          "uplift": 0.09350198412698418
+        },
+        "both": {
+          "rate": 0.07291666666666667,
+          "baseline": 0.12475198412698418,
+          "uplift": -0.05183531746031751
+        },
+        "recall": {
+          "rate": 0.6145833333333334,
+          "baseline": 0.5999999999999998,
+          "uplift": 0.014583333333333615
+        }
+      },
+      "legacy_46": {
+        "top": {
+          "rate": 0.4375,
+          "baseline": 0.35555555555555546,
+          "uplift": 0.08194444444444454
+        },
+        "bottom": {
+          "rate": 0.2708333333333333,
+          "baseline": 0.35277777777777763,
+          "uplift": -0.08194444444444432
+        },
+        "either": {
+          "rate": 0.5625,
+          "baseline": 0.5835813492063492,
+          "uplift": -0.021081349206349187
+        },
+        "both": {
+          "rate": 0.14583333333333334,
+          "baseline": 0.12475198412698418,
+          "uplift": 0.02108134920634916
+        },
+        "recall": {
+          "rate": 0.6067708333333334,
+          "baseline": 0.5999999999999998,
+          "uplift": 0.006770833333333615
+        }
+      },
+      "played": {
+        "top": {
+          "rate": 0.40625,
+          "baseline": 0.35555555555555546,
+          "uplift": 0.05069444444444454
+        },
+        "bottom": {
+          "rate": 0.2604166666666667,
+          "baseline": 0.35277777777777763,
+          "uplift": -0.09236111111111095
+        },
+        "either": {
+          "rate": 0.5520833333333334,
+          "baseline": 0.5835813492063492,
+          "uplift": -0.03149801587301582
+        },
+        "both": {
+          "rate": 0.11458333333333333,
+          "baseline": 0.12475198412698418,
+          "uplift": -0.010168650793650855
+        },
+        "recall": {
+          "rate": 0.5885416666666666,
+          "baseline": 0.5999999999999998,
+          "uplift": -0.011458333333333126
+        }
+      },
+      "pairedVsAllEligible": -0.125,
+      "pairedVsLegacy46": -0.010416666666666666
+    },
+    "all": {
+      "dates": 13,
+      "outcomes": 310,
+      "all_eligible": {
+        "top": {
+          "rate": 0.3870967741935484,
+          "baseline": 0.3574193548387096,
+          "uplift": 0.029677419354838752
+        },
+        "bottom": {
+          "rate": 0.35161290322580646,
+          "baseline": 0.35483870967741926,
+          "uplift": -0.0032258064516128004
+        },
+        "either": {
+          "rate": 0.6096774193548387,
+          "baseline": 0.591674347158218,
+          "uplift": 0.018003072196620673
+        },
+        "both": {
+          "rate": 0.12903225806451613,
+          "baseline": 0.12058371735791094,
+          "uplift": 0.008448540706605182
+        },
+        "recall": {
+          "rate": 0.6137096774193549,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.013709677419355026
+        }
+      },
+      "legacy_46": {
+        "top": {
+          "rate": 0.3709677419354839,
+          "baseline": 0.3574193548387096,
+          "uplift": 0.01354838709677425
+        },
+        "bottom": {
+          "rate": 0.33548387096774196,
+          "baseline": 0.35483870967741926,
+          "uplift": -0.019354838709677302
+        },
+        "either": {
+          "rate": 0.5612903225806452,
+          "baseline": 0.591674347158218,
+          "uplift": -0.030384024577572832
+        },
+        "both": {
+          "rate": 0.14516129032258066,
+          "baseline": 0.12058371735791094,
+          "uplift": 0.02457757296466971
+        },
+        "recall": {
+          "rate": 0.6008064516129032,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.0008064516129033805
+        }
+      },
+      "played": {
+        "top": {
+          "rate": 0.3774193548387097,
+          "baseline": 0.3574193548387096,
+          "uplift": 0.020000000000000073
+        },
+        "bottom": {
+          "rate": 0.3258064516129032,
+          "baseline": 0.35483870967741926,
+          "uplift": -0.029032258064516037
+        },
+        "either": {
+          "rate": 0.5870967741935483,
+          "baseline": 0.591674347158218,
+          "uplift": -0.004577572964669652
+        },
+        "both": {
+          "rate": 0.11612903225806452,
+          "baseline": 0.12058371735791094,
+          "uplift": -0.004454685099846423
+        },
+        "recall": {
+          "rate": 0.5983870967741935,
+          "baseline": 0.5999999999999999,
+          "uplift": -0.001612903225806317
+        }
+      },
+      "pairedVsAllEligible": -0.02258064516129032,
+      "pairedVsLegacy46": 0.025806451612903226
+    }
+  },
+  "confidence": {
+    "development": {
+      "pairedVsAllEligible95": [
+        -0.06018518518518518,
+        0.10648148148148148
+      ],
+      "pairedVsLegacy46": [
+        -0.056074766355140186,
+        0.15566037735849053
+      ]
+    },
+    "holdout": {
+      "pairedVsAllEligible95": [
+        -0.20833333333333334,
+        -0.041666666666666664
+      ],
+      "pairedVsLegacy46": [
+        -0.041666666666666664,
+        0.020833333333333332
+      ]
+    },
+    "all": {
+      "pairedVsAllEligible95": [
+        -0.09294871794871795,
+        0.05161290322580645
+      ],
+      "pairedVsLegacy46": [
+        -0.041666666666666664,
+        0.10967741935483871
+      ]
+    }
+  },
+  "conclusion": "INCONCLUSIVE"
+}

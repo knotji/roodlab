@@ -1,5 +1,8 @@
 # RoodLab research reports
 
+- `global-joint-21-2026-09-05.md` / `.json` — frozen one-shot walk-forward comparison of deterministic Joint 21 against Frequency Top 21; research only.
+- `global-played-universe-2026-09-05.md` / `.json` — frozen Saturday-only comparison of All Eligible vs Legacy 46 vs the weekday-scoped Played Universe, graded on identical played-universe outcomes; research only, conclusion INCONCLUSIVE.
+
 Research reports are offline diagnostics. They do not change the production formula or represent predictive probabilities.
 
 - [All-lottery dynamic production freeze acceptance — 2026-09-04](all-lottery-production-freeze-2026-09-04.md)

@@ -1,0 +1,485 @@
+{
+  "protocol": {
+    "freezeDate": "2026-09-05",
+    "baseline": "main@25d75de",
+    "strategy": "deterministic greedy Joint 21",
+    "candidates": "55 canonical reverse-pairs including doubles",
+    "objectives": [
+      "weighted both-hit coverage",
+      "min top/bottom coverage",
+      "source breadth",
+      "total coverage",
+      "lexical numeric tie"
+    ],
+    "data": {
+      "canonicalEligibility": true,
+      "completeOnly": true,
+      "sameWeekday": true,
+      "maxPriorPerLottery": 12,
+      "equalSourceWeighting": true,
+      "targetExcluded": true
+    },
+    "comparison": "Frequency Top 21",
+    "split": "oldest 75% development / newest 25% holdout",
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260905
+    },
+    "prohibitions": [
+      "no tuning",
+      "no production change",
+      "no Gemini selection",
+      "no prospective tracking"
+    ]
+  },
+  "protocolHash": "e48adff58c7dddc8",
+  "historyHash": "dc614cb92513a4ed",
+  "data": {
+    "catalog": 151,
+    "snapshots": 151,
+    "range": [
+      "2026-04-24",
+      "2026-09-04"
+    ],
+    "targetDates": 119,
+    "outcomes": 11351
+  },
+  "sample": {
+    "bothHitRate": 0.25207514198339875,
+    "topHitRate": 0.4572957623416339,
+    "bottomHitRate": 0.47924858016601113,
+    "topOnlyRate": 0.20522062035823516,
+    "bottomOnlyRate": 0.2271734381826125,
+    "missRate": 0.31553079947575363,
+    "sourceCoverage": 1,
+    "totalCoverage": 0.4682721712538225,
+    "selectedPairs": [
+      "13",
+      "14",
+      "05",
+      "57",
+      "12",
+      "24",
+      "78",
+      "56",
+      "36",
+      "59",
+      "03",
+      "49",
+      "06",
+      "09",
+      "18",
+      "27",
+      "38",
+      "45",
+      "37",
+      "29",
+      "08"
+    ],
+    "selectedDoubles": [],
+    "expandedActualCount": 42
+  },
+  "sections": {
+    "development": {
+      "dates": 89,
+      "outcomes": 7641,
+      "joint": {
+        "both": 0.17851066614317498,
+        "top": 0.42455176024080615,
+        "bottom": 0.43318937311870176,
+        "topOnly": 0.2460410940976312,
+        "bottomOnly": 0.25467870697552675,
+        "miss": 0.32076953278366704,
+        "randomBoth": 0.17413663133097765
+      },
+      "frequency": {
+        "both": 0.1854469310299699,
+        "top": 0.4344981023426253,
+        "bottom": 0.4409108755398508,
+        "topOnly": 0.24905117131265542,
+        "bottomOnly": 0.2554639445098809,
+        "miss": 0.31003795314749377,
+        "randomBoth": 0.17587033110849365
+      },
+      "pairedBothDifference": -0.006936264886794922
+    },
+    "holdout": {
+      "dates": 30,
+      "outcomes": 3710,
+      "joint": {
+        "both": 0.1908355795148248,
+        "top": 0.42398921832884096,
+        "bottom": 0.4398921832884097,
+        "topOnly": 0.23315363881401618,
+        "bottomOnly": 0.2490566037735849,
+        "miss": 0.32695417789757414,
+        "randomBoth": 0.17579595687331542
+      },
+      "frequency": {
+        "both": 0.18867924528301888,
+        "top": 0.431266846361186,
+        "bottom": 0.4412398921832884,
+        "topOnly": 0.24258760107816713,
+        "bottomOnly": 0.2525606469002695,
+        "miss": 0.31617250673854447,
+        "randomBoth": 0.17640000000000008
+      },
+      "pairedBothDifference": 0.00215633423180593
+    },
+    "all": {
+      "dates": 119,
+      "outcomes": 11351,
+      "joint": {
+        "both": 0.18253898334948462,
+        "top": 0.42436789710157696,
+        "bottom": 0.4353801427187032,
+        "topOnly": 0.24182891375209234,
+        "bottomOnly": 0.2528411593692186,
+        "miss": 0.32279094352920445,
+        "randomBoth": 0.1746789710157696
+      },
+      "frequency": {
+        "both": 0.18650339177165007,
+        "top": 0.433441987490089,
+        "bottom": 0.44101841247467183,
+        "topOnly": 0.2469385957184389,
+        "bottomOnly": 0.25451502070302173,
+        "miss": 0.31204299180688927,
+        "randomBoth": 0.17604344991630697
+      },
+      "pairedBothDifference": -0.0039644084221654476
+    }
+  },
+  "confidence": {
+    "development": [
+      -0.017154845352548256,
+      0.003363934984518252
+    ],
+    "holdout": [
+      -0.009610012801831753,
+      0.01347431163587291
+    ],
+    "all": [
+      -0.011976173037040993,
+      0.0037742816682512234
+    ]
+  },
+  "monthly": [
+    {
+      "month": "2026-04",
+      "dates": 5,
+      "outcomes": 69,
+      "joint": {
+        "both": 0.14492753623188406,
+        "top": 0.37681159420289856,
+        "bottom": 0.42028985507246375,
+        "topOnly": 0.2318840579710145,
+        "bottomOnly": 0.2753623188405797,
+        "miss": 0.34782608695652173,
+        "randomBoth": 0.15328840579710146
+      },
+      "frequency": {
+        "both": 0.14492753623188406,
+        "top": 0.391304347826087,
+        "bottom": 0.4057971014492754,
+        "topOnly": 0.2463768115942029,
+        "bottomOnly": 0.2608695652173913,
+        "miss": 0.34782608695652173,
+        "randomBoth": 0.15914927536231882
+      },
+      "pairedBothDifference": 0
+    },
+    {
+      "month": "2026-05",
+      "dates": 18,
+      "outcomes": 276,
+      "joint": {
+        "both": 0.13043478260869565,
+        "top": 0.36231884057971014,
+        "bottom": 0.40217391304347827,
+        "topOnly": 0.2318840579710145,
+        "bottomOnly": 0.2717391304347826,
+        "miss": 0.36594202898550726,
+        "randomBoth": 0.16319347826086955
+      },
+      "frequency": {
+        "both": 0.14492753623188406,
+        "top": 0.37681159420289856,
+        "bottom": 0.4528985507246377,
+        "topOnly": 0.2318840579710145,
+        "bottomOnly": 0.3079710144927536,
+        "miss": 0.31521739130434784,
+        "randomBoth": 0.1702590579710145
+      },
+      "pairedBothDifference": -0.014492753623188406
+    },
+    {
+      "month": "2026-06",
+      "dates": 30,
+      "outcomes": 3257,
+      "joint": {
+        "both": 0.17040221062327296,
+        "top": 0.42308873196192814,
+        "bottom": 0.421246545901136,
+        "topOnly": 0.2526865213386552,
+        "bottomOnly": 0.25084433527786304,
+        "miss": 0.32606693276020876,
+        "randomBoth": 0.1736595640159656
+      },
+      "frequency": {
+        "both": 0.18237642001842186,
+        "top": 0.42861529014430455,
+        "bottom": 0.4461160577218299,
+        "topOnly": 0.24623887012588272,
+        "bottomOnly": 0.263739637703408,
+        "miss": 0.30764507215228737,
+        "randomBoth": 0.1760432299662266
+      },
+      "pairedBothDifference": -0.01197420939514891
+    },
+    {
+      "month": "2026-07",
+      "dates": 31,
+      "outcomes": 3419,
+      "joint": {
+        "both": 0.19157648435214975,
+        "top": 0.43258262649897633,
+        "bottom": 0.4466218192453934,
+        "topOnly": 0.24100614214682656,
+        "bottomOnly": 0.25504533489324366,
+        "miss": 0.31237203860778007,
+        "randomBoth": 0.1760722725943258
+      },
+      "frequency": {
+        "both": 0.19537876572097104,
+        "top": 0.44779175197426146,
+        "bottom": 0.4372623574144487,
+        "topOnly": 0.25241298625329045,
+        "bottomOnly": 0.24188359169347762,
+        "miss": 0.3103246563322609,
+        "randomBoth": 0.17639999999999997
+      },
+      "pairedBothDifference": -0.0038022813688212928
+    },
+    {
+      "month": "2026-08",
+      "dates": 31,
+      "outcomes": 3905,
+      "joint": {
+        "both": 0.18873239436619718,
+        "top": 0.4253521126760563,
+        "bottom": 0.43918053777208704,
+        "topOnly": 0.23661971830985915,
+        "bottomOnly": 0.2504481434058899,
+        "miss": 0.3241997439180538,
+        "randomBoth": 0.17531175416133166
+      },
+      "frequency": {
+        "both": 0.18873239436619718,
+        "top": 0.43329065300896286,
+        "bottom": 0.4419974391805378,
+        "topOnly": 0.24455825864276567,
+        "bottomOnly": 0.2532650448143406,
+        "miss": 0.31344430217669655,
+        "randomBoth": 0.17640000000000006
+      },
+      "pairedBothDifference": 0
+    },
+    {
+      "month": "2026-09",
+      "dates": 4,
+      "outcomes": 425,
+      "joint": {
+        "both": 0.18588235294117647,
+        "top": 0.40705882352941175,
+        "bottom": 0.4423529411764706,
+        "topOnly": 0.2211764705882353,
+        "bottomOnly": 0.2564705882352941,
+        "miss": 0.33647058823529413,
+        "randomBoth": 0.17639999999999997
+      },
+      "frequency": {
+        "both": 0.16,
+        "top": 0.4,
+        "bottom": 0.4211764705882353,
+        "topOnly": 0.24,
+        "bottomOnly": 0.2611764705882353,
+        "miss": 0.3388235294117647,
+        "randomBoth": 0.17639999999999997
+      },
+      "pairedBothDifference": 0.02588235294117647
+    }
+  ],
+  "weekday": [
+    {
+      "weekday": 0,
+      "dates": 13,
+      "outcomes": 1339,
+      "joint": {
+        "both": 0.18446601941747573,
+        "top": 0.43539955190440627,
+        "bottom": 0.4548170276325616,
+        "topOnly": 0.25093353248693057,
+        "bottomOnly": 0.2703510082150859,
+        "miss": 0.29424943988050783,
+        "randomBoth": 0.17573054518297232
+      },
+      "frequency": {
+        "both": 0.20687079910380882,
+        "top": 0.4525765496639283,
+        "bottom": 0.4652725914861837,
+        "topOnly": 0.24570575056011948,
+        "bottomOnly": 0.25840179238237493,
+        "miss": 0.2890216579536968,
+        "randomBoth": 0.17639999999999997
+      },
+      "pairedBothDifference": -0.022404779686333084
+    },
+    {
+      "weekday": 1,
+      "dates": 18,
+      "outcomes": 1667,
+      "joint": {
+        "both": 0.1775644871025795,
+        "top": 0.4241151769646071,
+        "bottom": 0.4313137372525495,
+        "topOnly": 0.2465506898620276,
+        "bottomOnly": 0.25374925014997,
+        "miss": 0.32213557288542294,
+        "randomBoth": 0.17436154769046192
+      },
+      "frequency": {
+        "both": 0.1913617276544691,
+        "top": 0.4373125374925015,
+        "bottom": 0.4451109778044391,
+        "topOnly": 0.24595080983803239,
+        "bottomOnly": 0.25374925014997,
+        "miss": 0.3089382123575285,
+        "randomBoth": 0.175125074985003
+      },
+      "pairedBothDifference": -0.013797240551889621
+    },
+    {
+      "weekday": 2,
+      "dates": 18,
+      "outcomes": 1696,
+      "joint": {
+        "both": 0.17806603773584906,
+        "top": 0.41745283018867924,
+        "bottom": 0.43101415094339623,
+        "topOnly": 0.23938679245283018,
+        "bottomOnly": 0.2529481132075472,
+        "miss": 0.3295990566037736,
+        "randomBoth": 0.17522729952830188
+      },
+      "frequency": {
+        "both": 0.17570754716981132,
+        "top": 0.41391509433962265,
+        "bottom": 0.4528301886792453,
+        "topOnly": 0.23820754716981132,
+        "bottomOnly": 0.27712264150943394,
+        "miss": 0.3089622641509434,
+        "randomBoth": 0.17616998820754715
+      },
+      "pairedBothDifference": 0.0023584905660377358
+    },
+    {
+      "weekday": 3,
+      "dates": 19,
+      "outcomes": 1806,
+      "joint": {
+        "both": 0.18660022148394242,
+        "top": 0.42524916943521596,
+        "bottom": 0.43853820598006643,
+        "topOnly": 0.23864894795127353,
+        "bottomOnly": 0.25193798449612403,
+        "miss": 0.32281284606866,
+        "randomBoth": 0.1740970099667774
+      },
+      "frequency": {
+        "both": 0.1821705426356589,
+        "top": 0.4435215946843854,
+        "bottom": 0.4186046511627907,
+        "topOnly": 0.26135105204872644,
+        "bottomOnly": 0.2364341085271318,
+        "miss": 0.32004429678848284,
+        "randomBoth": 0.1764
+      },
+      "pairedBothDifference": 0.004429678848283499
+    },
+    {
+      "weekday": 4,
+      "dates": 19,
+      "outcomes": 1807,
+      "joint": {
+        "both": 0.1793027116768124,
+        "top": 0.39955727725511897,
+        "bottom": 0.4288876591034864,
+        "topOnly": 0.22025456557830658,
+        "bottomOnly": 0.24958494742667406,
+        "miss": 0.350857775318207,
+        "randomBoth": 0.1752594355285003
+      },
+      "frequency": {
+        "both": 0.1649142224681793,
+        "top": 0.4050913115661317,
+        "bottom": 0.423907028223575,
+        "topOnly": 0.2401770890979524,
+        "bottomOnly": 0.2589928057553957,
+        "miss": 0.3359158826784726,
+        "randomBoth": 0.17575401217487546
+      },
+      "pairedBothDifference": 0.014388489208633094
+    },
+    {
+      "weekday": 5,
+      "dates": 19,
+      "outcomes": 1693,
+      "joint": {
+        "both": 0.18724158298877733,
+        "top": 0.4246898995865328,
+        "bottom": 0.42941523922031893,
+        "topOnly": 0.23744831659775548,
+        "bottomOnly": 0.24217365623154163,
+        "miss": 0.33313644418192556,
+        "randomBoth": 0.17278092144122859
+      },
+      "frequency": {
+        "both": 0.20318960425280566,
+        "top": 0.4412285883047844,
+        "bottom": 0.45540460720614295,
+        "topOnly": 0.23803898405197874,
+        "bottomOnly": 0.25221500295333726,
+        "miss": 0.30655640874187834,
+        "randomBoth": 0.1761847017129356
+      },
+      "pairedBothDifference": -0.01594802126402835
+    },
+    {
+      "weekday": 6,
+      "dates": 13,
+      "outcomes": 1343,
+      "joint": {
+        "both": 0.18540580789277736,
+        "top": 0.45420699925539837,
+        "bottom": 0.43857036485480266,
+        "topOnly": 0.268801191362621,
+        "bottomOnly": 0.25316455696202533,
+        "miss": 0.2926284437825763,
+        "randomBoth": 0.17572635889798954
+      },
+      "frequency": {
+        "both": 0.18763961280714817,
+        "top": 0.44899478778853313,
+        "bottom": 0.43186895011169024,
+        "topOnly": 0.26135517498138494,
+        "bottomOnly": 0.24422933730454208,
+        "miss": 0.3067758749069248,
+        "randomBoth": 0.17639999999999997
+      },
+      "pairedBothDifference": -0.0022338049143708115
+    }
+  ],
+  "decision": "REJECT"
+}
