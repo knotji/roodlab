@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { currentBangkokDateKey, currentBangkokWeekday, drawWeekday } from "@/lib/analysis/day-pattern";
-import { resolveGlobalDailySources, exclusionReasonCounts } from "@/lib/analysis/global-daily-eligibility";
+import { exclusionReasonCounts } from "@/lib/analysis/global-daily-eligibility";
+import { resolveProductionGlobalUniverse } from "@/lib/analysis/global-universe";
 import { GLOBAL_WEEKDAY_LOOKBACK } from "@/lib/analysis/global-weekday-win";
 import { buildEqualSourceEvidence } from "@/lib/analysis/gemini-evidence";
 import { readAllSnapshots, readCatalog, readCatalogAudit } from "@/lib/cache";
@@ -17,7 +18,7 @@ export async function POST() {
   try {
     const dateKey = currentBangkokDateKey(), weekday = currentBangkokWeekday(),
       [catalog, snapshots, audit] = await Promise.all([readCatalog(), readAllSnapshots(), readCatalogAudit()]),
-      resolved = resolveGlobalDailySources({ catalog, snapshots, audit, targetDate: dateKey, weekday }),
+      resolved = resolveProductionGlobalUniverse({ catalog, snapshots, audit, targetDate: dateKey, weekday }),
       names = new Map(catalog.map((lottery) => [lottery.id, lottery.name])),
       histories = resolved.sources.map((snapshot) => ({
         lotteryId: snapshot.lotteryId,
