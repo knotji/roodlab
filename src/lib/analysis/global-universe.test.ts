@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { computeHistoryVersion, type Snapshot } from "../cache";
 import type { LotteryDefinition, LotteryDraw } from "../types";
 import {
@@ -39,17 +39,27 @@ describe("global universe source resolution", () => {
     expect(filtered.map((item) => item.id)).toEqual(["dji"]);
   });
 
-  it("played on a weekday with no operational list (Sunday) yields an empty universe rather than guessing", () => {
-    const catalog = [definition("dji"), definition("laotv")],
-      filtered = resolveUniverseCatalog(catalog, "played", 0);
-    expect(filtered).toEqual([]);
-    expect(resolvePlayedUniverseSourceIds(0)).toEqual([]);
+  it("Sunday resolves the exact same played universe as Saturday (weekend schedule confirmed identical)", () => {
+    const catalog = [definition("dji"), definition("laotv"), definition("hanoiasean")];
+    expect(resolveUniverseCatalog(catalog, "played", 0)).toEqual(resolveUniverseCatalog(catalog, "played", SATURDAY));
+    expect(resolvePlayedUniverseSourceIds(0)).toEqual(resolvePlayedUniverseSourceIds(SATURDAY));
   });
 
   it("handles a played-universe id that is not present in the canonical catalog without throwing", () => {
     const catalog = [definition("dji")]; // "hanoiasean" is played on Saturday but absent from this catalog
     expect(() => resolveUniverseCatalog(catalog, "played", SATURDAY)).not.toThrow();
     expect(resolveUniverseCatalog(catalog, "played", SATURDAY).map((item) => item.id)).toEqual(["dji"]);
+  });
+
+  it("treats an empty configured list as truly empty, not a guess (architecture safety net - no weekday is empty today)", async () => {
+    const playedUniverse = await import("./played-universe"),
+      spy = vi.spyOn(playedUniverse, "resolvePlayedUniverseSourceIds").mockReturnValue([]);
+    try {
+      const catalog = [definition("dji"), definition("hanoiasean")];
+      expect(resolveUniverseCatalog(catalog, "played", SATURDAY)).toEqual([]);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });
 
@@ -164,7 +174,7 @@ describe("resolveProductionGlobalUniverse", () => {
     expect(universe.sources.map((source) => source.lotteryId).sort()).toEqual(["dji", "hanoiasean", "laotv"]);
   });
 
-  it("Sunday explicitly falls back to Dynamic All Eligible (mode = all_eligible_fallback), never an empty universe", () => {
+  it("Sunday resolves the same configured Played Universe as Saturday (mode = played), not the all_eligible fallback", () => {
     const sundaySnapshots: Record<string, Snapshot> = {
         dji: snapshot("dji", [draw("dji", "2026-08-23", "11", "22")]),
         hanoiasean: snapshot("hanoiasean", [draw("hanoiasean", "2026-08-23", "33", "44")]),
@@ -172,10 +182,11 @@ describe("resolveProductionGlobalUniverse", () => {
         "not-played-anywhere": snapshot("not-played-anywhere", [draw("not-played-anywhere", "2026-08-23", "77", "88")]),
       },
       universe = resolveProductionGlobalUniverse({ catalog, snapshots: sundaySnapshots, targetDate: sundayDate, weekday: SUNDAY });
-    expect(universe.mode).toBe("all_eligible_fallback");
-    expect(universe.configuredCount).toBe(catalog.length); // whole catalog, not zero
-    expect(universe.eligibleCount).toBe(catalog.length);
-    expect(universe.sources.map((source) => source.lotteryId).sort()).toEqual(["dji", "hanoiasean", "laotv", "not-played-anywhere"]);
+    expect(universe.mode).toBe("played");
+    // "laotv" and "not-played-anywhere" are not on the Saturday/Sunday weekend list - only dji and hanoiasean are
+    expect(universe.configuredCount).toBe(2);
+    expect(universe.eligibleCount).toBe(2);
+    expect(universe.sources.map((source) => source.lotteryId).sort()).toEqual(["dji", "hanoiasean"]);
   });
 
   it("configured count and eligible-contributor count can differ once normal eligibility rules exclude sources", () => {
@@ -183,6 +194,20 @@ describe("resolveProductionGlobalUniverse", () => {
       universe = resolveProductionGlobalUniverse({ catalog, snapshots: withGaps, targetDate: mondayDate, weekday: MONDAY });
     expect(universe.configuredCount).toBe(3);
     expect(universe.eligibleCount).toBe(2); // laotv suspended, excluded by the existing (unmodified) eligibility rule
+  });
+
+  it("falls back to Dynamic All Eligible (mode = all_eligible_fallback), never an empty universe, if a weekday is ever genuinely unconfigured", async () => {
+    const playedUniverse = await import("./played-universe"),
+      spy = vi.spyOn(playedUniverse, "resolvePlayedUniverseSourceIds").mockReturnValue([]);
+    try {
+      const universe = resolveProductionGlobalUniverse({ catalog, snapshots, targetDate: mondayDate, weekday: MONDAY });
+      expect(universe.mode).toBe("all_eligible_fallback");
+      expect(universe.configuredCount).toBe(catalog.length); // whole catalog, not zero
+      expect(universe.eligibleCount).toBe(catalog.length);
+      expect(universe.sources.map((source) => source.lotteryId).sort()).toEqual(["dji", "hanoiasean", "laotv", "not-played-anywhere"]);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });
 
@@ -199,7 +224,7 @@ describe("buildProductionGlobalWeekdayWin", () => {
     expect(universe.result).toEqual(manual);
   });
 
-  it("Sunday fallback Win 6 matches calling the unmodified resolveGlobalDailySources + buildGlobalWeekdayWin on the full catalog directly", () => {
+  it("Sunday Win 6 matches calling the unmodified resolveGlobalDailySources + buildGlobalWeekdayWin directly on the played-universe-filtered catalog", () => {
     const sundaySnapshots: Record<string, Snapshot> = {
         dji: snapshot("dji", [draw("dji", "2026-08-23", "11", "22")]),
         hanoiasean: snapshot("hanoiasean", [draw("hanoiasean", "2026-08-23", "33", "44")]),
@@ -207,6 +232,7 @@ describe("buildProductionGlobalWeekdayWin", () => {
       universe = buildProductionGlobalWeekdayWin({ catalog, snapshots: sundaySnapshots, targetDate: sundayDate, weekday: SUNDAY }),
       production = resolveGlobalDailySources({ catalog, snapshots: sundaySnapshots, targetDate: sundayDate, weekday: SUNDAY }),
       productionResult = buildGlobalWeekdayWin(production.sources, { weekday: SUNDAY, cutoffDate: sundayDate });
+    expect(universe.universe.mode).toBe("played"); // Sunday now shares Saturday's configured list
     expect(universe.result).toEqual(productionResult);
     expect(universe.result.lotteryCount).toBe(2); // meaningful, non-degenerate comparison
   });

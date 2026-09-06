@@ -235,7 +235,8 @@ describe("Analyze presentation", () => {
     }));
     render(<GlobalWeekdayWinCard />);
     expect(await screen.findByText("ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก")).toBeTruthy();
-    expect(screen.getByText("รายการที่เล่น 151 หวย · ใช้คำนวณวันนี้ 90 หวย")).toBeTruthy();
+    expect(screen.getByText("ใช้ข้อมูลรอบโลก 90 จาก 151 หวย")).toBeTruthy();
+    expect(screen.queryByText(/รายการที่เล่น/)).toBeNull(); // fallback mode has no "play list" - must not imply one
     expect(screen.queryByText(/แม่นกว่า|โอกาสสูงกว่า|เพิ่มโอกาส|สูตรดีกว่า/)).toBeNull();
   });
 

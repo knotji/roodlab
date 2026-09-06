@@ -67,9 +67,11 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
           : universe?.mode === "all_eligible_fallback"
             ? "ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก"
             : "สรุปจากสถิติย้อนหลังของหวยรายวันที่มีข้อมูลครบ",
-        universeBadge = universe
+        universeBadge = universe?.mode === "played"
           ? `รายการที่เล่น ${universe.configuredCount} หวย · ใช้คำนวณวันนี้ ${universe.eligibleCount} หวย`
-          : `ข้อมูลพร้อม ${result.lotteryCount} จากทั้งหมด ${totalCatalog} หวย`;
+          : universe?.mode === "all_eligible_fallback"
+            ? `ใช้ข้อมูลรอบโลก ${universe.eligibleCount} จาก ${universe.configuredCount} หวย`
+            : `ข้อมูลพร้อม ${result.lotteryCount} จากทั้งหมด ${totalCatalog} หวย`;
       return <>
       <section className="global-daily-hero">
         <header className="global-daily-header">

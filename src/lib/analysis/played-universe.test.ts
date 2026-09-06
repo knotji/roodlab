@@ -31,18 +31,19 @@ describe("played universe weekday resolution", () => {
     expect(saturday).not.toEqual(resolvePlayedUniverseSourceIds(1)); // distinct list, not accidentally shared with Mon-Fri
   });
 
-  it("Sunday has no configured operational list - production must treat this as an explicit All Eligible fallback, not zero sources", () => {
-    expect(resolvePlayedUniverseSourceIds(0)).toEqual([]);
+  it("Sunday shares Saturday's operational list (weekend schedule confirmed identical, 2026-09-06)", () => {
+    expect(resolvePlayedUniverseSourceIds(0)).toEqual(resolvePlayedUniverseSourceIds(6));
+    expect(resolvePlayedUniverseSourceIds(0).length).toBe(25);
   });
 
-  it("every configured source id (Mon-Fri and Saturday) exists in the canonical catalog", () => {
-    for (const weekday of [...WEEKDAYS, 6] as const) {
+  it("every configured source id (all weekdays) exists in the canonical catalog", () => {
+    for (const weekday of [0, ...WEEKDAYS, 6] as const) {
       for (const id of resolvePlayedUniverseSourceIds(weekday)) expect(canonicalIds.has(id)).toBe(true);
     }
   });
 
   it("configured source ids contain no duplicates for any weekday", () => {
-    for (const weekday of [...WEEKDAYS, 6] as const) {
+    for (const weekday of [0, ...WEEKDAYS, 6] as const) {
       const ids = resolvePlayedUniverseSourceIds(weekday);
       expect(new Set(ids).size).toBe(ids.length);
     }

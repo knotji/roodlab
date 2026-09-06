@@ -119,6 +119,7 @@ export const UNRESOLVED_WEEKDAY_ALIASES: readonly { name: string; reason: string
 
 /** Weekday -> operational alias table. Only weekday groups with a real user-provided list are present here. */
 const PLAYED_ALIASES_BY_WEEKDAY: Partial<Record<PlayedUniverseWeekday, readonly { name: string; id: LotteryId }[]>> = {
+  0: SATURDAY_PLAYED_ALIASES,
   1: WEEKDAY_PLAYED_ALIASES,
   2: WEEKDAY_PLAYED_ALIASES,
   3: WEEKDAY_PLAYED_ALIASES,
@@ -140,14 +141,16 @@ const SATURDAY_PLAYED_SOURCE_IDS = dedupeIds(SATURDAY_PLAYED_ALIASES);
  * weekday convention as `drawWeekday()` / `DayPattern` (0 = Sunday ... 6 = Saturday).
  *
  * Monday-Friday share one operational list (the "รายการหวยวันนี้" schedule provided
- * 2026-09-05). Saturday keeps its own previously-accepted 25-source list, unchanged
- * by this migration. Sunday is intentionally left empty - it has no equivalent
- * operational list yet, and production must fall back to Dynamic All Eligible for it
- * (see `resolveProductionGlobalUniverse` in `global-universe.ts`) rather than treat an
- * empty list as "zero eligible sources".
+ * 2026-09-05). Saturday and Sunday share the same weekend list - the user confirmed
+ * (2026-09-06) the weekend operational schedule is identical on both days, so Sunday
+ * is no longer an unconfigured/fallback day. If a weekday is ever genuinely
+ * unconfigured again, production must fall back to Dynamic All Eligible for it (see
+ * `resolveProductionGlobalUniverse` in `global-universe.ts`) rather than treat an
+ * empty list as "zero eligible sources" - that fallback path is preserved even though
+ * no weekday currently exercises it.
  */
 export const PLAYED_UNIVERSE_BY_WEEKDAY: PlayedUniverseByWeekday = {
-  0: [],
+  0: SATURDAY_PLAYED_SOURCE_IDS,
   1: WEEKDAY_PLAYED_SOURCE_IDS,
   2: WEEKDAY_PLAYED_SOURCE_IDS,
   3: WEEKDAY_PLAYED_SOURCE_IDS,
