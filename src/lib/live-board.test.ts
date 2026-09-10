@@ -7,5 +7,6 @@ describe("live board",()=>{
   it("parses fixed and ranged result times",()=>{expect(resultStartMinutes("21:45–21:50")).toBe(1305);expect(resultStartMinutes(undefined)).toBeNull()});
   it("prefers today's canonical outcome over clock status",()=>{const items=buildLiveBoard(catalog,{laotv:snapshot("2026-09-01")},new Date("2026-09-01T04:00:00Z"));expect(items[0]).toMatchObject({status:"resulted",top3:"123",bottom2:"45"})});
   it("selects only near-due unresolved lotteries",()=>{const items=buildLiveBoard(catalog,{},new Date("2026-09-01T03:25:00Z"));expect(items[0].status).toBe("upcoming");expect(nearDueIds(items,new Date("2026-09-01T03:25:00Z"))).toEqual(["laotv"])});
+  it("keeps overdue unresolved lotteries eligible for a manual refresh",()=>{const items=buildLiveBoard(catalog,{},new Date("2026-09-01T10:00:00Z"));expect(items[0].status).toBe("delayed");expect(nearDueIds(items,new Date("2026-09-01T10:00:00Z"))).toEqual(["laotv"])});
   it("omits lotteries without a confirmed result time",()=>{const items=buildLiveBoard([...catalog,{id:"unknown",name:"ไม่ทราบเวลา",slug:"unknown",category:"อื่น",sourceUrl:"https://example.com/unknown"}],{},new Date("2026-09-01T03:25:00Z"));expect(items.map((item)=>item.id)).toEqual(["laotv"])});
 });

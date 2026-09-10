@@ -27,7 +27,7 @@ export function buildLiveBoard(catalog: LotteryDefinition[], snapshots: Record<s
   }).sort((a,b) => (a.resultMinutes ?? 9999) - (b.resultMinutes ?? 9999) || a.name.localeCompare(b.name,"th"));
 }
 
-export function nearDueIds(items: LiveBoardItem[], at = new Date(), limit = 6) {
+export function nearDueIds(items: LiveBoardItem[], at = new Date(), limit = Number.MAX_SAFE_INTEGER) {
   const now = bangkokClock(at).minutes;
-  return items.filter((item) => item.resultMinutes !== null && item.status !== "resulted" && now >= item.resultMinutes - 20 && now <= item.resultMinutes + 90).slice(0, limit).map((item) => item.id);
+  return items.filter((item) => item.resultMinutes !== null && item.status !== "resulted" && (item.status === "delayed" || (now >= item.resultMinutes - 20 && now <= item.resultMinutes + 90))).slice(0, limit).map((item) => item.id);
 }
