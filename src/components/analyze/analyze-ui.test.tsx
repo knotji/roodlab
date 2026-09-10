@@ -239,9 +239,9 @@ describe("Analyze presentation", () => {
     expect(screen.getByRole("button", { name: "ชุดที่ล็อกไว้" }).getAttribute("aria-pressed")).toBe("true");
     expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=locked");
 
-    fireEvent.click(screen.getByRole("button", { name: "รอบโลกทั้งหมด" }));
-    expect(await screen.findByText("คำนวณจากหวยรอบโลกทั้งหมดที่ผ่านเกณฑ์")).toBeTruthy();
-    expect(screen.getByText("รอบโลกทั้งหมด 109 จาก 151 หวย")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "หวยทั้งหมดวันนี้" }));
+    expect(await screen.findByText("คำนวณจากหวยทั้งหมดของวันนี้ที่ผ่านเกณฑ์")).toBeTruthy();
+    expect(screen.getByText("หวยวันนี้ 109 จาก 151 หวย")).toBeTruthy();
     expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=all");
   });
 
