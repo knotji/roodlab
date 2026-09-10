@@ -223,6 +223,28 @@ describe("Analyze presentation", () => {
     expect(screen.getByText("รายการที่เล่น 37 หวย · ใช้คำนวณวันนี้ 35 หวย")).toBeTruthy();
   });
 
+  it("switches from the locked universe to all eligible lotteries without changing the default", async () => {
+    const fetchMock = vi.fn().mockImplementation(async (input: string) => {
+      const all = input.includes("universe=all");
+      return {
+        ok: true,
+        json: async () => globalWeekdayWinFixture(all
+          ? { lotteryCount: 109, universe: { mode: "all_eligible", weekday: 2, configuredCount: 151, eligibleCount: 109 } }
+          : { lotteryCount: 35, universe: { mode: "played", weekday: 2, configuredCount: 37, eligibleCount: 35 } }),
+      };
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    render(<GlobalWeekdayWinCard />);
+    expect(await screen.findByText("คำนวณจากหวยที่เล่นวันนี้")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "ชุดที่ล็อกไว้" }).getAttribute("aria-pressed")).toBe("true");
+    expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=locked");
+
+    fireEvent.click(screen.getByRole("button", { name: "รอบโลกทั้งหมด" }));
+    expect(await screen.findByText("คำนวณจากหวยรอบโลกทั้งหมดที่ผ่านเกณฑ์")).toBeTruthy();
+    expect(screen.getByText("รอบโลกทั้งหมด 109 จาก 151 หวย")).toBeTruthy();
+    expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=all");
+  });
+
   it("shows the Dynamic All Eligible fallback copy when Sunday has no configured Played Universe", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
       ok: true,

@@ -6,20 +6,21 @@ import type { GlobalWeekdayWinResult } from "@/lib/analysis/global-weekday-win";
 import { formatRankBoundaryGap } from "@/lib/analysis/global-score-distribution";
 import { buildWinSet, deriveWin6PairSet } from "@/lib/analysis/win-set";
 
-type GlobalUniverseMeta = { mode: "played" | "all_eligible_fallback"; weekday: number; configuredCount: number; eligibleCount: number };
+type GlobalUniverseMeta = { mode: "played" | "all_eligible_fallback" | "all_eligible"; weekday: number; configuredCount: number; eligibleCount: number };
 type GlobalDailyResult = GlobalWeekdayWinResult & { universe?: GlobalUniverseMeta };
 type ApiResult = ({ ok: true } & GlobalDailyResult) | { ok: false; error: string };
 
 export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChange?: (date: string) => void } = {}) {
   const [result, setResult] = useState<GlobalDailyResult | null>(null),
     [error, setError] = useState<string | null>(null),
+    [universeMode, setUniverseMode] = useState<"locked" | "all">("locked"),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [showPairs, setShowPairs] = useState(false),
     [copied, setCopied] = useState<"digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop18" | "frequentPairs" | "win6Pairs" | "win6Expanded" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/global-weekday-win")
+    fetch(`/api/global-weekday-win?universe=${universeMode}`)
       .then(async (response) => ({ response, data: await response.json() as ApiResult }))
       .then(({ response, data }) => {
         if (cancelled) return;
@@ -31,7 +32,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         if (!cancelled) setError(reason instanceof Error ? reason.message : "โหลดข้อมูลไม่สำเร็จ");
       });
     return () => { cancelled = true; };
-  }, [onCutoffDateChange]);
+  }, [onCutoffDateChange, universeMode]);
 
   async function copyValues(mode: "digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop18" | "frequentPairs" | "win6Pairs" | "win6Expanded", values: string[]) {
     try {
@@ -64,12 +65,16 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
       const totalCatalog = result.eligibility?.totalCatalog ?? result.sourcePoolCount,
         excluded = Math.max(0, totalCatalog - result.lotteryCount),
         universe = result.universe,
-        heroSubtitle = universe?.mode === "played"
+        heroSubtitle = universe?.mode === "all_eligible"
+          ? "คำนวณจากหวยรอบโลกทั้งหมดที่ผ่านเกณฑ์"
+          : universe?.mode === "played"
           ? "คำนวณจากหวยที่เล่นวันนี้"
           : universe?.mode === "all_eligible_fallback"
             ? "ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก"
             : "สรุปจากสถิติย้อนหลังของหวยรายวันที่มีข้อมูลครบ",
-        universeBadge = universe?.mode === "played"
+        universeBadge = universe?.mode === "all_eligible"
+          ? `รอบโลกทั้งหมด ${universe.eligibleCount} จาก ${universe.configuredCount} หวย`
+          : universe?.mode === "played"
           ? `รายการที่เล่น ${universe.configuredCount} หวย · ใช้คำนวณวันนี้ ${universe.eligibleCount} หวย`
           : universe?.mode === "all_eligible_fallback"
             ? `ใช้ข้อมูลรอบโลก ${universe.eligibleCount} จาก ${universe.configuredCount} หวย`
@@ -90,6 +95,13 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
           <div className="global-win-size-wrap"><span>ขนาดชุดเลข</span><div className="global-win-size" role="group" aria-label="จำนวนเลขวินรวมทุกหวย">
             {([5, 6, 7] as const).map((size) => <button key={size} type="button" className={winSize === size ? "active" : ""} aria-pressed={winSize === size} onClick={() => { setWinSize(size); setShowPairs(false); setCopied(null); }}>{size}</button>)}
           </div><small>เลือกจำนวนอันดับที่ต้องการ</small></div>
+        </div>
+        <div className="global-universe-selector" role="group" aria-label="ขอบเขตหวยรอบโลก">
+          <span>ขอบเขตข้อมูล</span>
+          <div>
+            <button type="button" className={universeMode === "locked" ? "active" : ""} aria-pressed={universeMode === "locked"} onClick={() => { setError(null); setUniverseMode("locked"); }}>ชุดที่ล็อกไว้</button>
+            <button type="button" className={universeMode === "all" ? "active" : ""} aria-pressed={universeMode === "all"} onClick={() => { setError(null); setUniverseMode("all"); }}>รอบโลกทั้งหมด</button>
+          </div>
         </div>
         <div className="global-win-meta">
           <article><CalendarDays /><div><span>{result.weekdayLabel}</span><small>{result.cutoffDate}</small></div></article>
