@@ -388,7 +388,7 @@ export default function Dashboard({
         statusDetail={systemStatus?.connected ? `${systemStatus.snapshotCount} หวย · ล็อกล่วงหน้า ${systemStatus.predictionCount}` : snapshot ? "JSON fallback · ข้อมูลจาก AllHuay" : "ยังไม่มี cache"}
       />
       <main>
-        {section !== "analyze" && <header className="topbar">
+        {!['analyze', 'live'].includes(section) && <header className="topbar">
           <div className="topbar-head">
             <div className="eyebrow">LOTTERY ANALYSIS</div>
             <LotteryPicker

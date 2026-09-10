@@ -17,7 +17,7 @@ export function bangkokClock(at = new Date()) {
 
 export function buildLiveBoard(catalog: LotteryDefinition[], snapshots: Record<string, Snapshot>, at = new Date()): LiveBoardItem[] {
   const now = bangkokClock(at);
-  return catalog.filter((lottery) => lottery.isActive !== false).map((lottery) => {
+  return catalog.filter((lottery) => lottery.isActive !== false && Boolean(LIVE_RESULT_SOURCES[lottery.id]?.resultAt)).map((lottery) => {
     const schedule = LIVE_RESULT_SOURCES[lottery.id], snapshot = snapshots[lottery.id], resultMinutes = resultStartMinutes(schedule?.resultAt),
       outcome = snapshot?.draws.find((draw) => draw.drawDate === now.date && isCompleteDraw(draw)) ?? null;
     let status: LiveBoardStatus = "unscheduled";
