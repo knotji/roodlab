@@ -96,7 +96,7 @@ describe("Analyze presentation", () => {
           concentration: 0.01,
         },
         frequentPairs: ["05", "17", "24", "19", "09", "33", "28", "18", "56", "49", "12", "44", "68", "03", "27", "57", "11", "39", "06", "88", ...Array.from({ length: 8 }, (_, index) => String(index + 60)), ...Array.from({ length: 19 }, (_, index) => String(index + 69)), ...Array.from({ length: 3 }, (_, index) => String(index + 89))].map((pair, index) => ({ pair, score: 0.1 - index * 0.001, topRate: 0.1, bottomRate: 0.1 })),
-        frequentDoubles: ["33", "44", "11"].map((pair, index) => ({ pair, score: 0.1 - index * 0.01, topRate: 0.1, bottomRate: 0.1 })),
+        frequentDoubles: ["33", "44", "11", "88"].map((pair, index) => ({ pair, score: 0.1 - index * 0.01, topRate: 0.1, bottomRate: 0.1 })),
         pairDerivedDigits: ["1", "2", "9", "0", "8", "7"].map((digit, index) => ({ digit, score: 1 - index * 0.1 })),
       }),
     }));
@@ -135,13 +135,13 @@ describe("Analyze presentation", () => {
 
     // Demoted historical-evidence pairs - explicitly not the primary set, only reachable via a details overflow.
     expect(screen.getByText("คู่เด่นจากสถิติย้อนหลัง")).toBeTruthy();
-    expect(screen.getByText("ข้อมูลประกอบการตัดสินใจ ไม่ใช่ชุดหลัก")).toBeTruthy();
+    expect(screen.getByText("คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก")).toBeTruthy();
     const evidencePairs = screen.getByLabelText(/คู่เด่นจากสถิติย้อนหลัง/);
     const shownEvidencePairs = Array.from(evidencePairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
-    expect(shownEvidencePairs).toHaveLength(21); // all 21 evidence pairs shown directly, nothing hidden
+    expect(shownEvidencePairs).toHaveLength(18);
     expect(evidencePairs.querySelectorAll(".global-win-frequent-pair-list.focused b")).toHaveLength(10);
     expect(screen.getByText("เน้นพิเศษ 10 คู่")).toBeTruthy();
-    expect(screen.getByText("คู่หลักที่เหลือ 11 คู่")).toBeTruthy();
+    expect(screen.getByText("คู่ไม่เบิ้ลที่เหลือ 8 คู่")).toBeTruthy();
     expect(screen.queryByRole("button", { name: "คัดลอก 21 คู่ + เบิ้ล" })).toBeNull(); // no primary-looking CTA on the demoted section
     const moreOptions = screen.getByText("ตัวเลือกคัดลอก").closest("details");
     expect(moreOptions?.open).toBe(false);
@@ -149,15 +149,15 @@ describe("Analyze presentation", () => {
     expect(moreOptions?.open).toBe(true);
     expect(screen.getByRole("button", { name: "10 คู่ + เบิ้ล" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "15 คู่ + เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "21 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "18 คู่ + 4 เบิ้ล" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "50 คู่ + เบิ้ล" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "21 คู่ + เบิ้ล" }));
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 33 28 18 56 49 12 44 68 03 27 57 11 39 06 88 60"));
-    expect(screen.getByText("เลขเบิ้ลเด่น")).toBeTruthy();
-    expect(screen.getByLabelText("เลขเบิ้ลเด่น 33 44 11").children).toHaveLength(3);
+    fireEvent.click(screen.getByRole("button", { name: "18 คู่ + 4 เบิ้ล" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 28 18 56 49 12 68 03 27 57 39 06 60 61 33 44 11 88"));
+    expect(screen.getByText("เลขเบิ้ล · 4 คู่")).toBeTruthy();
+    expect(screen.getByLabelText("เลขเบิ้ลเด่น 33 44 11 88").children).toHaveLength(4);
     const copyDoublesOnly = screen.getByRole("button", { name: "เฉพาะเลขเบิ้ล" });
     fireEvent.click(copyDoublesOnly);
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("33 44 11"));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("33 44 11 88"));
 
     expect(screen.getByLabelText("วิน 6 จากคู่เน้น 1 2 9 0 8 7").children).toHaveLength(6);
     expect(screen.getByRole("button", { name: "คัดลอกชุดจาก 21 คู่แรก" })).toBeTruthy();

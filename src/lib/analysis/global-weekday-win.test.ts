@@ -56,7 +56,7 @@ describe("global weekday win six", () => {
     );
     expect(result.frequentPairs[0]).toMatchObject({ pair: "05", topRate: 1, bottomRate: 0.5, score: 0.75 });
     expect(result.frequentPairs).toHaveLength(50);
-    expect(result.frequentDoubles).toHaveLength(3);
+    expect(result.frequentDoubles).toHaveLength(4);
     expect(result.frequentDoubles.every((item) => item.pair[0] === item.pair[1])).toBe(true);
     expect(result.frequentDoubles.map((item) => item.score)).toEqual([...result.frequentDoubles.map((item) => item.score)].sort((a, b) => b - a));
     const shown = new Set(result.frequentPairs.map((item) => item.pair));

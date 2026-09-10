@@ -125,7 +125,7 @@ export function buildGlobalWeekdayWin(
       return { pair, topRate, bottomRate, score: availableSides ? (topRate + bottomRate) / availableSides : 0 };
     }).sort((a, b) => b.score - a.score || b.topRate - a.topRate || b.bottomRate - a.bottomRate || a.pair.localeCompare(b.pair)),
     frequentPairs = rankedPairCandidates.slice(0, 50),
-    frequentDoubles = rankedPairCandidates.filter((item) => item.pair[0] === item.pair[1]).slice(0, 3),
+    frequentDoubles = rankedPairCandidates.filter((item) => item.pair[0] === item.pair[1]).slice(0, 4),
     pairDerivedDigits = deriveDigitsFromFrequentPairs(frequentPairs.slice(0, 21));
 
   return {

@@ -15,7 +15,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
     [error, setError] = useState<string | null>(null),
     [winSize, setWinSize] = useState<5 | 6 | 7>(6),
     [showPairs, setShowPairs] = useState(false),
-    [copied, setCopied] = useState<"digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop21" | "frequentPairs" | "win6Pairs" | "win6Expanded" | null>(null);
+    [copied, setCopied] = useState<"digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop18" | "frequentPairs" | "win6Pairs" | "win6Expanded" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -33,7 +33,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
     return () => { cancelled = true; };
   }, [onCutoffDateChange]);
 
-  async function copyValues(mode: "digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop21" | "frequentPairs" | "win6Pairs" | "win6Expanded", values: string[]) {
+  async function copyValues(mode: "digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop18" | "frequentPairs" | "win6Pairs" | "win6Expanded", values: string[]) {
     try {
       await navigator.clipboard.writeText(values.join(" "));
       setCopied(mode);
@@ -52,12 +52,14 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         productionWin6 = result.digits.map((item) => item.digit),
         win6PairSet = deriveWin6PairSet(productionWin6),
         win6CanonicalItems = [...win6PairSet.nonDoublePairs, ...win6PairSet.doubles],
-        recommendedPairs = result.frequentPairs.slice(0, 50),
-        focusedPairs = recommendedPairs.slice(0, 10),
-        restPairs = recommendedPairs.slice(10, 21),
+        recommendedPairs = result.frequentPairs.filter((item) => item.pair[0] !== item.pair[1]),
+        shownRecommendedPairs = recommendedPairs.slice(0, 18),
+        focusedPairs = shownRecommendedPairs.slice(0, 10),
+        restPairs = shownRecommendedPairs.slice(10),
+        recommendedDoubles = result.frequentDoubles.slice(0, 4),
         pairsWithDoubles = (size: number) => [...new Set([
           ...recommendedPairs.slice(0, size).map((item) => item.pair),
-          ...result.frequentDoubles.map((item) => item.pair),
+          ...recommendedDoubles.map((item) => item.pair),
         ])];
       const totalCatalog = result.eligibility?.totalCatalog ?? result.sourcePoolCount,
         excluded = Math.max(0, totalCatalog - result.lotteryCount),
@@ -127,20 +129,20 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
       </div>
       <div className="global-win-evidence-pairs">
         <header>
-          <div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เด่นจากสถิติย้อนหลัง</strong><small>ข้อมูลประกอบการตัดสินใจ ไม่ใช่ชุดหลัก</small></div></div>
+          <div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เด่นจากสถิติย้อนหลัง</strong><small>คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก</small></div></div>
         </header>
-        <div className="global-win-frequent-pair-groups" aria-label={`คู่เด่นจากสถิติย้อนหลัง ${recommendedPairs.slice(0, 21).map((item) => item.pair).join(" ")}`}>
+        <div className="global-win-frequent-pair-groups" aria-label={`คู่เด่นจากสถิติย้อนหลัง ${shownRecommendedPairs.map((item) => item.pair).join(" ")} เบิ้ล ${recommendedDoubles.map((item) => item.pair).join(" ")}`}>
           <div className="global-win-frequent-pair-block focused">
             <span>เน้นพิเศษ 10 คู่</span>
             <div className="global-win-frequent-pair-list focused">{focusedPairs.map((item, index) => <span key={item.pair}><b>{item.pair}</b><small>#{index + 1}</small></span>)}</div>
           </div>
           <div className="global-win-frequent-pair-block">
-            <span>คู่หลักที่เหลือ {restPairs.length} คู่</span>
+            <span>คู่ไม่เบิ้ลที่เหลือ {restPairs.length} คู่</span>
             <div className="global-win-frequent-pair-list">{restPairs.map((item) => <b key={item.pair}>{item.pair}</b>)}</div>
           </div>
-          {result.frequentDoubles.length > 0 && <div className="global-win-frequent-pair-block doubles">
-            <span>เลขเบิ้ลเด่น</span>
-            <div className="global-win-frequent-pair-list doubles" aria-label={`เลขเบิ้ลเด่น ${result.frequentDoubles.map((item) => item.pair).join(" ")}`}>{result.frequentDoubles.map((item, index) => <span key={item.pair}><b>{item.pair}</b><small>#{index + 1}</small></span>)}</div>
+          {recommendedDoubles.length > 0 && <div className="global-win-frequent-pair-block doubles">
+            <span>เลขเบิ้ล · {recommendedDoubles.length} คู่</span>
+            <div className="global-win-frequent-pair-list doubles" aria-label={`เลขเบิ้ลเด่น ${recommendedDoubles.map((item) => item.pair).join(" ")}`}>{recommendedDoubles.map((item, index) => <span key={item.pair}><b>{item.pair}</b><small>#{index + 1}</small></span>)}</div>
           </div>}
         </div>
         <div className="global-win-frequent-pair-footer">
@@ -149,9 +151,9 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
             <div>
               <button type="button" onClick={() => copyValues("frequentTop10", pairsWithDoubles(10))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "10 คู่ + เบิ้ล"}</button>
               <button type="button" onClick={() => copyValues("frequentTop15", pairsWithDoubles(15))}>{copied === "frequentTop15" ? <Check /> : <Copy />}{copied === "frequentTop15" ? "คัดลอกแล้ว" : "15 คู่ + เบิ้ล"}</button>
-              <button type="button" onClick={() => copyValues("frequentTop21", pairsWithDoubles(21))}>{copied === "frequentTop21" ? <Check /> : <Copy />}{copied === "frequentTop21" ? "คัดลอกแล้ว" : "21 คู่ + เบิ้ล"}</button>
+              <button type="button" onClick={() => copyValues("frequentTop18", pairsWithDoubles(18))}>{copied === "frequentTop18" ? <Check /> : <Copy />}{copied === "frequentTop18" ? "คัดลอกแล้ว" : "18 คู่ + 4 เบิ้ล"}</button>
               <button type="button" onClick={() => copyValues("frequentPairs", pairsWithDoubles(50))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "50 คู่ + เบิ้ล"}</button>
-              {result.frequentDoubles.length > 0 && <button type="button" onClick={() => copyValues("frequentDoubles", result.frequentDoubles.map((item) => item.pair))}>{copied === "frequentDoubles" ? <Check /> : <Copy />}{copied === "frequentDoubles" ? "คัดลอกแล้ว" : "เฉพาะเลขเบิ้ล"}</button>}
+              {recommendedDoubles.length > 0 && <button type="button" onClick={() => copyValues("frequentDoubles", recommendedDoubles.map((item) => item.pair))}>{copied === "frequentDoubles" ? <Check /> : <Copy />}{copied === "frequentDoubles" ? "คัดลอกแล้ว" : "เฉพาะเลขเบิ้ล"}</button>}
             </div>
           </details>
         </div>
