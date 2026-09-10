@@ -6,6 +6,14 @@ describe("live result sources", () => {
     expect(liveResultSource("laotv")?.url).toBe("https://lao-tv.com/");
     expect(liveResultSource("minhngocstar")?.resultAt).toBe("12:30");
     expect(liveResultSource("szse-vip-morning")?.url).toBe("https://shenzhenindex.com/");
+    expect(liveResultSource("nikkei-morning")?.resultAt).toBe("09:30");
+    expect(liveResultSource("nikkei-afternoon")?.resultAt).toBe("13:00");
+    expect(liveResultSource("szse-morning")?.resultAt).toBe("10:30");
+    expect(liveResultSource("szse-afternoon")?.resultAt).toBe("14:00");
+    expect(liveResultSource("hsi-morning")?.resultAt).toBe("11:00");
+    expect(liveResultSource("hsi-afternoon")?.resultAt).toBe("15:00");
+    expect(liveResultSource("twse")?.resultAt).toBe("12:35");
+    expect(liveResultSource("ktop30")?.resultAt).toBe("13:35");
   });
 
   it("does not guess a source for an unmapped lottery", () => {
