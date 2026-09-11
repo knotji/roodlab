@@ -20,6 +20,7 @@
     "evaluate:global-rank-consensus": "tsx scripts/evaluate-global-rank-consensus.mts",
     "evaluate:global-joint-21": "tsx scripts/evaluate-global-joint-21.mts",
     "evaluate:global-played-universe": "tsx scripts/evaluate-global-played-universe.mts",
+    "evaluate:global-temporal-shrinkage": "tsx scripts/evaluate-global-temporal-shrinkage.mts",
     "audit:global-win6-misses": "tsx scripts/audit-global-win6-miss-structure.mts",
     "audit:global-rank-gradient": "tsx scripts/audit-global-rank-gradient.mts",
     "audit:source-liveness": "tsx scripts/audit-source-liveness.mts",

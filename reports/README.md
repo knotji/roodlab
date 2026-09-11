@@ -1,5 +1,7 @@
 # RoodLab research reports
 
+- [Global temporal shrinkage study — 2026-09-11](global-temporal-shrinkage-2026-09-11.md) — development-selected hierarchical time-decay versus Production Global Win 6 on a one-shot chronological holdout. Decision: rejected; no production change.
+
 - `global-joint-21-2026-09-05.md` / `.json` — frozen one-shot walk-forward comparison of deterministic Joint 21 against Frequency Top 21; research only.
 - `global-played-universe-2026-09-05.md` / `.json` — frozen Saturday-only comparison of All Eligible vs Legacy 46 vs the weekday-scoped Played Universe, graded on identical played-universe outcomes; research only, conclusion INCONCLUSIVE.
 

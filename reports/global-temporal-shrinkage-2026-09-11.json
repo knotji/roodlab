@@ -1,0 +1,366 @@
+{
+  "protocol": {
+    "question": "Does per-lottery hierarchical time decay improve Global Win 6 versus frozen weekday frequency?",
+    "size": 6,
+    "candidates": [
+      {
+        "halfLife": 2,
+        "priorStrength": 2
+      },
+      {
+        "halfLife": 2,
+        "priorStrength": 6
+      },
+      {
+        "halfLife": 2,
+        "priorStrength": 12
+      },
+      {
+        "halfLife": 4,
+        "priorStrength": 2
+      },
+      {
+        "halfLife": 4,
+        "priorStrength": 6
+      },
+      {
+        "halfLife": 4,
+        "priorStrength": 12
+      },
+      {
+        "halfLife": 8,
+        "priorStrength": 2
+      },
+      {
+        "halfLife": 8,
+        "priorStrength": 6
+      },
+      {
+        "halfLife": 8,
+        "priorStrength": 12
+      },
+      {
+        "halfLife": "flat",
+        "priorStrength": 2
+      },
+      {
+        "halfLife": "flat",
+        "priorStrength": 6
+      },
+      {
+        "halfLife": "flat",
+        "priorStrength": 12
+      }
+    ],
+    "weekdayLookback": 12,
+    "allDaysLookback": 84,
+    "minimumWeekdayDraws": 4,
+    "minimumAllDaysDraws": 28,
+    "minimumTrainingSources": 10,
+    "minimumTargetOutcomes": 10,
+    "split": "oldest 75% development selects one candidate; newest 25% holdout opened once",
+    "primary": "full pair covered on top2 or bottom2",
+    "bootstrap": {
+      "iterations": 10000,
+      "cluster": "target date",
+      "seed": 20260911
+    },
+    "productionChange": false
+  },
+  "protocolHash": "abf14911ccffd461",
+  "historyHash": "9baaf69f4ad8d1e4",
+  "data": {
+    "sources": 151,
+    "dates": 92,
+    "range": [
+      "2026-06-03",
+      "2026-09-10"
+    ],
+    "developmentDates": 69,
+    "holdoutDates": 23
+  },
+  "developmentCandidates": [
+    {
+      "candidate": {
+        "halfLife": 8,
+        "priorStrength": 6
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.60068093385214,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0036478599221789884,
+      "upliftVsRandom": 0.0066616870483588095,
+      "topRate": 0.365272373540856,
+      "bottomRate": 0.35773346303501946,
+      "bothRate": 0.1223249027237354
+    },
+    {
+      "candidate": {
+        "halfLife": "flat",
+        "priorStrength": 6
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.6004377431906615,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.003404669260700389,
+      "upliftVsRandom": 0.00641849638688021,
+      "topRate": 0.3638132295719844,
+      "bottomRate": 0.3526264591439689,
+      "bothRate": 0.11600194552529183
+    },
+    {
+      "candidate": {
+        "halfLife": 4,
+        "priorStrength": 2
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.6003161478599222,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0032830739299610895,
+      "upliftVsRandom": 0.006296901056140911,
+      "topRate": 0.36065175097276264,
+      "bottomRate": 0.35943579766536965,
+      "bothRate": 0.11977140077821012
+    },
+    {
+      "candidate": {
+        "halfLife": 4,
+        "priorStrength": 12
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5997081712062257,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0026750972762645915,
+      "upliftVsRandom": 0.005688924402444413,
+      "topRate": 0.36125972762645914,
+      "bottomRate": 0.35663910505836577,
+      "bothRate": 0.11819066147859922
+    },
+    {
+      "candidate": {
+        "halfLife": "flat",
+        "priorStrength": 2
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5994649805447471,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0024319066147859923,
+      "upliftVsRandom": 0.005445733740965813,
+      "topRate": 0.3639348249027237,
+      "bottomRate": 0.3543287937743191,
+      "bothRate": 0.11879863813229571
+    },
+    {
+      "candidate": {
+        "halfLife": 8,
+        "priorStrength": 2
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5988570038910506,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0018239299610894942,
+      "upliftVsRandom": 0.004837757087269316,
+      "topRate": 0.3627188715953307,
+      "bottomRate": 0.3553015564202335,
+      "bothRate": 0.11916342412451363
+    },
+    {
+      "candidate": {
+        "halfLife": "flat",
+        "priorStrength": 12
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5976410505836576,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0006079766536964981,
+      "upliftVsRandom": 0.0036218037798763196,
+      "topRate": 0.36028696498054474,
+      "bottomRate": 0.35639591439688717,
+      "bothRate": 0.11904182879377431
+    },
+    {
+      "candidate": {
+        "halfLife": 2,
+        "priorStrength": 12
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5970330739299611,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0,
+      "upliftVsRandom": 0.0030138271261798215,
+      "topRate": 0.35809824902723736,
+      "bottomRate": 0.35676070038910507,
+      "bothRate": 0.11782587548638132
+    },
+    {
+      "candidate": {
+        "halfLife": 4,
+        "priorStrength": 6
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.596181906614786,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": -0.0008511673151750973,
+      "upliftVsRandom": 0.0021626598110047243,
+      "topRate": 0.35894941634241245,
+      "bottomRate": 0.35688229571984437,
+      "bothRate": 0.11964980544747082
+    },
+    {
+      "candidate": {
+        "halfLife": 2,
+        "priorStrength": 6
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5960603112840467,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": -0.0009727626459143969,
+      "upliftVsRandom": 0.0020410644802654246,
+      "topRate": 0.35821984435797666,
+      "bottomRate": 0.35773346303501946,
+      "bothRate": 0.11989299610894942
+    },
+    {
+      "candidate": {
+        "halfLife": 8,
+        "priorStrength": 12
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5960603112840467,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": -0.0009727626459143969,
+      "upliftVsRandom": 0.0020410644802654246,
+      "topRate": 0.35931420233463035,
+      "bottomRate": 0.3556663424124514,
+      "bothRate": 0.11892023346303501
+    },
+    {
+      "candidate": {
+        "halfLife": 2,
+        "priorStrength": 2
+      },
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.5948443579766537,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": -0.002188715953307393,
+      "upliftVsRandom": 0.0008251111728724285,
+      "topRate": 0.35627431906614787,
+      "bottomRate": 0.3533560311284047,
+      "bothRate": 0.11478599221789883
+    }
+  ],
+  "selectedCandidate": {
+    "halfLife": 8,
+    "priorStrength": 6
+  },
+  "results": {
+    "development": {
+      "dates": 69,
+      "outcomes": 8224,
+      "rate": 0.60068093385214,
+      "baselineRate": 0.5970330739299611,
+      "randomRate": 0.5940192468037813,
+      "pairedVsBaseline": 0.0036478599221789884,
+      "upliftVsRandom": 0.0066616870483588095,
+      "topRate": 0.365272373540856,
+      "bottomRate": 0.35773346303501946,
+      "bothRate": 0.1223249027237354
+    },
+    "holdout": {
+      "dates": 23,
+      "outcomes": 2873,
+      "rate": 0.583710407239819,
+      "baselineRate": 0.5948485903237034,
+      "randomRate": 0.599302206089537,
+      "pairedVsBaseline": -0.011138183083884442,
+      "upliftVsRandom": -0.015591798849718043,
+      "topRate": 0.359902540898016,
+      "bottomRate": 0.3383223111729899,
+      "bothRate": 0.11451444483118692
+    },
+    "all": {
+      "dates": 92,
+      "outcomes": 11097,
+      "rate": 0.5962872848517617,
+      "baselineRate": 0.5964675137424529,
+      "randomRate": 0.59538699863112,
+      "pairedVsBaseline": -0.0001802288906911778,
+      "upliftVsRandom": 0.000900286220641693,
+      "topRate": 0.363882130305488,
+      "bottomRate": 0.3527079390826349,
+      "bothRate": 0.12030278453636117
+    }
+  },
+  "confidence": {
+    "holdoutBaselineCi": [
+      -0.022173754998182478,
+      -0.0027063599458728013
+    ],
+    "holdoutRandomCi": [
+      -0.030250793650793938,
+      -0.00038256658595685165
+    ]
+  },
+  "weekdayDiffs": [
+    {
+      "weekday": 0,
+      "dates": 3,
+      "difference": -0.031446540880503145
+    },
+    {
+      "weekday": 1,
+      "dates": 3,
+      "difference": 0.005
+    },
+    {
+      "weekday": 2,
+      "dates": 3,
+      "difference": 0.004962779156327543
+    },
+    {
+      "weekday": 3,
+      "dates": 4,
+      "difference": -0.00927643784786642
+    },
+    {
+      "weekday": 4,
+      "dates": 4,
+      "difference": -0.04106776180698152
+    },
+    {
+      "weekday": 5,
+      "dates": 3,
+      "difference": -0.0024752475247524753
+    },
+    {
+      "weekday": 6,
+      "dates": 3,
+      "difference": 0
+    }
+  ],
+  "promotion": false
+}
