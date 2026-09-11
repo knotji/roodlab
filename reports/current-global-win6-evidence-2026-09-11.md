@@ -1,7 +1,9 @@
 # Current Production Global Win 6 evidence
 
-Freeze date: 2026-09-11  
-Protocol: `b32c2e36a4820f06`  
+Freeze date: 2026-09-11
+
+Protocol: `b32c2e36a4820f06`
+
 History: `e807f4ad9acc4b35`
 
 ## Frozen question
