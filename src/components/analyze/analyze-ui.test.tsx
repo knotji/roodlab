@@ -33,6 +33,10 @@ describe("Analyze presentation", () => {
     expect(screen.queryByRole("button", { name: "เลือกหวย" })).toBeNull();
     expect(screen.queryByText("วิเคราะห์รายหวย")).toBeNull();
     expect(screen.queryByRole("navigation", { name: "ส่วนต่าง ๆ ในหน้าวิเคราะห์" })).toBeNull();
+    const geminiDisclosure = screen.getByText("วิเคราะห์เพิ่มเติมด้วย Gemini").closest("details");
+    expect(geminiDisclosure?.open).toBe(false);
+    fireEvent.click(screen.getByText("วิเคราะห์เพิ่มเติมด้วย Gemini"));
+    expect(geminiDisclosure?.open).toBe(true);
   });
 
   it("renders standout digits as the primary heading value", () => {
@@ -134,6 +138,10 @@ describe("Analyze presentation", () => {
     ].join(" ")));
 
     // Demoted historical-evidence pairs - explicitly not the primary set, only reachable via a details overflow.
+    const secondaryDisclosure = screen.getByText("คู่เด่นและชุดสำรวจเพิ่มเติม").closest("details");
+    expect(secondaryDisclosure?.open).toBe(false);
+    fireEvent.click(screen.getByText("คู่เด่นและชุดสำรวจเพิ่มเติม"));
+    expect(secondaryDisclosure?.open).toBe(true);
     expect(screen.getByText("คู่เด่นจากสถิติย้อนหลัง")).toBeTruthy();
     expect(screen.getByText("คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก")).toBeTruthy();
     const evidencePairs = screen.getByLabelText(/คู่เด่นจากสถิติย้อนหลัง/);
@@ -168,6 +176,12 @@ describe("Analyze presentation", () => {
     expect(screen.getByText("เลขเบิ้ล · 6 คู่")).toBeTruthy();
     expect(screen.getByRole("button", { name: "คัดลอกทั้งหมด 21 คู่" })).toBeTruthy();
     expect(screen.getByText("โครงสร้างคะแนน และรายละเอียดการคำนวณ")).toBeTruthy();
+    const evidence = screen.getByText("หลักฐานการประเมินย้อนหลัง").closest("details");
+    expect(evidence?.open).toBe(false);
+    expect(screen.getByText("ยังไม่พบความได้เปรียบที่ชัดเจน")).toBeTruthy();
+    expect(screen.getByText("60.2%")).toBeTruthy();
+    expect(screen.getByText("59.4%")).toBeTruthy();
+    expect(screen.getByText(/ไม่ใช่ค่าความแม่นหรือโอกาสของงวดถัดไป/)).toBeTruthy();
     expect(screen.getByText("อันดับ 6 กับอันดับ 7 ต่างกัน 0.42 จุด")).toBeTruthy();
 
     // Switching the hero's 5/6/7 selector must not change the Win-6-derived play set.

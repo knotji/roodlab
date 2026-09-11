@@ -1,0 +1,1104 @@
+{
+  "protocol": {
+    "question": "Does the current Production Global Win 6 beat its exact random-set baseline under the same hit definition?",
+    "freezeDate": "2026-09-11",
+    "sourceUniverse": "current weekday-specific Played Universe from production source of truth",
+    "scoringPath": "buildProductionGlobalWeekdayWin",
+    "targetPopulation": "complete top2+bottom2 outcomes from the same Played Universe",
+    "winSize": 6,
+    "sameWeekdayLookbackPerLottery": 12,
+    "sourceWeighting": "equal per eligible lottery",
+    "sideWeighting": "available-side equal weighting",
+    "leakageRule": "only draws strictly before target date enter ranking",
+    "historicalOperationalRule": "current provider suspension/freshness is not applied backward",
+    "minimumTrainingSources": 10,
+    "minimumTargetOutcomes": 10,
+    "randomBaseline": "exact enumeration of all 210 six-digit subsets, outcome-specific for doubles and shared digits",
+    "confidence": {
+      "method": "target-date clustered bootstrap",
+      "iterations": 10000,
+      "seed": 20260911
+    },
+    "tuning": "none",
+    "productionChange": false
+  },
+  "protocolHash": "b32c2e36a4820f06",
+  "historyHash": "e807f4ad9acc4b35",
+  "data": {
+    "catalog": 151,
+    "snapshots": 151,
+    "dateRange": [
+      "2026-05-06",
+      "2026-09-10"
+    ],
+    "evaluatedDates": 117,
+    "outcomes": 3465
+  },
+  "summary": {
+    "dates": 117,
+    "outcomes": 3465,
+    "metrics": {
+      "top": {
+        "rate": 0.37518037518037517,
+        "baseline": 0.35980759980759974,
+        "uplift": 0.015372775372775427
+      },
+      "bottom": {
+        "rate": 0.35613275613275613,
+        "baseline": 0.3563443963443961,
+        "uplift": -0.00021164021163994073
+      },
+      "either": {
+        "rate": 0.602020202020202,
+        "baseline": 0.5944011544011543,
+        "uplift": 0.007619047619047747
+      },
+      "both": {
+        "rate": 0.1292929292929293,
+        "baseline": 0.12175084175084179,
+        "uplift": 0.007542087542087503
+      },
+      "digitRecall": {
+        "rate": 0.6023809523809524,
+        "baseline": 0.6000000000000006,
+        "uplift": 0.0023809523809517064
+      }
+    }
+  },
+  "confidence": {
+    "top": {
+      "rate95": [
+        0.3601126025741528,
+        0.3905039559473276
+      ],
+      "uplift95": [
+        0.0008268172461450023,
+        0.030213621014858097
+      ]
+    },
+    "bottom": {
+      "rate95": [
+        0.3416450870596205,
+        0.3710395303730116
+      ],
+      "uplift95": [
+        -0.014783263293303305,
+        0.014509983426037622
+      ]
+    },
+    "either": {
+      "rate95": [
+        0.5856849666981613,
+        0.6177224750845205
+      ],
+      "uplift95": [
+        -0.007490238252571319,
+        0.022400009874712228
+      ]
+    },
+    "both": {
+      "rate95": [
+        0.11843217758674517,
+        0.1402389952279929
+      ],
+      "uplift95": [
+        -0.0029109404840803295,
+        0.018085945633412884
+      ]
+    },
+    "digitRecall": {
+      "rate95": [
+        0.5957650698691698,
+        0.6090644436808741
+      ],
+      "uplift95": [
+        -0.004234930130830757,
+        0.00906444368087371
+      ]
+    }
+  },
+  "monthly": [
+    {
+      "month": "2026-05",
+      "dates": 17,
+      "outcomes": 185,
+      "metrics": {
+        "top": {
+          "rate": 0.3675675675675676,
+          "baseline": 0.3592792792792793,
+          "uplift": 0.008288288288288315
+        },
+        "bottom": {
+          "rate": 0.41081081081081083,
+          "baseline": 0.3563963963963964,
+          "uplift": 0.054414414414414414
+        },
+        "either": {
+          "rate": 0.6054054054054054,
+          "baseline": 0.5876190476190477,
+          "uplift": 0.01778635778635773
+        },
+        "both": {
+          "rate": 0.17297297297297298,
+          "baseline": 0.12805662805662804,
+          "uplift": 0.04491634491634494
+        },
+        "digitRecall": {
+          "rate": 0.6189189189189189,
+          "baseline": 0.5999999999999999,
+          "uplift": 0.01891891891891906
+        }
+      }
+    },
+    {
+      "month": "2026-06",
+      "dates": 28,
+      "outcomes": 910,
+      "metrics": {
+        "top": {
+          "rate": 0.35384615384615387,
+          "baseline": 0.35677655677655684,
+          "uplift": -0.0029304029304029755
+        },
+        "bottom": {
+          "rate": 0.34175824175824177,
+          "baseline": 0.3556043956043957,
+          "uplift": -0.013846153846153952
+        },
+        "either": {
+          "rate": 0.578021978021978,
+          "baseline": 0.5901151229722658,
+          "uplift": -0.012093144950287793
+        },
+        "both": {
+          "rate": 0.11758241758241758,
+          "baseline": 0.12226582940868656,
+          "uplift": -0.004683411826268982
+        },
+        "digitRecall": {
+          "rate": 0.5936813186813187,
+          "baseline": 0.6,
+          "uplift": -0.006318681318681296
+        }
+      }
+    },
+    {
+      "month": "2026-07",
+      "dates": 31,
+      "outcomes": 1031,
+      "metrics": {
+        "top": {
+          "rate": 0.3734238603297769,
+          "baseline": 0.3579049466537344,
+          "uplift": 0.015518913676042523
+        },
+        "bottom": {
+          "rate": 0.35208535402521823,
+          "baseline": 0.3589395408988038,
+          "uplift": -0.006854186873585577
+        },
+        "either": {
+          "rate": 0.6042677012609118,
+          "baseline": 0.5949979215740611,
+          "uplift": 0.009269779686850721
+        },
+        "both": {
+          "rate": 0.12124151309408342,
+          "baseline": 0.12184656597847676,
+          "uplift": -0.000605052884393345
+        },
+        "digitRecall": {
+          "rate": 0.5991755577109602,
+          "baseline": 0.6000000000000002,
+          "uplift": -0.000824442289039995
+        }
+      }
+    },
+    {
+      "month": "2026-08",
+      "dates": 31,
+      "outcomes": 1012,
+      "metrics": {
+        "top": {
+          "rate": 0.3952569169960474,
+          "baseline": 0.3610013175230567,
+          "uplift": 0.03425559947299073
+        },
+        "bottom": {
+          "rate": 0.3577075098814229,
+          "baseline": 0.3546772068511199,
+          "uplift": 0.0030303030303029943
+        },
+        "either": {
+          "rate": 0.6126482213438735,
+          "baseline": 0.595802747976661,
+          "uplift": 0.016845473367212538
+        },
+        "both": {
+          "rate": 0.14031620553359683,
+          "baseline": 0.11987577639751552,
+          "uplift": 0.02044042913608131
+        },
+        "digitRecall": {
+          "rate": 0.6099308300395256,
+          "baseline": 0.6000000000000001,
+          "uplift": 0.009930830039525551
+        }
+      }
+    },
+    {
+      "month": "2026-09",
+      "dates": 10,
+      "outcomes": 327,
+      "metrics": {
+        "top": {
+          "rate": 0.382262996941896,
+          "baseline": 0.3708460754332315,
+          "uplift": 0.011416921508664524
+        },
+        "bottom": {
+          "rate": 0.3730886850152905,
+          "baseline": 0.35535168195718664,
+          "uplift": 0.017737003058103884
+        },
+        "either": {
+          "rate": 0.6269113149847095,
+          "baseline": 0.6039464103684286,
+          "uplift": 0.02296490461628098
+        },
+        "both": {
+          "rate": 0.12844036697247707,
+          "baseline": 0.12225134702198924,
+          "uplift": 0.006189019950487831
+        },
+        "digitRecall": {
+          "rate": 0.6039755351681957,
+          "baseline": 0.6000000000000001,
+          "uplift": 0.003975535168195599
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "date": "2026-05-06",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 10
+    },
+    {
+      "date": "2026-05-07",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 10
+    },
+    {
+      "date": "2026-05-08",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-11",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-12",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 10
+    },
+    {
+      "date": "2026-05-13",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-14",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 10
+    },
+    {
+      "date": "2026-05-15",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-18",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 12
+    },
+    {
+      "date": "2026-05-19",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 10
+    },
+    {
+      "date": "2026-05-20",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-21",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-22",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 12
+    },
+    {
+      "date": "2026-05-26",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-27",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-28",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 11
+    },
+    {
+      "date": "2026-05-29",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 12
+    },
+    {
+      "date": "2026-06-01",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 10
+    },
+    {
+      "date": "2026-06-02",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 19
+    },
+    {
+      "date": "2026-06-03",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 36
+    },
+    {
+      "date": "2026-06-04",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 11,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-05",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-08",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 12,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-09",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 19,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-10",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 36,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-11",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-12",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-06-13",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-14",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-15",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-16",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-17",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-18",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-19",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-06-20",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-21",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-22",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-23",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-24",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-25",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-26",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-27",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-28",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-06-29",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-06-30",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-01",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-02",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-03",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-04",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-07",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-12",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 22
+    },
+    {
+      "date": "2026-07-13",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-14",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 35
+    },
+    {
+      "date": "2026-07-15",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-16",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-17",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-18",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 22
+    },
+    {
+      "date": "2026-07-19",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-20",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-21",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-22",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-23",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-24",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-25",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-26",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-07-27",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-28",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-29",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-07-30",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-07-31",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-01",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-02",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 23
+    },
+    {
+      "date": "2026-08-03",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-04",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-05",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-06",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-07",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-08",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-09",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-10",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-08-11",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-08-12",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-13",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-14",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-15",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-16",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-17",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-18",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-19",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-20",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-21",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-22",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-23",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-24",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-08-25",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-26",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-27",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-28",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-08-29",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-30",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-08-31",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": 5,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": 6,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": 0,
+      "configured": 25,
+      "eligible": 24,
+      "targets": 24
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": 1,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 37
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": 2,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": 3,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 36
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": 4,
+      "configured": 37,
+      "eligible": 37,
+      "targets": 22
+    }
+  ],
+  "decision": "NO_CLEAR_EDGE_OVER_EXACT_RANDOM_BASELINE"
+}

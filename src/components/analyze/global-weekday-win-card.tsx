@@ -3,6 +3,7 @@
 import { CalendarDays, Check, ChevronDown, CircleHelp, Copy, Database, FileWarning, Globe2, KeyRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { GlobalWeekdayWinResult } from "@/lib/analysis/global-weekday-win";
+import { CURRENT_GLOBAL_WIN6_EVIDENCE } from "@/lib/analysis/global-production-evidence-summary";
 import { formatRankBoundaryGap } from "@/lib/analysis/global-score-distribution";
 import { buildWinSet, deriveWin6PairSet } from "@/lib/analysis/win-set";
 
@@ -139,6 +140,9 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         </div>
         <small className="global-win-primary-pairs-note">15 คู่กลับ + 6 เบิ้ล · ชุดเล่นคือคู่กลับสองทิศทางรวมเบิ้ล ({win6PairSet.expandedNumbers.length} เลข)</small>
       </div>
+      <details className="global-win-secondary">
+        <summary><span><KeyRound />คู่เด่นและชุดสำรวจเพิ่มเติม</span><small>ไม่ใช่ชุดหลัก</small><ChevronDown /></summary>
+        <div className="global-win-secondary-content">
       <div className="global-win-evidence-pairs">
         <header>
           <div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เด่นจากสถิติย้อนหลัง</strong><small>คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก</small></div></div>
@@ -171,7 +175,17 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         </div>
       </div>
       <section className="global-win-pair-derived"><header><KeyRound /><div><strong>ชุดเลขจาก 21 คู่แรก (Win 6)</strong><span>ชุดสำรวจจาก 21 คู่ที่พบบ่อย ไม่ใช่ชุดหลัก</span></div></header><div className="global-win-pair-derived-digits" aria-label={`วิน 6 จากคู่เน้น ${result.pairDerivedDigits.map((item) => item.digit).join(" ")}`}>{result.pairDerivedDigits.map((item) => <b key={item.digit}>{item.digit}</b>)}</div><button type="button" onClick={() => copyValues("pairDigits", result.pairDerivedDigits.map((item) => item.digit))}>{copied === "pairDigits" ? <Check /> : <Copy />}{copied === "pairDigits" ? "คัดลอกแล้ว" : "คัดลอกชุดจาก 21 คู่แรก"}</button></section>
+        </div>
+      </details>
       {!result.sufficient && <p className="global-win-warning">ข้อมูลรวมยังน้อย ชุดนี้ใช้สำรวจเท่านั้น</p>}
+      <details className="global-win-evidence-summary">
+        <summary><CircleHelp /><span>หลักฐานการประเมินย้อนหลัง</span><small>ยังไม่พบความได้เปรียบที่ชัดเจน</small><ChevronDown /></summary>
+        <div>
+          <p><strong>{(CURRENT_GLOBAL_WIN6_EVIDENCE.productionEitherRate * 100).toFixed(1)}%</strong><span>ผลย้อนหลัง</span><b>เทียบ</b><strong>{(CURRENT_GLOBAL_WIN6_EVIDENCE.exactRandomEitherRate * 100).toFixed(1)}%</strong><span>ค่าพื้นฐานแบบสุ่ม</span></p>
+          <small>ต่าง +{(CURRENT_GLOBAL_WIN6_EVIDENCE.uplift * 100).toFixed(2)} จุดเปอร์เซ็นต์ · ช่วงความเชื่อมั่นยังคร่อมศูนย์ · {CURRENT_GLOBAL_WIN6_EVIDENCE.outcomes.toLocaleString("th-TH")} ผล</small>
+          <em>เป็นผลประเมินย้อนหลัง ไม่ใช่ค่าความแม่นหรือโอกาสของงวดถัดไป</em>
+        </div>
+      </details>
       <details className="global-win-method"><summary><CircleHelp />โครงสร้างคะแนน และรายละเอียดการคำนวณ<ChevronDown /></summary><div><p>{formatRankBoundaryGap(result.scoreDistribution.rank6To7Gap)}</p><p>ย้อนหลังสูงสุด {result.lookbackPerLottery} {result.weekdayLabel}ต่อหวย · ไม่นับผลวันนี้ · บน–ล่างน้ำหนักเท่ากัน</p></div></details>
       <p className="global-win-disclaimer">ตัวเลขทั้งหมดมาจากสถิติย้อนหลัง ใช้เพื่อสำรวจข้อมูล ไม่ใช่ค่าความน่าจะเป็นของงวดถัดไป</p>
       </>;
