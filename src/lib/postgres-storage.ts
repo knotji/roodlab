@@ -28,6 +28,16 @@ export async function readAllPostgresSnapshots(): Promise<unknown[]> {
   return rows.map((row) => SnapshotRowSchema.parse(row).snapshot);
 }
 
+export async function readPostgresSnapshots(ids: string[]): Promise<unknown[]> {
+  if (!ids.length) return [];
+  await ensureDatabase();
+  const rows = await database().query(
+    "SELECT snapshot FROM lottery_snapshots WHERE lottery_id = ANY($1::text[]) ORDER BY lottery_id",
+    [ids],
+  );
+  return rows.map((row) => SnapshotRowSchema.parse(row).snapshot);
+}
+
 export async function writePostgresSnapshot(snapshot: Snapshot): Promise<void> {
   await ensureDatabase();
   await database().query(`INSERT INTO lottery_snapshots (lottery_id, history_version, synced_at, snapshot, updated_at) VALUES ($1, $2, $3::timestamptz, $4::jsonb, now()) ON CONFLICT (lottery_id) DO UPDATE SET history_version = EXCLUDED.history_version, synced_at = EXCLUDED.synced_at, snapshot = EXCLUDED.snapshot, updated_at = now()`, [snapshot.lotteryId, snapshot.historyVersion, snapshot.syncedAt, JSON.stringify(snapshot)]);

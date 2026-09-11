@@ -27,4 +27,9 @@ describe("live result sources", () => {
       if (backupUrl) expect(() => new URL(backupUrl)).not.toThrow();
     }
   });
+
+  it("marks standard market schedules as weekdays without restricting daily lotteries", () => {
+    expect(liveResultSource("nikkei-morning")?.weekdays).toEqual([1, 2, 3, 4, 5]);
+    expect(liveResultSource("laotv")?.weekdays).toBeUndefined();
+  });
 });

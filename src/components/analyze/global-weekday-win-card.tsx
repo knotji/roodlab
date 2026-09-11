@@ -66,14 +66,14 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
         excluded = Math.max(0, totalCatalog - result.lotteryCount),
         universe = result.universe,
         heroSubtitle = universe?.mode === "all_eligible"
-          ? "คำนวณจากหวยทั้งหมดของวันนี้ที่ผ่านเกณฑ์"
+          ? "คำนวณจากทุกหวยที่มีข้อมูลวันเดียวกันและผ่านเกณฑ์"
           : universe?.mode === "played"
           ? "คำนวณจากหวยที่เล่นวันนี้"
           : universe?.mode === "all_eligible_fallback"
             ? "ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก"
             : "สรุปจากสถิติย้อนหลังของหวยรายวันที่มีข้อมูลครบ",
         universeBadge = universe?.mode === "all_eligible"
-          ? `หวยวันนี้ ${universe.eligibleCount} จาก ${universe.configuredCount} หวย`
+          ? `ผ่านเกณฑ์ ${universe.eligibleCount} จาก ${universe.configuredCount} หวย`
           : universe?.mode === "played"
           ? `รายการที่เล่น ${universe.configuredCount} หวย · ใช้คำนวณวันนี้ ${universe.eligibleCount} หวย`
           : universe?.mode === "all_eligible_fallback"
@@ -100,7 +100,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
           <span>ขอบเขตข้อมูล</span>
           <div>
             <button type="button" className={universeMode === "locked" ? "active" : ""} aria-pressed={universeMode === "locked"} onClick={() => { setError(null); setUniverseMode("locked"); }}>ชุดที่ล็อกไว้</button>
-            <button type="button" className={universeMode === "all" ? "active" : ""} aria-pressed={universeMode === "all"} onClick={() => { setError(null); setUniverseMode("all"); }}>หวยทั้งหมดวันนี้</button>
+            <button type="button" className={universeMode === "all" ? "active" : ""} aria-pressed={universeMode === "all"} onClick={() => { setError(null); setUniverseMode("all"); }}>ทุกหวยที่ผ่านเกณฑ์</button>
           </div>
         </div>
         <div className="global-win-meta">

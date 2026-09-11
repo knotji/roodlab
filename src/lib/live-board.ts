@@ -1,6 +1,6 @@
 import type { Snapshot } from "./cache";
 import { isCompleteDraw } from "./data-sources/integrity";
-import { LIVE_RESULT_SOURCES } from "./live-results";
+import { isLiveResultDay, LIVE_RESULT_SOURCES } from "./live-results";
 import type { LotteryDefinition } from "./types";
 
 export type LiveBoardStatus = "resulted" | "upcoming" | "waiting" | "delayed" | "unscheduled";
@@ -11,13 +11,17 @@ export function resultStartMinutes(value: string | undefined) {
 }
 
 export function bangkokClock(at = new Date()) {
-  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Bangkok", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(at).map((part) => [part.type, part.value]));
-  return { date:`${parts.year}-${parts.month}-${parts.day}`, minutes:Number(parts.hour) * 60 + Number(parts.minute) };
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone:"Asia/Bangkok", year:"numeric", month:"2-digit", day:"2-digit", weekday:"short", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(at).map((part) => [part.type, part.value]));
+  const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday);
+  return { date:`${parts.year}-${parts.month}-${parts.day}`, weekday, minutes:Number(parts.hour) * 60 + Number(parts.minute) };
 }
 
 export function buildLiveBoard(catalog: LotteryDefinition[], snapshots: Record<string, Snapshot>, at = new Date()): LiveBoardItem[] {
   const now = bangkokClock(at);
-  return catalog.filter((lottery) => lottery.isActive !== false && Boolean(LIVE_RESULT_SOURCES[lottery.id]?.resultAt)).map((lottery) => {
+  return catalog.filter((lottery) => {
+    const schedule = LIVE_RESULT_SOURCES[lottery.id];
+    return lottery.isActive !== false && Boolean(schedule?.resultAt) && Boolean(schedule && isLiveResultDay(schedule, now.weekday));
+  }).map((lottery) => {
     const schedule = LIVE_RESULT_SOURCES[lottery.id], snapshot = snapshots[lottery.id], resultMinutes = resultStartMinutes(schedule?.resultAt),
       outcome = snapshot?.draws.find((draw) => draw.drawDate === now.date && isCompleteDraw(draw)) ?? null;
     let status: LiveBoardStatus = "unscheduled";

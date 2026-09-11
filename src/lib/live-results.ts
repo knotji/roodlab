@@ -3,7 +3,11 @@ export type LiveResultSource = {
   closeAt?: string;
   resultAt: string;
   backupUrl?: string;
+  /** Bangkok weekdays: Sunday = 0. Omitted for confirmed daily draws. */
+  weekdays?: readonly number[];
 };
+
+const WEEKDAYS = [1, 2, 3, 4, 5] as const;
 
 export const LIVE_RESULT_SOURCES: Readonly<Record<string, LiveResultSource>> = {
   laotv: { url: "https://lao-tv.com/", closeAt: "10:20", resultAt: "10:30" },
@@ -27,23 +31,23 @@ export const LIVE_RESULT_SOURCES: Readonly<Record<string, LiveResultSource>> = {
   dowjonestar: { url: "https://dowjonestar.com/", closeAt: "01:05", resultAt: "01:30" },
   xosoextra: { url: "https://www.xosoextra.com/", closeAt: "22:10", resultAt: "22:30" },
   laoshd: { url: "https://laoshd.com/", resultAt: "13:30" },
-  "nikkei-morning": { url: "https://www.allhuay.com/lotto/nikkei-morning", resultAt: "09:30" },
-  "nikkei-afternoon": { url: "https://www.allhuay.com/lotto/nikkei-afternoon", resultAt: "13:00" },
-  "szse-morning": { url: "https://www.allhuay.com/lotto/szse-morning", resultAt: "10:30" },
-  "szse-afternoon": { url: "https://www.allhuay.com/lotto/szse-afternoon", resultAt: "14:00" },
-  "hsi-morning": { url: "https://www.allhuay.com/lotto/hsi-morning", resultAt: "11:00" },
-  "hsi-afternoon": { url: "https://www.allhuay.com/lotto/hsi-afternoon", resultAt: "15:00" },
-  twse: { url: "https://www.allhuay.com/lotto/twse", resultAt: "12:35" },
-  ktop30: { url: "https://www.allhuay.com/lotto/ktop30", resultAt: "13:35" },
-  "nikkei-vip-morning": { url: "https://nikkeivipstock.com/", closeAt: "09:00", resultAt: "09:05" },
-  "szse-vip-morning": { url: "https://shenzhenindex.com/", closeAt: "10:00", resultAt: "10:05" },
-  "hsi-vip-morning": { url: "https://hangsengvip.com/", closeAt: "10:30", resultAt: "10:35" },
-  "twse-vip": { url: "https://tsecvipindex.com/", closeAt: "11:30", resultAt: "11:35" },
-  "ktop30-vip": { url: "https://ktopvipindex.com/", closeAt: "12:30", resultAt: "12:35" },
-  "nikkei-vip-afternoon": { url: "https://nikkeivipstock.com/", closeAt: "13:20", resultAt: "13:25" },
-  "szse-vip-afternoon": { url: "https://shenzhenindex.com/", closeAt: "14:20", resultAt: "14:25" },
-  "hsi-vip-afternoon": { url: "https://hangsengvip.com/", closeAt: "15:20", resultAt: "15:25" },
-  "sgx-vip": { url: "https://stocks-vip.com/", closeAt: "17:00", resultAt: "17:05" },
+  "nikkei-morning": { url: "https://www.allhuay.com/lotto/nikkei-morning", resultAt: "09:30", weekdays: WEEKDAYS },
+  "nikkei-afternoon": { url: "https://www.allhuay.com/lotto/nikkei-afternoon", resultAt: "13:00", weekdays: WEEKDAYS },
+  "szse-morning": { url: "https://www.allhuay.com/lotto/szse-morning", resultAt: "10:30", weekdays: WEEKDAYS },
+  "szse-afternoon": { url: "https://www.allhuay.com/lotto/szse-afternoon", resultAt: "14:00", weekdays: WEEKDAYS },
+  "hsi-morning": { url: "https://www.allhuay.com/lotto/hsi-morning", resultAt: "11:00", weekdays: WEEKDAYS },
+  "hsi-afternoon": { url: "https://www.allhuay.com/lotto/hsi-afternoon", resultAt: "15:00", weekdays: WEEKDAYS },
+  twse: { url: "https://www.allhuay.com/lotto/twse", resultAt: "12:35", weekdays: WEEKDAYS },
+  ktop30: { url: "https://www.allhuay.com/lotto/ktop30", resultAt: "13:35", weekdays: WEEKDAYS },
+  "nikkei-vip-morning": { url: "https://nikkeivipstock.com/", closeAt: "09:00", resultAt: "09:05", weekdays: WEEKDAYS },
+  "szse-vip-morning": { url: "https://shenzhenindex.com/", closeAt: "10:00", resultAt: "10:05", weekdays: WEEKDAYS },
+  "hsi-vip-morning": { url: "https://hangsengvip.com/", closeAt: "10:30", resultAt: "10:35", weekdays: WEEKDAYS },
+  "twse-vip": { url: "https://tsecvipindex.com/", closeAt: "11:30", resultAt: "11:35", weekdays: WEEKDAYS },
+  "ktop30-vip": { url: "https://ktopvipindex.com/", closeAt: "12:30", resultAt: "12:35", weekdays: WEEKDAYS },
+  "nikkei-vip-afternoon": { url: "https://nikkeivipstock.com/", closeAt: "13:20", resultAt: "13:25", weekdays: WEEKDAYS },
+  "szse-vip-afternoon": { url: "https://shenzhenindex.com/", closeAt: "14:20", resultAt: "14:25", weekdays: WEEKDAYS },
+  "hsi-vip-afternoon": { url: "https://hangsengvip.com/", closeAt: "15:20", resultAt: "15:25", weekdays: WEEKDAYS },
+  "sgx-vip": { url: "https://stocks-vip.com/", closeAt: "17:00", resultAt: "17:05", weekdays: WEEKDAYS },
   xosounion: { url: "https://xosounion.com/", closeAt: "17:10", resultAt: "17:15" },
   xosodevelop: { url: "https://xosodevelop.com/", closeAt: "19:10", resultAt: "19:15" },
   hanoiasean: { url: "https://hanoiasean.com/", closeAt: "09:10", resultAt: "09:30" },
@@ -55,4 +59,8 @@ export const LIVE_RESULT_SOURCES: Readonly<Record<string, LiveResultSource>> = {
 
 export function liveResultSource(lotteryId: string) {
   return LIVE_RESULT_SOURCES[lotteryId] ?? null;
+}
+
+export function isLiveResultDay(source: LiveResultSource, weekday: number) {
+  return source.weekdays?.includes(weekday) ?? true;
 }

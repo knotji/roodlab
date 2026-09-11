@@ -31,7 +31,6 @@ import {
   buildWinSet,
 } from "@/lib/analysis/win-set";
 import {
-  buildConsensus,
   buildDistributedConsensus,
   type ConsensusResult,
 } from "@/lib/analysis/consensus";
@@ -259,7 +258,7 @@ export default function Dashboard({
       [analysisDraws, formulaDayPattern],
     );
   const analysis = useMemo(() => {
-    return hasSignals
+    return hasSignals && (section === "statistics" || section === "backtest")
       ? memoizedAnalyze(selectedId, patternDraws, {
           window: windowSize,
           candidateCount,
@@ -275,19 +274,9 @@ export default function Dashboard({
     candidateCount,
     doubles,
     algorithmId,
+    section,
   ]);
-  const consensus = useMemo(
-    () =>
-      hasSignals && section === "analyze"
-          ? buildConsensus(patternDraws, {
-            window: windowSize,
-            candidateCount,
-            includeDoubles: doubles,
-            stabilityWindows: dayPattern === "all" ? undefined : [5, 10],
-          })
-        : null,
-    [patternDraws, hasSignals, windowSize, candidateCount, doubles, dayPattern, section],
-  );
+  const consensus: ConsensusResult | null = null;
   const tests = useMemo(() => {
       return hasSignals && section === "backtest"
         ? backtest(
