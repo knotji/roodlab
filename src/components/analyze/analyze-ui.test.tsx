@@ -111,11 +111,42 @@ describe("Analyze presentation", () => {
     expect(primaryWin.children).toHaveLength(6);
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
 
-    // Primary Win-6-derived play set - pure combinatorics from Production Win 6 (digits: 7 1 9 3 5 8),
-    // completely independent of frequentPairs/evidence data and of the hero's 5/6/7 selector.
-    expect(screen.getByText("ชุดวิน 6 — 15 คู่ + 6 เบิ้ล")).toBeTruthy();
-    expect(screen.getByText("แตกคู่จากวิน 6 ตัวหลักของวันนี้")).toBeTruthy();
+    // Primary historical-evidence pair set - visible by default, badged as the primary set.
+    expect(screen.getByText("คู่เด่นจากสถิติย้อนหลัง")).toBeTruthy();
+    expect(screen.getByText("คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่")).toBeTruthy();
     expect(screen.getByText("ชุดหลัก")).toBeTruthy();
+    const evidencePairs = screen.getByLabelText(/คู่เด่นจากสถิติย้อนหลัง/);
+    const shownEvidencePairs = Array.from(evidencePairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
+    expect(shownEvidencePairs).toHaveLength(18);
+    expect(evidencePairs.querySelectorAll(".global-win-frequent-pair-list.focused b")).toHaveLength(10);
+    expect(screen.getByText("เน้นพิเศษ 10 คู่")).toBeTruthy();
+    expect(screen.getByText("คู่ไม่เบิ้ลที่เหลือ 8 คู่")).toBeTruthy();
+    const copyEvidence18 = screen.getByRole("button", { name: "คัดลอก 18 คู่ + 4 เบิ้ล" });
+    fireEvent.click(copyEvidence18);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 28 18 56 49 12 68 03 27 57 39 06 60 61 33 44 11 88"));
+    expect(screen.getByText("เลขเบิ้ล · 4 คู่")).toBeTruthy();
+    expect(screen.getByLabelText("เลขเบิ้ลเด่น 33 44 11 88").children).toHaveLength(4);
+    const moreOptions = screen.getByText("ตัวเลือกคัดลอก").closest("details");
+    expect(moreOptions?.open).toBe(false);
+    fireEvent.click(screen.getByText("ตัวเลือกคัดลอก"));
+    expect(moreOptions?.open).toBe(true);
+    expect(screen.getByRole("button", { name: "10 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "15 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "50 คู่ + เบิ้ล" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "18 คู่ + 4 เบิ้ล" })).toBeNull(); // promoted to the primary CTA, not duplicated here
+    const copyDoublesOnly = screen.getByRole("button", { name: "เฉพาะเลขเบิ้ล" });
+    fireEvent.click(copyDoublesOnly);
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("33 44 11 88"));
+
+    // Demoted Win-6-derived play set - pure combinatorics from Production Win 6 (digits: 7 1 9 3 5 8),
+    // completely independent of frequentPairs/evidence data and of the hero's 5/6/7 selector, but no
+    // longer the primary CTA - only reachable via the secondary details overflow.
+    const secondaryDisclosure = screen.getByText("ชุดวิน 6 และชุดสำรวจเพิ่มเติม").closest("details");
+    expect(secondaryDisclosure?.open).toBe(false);
+    fireEvent.click(screen.getByText("ชุดวิน 6 และชุดสำรวจเพิ่มเติม"));
+    expect(secondaryDisclosure?.open).toBe(true);
+    expect(screen.getByText("ชุดวิน 6 — 15 คู่ + 6 เบิ้ล")).toBeTruthy();
+    expect(screen.getByText("แตกคู่จากวิน 6 ตัวหลักของวันนี้ · ไม่ใช่ชุดหลัก")).toBeTruthy();
     const win6Pairs = screen.getByLabelText(/ชุดวิน 6/);
     const win6NonDoubles = Array.from(win6Pairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
     expect(win6NonDoubles).toEqual(["71", "79", "73", "75", "78", "19", "13", "15", "18", "93", "95", "98", "35", "38", "58"]);
@@ -124,6 +155,7 @@ describe("Analyze presentation", () => {
     expect(screen.getByText("คู่กลับ 15 คู่")).toBeTruthy();
     expect(screen.getByText("เลขเบิ้ล 6 ตัว")).toBeTruthy();
     const copyWin6Canonical = screen.getByRole("button", { name: "คัดลอก 15 คู่ + 6 เบิ้ล" });
+    expect(copyWin6Canonical.className).not.toContain("primary"); // no primary-looking CTA on the demoted section
     fireEvent.click(copyWin6Canonical);
     await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("71 79 73 75 78 19 13 15 18 93 95 98 35 38 58 77 11 99 33 55 88"));
     const copyWin6Expanded = screen.getByRole("button", { name: "คัดลอกชุดเล่น 36 เลข" });
@@ -137,36 +169,6 @@ describe("Analyze presentation", () => {
       "87", "81", "89", "83", "85",
       "77", "11", "99", "33", "55", "88",
     ].join(" ")));
-
-    // Demoted historical-evidence pairs - explicitly not the primary set, only reachable via a details overflow.
-    const secondaryDisclosure = screen.getByText("คู่เด่นและชุดสำรวจเพิ่มเติม").closest("details");
-    expect(secondaryDisclosure?.open).toBe(false);
-    fireEvent.click(screen.getByText("คู่เด่นและชุดสำรวจเพิ่มเติม"));
-    expect(secondaryDisclosure?.open).toBe(true);
-    expect(screen.getByText("คู่เด่นจากสถิติย้อนหลัง")).toBeTruthy();
-    expect(screen.getByText("คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก")).toBeTruthy();
-    const evidencePairs = screen.getByLabelText(/คู่เด่นจากสถิติย้อนหลัง/);
-    const shownEvidencePairs = Array.from(evidencePairs.querySelectorAll(".global-win-frequent-pair-list:not(.doubles) b"), (item) => item.textContent);
-    expect(shownEvidencePairs).toHaveLength(18);
-    expect(evidencePairs.querySelectorAll(".global-win-frequent-pair-list.focused b")).toHaveLength(10);
-    expect(screen.getByText("เน้นพิเศษ 10 คู่")).toBeTruthy();
-    expect(screen.getByText("คู่ไม่เบิ้ลที่เหลือ 8 คู่")).toBeTruthy();
-    expect(screen.queryByRole("button", { name: "คัดลอก 21 คู่ + เบิ้ล" })).toBeNull(); // no primary-looking CTA on the demoted section
-    const moreOptions = screen.getByText("ตัวเลือกคัดลอก").closest("details");
-    expect(moreOptions?.open).toBe(false);
-    fireEvent.click(screen.getByText("ตัวเลือกคัดลอก"));
-    expect(moreOptions?.open).toBe(true);
-    expect(screen.getByRole("button", { name: "10 คู่ + เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "15 คู่ + เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "18 คู่ + 4 เบิ้ล" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "50 คู่ + เบิ้ล" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "18 คู่ + 4 เบิ้ล" }));
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("05 17 24 19 09 28 18 56 49 12 68 03 27 57 39 06 60 61 33 44 11 88"));
-    expect(screen.getByText("เลขเบิ้ล · 4 คู่")).toBeTruthy();
-    expect(screen.getByLabelText("เลขเบิ้ลเด่น 33 44 11 88").children).toHaveLength(4);
-    const copyDoublesOnly = screen.getByRole("button", { name: "เฉพาะเลขเบิ้ล" });
-    fireEvent.click(copyDoublesOnly);
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith("33 44 11 88"));
 
     expect(screen.getByLabelText("วิน 6 จากคู่เน้น 1 2 9 0 8 7").children).toHaveLength(6);
     expect(screen.getByRole("button", { name: "คัดลอกชุดจาก 21 คู่แรก" })).toBeTruthy();

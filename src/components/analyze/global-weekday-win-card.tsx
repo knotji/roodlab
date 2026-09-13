@@ -137,31 +137,8 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
       </section>
       <div className="global-win-frequent-pairs">
         <header>
-          <div><span aria-hidden="true"><KeyRound /></span><div><strong>ชุดวิน 6 — 15 คู่ + 6 เบิ้ล</strong><small>แตกคู่จากวิน 6 ตัวหลักของวันนี้</small></div></div>
+          <div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เด่นจากสถิติย้อนหลัง</strong><small>คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่</small></div></div>
           <span className="global-win-pair-badge">ชุดหลัก</span>
-        </header>
-        <div className="global-win-frequent-pair-groups" aria-label={`ชุดวิน 6 ${win6PairSet.nonDoublePairs.join(" ")} เบิ้ล ${win6PairSet.doubles.join(" ")}`}>
-          <div className="global-win-frequent-pair-block">
-            <span>คู่กลับ {win6PairSet.nonDoublePairs.length} คู่</span>
-            <div className="global-win-frequent-pair-list">{win6PairSet.nonDoublePairs.map((pair) => <b key={pair}>{pair}</b>)}</div>
-          </div>
-          <div className="global-win-frequent-pair-block doubles">
-            <span>เลขเบิ้ล {win6PairSet.doubles.length} ตัว</span>
-            <div className="global-win-frequent-pair-list doubles">{win6PairSet.doubles.map((pair) => <span key={pair}><b>{pair}</b></span>)}</div>
-          </div>
-        </div>
-        <div className="global-win-frequent-pair-footer">
-          <button className="primary" type="button" onClick={() => copyValues("win6Pairs", win6CanonicalItems)}>{copied === "win6Pairs" ? <Check /> : <Copy />}{copied === "win6Pairs" ? "คัดลอกแล้ว" : "คัดลอก 15 คู่ + 6 เบิ้ล"}</button>
-          <button type="button" onClick={() => copyValues("win6Expanded", [...win6PairSet.expandedNumbers])}>{copied === "win6Expanded" ? <Check /> : <Copy />}{copied === "win6Expanded" ? "คัดลอกแล้ว" : `คัดลอกชุดเล่น ${win6PairSet.expandedNumbers.length} เลข`}</button>
-        </div>
-        <small className="global-win-primary-pairs-note">15 คู่กลับ + 6 เบิ้ล · ชุดเล่นคือคู่กลับสองทิศทางรวมเบิ้ล ({win6PairSet.expandedNumbers.length} เลข)</small>
-      </div>
-      <details className="global-win-secondary">
-        <summary><span><KeyRound />คู่เด่นและชุดสำรวจเพิ่มเติม</span><small>ไม่ใช่ชุดหลัก</small><ChevronDown /></summary>
-        <div className="global-win-secondary-content">
-      <div className="global-win-evidence-pairs">
-        <header>
-          <div><span aria-hidden="true"><KeyRound /></span><div><strong>คู่เด่นจากสถิติย้อนหลัง</strong><small>คู่ไม่เบิ้ล 18 คู่ · เบิ้ล 4 คู่ · ไม่ใช่ชุดหลัก</small></div></div>
         </header>
         <div className="global-win-frequent-pair-groups" aria-label={`คู่เด่นจากสถิติย้อนหลัง ${shownRecommendedPairs.map((item) => item.pair).join(" ")} เบิ้ล ${recommendedDoubles.map((item) => item.pair).join(" ")}`}>
           <div className="global-win-frequent-pair-block focused">
@@ -178,17 +155,40 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
           </div>}
         </div>
         <div className="global-win-frequent-pair-footer">
+          <button className="primary" type="button" onClick={() => copyValues("frequentTop18", pairsWithDoubles(18))}>{copied === "frequentTop18" ? <Check /> : <Copy />}{copied === "frequentTop18" ? "คัดลอกแล้ว" : "คัดลอก 18 คู่ + 4 เบิ้ล"}</button>
           <details className="global-win-pair-more-options">
             <summary>ตัวเลือกคัดลอก<ChevronDown /></summary>
             <div>
               <button type="button" onClick={() => copyValues("frequentTop10", pairsWithDoubles(10))}>{copied === "frequentTop10" ? <Check /> : <Copy />}{copied === "frequentTop10" ? "คัดลอกแล้ว" : "10 คู่ + เบิ้ล"}</button>
               <button type="button" onClick={() => copyValues("frequentTop15", pairsWithDoubles(15))}>{copied === "frequentTop15" ? <Check /> : <Copy />}{copied === "frequentTop15" ? "คัดลอกแล้ว" : "15 คู่ + เบิ้ล"}</button>
-              <button type="button" onClick={() => copyValues("frequentTop18", pairsWithDoubles(18))}>{copied === "frequentTop18" ? <Check /> : <Copy />}{copied === "frequentTop18" ? "คัดลอกแล้ว" : "18 คู่ + 4 เบิ้ล"}</button>
               <button type="button" onClick={() => copyValues("frequentPairs", pairsWithDoubles(50))}>{copied === "frequentPairs" ? <Check /> : <Copy />}{copied === "frequentPairs" ? "คัดลอกแล้ว" : "50 คู่ + เบิ้ล"}</button>
               {recommendedDoubles.length > 0 && <button type="button" onClick={() => copyValues("frequentDoubles", recommendedDoubles.map((item) => item.pair))}>{copied === "frequentDoubles" ? <Check /> : <Copy />}{copied === "frequentDoubles" ? "คัดลอกแล้ว" : "เฉพาะเลขเบิ้ล"}</button>}
             </div>
           </details>
         </div>
+      </div>
+      <details className="global-win-secondary">
+        <summary><span><KeyRound />ชุดวิน 6 และชุดสำรวจเพิ่มเติม</span><small>ไม่ใช่ชุดหลัก</small><ChevronDown /></summary>
+        <div className="global-win-secondary-content">
+      <div className="global-win-evidence-pairs">
+        <header>
+          <div><span aria-hidden="true"><KeyRound /></span><div><strong>ชุดวิน 6 — 15 คู่ + 6 เบิ้ล</strong><small>แตกคู่จากวิน 6 ตัวหลักของวันนี้ · ไม่ใช่ชุดหลัก</small></div></div>
+        </header>
+        <div className="global-win-frequent-pair-groups" aria-label={`ชุดวิน 6 ${win6PairSet.nonDoublePairs.join(" ")} เบิ้ล ${win6PairSet.doubles.join(" ")}`}>
+          <div className="global-win-frequent-pair-block">
+            <span>คู่กลับ {win6PairSet.nonDoublePairs.length} คู่</span>
+            <div className="global-win-frequent-pair-list">{win6PairSet.nonDoublePairs.map((pair) => <b key={pair}>{pair}</b>)}</div>
+          </div>
+          <div className="global-win-frequent-pair-block doubles">
+            <span>เลขเบิ้ล {win6PairSet.doubles.length} ตัว</span>
+            <div className="global-win-frequent-pair-list doubles">{win6PairSet.doubles.map((pair) => <span key={pair}><b>{pair}</b></span>)}</div>
+          </div>
+        </div>
+        <div className="global-win-frequent-pair-footer">
+          <button type="button" onClick={() => copyValues("win6Pairs", win6CanonicalItems)}>{copied === "win6Pairs" ? <Check /> : <Copy />}{copied === "win6Pairs" ? "คัดลอกแล้ว" : "คัดลอก 15 คู่ + 6 เบิ้ล"}</button>
+          <button type="button" onClick={() => copyValues("win6Expanded", [...win6PairSet.expandedNumbers])}>{copied === "win6Expanded" ? <Check /> : <Copy />}{copied === "win6Expanded" ? "คัดลอกแล้ว" : `คัดลอกชุดเล่น ${win6PairSet.expandedNumbers.length} เลข`}</button>
+        </div>
+        <small className="global-win-primary-pairs-note">15 คู่กลับ + 6 เบิ้ล · ชุดเล่นคือคู่กลับสองทิศทางรวมเบิ้ล ({win6PairSet.expandedNumbers.length} เลข)</small>
       </div>
       <section className="global-win-pair-derived"><header><KeyRound /><div><strong>ชุดเลขจาก 21 คู่แรก (Win 6)</strong><span>ชุดสำรวจจาก 21 คู่ที่พบบ่อย ไม่ใช่ชุดหลัก</span></div></header><div className="global-win-pair-derived-digits" aria-label={`วิน 6 จากคู่เน้น ${result.pairDerivedDigits.map((item) => item.digit).join(" ")}`}>{result.pairDerivedDigits.map((item) => <b key={item.digit}>{item.digit}</b>)}</div><button type="button" onClick={() => copyValues("pairDigits", result.pairDerivedDigits.map((item) => item.digit))}>{copied === "pairDigits" ? <Check /> : <Copy />}{copied === "pairDigits" ? "คัดลอกแล้ว" : "คัดลอกชุดจาก 21 คู่แรก"}</button></section>
         </div>
