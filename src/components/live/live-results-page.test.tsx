@@ -12,7 +12,8 @@ describe("LiveResultsPage",()=>{
     vi.stubGlobal("fetch",vi.fn().mockResolvedValue({ok:true,json:async()=>({ok:true,date:"2026-09-01",updatedAt:"2026-09-01T03:31:00Z",scheduled:2,total:2,items})}));
     render(<LiveResultsPage onAnalyze={onAnalyze}/>);
     expect(await screen.findByText("ลาวทีวี")).toBeTruthy();
-    expect(screen.getByText("123")).toBeTruthy();
+    expect(screen.queryByText("123")).toBeNull(); // no inline result numbers - link out instead
+    expect(screen.getAllByRole("link",{name:/ดูผลสด/})[0]).toHaveProperty("href","https://lao-tv.com/");
     fireEvent.change(screen.getByDisplayValue("ทุกสถานะ"),{target:{value:"upcoming"}});
     expect(screen.queryByText("ลาวทีวี")).toBeNull();
     fireEvent.click(screen.getByRole("button",{name:"วิเคราะห์"}));
