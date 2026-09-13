@@ -41,5 +41,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*
+# local scratch: disposable test databases, sync dumps, dev-server logs
+/.codex-tmp/
