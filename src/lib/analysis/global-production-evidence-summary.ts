@@ -4,6 +4,7 @@
  */
 export const CURRENT_GLOBAL_WIN6_EVIDENCE = {
   freezeDate: "2026-09-11",
+  evaluatedThrough: "2026-09-10",
   evaluatedDates: 117,
   outcomes: 3465,
   productionEitherRate: 0.602020202020202,

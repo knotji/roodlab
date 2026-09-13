@@ -4,6 +4,10 @@
     {
       "path": "/api/cron/prospective-sync",
       "schedule": "30 16 * * *"
+    },
+    {
+      "path": "/api/cron/daily-lock-prepare",
+      "schedule": "0 14 * * *"
     }
   ]
 }

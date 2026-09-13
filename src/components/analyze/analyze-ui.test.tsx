@@ -223,57 +223,80 @@ describe("Analyze presentation", () => {
     };
   }
 
-  it("shows played-universe copy and the configured/eligible source counts when Production resolves the Played Universe", async () => {
+  it("shows the locked source scope as the default", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
       ok: true,
       json: async () => globalWeekdayWinFixture({
         eligibility: { totalCatalog: 151, historiesAvailable: 40, eligible: 35, excluded: 2, exclusionReasons: {}, latestSyncTimestamp: null },
-        universe: { mode: "played", weekday: 2, configuredCount: 37, eligibleCount: 35 },
+        universe: { mode: "locked", weekday: 2, configuredCount: 37, eligibleCount: 35 },
       }),
     }));
     render(<GlobalWeekdayWinCard />);
-    expect(await screen.findByText("คำนวณจากหวยที่เล่นวันนี้")).toBeTruthy();
-    expect(screen.getByText("ใช้ข้อมูลย้อนหลังของหวยในรายการที่เล่นวันนี้")).toBeTruthy();
-    expect(screen.getByText("รายการที่เล่น 37 หวย · ใช้คำนวณวันนี้ 35 หวย")).toBeTruthy();
+    expect(await screen.findByText("คำนวณด้วยขอบเขตแหล่งข้อมูลเดิม (ค่าเริ่มต้น)")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "แหล่งเดิม (ค่าเริ่มต้น)" }).getAttribute("aria-pressed")).toBe("true");
   });
 
   it("switches from the locked universe to all eligible lotteries without changing the default", async () => {
     const fetchMock = vi.fn().mockImplementation(async (input: string) => {
-      const all = input.includes("universe=all");
+      const all = input.includes("universe=today");
       return {
         ok: true,
         json: async () => globalWeekdayWinFixture(all
-          ? { lotteryCount: 109, universe: { mode: "all_eligible", weekday: 2, configuredCount: 151, eligibleCount: 109 } }
-          : { lotteryCount: 35, universe: { mode: "played", weekday: 2, configuredCount: 37, eligibleCount: 35 } }),
+          ? { lotteryCount: 20, universe: { mode: "today_eligible", weekday: 2, configuredCount: 22, eligibleCount: 20 } }
+          : { lotteryCount: 35, universe: { mode: "locked", weekday: 2, configuredCount: 37, eligibleCount: 35 } }),
       };
     });
     vi.stubGlobal("fetch", fetchMock);
     render(<GlobalWeekdayWinCard />);
-    expect(await screen.findByText("คำนวณจากหวยที่เล่นวันนี้")).toBeTruthy();
-    expect(screen.getByRole("button", { name: "ชุดที่ล็อกไว้" }).getAttribute("aria-pressed")).toBe("true");
+    expect(await screen.findByText("คำนวณด้วยขอบเขตแหล่งข้อมูลเดิม (ค่าเริ่มต้น)")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "แหล่งเดิม (ค่าเริ่มต้น)" }).getAttribute("aria-pressed")).toBe("true");
     expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=locked");
 
-    fireEvent.click(screen.getByRole("button", { name: "ทุกหวยที่ผ่านเกณฑ์" }));
-    expect(await screen.findByText("คำนวณจากทุกหวยที่มีข้อมูลวันเดียวกันและผ่านเกณฑ์")).toBeTruthy();
-    expect(screen.getByText("ผ่านเกณฑ์ 109 จาก 151 หวย")).toBeTruthy();
-    expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=all");
+    fireEvent.click(screen.getByRole("button", { name: "หวยที่ออกวันนี้" }));
+    expect(await screen.findByText("ทดลองคำนวณจากหวยที่มีกำหนดออกวันนี้และผ่านเกณฑ์")).toBeTruthy();
+    expect(screen.getByText("ยังไม่มีผลประเมินสำหรับขอบเขตนี้")).toBeTruthy();
+    expect(fetchMock).toHaveBeenCalledWith("/api/global-weekday-win?universe=today");
   });
 
-  it("shows the Dynamic All Eligible fallback copy when Sunday has no configured Played Universe", async () => {
+  it("does not imply an unrecorded preview is a locked set", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({
       ok: true,
       json: async () => globalWeekdayWinFixture({
         weekday: 0,
         weekdayLabel: "วันอาทิตย์",
         eligibility: { totalCatalog: 151, historiesAvailable: 40, eligible: 90, excluded: 61, exclusionReasons: {}, latestSyncTimestamp: null },
-        universe: { mode: "all_eligible_fallback", weekday: 0, configuredCount: 151, eligibleCount: 90 },
+        universe: { mode: "locked", weekday: 0, configuredCount: 151, eligibleCount: 90 },
       }),
     }));
     render(<GlobalWeekdayWinCard />);
-    expect(await screen.findByText("ยังไม่มีรายการหวยที่เล่นสำหรับวันนี้ จึงใช้ข้อมูลรอบโลก")).toBeTruthy();
-    expect(screen.getByText("ใช้ข้อมูลรอบโลก 90 จาก 151 หวย")).toBeTruthy();
-    expect(screen.queryByText(/รายการที่เล่น/)).toBeNull(); // fallback mode has no "play list" - must not imply one
+    expect(await screen.findByText("ชุดทดลอง / preview · ยังไม่ใช่หลักฐานก่อนออกรางวัล")).toBeTruthy();
     expect(screen.queryByText(/แม่นกว่า|โอกาสสูงกว่า|เพิ่มโอกาส|สูตรดีกว่า/)).toBeNull();
+  });
+
+  it("shows an explicit no-lock state after the deadline", async () => {
+    vi.stubGlobal("fetch",vi.fn().mockResolvedValue({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:{status:"missing-after-deadline",persistenceAvailable:true,authorizationConfigured:true,allowed:false,reason:"lock-deadline-passed",previewFingerprint:"f",previewSignature:"s",pairedPreview:{modes:{a:{digits:["1","2","3","4","5","6"],configuredCount:37,eligibleCount:35,historyVersion:"a"},b:{digits:["2","3","4","5","6","7"],configuredCount:20,eligibleCount:18,historyVersion:"b"}}}}})}));
+    render(<GlobalWeekdayWinCard/>);expect(await screen.findByText(/ไม่มีชุดล็อกสำหรับวันนี้/)).toBeTruthy();expect(screen.queryByRole("button",{name:"ล็อกวิน 6 ทั้งสองโหมด"})).toBeNull();
+  });
+
+  it("reports server lock failure instead of showing local success", async () => {
+    const preview={status:"preview" as const,persistenceAvailable:true,authorizationConfigured:true,allowed:true,previewFingerprint:"f",previewSignature:"s",prelockSync:{status:"ready" as const,successCount:40,failedCount:0,completedAt:"2026-09-11T21:55:00Z"},pairedPreview:{modes:{a:{digits:["1","2","3","4","5","6"],configuredCount:37,eligibleCount:35,historyVersion:"a"},b:{digits:["2","3","4","5","6","7"],configuredCount:20,eligibleCount:18,historyVersion:"b"}}}};
+    vi.stubGlobal("fetch",vi.fn().mockResolvedValueOnce({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:preview})}).mockResolvedValueOnce({ok:false,json:async()=>({ok:false,error:"สิทธิ์ล็อกชุดไม่ถูกต้อง"})}));
+    render(<GlobalWeekdayWinCard/>);fireEvent.change(await screen.findByLabelText("ยืนยันล็อก A และ B พร้อมกัน"),{target:{value:"wrong"}});fireEvent.click(screen.getByRole("button",{name:"ล็อกวิน 6 ทั้งสองโหมด"}));expect((await screen.findByRole("alert")).textContent).toContain("สิทธิ์ล็อกชุดไม่ถูกต้อง");expect(screen.queryByText("ชุดล็อกจริง")).toBeNull();
+  });
+
+  it("keeps the lock action disabled until the persisted pre-lock run is ready", async () => {
+    const preview={status:"preview" as const,persistenceAvailable:true,authorizationConfigured:true,allowed:true,previewFingerprint:"f",previewSignature:"s",prelockSync:{status:"failed" as const,successCount:38,failedCount:2,completedAt:"2026-09-11T21:55:00Z"},pairedPreview:{modes:{a:{digits:["1","2","3","4","5","6"],configuredCount:37,eligibleCount:35,historyVersion:"a"},b:{digits:["2","3","4","5","6","7"],configuredCount:20,eligibleCount:18,historyVersion:"b"}}}};
+    vi.stubGlobal("fetch",vi.fn().mockResolvedValue({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:preview})}));
+    const view=render(<GlobalWeekdayWinCard/>);
+    const input=await screen.findByLabelText("ยืนยันล็อก A และ B พร้อมกัน");
+    fireEvent.change(input,{target:{value:"secret"}});
+    expect(view.container.querySelector<HTMLButtonElement>(".global-daily-lock-action button")?.disabled).toBe(true);
+  });
+
+  it("renders the persisted paired lock after server confirmation and reload", async () => {
+    const locked={status:"locked" as const,record:{modes:{a:{digits:["0","1","2","3","4","5"],configuredCount:37,eligibleCount:35,historyVersion:"a12345678"},b:{digits:["9","8","7","6","5","4"],configuredCount:20,eligibleCount:18,historyVersion:"b12345678"}},createdAt:"2026-09-11T22:00:00.000Z",targetDate:"2026-09-12",formulaVersion:"weekday-frequency-daily-paired-lock-v2",historyVersion:"pair12345678",deadlineBangkok:"2026-09-12T05:40:00+07:00"}},preview={status:"preview" as const,persistenceAvailable:true,authorizationConfigured:true,allowed:true,previewFingerprint:"f",previewSignature:"s",prelockSync:{status:"ready" as const,successCount:40,failedCount:0,completedAt:"2026-09-11T21:55:00Z"},pairedPreview:{modes:locked.record.modes}};
+    const fetchMock=vi.fn().mockResolvedValueOnce({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:preview})}).mockResolvedValueOnce({ok:true,json:async()=>({ok:true,created:true,record:locked.record})}).mockResolvedValue({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:locked})});vi.stubGlobal("fetch",fetchMock);
+    const view=render(<GlobalWeekdayWinCard/>);fireEvent.change(await screen.findByLabelText("ยืนยันล็อก A และ B พร้อมกัน"),{target:{value:"secret"}});fireEvent.click(screen.getByRole("button",{name:"ล็อกวิน 6 ทั้งสองโหมด"}));expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();expect(screen.getByLabelText("วินรวมทุกหวย 0 1 2 3 4 5")).toBeTruthy();view.unmount();render(<GlobalWeekdayWinCard/>);expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();expect(screen.getByText(/data pair123/)).toBeTruthy();
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {

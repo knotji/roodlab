@@ -39,6 +39,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Put `DATABASE_URL` in `.env.local` (this file is ignored by Git). Preview the eligible catalog without writing anything:
 
+Daily A/B locking additionally requires `DAILY_LOCK_SECRET`. `DAILY_LOCK_SIGNING_SECRET` is optional; when omitted, the lock secret signs preview fingerprints. The browser asks for the lock secret only when the user confirms a lock and does not persist it locally. Persistence acceptance must use a separate `TEST_DATABASE_URL`; never point that variable at Production.
+
+Daily Lock preparation also requires `CRON_SECRET`. The scheduled endpoint builds the union of A and B source candidates for the next Bangkok date, synchronizes it in bounded batches with per-source retries, persists per-source results, and only enables locking after both scopes pass readiness. Vercel invokes cron routes with `GET`; authenticated operators can inspect the latest run without starting sync at `/api/cron/daily-lock-prepare?status=1&date=YYYY-MM-DD`.
+
+The checked-in schedule is `0 14 * * *` (21:00 Asia/Bangkok). On Vercel Hobby it may start at any point during that hour, so it intentionally targets the following Bangkok date and leaves margin before the earliest verified deadline. Cron runs only on Production deployments. Before enabling it:
+
+1. Run `npm.cmd run storage:migrate` against a disposable Neon database and complete Daily Lock/PostgreSQL acceptance.
+2. Configure `CRON_SECRET`, `DAILY_LOCK_SECRET`, optional `DAILY_LOCK_SIGNING_SECRET`, and `DATABASE_URL` through protected environment settings.
+3. Invoke the preparation route in the disposable environment and verify its durable run/items ledger and UI readiness state.
+4. Only then run the migration and enable the cron in Production; verify per-lottery results, not only the HTTP status.
+
+Do not begin the 90-day comparison until isolated persistence, browser, and first real pre-deadline operational acceptance all pass.
+
 ```powershell
 npm.cmd run sync:backfill
 ```
