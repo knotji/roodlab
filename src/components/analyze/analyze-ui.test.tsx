@@ -106,6 +106,7 @@ describe("Analyze presentation", () => {
     }));
     render(<GlobalWeekdayWinCard />);
     expect(await screen.findByRole("heading", { name: "Global Daily" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "6" })); // default is now 7 (display-only); this test exercises the 6-digit case explicitly
     const primaryWin = screen.getByLabelText("วินรวมทุกหวย 7 1 9 3 5 8");
     expect(primaryWin.children).toHaveLength(6);
     const pairButton = screen.getByRole("button", { name: "ดูชุดทั้งหมด 21 คู่" });
@@ -296,7 +297,7 @@ describe("Analyze presentation", () => {
   it("renders the persisted paired lock after server confirmation and reload", async () => {
     const locked={status:"locked" as const,record:{modes:{a:{digits:["0","1","2","3","4","5"],configuredCount:37,eligibleCount:35,historyVersion:"a12345678"},b:{digits:["9","8","7","6","5","4"],configuredCount:20,eligibleCount:18,historyVersion:"b12345678"}},createdAt:"2026-09-11T22:00:00.000Z",targetDate:"2026-09-12",formulaVersion:"weekday-frequency-daily-paired-lock-v2",historyVersion:"pair12345678",deadlineBangkok:"2026-09-12T05:40:00+07:00"}},preview={status:"preview" as const,persistenceAvailable:true,authorizationConfigured:true,allowed:true,previewFingerprint:"f",previewSignature:"s",prelockSync:{status:"ready" as const,successCount:40,failedCount:0,completedAt:"2026-09-11T21:55:00Z"},pairedPreview:{modes:locked.record.modes}};
     const fetchMock=vi.fn().mockResolvedValueOnce({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:preview})}).mockResolvedValueOnce({ok:true,json:async()=>({ok:true,created:true,record:locked.record})}).mockResolvedValue({ok:true,json:async()=>globalWeekdayWinFixture({universe:{mode:"locked",weekday:2,configuredCount:37,eligibleCount:35},dailyLock:locked})});vi.stubGlobal("fetch",fetchMock);
-    const view=render(<GlobalWeekdayWinCard/>);fireEvent.change(await screen.findByLabelText("ยืนยันล็อก A และ B พร้อมกัน"),{target:{value:"secret"}});fireEvent.click(screen.getByRole("button",{name:"ล็อกวิน 6 ทั้งสองโหมด"}));expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();expect(screen.getByLabelText("วินรวมทุกหวย 0 1 2 3 4 5")).toBeTruthy();view.unmount();render(<GlobalWeekdayWinCard/>);expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();expect(screen.getByText(/data pair123/)).toBeTruthy();
+    const view=render(<GlobalWeekdayWinCard/>);fireEvent.change(await screen.findByLabelText("ยืนยันล็อก A และ B พร้อมกัน"),{target:{value:"secret"}});fireEvent.click(screen.getByRole("button",{name:"ล็อกวิน 6 ทั้งสองโหมด"}));expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();fireEvent.click(screen.getByRole("button",{name:"6"}));/* default display is now 7; the actual lock record is always 6 digits */expect(screen.getByLabelText("วินรวมทุกหวย 0 1 2 3 4 5")).toBeTruthy();view.unmount();render(<GlobalWeekdayWinCard/>);expect(await screen.findByText("ชุดล็อกจริง")).toBeTruthy();expect(screen.getByText(/data pair123/)).toBeTruthy();
   });
 
   it("uses a native disclosure that opens without hiding its content from the DOM", () => {

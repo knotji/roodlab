@@ -19,7 +19,7 @@ export function GlobalWeekdayWinCard({ onCutoffDateChange }: { onCutoffDateChang
   const [result, setResult] = useState<GlobalDailyResult | null>(null),
     [error, setError] = useState<string | null>(null),
     [universeMode, setUniverseMode] = useState<"locked" | "today">("locked"),
-    [winSize, setWinSize] = useState<5 | 6 | 7>(6),
+    [winSize, setWinSize] = useState<5 | 6 | 7>(7),
     [lockSecret,setLockSecret]=useState(""),[locking,setLocking]=useState(false),[lockError,setLockError]=useState<string|null>(null),
     [showPairs, setShowPairs] = useState(false),
     [copied, setCopied] = useState<"digits" | "pairs" | "pairDigits" | "frequentDoubles" | "frequentTop10" | "frequentTop15" | "frequentTop18" | "frequentPairs" | "win6Pairs" | "win6Expanded" | null>(null);
