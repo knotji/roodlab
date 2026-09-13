@@ -969,13 +969,13 @@ main:has(.global-weekday-win-card) { background: #f7f9fc; }
 .global-win-primary-pairs-note { display: block; margin-top: 2px; color: var(--gd-muted); font-size: 9px; text-align: center; }
 .global-win-frequent-pair-groups { gap: 12px; }
 .global-win-frequent-pair-block > span { display: block; margin-bottom: 6px; color: var(--gd-muted); font-size: 9px; }
-.global-win-frequent-pair-block.focused { padding: 8px; border: 1px solid var(--gd-success-border); border-radius: 10px; background: rgb(255 255 255 / 55%); }
+.global-win-frequent-pair-block.focused { padding: 8px; border: 1px solid var(--gd-success-border); border-radius: 10px; background: var(--gd-success-soft); }
 .global-win-frequent-pair-block.focused > span { color: var(--gd-success); font-weight: 700; }
 .global-win-frequent-pair-block.doubles > span { color: var(--gd-rose); font-weight: 700; }
 .global-win-frequent-pair-list.focused { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 7px; }
 .global-win-frequent-pair-list.focused > span { display: grid; justify-items: center; gap: 3px; }
-.global-win-frequent-pair-list.focused b { width: 100%; min-width: 0; padding: 7px 4px; border: 1px solid #b3e7ce; border-radius: 999px; background: var(--gd-success-chip); color: #0d5e40; font-weight: 700; font-size: 12px; }
-.global-win-frequent-pair-list.focused small { color: #52677a; font-size: 8px; }
+.global-win-frequent-pair-list.focused b { width: 100%; min-width: 0; padding: 8px 4px; border: 1px solid var(--gd-success); border-radius: 999px; background: var(--gd-success); color: #ffffff; font-weight: 800; font-size: 13px; box-shadow: 0 1px 3px rgb(21 132 93 / 30%); }
+.global-win-frequent-pair-list.focused small { color: var(--gd-success); font-weight: 700; font-size: 8px; }
 .global-win-frequent-pair-list.doubles { display: flex; flex-wrap: wrap; gap: 8px; }
 .global-win-frequent-pair-list.doubles > span { display: grid; justify-items: center; gap: 3px; }
 .global-win-frequent-pair-list.doubles b { min-width: 44px; padding: 7px 6px; border: 1px solid var(--gd-rose-border); border-radius: 999px; background: var(--gd-rose-chip); color: var(--gd-rose); font-weight: 700; font-size: 12px; }
