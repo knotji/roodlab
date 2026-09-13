@@ -52,6 +52,8 @@ The checked-in schedule is `0 14 * * *` (21:00 Asia/Bangkok). On Vercel Hobby it
 
 Do not begin the 90-day comparison until isolated persistence, browser, and first real pre-deadline operational acceptance all pass.
 
+The nightly `/api/cron/prospective-sync` route (schedule `30 16 * * *`, i.e. 23:30 Asia/Bangkok) also requires `CRON_SECRET`. It rotates through up to 12 due lotteries per invocation and, when `DATABASE_URL` is configured, persists a best-effort per-run ledger (`nightly_sync_runs`/`nightly_sync_run_items`) so historical failures can be audited; a missing database or a failed ledger write never blocks the sync itself. Authenticated operators can inspect the latest run at `/api/cron/prospective-sync?status=1`.
+
 ```powershell
 npm.cmd run sync:backfill
 ```
