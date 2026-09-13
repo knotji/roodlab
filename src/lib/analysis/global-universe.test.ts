@@ -243,9 +243,9 @@ describe("buildProductionGlobalWeekdayWin", () => {
     expect(first).toEqual(second);
   });
 
-  it("Gemini (which calls resolveProductionGlobalUniverse directly) and production (via buildProductionGlobalWeekdayWin) resolve the identical universe for the same target date - no conflicting source universes", () => {
+  it("a direct caller of resolveProductionGlobalUniverse and production (via buildProductionGlobalWeekdayWin) resolve the identical universe for the same target date - no conflicting source universes", () => {
     const viaProduction = buildProductionGlobalWeekdayWin({ catalog, snapshots, targetDate: mondayDate, weekday: MONDAY }).universe,
-      viaGemini = resolveProductionGlobalUniverse({ catalog, snapshots, targetDate: mondayDate, weekday: MONDAY });
-    expect(viaProduction).toEqual(viaGemini);
+      viaDirectCall = resolveProductionGlobalUniverse({ catalog, snapshots, targetDate: mondayDate, weekday: MONDAY });
+    expect(viaProduction).toEqual(viaDirectCall);
   });
 });

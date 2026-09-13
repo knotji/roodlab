@@ -33,10 +33,6 @@ describe("Analyze presentation", () => {
     expect(screen.queryByRole("button", { name: "เลือกหวย" })).toBeNull();
     expect(screen.queryByText("วิเคราะห์รายหวย")).toBeNull();
     expect(screen.queryByRole("navigation", { name: "ส่วนต่าง ๆ ในหน้าวิเคราะห์" })).toBeNull();
-    const geminiDisclosure = screen.getByText("วิเคราะห์เพิ่มเติมด้วย Gemini").closest("details");
-    expect(geminiDisclosure?.open).toBe(false);
-    fireEvent.click(screen.getByText("วิเคราะห์เพิ่มเติมด้วย Gemini"));
-    expect(geminiDisclosure?.open).toBe(true);
   });
 
   it("renders standout digits as the primary heading value", () => {

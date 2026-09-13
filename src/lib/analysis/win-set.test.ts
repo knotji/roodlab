@@ -167,7 +167,7 @@ describe("Win 6 play-set derivation", () => {
     expect(other.nonDoublePairs).not.toEqual(deriveWin6PairSet(WIN_6).nonDoublePairs);
   });
 
-  it("depends only on the supplied Win digits - historical/Gemini evidence cannot influence it", () => {
+  it("depends only on the supplied Win digits - historical evidence cannot influence it", () => {
     // deriveWin6PairSet's signature accepts only win digits; there is no parameter through
     // which frequentPairs, evidencePairs, or any other evidence-derived data could reach it.
     expect(deriveWin6PairSet.length).toBe(1);

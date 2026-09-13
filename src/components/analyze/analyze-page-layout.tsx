@@ -1,6 +1,5 @@
-import { CalendarDays, ChevronDown, Sparkles } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import type { ReactNode } from "react";
-import { GeminiAnalysisCard } from "./gemini-analysis-card";
 
 const THAI_MONTHS = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
 
@@ -24,10 +23,6 @@ export function AnalyzePageLayout({ analysisDate, globalDaily, perLotteryHeader,
       <a href="#additional-analysis">วิเคราะห์เพิ่มเติม</a>
     </nav>}
     <div id="global-daily">{globalDaily}</div>
-    <details className="analyze-gemini-disclosure">
-      <summary><span><Sparkles />วิเคราะห์เพิ่มเติมด้วย Gemini</span><small>ตัวเลือกเสริม</small><ChevronDown /></summary>
-      <GeminiAnalysisCard />
-    </details>
     {showPerLottery && <section className="per-lottery-section" id="per-lottery-analysis">
       <div className="per-lottery-title"><div className="section-kicker">LOTTERY DETAIL</div><h2>วิเคราะห์รายหวย</h2><p>เลือกหวยและสำรวจรูปแบบจากประวัติของรายการนั้น</p></div>
       {perLotteryHeader}

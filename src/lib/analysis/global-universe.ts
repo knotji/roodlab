@@ -81,7 +81,7 @@ export function resolveProductionGlobalUniverse(input: {
 /**
  * Composes `resolveProductionGlobalUniverse` with the unchanged
  * `buildGlobalWeekdayWin` scoring engine. This is the single function production
- * (`/api/global-weekday-win`) and Gemini's evidence builder should both call, so they
+ * (`/api/global-weekday-win`) and any other evidence builder should call, so they
  * never resolve conflicting source universes for the same target date.
  */
 export function buildProductionGlobalWeekdayWin(input: {

@@ -50,8 +50,8 @@ export type Win6PairSet = {
 
 /**
  * Pure derivation of the actionable play set from Production Win 6 - the single
- * source of truth is the caller-supplied win digits, never historical/Gemini
- * evidence. Requires exactly 6 distinct digits so the result is always C(6,2) = 15
+ * source of truth is the caller-supplied win digits, never historical evidence.
+ * Requires exactly 6 distinct digits so the result is always C(6,2) = 15
  * non-double pairs + 6 doubles = 21 items, expanding to 15*2 + 6 = 36 actual numbers
  * (both directions for non-doubles, doubles counted once). Delegates the actual
  * combinatorics to `buildWinSet`, which the Win 5/6/7 hero selector also uses and
