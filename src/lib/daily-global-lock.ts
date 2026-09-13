@@ -88,9 +88,22 @@ export function validateDailyLock(plan: DailyLockPlan, now: Date) {
   return { allowed:true as const };
 }
 
+// Short-lived cache for the real (no injected store) read path only - a lock is
+// immutable once created, so the only staleness risk is briefly showing "not
+// locked yet" right after one is created, which createDailyGlobalLock clears
+// immediately below. Test-injected stores always read fresh.
+const LOCK_READ_TTL_MS = 10_000;
+const lockReadCache = new Map<string, { value: DailyGlobalLockRecord | null; expiresAt: number }>();
+
 export async function readDailyGlobalLock(targetDate:string, store?:DailyLockStore) {
+  if(!store){
+    const cached=lockReadCache.get(targetDate);
+    if(cached&&cached.expiresAt>Date.now())return cached.value;
+  }
   if(!store&&!hasDatabase()) return null;
-  const row=await (store??neonStore()).read(targetDate,DAILY_GLOBAL_LOCK_FORMULA_VERSION); return row?parseRecord(row):null;
+  const row=await (store??neonStore()).read(targetDate,DAILY_GLOBAL_LOCK_FORMULA_VERSION), record=row?parseRecord(row):null;
+  if(!store)lockReadCache.set(targetDate,{value:record,expiresAt:Date.now()+LOCK_READ_TTL_MS});
+  return record;
 }
 
 export async function createDailyGlobalLock(input:{preview:ReturnType<typeof pairedPreview>;previewFingerprint:string;previewSignature:string;now?:Date;store?:DailyLockStore}) {
@@ -104,7 +117,7 @@ export async function createDailyGlobalLock(input:{preview:ReturnType<typeof pai
   const historyVersion=createHash("sha256").update(`${input.preview.modes.a.historyVersion}|${input.preview.modes.b.historyVersion}`).digest("hex"), id=randomUUID(),
     options={recordKind:"daily-global-paired-lock",targetLotteryIds:input.preview.targets,scheduleLimitations:input.preview.scheduleLimitations,deadlineBangkok:input.preview.deadlineBangkok,modes:{a:{configuredCount:input.preview.modes.a.configuredCount,eligibleCount:input.preview.modes.a.eligibleCount,historyVersion:input.preview.modes.a.historyVersion},b:{configuredCount:input.preview.modes.b.configuredCount,eligibleCount:input.preview.modes.b.eligibleCount,historyVersion:input.preview.modes.b.historyVersion}}};
   const inserted=await store.insertBeforeDeadline({id,target_date:input.preview.targetDate,weekday:input.preview.weekday,formula_version:DAILY_GLOBAL_LOCK_FORMULA_VERSION,history_version:historyVersion,ranked_digits:{a:input.preview.modes.a.digits,b:input.preview.modes.b.digits},source_lottery_ids:{a:input.preview.modes.a.contributorLotteryIds,b:input.preview.modes.b.contributorLotteryIds},analysis_options:options},input.preview.deadlineBangkok!);
-  if(inserted)return{created:true,record:parseRecord(inserted)};
+  if(inserted){if(!input.store)lockReadCache.delete(input.preview.targetDate);return{created:true,record:parseRecord(inserted)}}
   const raced=await readDailyGlobalLock(input.preview.targetDate,store); if(raced)return{created:false,record:raced};
   throw new Error("lock-deadline-passed");
 }
